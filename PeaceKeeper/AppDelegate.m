@@ -7,6 +7,7 @@
 //
 
 #import "AppDelegate.h"
+#import "TimeService.h"
 
 @interface AppDelegate ()
 
@@ -16,7 +17,21 @@
 
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
-    // Override point for customization after application launch.
+
+//    [TimeService timer];
+    [self registerForNotifications];
+    
+//    [[UIApplication sharedApplication] cancelAllLocalNotifications];
+    
+/*
+    UILocalNotification *schedulableLocalNotification = [[UILocalNotification alloc] init];
+    schedulableLocalNotification.fireDate = [NSDate dateWithTimeInterval:60 sinceDate:[NSDate date]];
+    schedulableLocalNotification.repeatInterval = NSCalendarUnitMinute;
+    schedulableLocalNotification.alertTitle = @"SCHEDULED NOTIFICATION MOTHERFUCKER";
+    schedulableLocalNotification.alertBody = @"!!!";
+    [[UIApplication sharedApplication] scheduleLocalNotification:schedulableLocalNotification];
+*/
+
     return YES;
 }
 
@@ -42,6 +57,13 @@
     // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
     // Saves changes in the application's managed object context before the application terminates.
     [self saveContext];
+}
+
+- (void)registerForNotifications {
+    UIUserNotificationSettings *notificationSettings = [UIUserNotificationSettings settingsForTypes:UIUserNotificationTypeAlert|
+                                                                                                    UIUserNotificationTypeBadge|
+                                                                                                    UIUserNotificationTypeSound categories:nil];
+    [[UIApplication sharedApplication] registerUserNotificationSettings:notificationSettings];
 }
 
 #pragma mark - Core Data stack

@@ -26,6 +26,7 @@
         person.chores = [NSSet set];
     }
     person.household = household;
+    [NSManagedObjectContext saveManagedObjectContext];
     return person;
 }
 

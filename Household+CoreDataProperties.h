@@ -10,6 +10,7 @@
 //
 
 #import "Household.h"
+#import "CompletedChore.h"
 
 NS_ASSUME_NONNULL_BEGIN
 

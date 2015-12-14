@@ -27,6 +27,7 @@
     chore.household = household;
     chore.currentPersonIndex = @(0);
     chore.people = [NSOrderedSet orderedSet];
+    [NSManagedObjectContext saveManagedObjectContext];
     return chore;
 }
 
@@ -39,6 +40,7 @@
     } else {
         self.currentPersonIndex = @(currentPersonIndexValue++);
     }
+    [NSManagedObjectContext saveManagedObjectContext];
 }
 
 @end

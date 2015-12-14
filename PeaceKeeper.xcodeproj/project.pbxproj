@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		966C01681C1F61B30028CBF7 /* TimeService.m in Sources */ = {isa = PBXBuildFile; fileRef = 966C01671C1F61B30028CBF7 /* TimeService.m */; };
+		966C016B1C1F6FC80028CBF7 /* ChoreConstants.m in Sources */ = {isa = PBXBuildFile; fileRef = 966C016A1C1F6FC80028CBF7 /* ChoreConstants.m */; };
 		96F653C41C1F3EF60098A317 /* PeaceKeeper.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 96F653C21C1F3EF60098A317 /* PeaceKeeper.xcdatamodeld */; };
 		96F653D11C1F3F060098A317 /* Chore+CoreDataProperties.m in Sources */ = {isa = PBXBuildFile; fileRef = 96F653C61C1F3F060098A317 /* Chore+CoreDataProperties.m */; };
 		96F653D21C1F3F060098A317 /* Chore.m in Sources */ = {isa = PBXBuildFile; fileRef = 96F653C81C1F3F060098A317 /* Chore.m */; };
@@ -45,6 +47,10 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		966C01661C1F61B30028CBF7 /* TimeService.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TimeService.h; sourceTree = "<group>"; };
+		966C01671C1F61B30028CBF7 /* TimeService.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TimeService.m; sourceTree = "<group>"; };
+		966C01691C1F6FC80028CBF7 /* ChoreConstants.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ChoreConstants.h; sourceTree = "<group>"; };
+		966C016A1C1F6FC80028CBF7 /* ChoreConstants.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ChoreConstants.m; sourceTree = "<group>"; };
 		96F653C31C1F3EF60098A317 /* PeaceKeeper.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = PeaceKeeper.xcdatamodel; sourceTree = "<group>"; };
 		96F653C51C1F3F060098A317 /* Chore+CoreDataProperties.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "Chore+CoreDataProperties.h"; sourceTree = "<group>"; };
 		96F653C61C1F3F060098A317 /* Chore+CoreDataProperties.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "Chore+CoreDataProperties.m"; sourceTree = "<group>"; };
@@ -110,6 +116,8 @@
 		96F653D71C1F3F0B0098A317 /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				966C01691C1F6FC80028CBF7 /* ChoreConstants.h */,
+				966C016A1C1F6FC80028CBF7 /* ChoreConstants.m */,
 				96F6540F1C1F50C80098A317 /* NSManagedObjectContext+Category.h */,
 				96F654101C1F50C80098A317 /* NSManagedObjectContext+Category.m */,
 				96F653D81C1F3F190098A317 /* Categories */,
@@ -170,6 +178,8 @@
 				C137BA421C1F38D80075B349 /* ViewController.h */,
 				C137BA431C1F38D80075B349 /* ViewController.m */,
 				C137BA451C1F38D80075B349 /* Main.storyboard */,
+				966C01661C1F61B30028CBF7 /* TimeService.h */,
+				966C01671C1F61B30028CBF7 /* TimeService.m */,
 				96F653D71C1F3F0B0098A317 /* Model */,
 				C137BA4B1C1F38D80075B349 /* Assets.xcassets */,
 				C137BA4D1C1F38D80075B349 /* LaunchScreen.storyboard */,
@@ -336,6 +346,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				C137BA441C1F38D80075B349 /* ViewController.m in Sources */,
+				966C016B1C1F6FC80028CBF7 /* ChoreConstants.m in Sources */,
 				96F653D41C1F3F060098A317 /* Household.m in Sources */,
 				96F653D61C1F3F060098A317 /* Person.m in Sources */,
 				96F653D11C1F3F060098A317 /* Chore+CoreDataProperties.m in Sources */,
@@ -347,6 +358,7 @@
 				C137BA3E1C1F38D70075B349 /* main.m in Sources */,
 				96F654081C1F4BD50098A317 /* CompletedChore.m in Sources */,
 				96F653D51C1F3F060098A317 /* Person+CoreDataProperties.m in Sources */,
+				966C01681C1F61B30028CBF7 /* TimeService.m in Sources */,
 				96F653D31C1F3F060098A317 /* Household+CoreDataProperties.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

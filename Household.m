@@ -23,6 +23,7 @@
     household.chores = [NSSet set];
     household.people = [NSSet set];
     household.archive = [NSSet set];
+    [NSManagedObjectContext saveManagedObjectContext];
     return household;
 }
 

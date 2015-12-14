@@ -22,6 +22,7 @@
     completedChore.completionDate = completionDate;
     completedChore.chore = chore;
     completedChore.person = person;
+    [NSManagedObjectContext saveManagedObjectContext];
     return completedChore;
 }
 
