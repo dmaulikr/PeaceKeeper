@@ -18,6 +18,7 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nullable, nonatomic, retain) NSString *name;
 @property (nullable, nonatomic, retain) NSSet<Chore *> *chores;
 @property (nullable, nonatomic, retain) NSSet<Person *> *people;
+@property (nullable, nonatomic, retain) NSSet<CompletedChore *> *archive;
 
 @end
 
@@ -32,6 +33,11 @@ NS_ASSUME_NONNULL_BEGIN
 - (void)removePeopleObject:(Person *)value;
 - (void)addPeople:(NSSet<Person *> *)values;
 - (void)removePeople:(NSSet<Person *> *)values;
+
+- (void)addArchiveObject:(CompletedChore *)value;
+- (void)removeArchiveObject:(CompletedChore *)value;
+- (void)addArchive:(NSSet<CompletedChore *> *)values;
+- (void)removeArchive:(NSSet<CompletedChore *> *)values;
 
 @end
 

@@ -15,7 +15,9 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface Chore : NSManagedObject
 
-// Insert code here to declare functionality of your managed object subclass
++ (NSString *)name;
++ (instancetype)choreWithName:(NSString * _Nonnull)name startDate:(NSDate * _Nonnull)startDate repeatIntervalValue:(NSNumber * _Nonnull)repeatIntervalValue repeatIntervalUnit:(NSString * _Nonnull)repeatIntervalUnit household:(Household * _Nonnull)household;
+- (void)completeChore;
 
 @end
 
