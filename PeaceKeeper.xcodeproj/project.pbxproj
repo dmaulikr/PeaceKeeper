@@ -7,11 +7,17 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		96F653C41C1F3EF60098A317 /* PeaceKeeper.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 96F653C21C1F3EF60098A317 /* PeaceKeeper.xcdatamodeld */; };
+		96F653D11C1F3F060098A317 /* Chore+CoreDataProperties.m in Sources */ = {isa = PBXBuildFile; fileRef = 96F653C61C1F3F060098A317 /* Chore+CoreDataProperties.m */; };
+		96F653D21C1F3F060098A317 /* Chore.m in Sources */ = {isa = PBXBuildFile; fileRef = 96F653C81C1F3F060098A317 /* Chore.m */; };
+		96F653D31C1F3F060098A317 /* Household+CoreDataProperties.m in Sources */ = {isa = PBXBuildFile; fileRef = 96F653CA1C1F3F060098A317 /* Household+CoreDataProperties.m */; };
+		96F653D41C1F3F060098A317 /* Household.m in Sources */ = {isa = PBXBuildFile; fileRef = 96F653CC1C1F3F060098A317 /* Household.m */; };
+		96F653D51C1F3F060098A317 /* Person+CoreDataProperties.m in Sources */ = {isa = PBXBuildFile; fileRef = 96F653CE1C1F3F060098A317 /* Person+CoreDataProperties.m */; };
+		96F653D61C1F3F060098A317 /* Person.m in Sources */ = {isa = PBXBuildFile; fileRef = 96F653D01C1F3F060098A317 /* Person.m */; };
 		C137BA3E1C1F38D70075B349 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = C137BA3D1C1F38D70075B349 /* main.m */; };
 		C137BA411C1F38D80075B349 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = C137BA401C1F38D80075B349 /* AppDelegate.m */; };
 		C137BA441C1F38D80075B349 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C137BA431C1F38D80075B349 /* ViewController.m */; };
 		C137BA471C1F38D80075B349 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C137BA451C1F38D80075B349 /* Main.storyboard */; };
-		C137BA4A1C1F38D80075B349 /* PeaceKeeper.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = C137BA481C1F38D80075B349 /* PeaceKeeper.xcdatamodeld */; };
 		C137BA4C1C1F38D80075B349 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = C137BA4B1C1F38D80075B349 /* Assets.xcassets */; };
 		C137BA4F1C1F38D80075B349 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C137BA4D1C1F38D80075B349 /* LaunchScreen.storyboard */; };
 		C137BA5A1C1F38D80075B349 /* PeaceKeeperTests.m in Sources */ = {isa = PBXBuildFile; fileRef = C137BA591C1F38D80075B349 /* PeaceKeeperTests.m */; };
@@ -36,6 +42,19 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		96F653C31C1F3EF60098A317 /* PeaceKeeper.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = PeaceKeeper.xcdatamodel; sourceTree = "<group>"; };
+		96F653C51C1F3F060098A317 /* Chore+CoreDataProperties.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "Chore+CoreDataProperties.h"; sourceTree = "<group>"; };
+		96F653C61C1F3F060098A317 /* Chore+CoreDataProperties.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "Chore+CoreDataProperties.m"; sourceTree = "<group>"; };
+		96F653C71C1F3F060098A317 /* Chore.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Chore.h; sourceTree = "<group>"; };
+		96F653C81C1F3F060098A317 /* Chore.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Chore.m; sourceTree = "<group>"; };
+		96F653C91C1F3F060098A317 /* Household+CoreDataProperties.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "Household+CoreDataProperties.h"; sourceTree = "<group>"; };
+		96F653CA1C1F3F060098A317 /* Household+CoreDataProperties.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "Household+CoreDataProperties.m"; sourceTree = "<group>"; };
+		96F653CB1C1F3F060098A317 /* Household.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Household.h; sourceTree = "<group>"; };
+		96F653CC1C1F3F060098A317 /* Household.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Household.m; sourceTree = "<group>"; };
+		96F653CD1C1F3F060098A317 /* Person+CoreDataProperties.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "Person+CoreDataProperties.h"; sourceTree = "<group>"; };
+		96F653CE1C1F3F060098A317 /* Person+CoreDataProperties.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "Person+CoreDataProperties.m"; sourceTree = "<group>"; };
+		96F653CF1C1F3F060098A317 /* Person.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Person.h; sourceTree = "<group>"; };
+		96F653D01C1F3F060098A317 /* Person.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Person.m; sourceTree = "<group>"; };
 		C137BA391C1F38D70075B349 /* PeaceKeeper.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = PeaceKeeper.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		C137BA3D1C1F38D70075B349 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		C137BA3F1C1F38D70075B349 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
@@ -43,7 +62,6 @@
 		C137BA421C1F38D80075B349 /* ViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ViewController.h; sourceTree = "<group>"; };
 		C137BA431C1F38D80075B349 /* ViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ViewController.m; sourceTree = "<group>"; };
 		C137BA461C1F38D80075B349 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
-		C137BA491C1F38D80075B349 /* PeaceKeeper.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = PeaceKeeper.xcdatamodel; sourceTree = "<group>"; };
 		C137BA4B1C1F38D80075B349 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		C137BA4E1C1F38D80075B349 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		C137BA501C1F38D80075B349 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -80,6 +98,35 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		96F653D71C1F3F0B0098A317 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				96F653D81C1F3F190098A317 /* Categories */,
+				96F653C71C1F3F060098A317 /* Chore.h */,
+				96F653C81C1F3F060098A317 /* Chore.m */,
+				96F653CB1C1F3F060098A317 /* Household.h */,
+				96F653CC1C1F3F060098A317 /* Household.m */,
+				96F653CF1C1F3F060098A317 /* Person.h */,
+				96F653D01C1F3F060098A317 /* Person.m */,
+				96F653C21C1F3EF60098A317 /* PeaceKeeper.xcdatamodeld */,
+			);
+			name = Model;
+			path = ..;
+			sourceTree = "<group>";
+		};
+		96F653D81C1F3F190098A317 /* Categories */ = {
+			isa = PBXGroup;
+			children = (
+				96F653C51C1F3F060098A317 /* Chore+CoreDataProperties.h */,
+				96F653C61C1F3F060098A317 /* Chore+CoreDataProperties.m */,
+				96F653C91C1F3F060098A317 /* Household+CoreDataProperties.h */,
+				96F653CA1C1F3F060098A317 /* Household+CoreDataProperties.m */,
+				96F653CD1C1F3F060098A317 /* Person+CoreDataProperties.h */,
+				96F653CE1C1F3F060098A317 /* Person+CoreDataProperties.m */,
+			);
+			name = Categories;
+			sourceTree = "<group>";
+		};
 		C137BA301C1F38D70075B349 = {
 			isa = PBXGroup;
 			children = (
@@ -108,10 +155,10 @@
 				C137BA421C1F38D80075B349 /* ViewController.h */,
 				C137BA431C1F38D80075B349 /* ViewController.m */,
 				C137BA451C1F38D80075B349 /* Main.storyboard */,
+				96F653D71C1F3F0B0098A317 /* Model */,
 				C137BA4B1C1F38D80075B349 /* Assets.xcassets */,
 				C137BA4D1C1F38D80075B349 /* LaunchScreen.storyboard */,
 				C137BA501C1F38D80075B349 /* Info.plist */,
-				C137BA481C1F38D80075B349 /* PeaceKeeper.xcdatamodeld */,
 				C137BA3C1C1F38D70075B349 /* Supporting Files */,
 			);
 			path = PeaceKeeper;
@@ -274,9 +321,15 @@
 			buildActionMask = 2147483647;
 			files = (
 				C137BA441C1F38D80075B349 /* ViewController.m in Sources */,
+				96F653D41C1F3F060098A317 /* Household.m in Sources */,
+				96F653D61C1F3F060098A317 /* Person.m in Sources */,
+				96F653D11C1F3F060098A317 /* Chore+CoreDataProperties.m in Sources */,
 				C137BA411C1F38D80075B349 /* AppDelegate.m in Sources */,
-				C137BA4A1C1F38D80075B349 /* PeaceKeeper.xcdatamodeld in Sources */,
+				96F653D21C1F3F060098A317 /* Chore.m in Sources */,
+				96F653C41C1F3EF60098A317 /* PeaceKeeper.xcdatamodeld in Sources */,
 				C137BA3E1C1F38D70075B349 /* main.m in Sources */,
+				96F653D51C1F3F060098A317 /* Person+CoreDataProperties.m in Sources */,
+				96F653D31C1F3F060098A317 /* Household+CoreDataProperties.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -502,6 +555,7 @@
 				C137BA6B1C1F38D80075B349 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		C137BA6C1C1F38D80075B349 /* Build configuration list for PBXNativeTarget "PeaceKeeperTests" */ = {
 			isa = XCConfigurationList;
@@ -510,6 +564,7 @@
 				C137BA6E1C1F38D80075B349 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		C137BA6F1C1F38D80075B349 /* Build configuration list for PBXNativeTarget "PeaceKeeperUITests" */ = {
 			isa = XCConfigurationList;
@@ -518,17 +573,19 @@
 				C137BA711C1F38D80075B349 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 
 /* Begin XCVersionGroup section */
-		C137BA481C1F38D80075B349 /* PeaceKeeper.xcdatamodeld */ = {
+		96F653C21C1F3EF60098A317 /* PeaceKeeper.xcdatamodeld */ = {
 			isa = XCVersionGroup;
 			children = (
-				C137BA491C1F38D80075B349 /* PeaceKeeper.xcdatamodel */,
+				96F653C31C1F3EF60098A317 /* PeaceKeeper.xcdatamodel */,
 			);
-			currentVersion = C137BA491C1F38D80075B349 /* PeaceKeeper.xcdatamodel */;
-			path = PeaceKeeper.xcdatamodeld;
+			currentVersion = 96F653C31C1F3EF60098A317 /* PeaceKeeper.xcdatamodel */;
+			name = PeaceKeeper.xcdatamodeld;
+			path = PeaceKeeper/PeaceKeeper.xcdatamodeld;
 			sourceTree = "<group>";
 			versionGroupType = wrapper.xcdatamodel;
 		};
