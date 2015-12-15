@@ -8,6 +8,7 @@
 
 #import <UIKit/UIKit.h>
 #import <CoreData/CoreData.h>
+@import Contacts;
 
 @interface AppDelegate : UIResponder <UIApplicationDelegate>
 
@@ -16,9 +17,12 @@
 @property (readonly, strong, nonatomic) NSManagedObjectContext *managedObjectContext;
 @property (readonly, strong, nonatomic) NSManagedObjectModel *managedObjectModel;
 @property (readonly, strong, nonatomic) NSPersistentStoreCoordinator *persistentStoreCoordinator;
+@property (strong, nonatomic) CNContactStore *contactStore;
 
 - (void)saveContext;
 - (NSURL *)applicationDocumentsDirectory;
+
++ (AppDelegate *)getAppDelegate;
 
 
 @end
