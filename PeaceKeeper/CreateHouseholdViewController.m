@@ -12,6 +12,7 @@
 @import ContactsUI;
 #import "Household.h"
 #import "Person.h"
+#import "NSManagedObjectContext+Category.h"
 
 @interface CreateHouseholdViewController () <CNContactPickerDelegate, UITableViewDataSource, UITableViewDelegate>
 
@@ -60,6 +61,8 @@ typedef void (^myCompletion)(BOOL);
         [memberSet addObject:person];
     }
     household.people = memberSet;
+    [NSManagedObjectContext saveManagedObjectContext];
+    [self.navigationController popToRootViewControllerAnimated:true];
 }
 
 - (void)contactPicker:(CNContactPickerViewController *)picker didSelectContact:(CNContact *)contact {
@@ -68,8 +71,6 @@ typedef void (^myCompletion)(BOOL);
     [self.members addObject:_contactName];
     [self.tableView reloadData];
     
-    NSLog(@"%lu",(unsigned long)self.members.count);
-    NSLog(@"%@", _contactName);
 }
 
 

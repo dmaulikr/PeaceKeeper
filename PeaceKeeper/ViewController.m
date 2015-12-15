@@ -7,6 +7,9 @@
 //
 
 #import "ViewController.h"
+#import "Household.h"
+#import "Person.h"
+#import "NSManagedObjectContext+Category.h"
 
 @interface ViewController ()
 
@@ -19,6 +22,15 @@
 
     [super viewDidLoad];
     // Do any additional setup after loading the view, typically from a nib.
+}
+
+- (void)viewWillAppear:(BOOL)animated {
+    NSManagedObjectContext *managedObjectContext = [NSManagedObjectContext managedObjectContext];
+    NSFetchRequest *request = [NSFetchRequest fetchRequestWithEntityName:[Household name]];
+    NSError *error;
+    NSArray *results = [managedObjectContext executeFetchRequest:request error:&error];
+    
+    
 }
 
 - (void)didReceiveMemoryWarning {
