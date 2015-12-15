@@ -57,7 +57,7 @@ typedef void (^myCompletion)(BOOL);
     Household *household = [Household householdWithName:@"household"];
     NSMutableSet *memberSet = [NSMutableSet set];
     for (NSString *memberName in self.members) {
-        Person *person = [Person personWithName:memberName chore:nil household:household];
+        Person *person = [Person personWithFirstName:memberName lastName:@"Sandwich" phoneNumber:nil email:nil chore:nil household:household];
         [memberSet addObject:person];
     }
     household.people = memberSet;
