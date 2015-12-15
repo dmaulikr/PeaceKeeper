@@ -17,7 +17,7 @@
     return @"Person";
 }
 
-+ (instancetype)personWithFirstName:(NSString * _Nonnull)firstName lastName:(NSString * _Nonnull)lastName phoneNumber:(NSString * _Nullable)phoneNumber email:(NSString *_Nullable)email chore:(Chore * _Nullable)chore household:(Household * _Nonnull)household {
++ (instancetype)personWithFirstName:(NSString * _Nonnull)firstName lastName:(NSString * _Nullable)lastName phoneNumber:(NSString * _Nullable)phoneNumber email:(NSString *_Nullable)email chore:(Chore * _Nullable)chore household:(Household * _Nonnull)household {
     Person *person = [NSEntityDescription insertNewObjectForEntityForName:[self name] inManagedObjectContext:[NSManagedObjectContext managedObjectContext]];
     person.firstName = firstName;
     person.lastName = lastName;

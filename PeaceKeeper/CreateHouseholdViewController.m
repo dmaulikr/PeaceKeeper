@@ -26,7 +26,7 @@ typedef void (^myCompletion)(BOOL);
 
 @property (strong, nonatomic) NSMutableArray *members;
 
-@property (strong, nonatomic) NSString *contactName;
+@property (strong, nonatomic) Person *contact;
 
 @end
 
@@ -56,8 +56,8 @@ typedef void (^myCompletion)(BOOL);
 - (void)aMethod:(UIButton *)sender {
     Household *household = [Household householdWithName:@"household"];
     NSMutableSet *memberSet = [NSMutableSet set];
-    for (NSString *memberName in self.members) {
-        Person *person = [Person personWithFirstName:memberName lastName:@"Sandwich" phoneNumber:nil email:nil chore:nil household:household];
+    for (Person *member in self.members) {
+        Person *person = [Person personWithFirstName:member.firstName lastName:member.lastName phoneNumber:member.phoneNumber email:member.email chore:nil household:household];
         [memberSet addObject:person];
     }
     household.people = memberSet;
@@ -67,8 +67,22 @@ typedef void (^myCompletion)(BOOL);
 
 - (void)contactPicker:(CNContactPickerViewController *)picker didSelectContact:(CNContact *)contact {
     
-    _contactName = contact.givenName;
-    [self.members addObject:_contactName];
+    Household *household = [Household householdWithName:@"household"];
+    
+    
+    CNLabeledValue *emailAddressValue = (CNLabeledValue *)contact.emailAddresses.lastObject;
+    CNLabeledValue *phoneNumberValue = (CNLabeledValue *)contact.phoneNumbers.lastObject;
+    
+    CNPhoneNumber *number = (CNPhoneNumber *)phoneNumberValue.value;
+    
+    NSLog(@"%@",emailAddressValue.value);
+    NSLog(@"%@", number.stringValue);
+
+
+    Person *person = [Person personWithFirstName:contact.givenName lastName:contact.familyName phoneNumber:number.stringValue email:emailAddressValue.value chore:nil household:household];
+    
+    [self.members addObject:person];
+
     [self.tableView reloadData];
     
 }
@@ -109,10 +123,11 @@ typedef void (^myCompletion)(BOOL);
         default:
             completionBlock(false);
             break;
-            
     }
     
 }
+
+
 
 - (IBAction)addMembers:(UIBarButtonItem *)sender {
     
@@ -134,10 +149,6 @@ typedef void (^myCompletion)(BOOL);
 
 #pragma mark - tableView Methods
 
-//- (UIView *)tableView:(UITableView *)tableView viewForFooterInSection:(NSInteger)section {
-//    
-//}
-
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
     return self.members.count;
 }
@@ -145,7 +156,8 @@ typedef void (^myCompletion)(BOOL);
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"memberCell" forIndexPath: indexPath]; {
-        cell.textLabel.text = self.members[indexPath.row];
+        NSString *firstName = [self.members[indexPath.row] firstName];
+        cell.textLabel.text = firstName;
         
         return cell;
     }

@@ -16,7 +16,7 @@ NS_ASSUME_NONNULL_BEGIN
 @interface Person : NSManagedObject
 
 + (NSString *)name;
-+ (instancetype)personWithFirstName:(NSString * _Nonnull)firstName lastName:(NSString * _Nonnull)lastName phoneNumber:(NSString * _Nullable)phoneNumber email:(NSString *_Nullable)email chore:(Chore * _Nullable)chore household:(Household * _Nonnull)household;
++ (instancetype)personWithFirstName:(NSString * _Nonnull)firstName lastName:(NSString * _Nullable)lastName phoneNumber:(NSString * _Nullable)phoneNumber email:(NSString *_Nullable)email chore:(Chore * _Nullable)chore household:(Household * _Nonnull)household;
 
 @end
 
