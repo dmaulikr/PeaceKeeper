@@ -6,7 +6,7 @@
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
     </dependencies>
     <scenes>
-        <!--View Controller-->
+        <!--Home-->
         <scene sceneID="tne-QT-ifu">
             <objects>
                 <viewController id="BYZ-38-t0r" customClass="ViewController" sceneMemberID="viewController">
@@ -18,25 +18,83 @@
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="fbW-Yn-OuZ">
-                                <rect key="frame" x="48" y="256" width="83" height="30"/>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Yco-d0-szK">
+                                <rect key="frame" x="20" y="72" width="124" height="30"/>
+                                <state key="normal" title="Create Household"/>
+                            </button>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="gBz-7l-32a">
+                                <rect key="frame" x="0.0" y="110" width="600" height="441"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <prototypes>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="AssignedChore" id="rvD-gY-Jpb">
+                                        <rect key="frame" x="0.0" y="28" width="600" height="44"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="rvD-gY-Jpb" id="IcM-q2-SaI">
+                                            <rect key="frame" x="0.0" y="0.0" width="600" height="43.5"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                        </tableViewCellContentView>
+                                    </tableViewCell>
+                                </prototypes>
+                            </tableView>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="fbW-Yn-OuZ">
+                                <rect key="frame" x="497" y="72" width="83" height="30"/>
                                 <state key="normal" title="Make Chore"/>
                                 <connections>
                                     <segue destination="qwY-80-Ff6" kind="show" id="8vZ-hD-7BC"/>
                                 </connections>
                             </button>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Yco-d0-szK">
-                                <rect key="frame" x="48" y="132" width="124" height="30"/>
-                                <state key="normal" title="Create Household"/>
-                            </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="gBz-7l-32a" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leadingMargin" constant="-20" id="2Ar-ej-FDy"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="gBz-7l-32a" secondAttribute="trailing" constant="-20" id="4RD-Ws-6nK"/>
+                            <constraint firstItem="fbW-Yn-OuZ" firstAttribute="top" secondItem="y3c-jy-aDJ" secondAttribute="bottom" constant="8" id="9aT-vb-M1e"/>
+                            <constraint firstItem="fbW-Yn-OuZ" firstAttribute="trailing" secondItem="8bC-Xf-vdC" secondAttribute="trailingMargin" id="CSa-Nx-mXR"/>
+                            <constraint firstItem="Yco-d0-szK" firstAttribute="top" secondItem="y3c-jy-aDJ" secondAttribute="bottom" constant="8" id="IIq-3w-3I8"/>
+                            <constraint firstItem="Yco-d0-szK" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leadingMargin" constant="-11" id="PKH-zh-N88"/>
+                            <constraint firstItem="Yco-d0-szK" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leadingMargin" id="Q7E-C6-Jcm"/>
+                            <constraint firstItem="fbW-Yn-OuZ" firstAttribute="top" secondItem="Yco-d0-szK" secondAttribute="bottom" constant="8" id="Suf-hq-cqT"/>
+                            <constraint firstItem="gBz-7l-32a" firstAttribute="top" secondItem="Yco-d0-szK" secondAttribute="bottom" constant="8" id="Xrr-Rg-e6T"/>
+                            <constraint firstItem="Yco-d0-szK" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leadingMargin" constant="-11" id="ZhS-AY-AuH"/>
+                            <constraint firstItem="fbW-Yn-OuZ" firstAttribute="top" secondItem="Yco-d0-szK" secondAttribute="bottom" constant="8" id="chf-AV-9Fz"/>
+                            <constraint firstItem="wfy-db-euE" firstAttribute="top" secondItem="gBz-7l-32a" secondAttribute="bottom" id="qPk-gM-RWG"/>
+                            <constraint firstItem="fbW-Yn-OuZ" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leadingMargin" constant="-11" id="zYZ-zY-nF4"/>
+                        </constraints>
+                        <variation key="default">
+                            <mask key="constraints">
+                                <exclude reference="PKH-zh-N88"/>
+                                <exclude reference="ZhS-AY-AuH"/>
+                                <exclude reference="Suf-hq-cqT"/>
+                                <exclude reference="chf-AV-9Fz"/>
+                                <exclude reference="zYZ-zY-nF4"/>
+                            </mask>
+                        </variation>
                     </view>
+                    <tabBarItem key="tabBarItem" title="Home" id="W9N-Kq-vB4"/>
                     <navigationItem key="navigationItem" id="fG7-cg-jHd"/>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="882" y="273"/>
+            <point key="canvasLocation" x="1694" y="273"/>
+        </scene>
+        <!--Archive-->
+        <scene sceneID="kV0-RW-DGg">
+            <objects>
+                <viewController id="cCt-q3-3Bi" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="i5w-Wb-Gae"/>
+                        <viewControllerLayoutGuide type="bottom" id="Tow-df-oUC"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="EKs-sd-65J">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                    <tabBarItem key="tabBarItem" title="Archive" id="AL9-8Z-plK"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="2uA-he-yOm" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1694" y="990"/>
         </scene>
         <!--MakeChore-->
         <scene sceneID="b7c-g6-eft">
@@ -98,10 +156,58 @@
                             <constraint firstItem="tBe-sT-zjB" firstAttribute="top" secondItem="l9L-o4-dYd" secondAttribute="bottom" constant="8" id="kHO-uq-q2r"/>
                         </constraints>
                     </view>
+                    <navigationItem key="navigationItem" title="Make Chore" id="LjI-Ol-Otd">
+                        <barButtonItem key="rightBarButtonItem" title="Assign" id="qoO-kP-Kf4">
+                            <connections>
+                                <segue destination="8Yy-g9-3C7" kind="show" id="vCq-wK-vgd"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Qx9-lT-Jy5" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1735" y="273"/>
+            <point key="canvasLocation" x="2361" y="273"/>
+        </scene>
+        <!--AssignChore-->
+        <scene sceneID="i73-hH-uFQ">
+            <objects>
+                <viewController title="AssignChore" id="8Yy-g9-3C7" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="Aa0-8P-v5K"/>
+                        <viewControllerLayoutGuide type="bottom" id="ATW-Ds-FFw"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="OWt-51-9D3">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="hfU-2O-85H">
+                                <rect key="frame" x="0.0" y="64" width="600" height="487"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <prototypes>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="Chore" id="V49-9Q-Es9">
+                                        <rect key="frame" x="0.0" y="92" width="600" height="44"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="V49-9Q-Es9" id="o0J-aU-iGY">
+                                            <rect key="frame" x="0.0" y="0.0" width="600" height="43.5"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                        </tableViewCellContentView>
+                                    </tableViewCell>
+                                </prototypes>
+                            </tableView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="hfU-2O-85H" firstAttribute="leading" secondItem="OWt-51-9D3" secondAttribute="leadingMargin" constant="-20" id="f7s-dV-H6V"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="hfU-2O-85H" secondAttribute="trailing" constant="-20" id="ftS-Qm-C0E"/>
+                            <constraint firstItem="hfU-2O-85H" firstAttribute="top" secondItem="Aa0-8P-v5K" secondAttribute="bottom" id="uvT-6h-fBr"/>
+                            <constraint firstItem="ATW-Ds-FFw" firstAttribute="top" secondItem="hfU-2O-85H" secondAttribute="bottom" id="wmy-hd-x9L"/>
+                        </constraints>
+                    </view>
+                    <navigationItem key="navigationItem" title="Assign Chore" id="kOb-ov-zrB"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="4FI-1I-lHt" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="3017" y="273"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="aSA-kI-ykg">
@@ -114,12 +220,31 @@
                     </navigationBar>
                     <nil name="viewControllers"/>
                     <connections>
-                        <segue destination="BYZ-38-t0r" kind="relationship" relationship="rootViewController" id="0dO-7w-qvW"/>
+                        <segue destination="9Od-bO-mbW" kind="relationship" relationship="rootViewController" id="0dO-7w-qvW"/>
                     </connections>
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="tpb-de-Dhi" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="70" y="273"/>
+        </scene>
+        <!--Tab Bar Controller-->
+        <scene sceneID="BO2-Od-HrO">
+            <objects>
+                <tabBarController automaticallyAdjustsScrollViewInsets="NO" id="9Od-bO-mbW" sceneMemberID="viewController">
+                    <toolbarItems/>
+                    <navigationItem key="navigationItem" id="sYB-F7-8Xw"/>
+                    <tabBar key="tabBar" contentMode="scaleToFill" id="r4E-gK-bCF">
+                        <autoresizingMask key="autoresizingMask"/>
+                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                    </tabBar>
+                    <connections>
+                        <segue destination="BYZ-38-t0r" kind="relationship" relationship="viewControllers" id="OBc-8f-NYC"/>
+                        <segue destination="cCt-q3-3Bi" kind="relationship" relationship="viewControllers" id="AzH-eX-p6c"/>
+                    </connections>
+                </tabBarController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="geR-OW-Tzh" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="882" y="273"/>
         </scene>
     </scenes>
 </document>
