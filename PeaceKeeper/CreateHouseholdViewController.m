@@ -28,6 +28,8 @@ typedef void (^myCompletion)(BOOL);
 
 @property (strong, nonatomic) Person *contact;
 
+@property (strong, nonatomic) Household *household;
+
 @end
 
 @implementation CreateHouseholdViewController
@@ -51,23 +53,16 @@ typedef void (^myCompletion)(BOOL);
     
     [self.view addSubview:button];
     
+    self.household = [Household householdWithName:@"household"];
+    
 }
 
 - (void)aMethod:(UIButton *)sender {
-    Household *household = [Household householdWithName:@"household"];
-    NSMutableSet *memberSet = [NSMutableSet set];
-    for (Person *member in self.members) {
-        Person *person = [Person personWithFirstName:member.firstName lastName:member.lastName phoneNumber:member.phoneNumber email:member.email chore:nil household:household];
-        [memberSet addObject:person];
-    }
-    household.people = memberSet;
-    [NSManagedObjectContext saveManagedObjectContext];
+    
     [self.navigationController popToRootViewControllerAnimated:true];
 }
 
 - (void)contactPicker:(CNContactPickerViewController *)picker didSelectContact:(CNContact *)contact {
-    
-    Household *household = [Household householdWithName:@"household"];
     
     
     CNLabeledValue *emailAddressValue = (CNLabeledValue *)contact.emailAddresses.lastObject;
@@ -79,7 +74,7 @@ typedef void (^myCompletion)(BOOL);
     NSLog(@"%@", number.stringValue);
 
 
-    Person *person = [Person personWithFirstName:contact.givenName lastName:contact.familyName phoneNumber:number.stringValue email:emailAddressValue.value chore:nil household:household];
+    Person *person = [Person personWithFirstName:contact.givenName lastName:contact.familyName phoneNumber:number.stringValue email:emailAddressValue.value chore:nil household:self.household];
     
     [self.members addObject:person];
 
