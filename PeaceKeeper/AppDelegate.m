@@ -26,6 +26,9 @@
     
     self.contactStore = [[CNContactStore alloc] init];
     
+
+    [self registerForNotifications];
+
     return YES;
 }
 

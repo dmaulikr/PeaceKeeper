@@ -16,6 +16,9 @@
 		96F653D51C1F3F060098A317 /* Person+CoreDataProperties.m in Sources */ = {isa = PBXBuildFile; fileRef = 96F653CE1C1F3F060098A317 /* Person+CoreDataProperties.m */; };
 		96F653D61C1F3F060098A317 /* Person.m in Sources */ = {isa = PBXBuildFile; fileRef = 96F653D01C1F3F060098A317 /* Person.m */; };
 		A96740A31C1F49830021DB71 /* CreateHouseholdViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A96740A21C1F49830021DB71 /* CreateHouseholdViewController.m */; };
+		96F654071C1F4BD50098A317 /* CompletedChore+CoreDataProperties.m in Sources */ = {isa = PBXBuildFile; fileRef = 96F654041C1F4BD50098A317 /* CompletedChore+CoreDataProperties.m */; };
+		96F654081C1F4BD50098A317 /* CompletedChore.m in Sources */ = {isa = PBXBuildFile; fileRef = 96F654061C1F4BD50098A317 /* CompletedChore.m */; };
+		96F654111C1F50C80098A317 /* NSManagedObjectContext+Category.m in Sources */ = {isa = PBXBuildFile; fileRef = 96F654101C1F50C80098A317 /* NSManagedObjectContext+Category.m */; };
 		C137BA3E1C1F38D70075B349 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = C137BA3D1C1F38D70075B349 /* main.m */; };
 		C137BA411C1F38D80075B349 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = C137BA401C1F38D80075B349 /* AppDelegate.m */; };
 		C137BA441C1F38D80075B349 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C137BA431C1F38D80075B349 /* ViewController.m */; };
@@ -61,6 +64,12 @@
 		96F653D01C1F3F060098A317 /* Person.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Person.m; sourceTree = "<group>"; };
 		A96740A11C1F49830021DB71 /* CreateHouseholdViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CreateHouseholdViewController.h; sourceTree = "<group>"; };
 		A96740A21C1F49830021DB71 /* CreateHouseholdViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CreateHouseholdViewController.m; sourceTree = "<group>"; };
+		96F654031C1F4BD50098A317 /* CompletedChore+CoreDataProperties.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "CompletedChore+CoreDataProperties.h"; sourceTree = "<group>"; };
+		96F654041C1F4BD50098A317 /* CompletedChore+CoreDataProperties.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "CompletedChore+CoreDataProperties.m"; sourceTree = "<group>"; };
+		96F654051C1F4BD50098A317 /* CompletedChore.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CompletedChore.h; sourceTree = "<group>"; };
+		96F654061C1F4BD50098A317 /* CompletedChore.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CompletedChore.m; sourceTree = "<group>"; };
+		96F6540F1C1F50C80098A317 /* NSManagedObjectContext+Category.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSManagedObjectContext+Category.h"; sourceTree = "<group>"; };
+		96F654101C1F50C80098A317 /* NSManagedObjectContext+Category.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSManagedObjectContext+Category.m"; sourceTree = "<group>"; };
 		C137BA391C1F38D70075B349 /* PeaceKeeper.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = PeaceKeeper.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		C137BA3D1C1F38D70075B349 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		C137BA3F1C1F38D70075B349 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
@@ -169,6 +178,9 @@
 				C137BA431C1F38D80075B349 /* ViewController.m */,
 				A96740A11C1F49830021DB71 /* CreateHouseholdViewController.h */,
 				A96740A21C1F49830021DB71 /* CreateHouseholdViewController.m */,
+				C137BA451C1F38D80075B349 /* Main.storyboard */,
+				966C01661C1F61B30028CBF7 /* TimeService.h */,
+				966C01671C1F61B30028CBF7 /* TimeService.m */,
 				96F653D71C1F3F0B0098A317 /* Model */,
 				C137BA4B1C1F38D80075B349 /* Assets.xcassets */,
 				C137BA4D1C1F38D80075B349 /* LaunchScreen.storyboard */,

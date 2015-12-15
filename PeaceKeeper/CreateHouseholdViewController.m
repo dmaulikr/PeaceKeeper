@@ -41,12 +41,14 @@ typedef void (^myCompletion)(BOOL);
     
     [self requestForAccess:^(BOOL accessGranted) {
         
+        CNContactPickerViewController *picker = [[CNContactPickerViewController alloc] init];
+        picker.delegate = self;
+        [self presentViewController:picker animated:YES completion:nil];
+        
+        
         if (accessGranted) {
             NSLog(@"access granted");
-            
-            CNContactPickerViewController *picker = [[CNContactPickerViewController alloc] init];
-            picker.delegate = self;
-            [self presentViewController:picker animated:YES completion:nil];
+        
             
         } else {
             NSLog(@"GTFO!");
