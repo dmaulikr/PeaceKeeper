@@ -8,6 +8,8 @@
 
 #import "AppDelegate.h"
 #import "TimeService.h"
+#import "Household.h"
+#import "NSManagedObjectContext+Category.h"
 
 @interface AppDelegate ()
 
@@ -26,8 +28,13 @@
     
     self.contactStore = [[CNContactStore alloc] init];
     
-
     [self registerForNotifications];
+    
+    if ([self userHasCreatedAHousehold]) {
+        NSLog(@"User has created a household.");
+    } else {
+        NSLog(@"User has not created a household.");
+    }
 
     return YES;
 }
@@ -56,10 +63,24 @@
     [self saveContext];
 }
 
+- (BOOL)userHasCreatedAHousehold {
+    NSManagedObjectContext *managedObjectContext = [NSManagedObjectContext managedObjectContext];
+    NSFetchRequest *request = [NSFetchRequest fetchRequestWithEntityName:[Household name]];
+    NSError *error;
+    NSUInteger count = [managedObjectContext countForFetchRequest:request error:&error];
+    if (error) {
+        NSLog(@"Error fetching count of %@ objects: %@", [Household name], error.localizedDescription);
+    } else {
+        NSLog(@"Successfully fetched count of %@ objects: %lu", [Household name], (unsigned long)count);
+    }
+    if (count == 0) {
+        return false;
+    }
+    return true;
+} 
+
 - (void)registerForNotifications {
-    UIUserNotificationSettings *notificationSettings = [UIUserNotificationSettings settingsForTypes:UIUserNotificationTypeAlert|
-                                                                                                    UIUserNotificationTypeBadge|
-                                                                                                    UIUserNotificationTypeSound categories:nil];
+    UIUserNotificationSettings *notificationSettings = [UIUserNotificationSettings settingsForTypes:UIUserNotificationTypeAlert|UIUserNotificationTypeBadge|UIUserNotificationTypeSound categories:nil];
     [[UIApplication sharedApplication] registerUserNotificationSettings:notificationSettings];
 }
 

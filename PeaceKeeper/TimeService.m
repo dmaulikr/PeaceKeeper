@@ -8,7 +8,30 @@
 
 #import "TimeService.h"
 
+@interface TimeService ()
+
+@end
+
 @implementation TimeService
+
++ (NSArray<NSString *> *)calendarUnitStrings {
+    return @[@"Day",
+             @"Week",
+             @"Month",
+             @"Year"];
+}
+
++ (NSArray<NSValue *> *)calendarUnits {
+    NSCalendarUnit day = NSCalendarUnitDay;
+    NSCalendarUnit week = NSCalendarUnitWeekOfYear;
+    NSCalendarUnit month = NSCalendarUnitMonth;
+    NSCalendarUnit year = NSCalendarUnitYear;
+
+    return @[[NSValue value:&day withObjCType:@encode(NSCalendarUnit)],
+             [NSValue value:&week withObjCType:@encode(NSCalendarUnit)],
+             [NSValue value:&month withObjCType:@encode(NSCalendarUnit)],
+             [NSValue value:&year withObjCType:@encode(NSCalendarUnit)]];
+}
 
 + (void)schedule:(NSUInteger)n localNotifications:(UILocalNotification * _Nonnull)localNotification every:(NSUInteger)m calendarUnit:(NSCalendarUnit)calendarUnit starting:(NSDate * _Nonnull)startDate {
     NSCalendar *calendar = [NSCalendar calendarWithIdentifier:NSCalendarIdentifierGregorian];

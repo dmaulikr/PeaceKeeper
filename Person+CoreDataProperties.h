@@ -2,7 +2,7 @@
 //  Person+CoreDataProperties.h
 //  PeaceKeeper
 //
-//  Created by Work on 12/14/15.
+//  Created by Work on 12/15/15.
 //  Copyright © 2015 Francisco Ragland. All rights reserved.
 //
 //  Choose "Create NSManagedObject Subclass…" from the Core Data editor menu
@@ -16,6 +16,8 @@ NS_ASSUME_NONNULL_BEGIN
 @interface Person (CoreDataProperties)
 
 @property (nullable, nonatomic, retain) NSString *name;
+@property (nullable, nonatomic, retain) NSString *phoneNumber;
+@property (nullable, nonatomic, retain) NSString *email;
 @property (nullable, nonatomic, retain) NSSet<Chore *> *chores;
 @property (nullable, nonatomic, retain) Household *household;
 

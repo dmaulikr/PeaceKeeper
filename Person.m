@@ -17,9 +17,11 @@
     return @"Person";
 }
 
-+ (instancetype)personWithName:(NSString * _Nonnull)name chore:(Chore * _Nullable)chore household:(Household * _Nonnull)household {
++ (instancetype)personWithName:(NSString * _Nonnull)name phoneNumber:(NSString * _Nullable)phoneNumber email:(NSString *_Nullable)email chore:(Chore * _Nullable)chore household:(Household * _Nonnull)household {
     Person *person = [NSEntityDescription insertNewObjectForEntityForName:[self name] inManagedObjectContext:[NSManagedObjectContext managedObjectContext]];
     person.name = name;
+    person.phoneNumber = phoneNumber;
+    person.email = email;
     if (chore) {
         person.chores = [NSSet setWithObject:chore];
     } else {
