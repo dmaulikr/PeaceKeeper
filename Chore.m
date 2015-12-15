@@ -27,12 +27,13 @@
     chore.household = household;
     chore.currentPersonIndex = @(0);
     chore.people = [NSOrderedSet orderedSet];
+    [household addChoresObject:chore];
     [NSManagedObjectContext saveManagedObjectContext];
     return chore;
 }
 
 - (void)completeChore {
-    [self.household addArchiveObject:[CompletedChore completedChoreWithCompletionDate:[NSDate date] chore:self person:[self.people objectAtIndex:self.currentPersonIndex.integerValue]]];
+    [CompletedChore completedChoreWithCompletionDate:[NSDate date] chore:self person:[self.people objectAtIndex:self.currentPersonIndex.integerValue] household:self.household];
     
     NSInteger currentPersonIndexValue = self.currentPersonIndex.integerValue;
     if (currentPersonIndexValue >= [self.people count] - 1) {

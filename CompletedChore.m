@@ -10,6 +10,7 @@
 #import "Chore.h"
 #import "Person.h"
 #import "NSManagedObjectContext+Category.h"
+#import "Household.h"
 
 @implementation CompletedChore
 
@@ -17,11 +18,12 @@
     return @"CompletedChore";
 }
 
-+ (instancetype)completedChoreWithCompletionDate:(NSDate * _Nonnull)completionDate chore:(Chore * _Nonnull)chore person:(Person * _Nonnull)person {
++ (instancetype)completedChoreWithCompletionDate:(NSDate * _Nonnull)completionDate chore:(Chore * _Nonnull)chore person:(Person * _Nonnull)person household:(Household *)household {
     CompletedChore *completedChore = [NSEntityDescription insertNewObjectForEntityForName:[self name] inManagedObjectContext:[NSManagedObjectContext managedObjectContext]];
     completedChore.completionDate = completionDate;
     completedChore.chore = chore;
     completedChore.person = person;
+    [household addArchiveObject:completedChore];
     [NSManagedObjectContext saveManagedObjectContext];
     return completedChore;
 }
