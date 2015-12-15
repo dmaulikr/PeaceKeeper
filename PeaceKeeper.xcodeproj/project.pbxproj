@@ -7,7 +7,10 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		964074E41C207F29003403CB /* Person+CoreDataProperties.m in Sources */ = {isa = PBXBuildFile; fileRef = 964074E31C207F29003403CB /* Person+CoreDataProperties.m */; };
+		964074E71C2092F5003403CB /* MakeChoreViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 964074E61C2092F5003403CB /* MakeChoreViewController.m */; };
+		964074EA1C209DEC003403CB /* AssignChoreViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 964074E91C209DEC003403CB /* AssignChoreViewController.m */; };
+		964074ED1C209EA0003403CB /* Constants.m in Sources */ = {isa = PBXBuildFile; fileRef = 964074EC1C209EA0003403CB /* Constants.m */; };
+		964074F01C20A9A9003403CB /* Person+CoreDataProperties.m in Sources */ = {isa = PBXBuildFile; fileRef = 964074EF1C20A9A9003403CB /* Person+CoreDataProperties.m */; };
 		966C01681C1F61B30028CBF7 /* TimeService.m in Sources */ = {isa = PBXBuildFile; fileRef = 966C01671C1F61B30028CBF7 /* TimeService.m */; };
 		96F653C41C1F3EF60098A317 /* PeaceKeeper.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 96F653C21C1F3EF60098A317 /* PeaceKeeper.xcdatamodeld */; };
 		96F653D11C1F3F060098A317 /* Chore+CoreDataProperties.m in Sources */ = {isa = PBXBuildFile; fileRef = 96F653C61C1F3F060098A317 /* Chore+CoreDataProperties.m */; };
@@ -47,8 +50,14 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		964074E21C207F29003403CB /* Person+CoreDataProperties.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "Person+CoreDataProperties.h"; sourceTree = "<group>"; };
-		964074E31C207F29003403CB /* Person+CoreDataProperties.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "Person+CoreDataProperties.m"; sourceTree = "<group>"; };
+		964074E51C2092F5003403CB /* MakeChoreViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MakeChoreViewController.h; sourceTree = "<group>"; };
+		964074E61C2092F5003403CB /* MakeChoreViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MakeChoreViewController.m; sourceTree = "<group>"; };
+		964074E81C209DEC003403CB /* AssignChoreViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AssignChoreViewController.h; sourceTree = "<group>"; };
+		964074E91C209DEC003403CB /* AssignChoreViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AssignChoreViewController.m; sourceTree = "<group>"; };
+		964074EB1C209EA0003403CB /* Constants.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Constants.h; sourceTree = "<group>"; };
+		964074EC1C209EA0003403CB /* Constants.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Constants.m; sourceTree = "<group>"; };
+		964074EE1C20A9A9003403CB /* Person+CoreDataProperties.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "Person+CoreDataProperties.h"; sourceTree = "<group>"; };
+		964074EF1C20A9A9003403CB /* Person+CoreDataProperties.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "Person+CoreDataProperties.m"; sourceTree = "<group>"; };
 		966C01661C1F61B30028CBF7 /* TimeService.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TimeService.h; sourceTree = "<group>"; };
 		966C01671C1F61B30028CBF7 /* TimeService.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TimeService.m; sourceTree = "<group>"; };
 		96F653C31C1F3EF60098A317 /* PeaceKeeper.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = PeaceKeeper.xcdatamodel; sourceTree = "<group>"; };
@@ -142,8 +151,8 @@
 				96F653C61C1F3F060098A317 /* Chore+CoreDataProperties.m */,
 				96F653C91C1F3F060098A317 /* Household+CoreDataProperties.h */,
 				96F653CA1C1F3F060098A317 /* Household+CoreDataProperties.m */,
-				964074E21C207F29003403CB /* Person+CoreDataProperties.h */,
-				964074E31C207F29003403CB /* Person+CoreDataProperties.m */,
+				964074EE1C20A9A9003403CB /* Person+CoreDataProperties.h */,
+				964074EF1C20A9A9003403CB /* Person+CoreDataProperties.m */,
 			);
 			name = Categories;
 			sourceTree = "<group>";
@@ -174,12 +183,18 @@
 			children = (
 				C137BA3F1C1F38D70075B349 /* AppDelegate.h */,
 				C137BA401C1F38D80075B349 /* AppDelegate.m */,
+				964074EB1C209EA0003403CB /* Constants.h */,
+				964074EC1C209EA0003403CB /* Constants.m */,
 				C137BA421C1F38D80075B349 /* ViewController.h */,
 				C137BA431C1F38D80075B349 /* ViewController.m */,
 				A96740A11C1F49830021DB71 /* CreateHouseholdViewController.h */,
 				A96740A21C1F49830021DB71 /* CreateHouseholdViewController.m */,
 				966C01661C1F61B30028CBF7 /* TimeService.h */,
 				966C01671C1F61B30028CBF7 /* TimeService.m */,
+				964074E51C2092F5003403CB /* MakeChoreViewController.h */,
+				964074E61C2092F5003403CB /* MakeChoreViewController.m */,
+				964074E81C209DEC003403CB /* AssignChoreViewController.h */,
+				964074E91C209DEC003403CB /* AssignChoreViewController.m */,
 				96F653D71C1F3F0B0098A317 /* Model */,
 				C137BA4B1C1F38D80075B349 /* Assets.xcassets */,
 				C137BA4D1C1F38D80075B349 /* LaunchScreen.storyboard */,
@@ -348,19 +363,22 @@
 			files = (
 				A96740A31C1F49830021DB71 /* CreateHouseholdViewController.m in Sources */,
 				C137BA441C1F38D80075B349 /* ViewController.m in Sources */,
+				964074EA1C209DEC003403CB /* AssignChoreViewController.m in Sources */,
+				964074E71C2092F5003403CB /* MakeChoreViewController.m in Sources */,
 				96F653D41C1F3F060098A317 /* Household.m in Sources */,
 				96F653D61C1F3F060098A317 /* Person.m in Sources */,
 				96F653D11C1F3F060098A317 /* Chore+CoreDataProperties.m in Sources */,
 				C137BA411C1F38D80075B349 /* AppDelegate.m in Sources */,
 				96F654071C1F4BD50098A317 /* CompletedChore+CoreDataProperties.m in Sources */,
 				96F653D21C1F3F060098A317 /* Chore.m in Sources */,
-				964074E41C207F29003403CB /* Person+CoreDataProperties.m in Sources */,
 				96F654111C1F50C80098A317 /* NSManagedObjectContext+Category.m in Sources */,
 				96F653C41C1F3EF60098A317 /* PeaceKeeper.xcdatamodeld in Sources */,
 				C137BA3E1C1F38D70075B349 /* main.m in Sources */,
 				96F654081C1F4BD50098A317 /* CompletedChore.m in Sources */,
 				966C01681C1F61B30028CBF7 /* TimeService.m in Sources */,
 				96F653D31C1F3F060098A317 /* Household+CoreDataProperties.m in Sources */,
+				964074ED1C209EA0003403CB /* Constants.m in Sources */,
+				964074F01C20A9A9003403CB /* Person+CoreDataProperties.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

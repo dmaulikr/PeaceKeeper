@@ -38,14 +38,14 @@
     return [self calendarUnitStrings][index];
 }
 
-+ (NSArray<NSString *> *)calendarUnitStrings {
++ (NSArray<NSString *> * _Nonnull)calendarUnitStrings {
     return @[@"Day",
              @"Week",
              @"Month",
              @"Year"];
 }
 
-+ (NSArray<NSValue *> *)calendarUnits {
++ (NSArray<NSValue *> * _Nonnull)calendarUnits {
     NSCalendarUnit day = NSCalendarUnitDay;
     NSCalendarUnit week = NSCalendarUnitWeekOfYear;
     NSCalendarUnit month = NSCalendarUnitMonth;

@@ -22,7 +22,8 @@
     </entity>
     <entity name="Person" representedClassName="Person" syncable="YES">
         <attribute name="email" optional="YES" attributeType="String" syncable="YES"/>
-        <attribute name="name" attributeType="String" syncable="YES"/>
+        <attribute name="firstName" attributeType="String" syncable="YES"/>
+        <attribute name="lastName" attributeType="String" syncable="YES"/>
         <attribute name="phoneNumber" optional="YES" attributeType="String" syncable="YES"/>
         <relationship name="chores" toMany="YES" deletionRule="Nullify" destinationEntity="Chore" inverseName="people" inverseEntity="Chore" syncable="YES"/>
         <relationship name="household" maxCount="1" deletionRule="Nullify" destinationEntity="Household" inverseName="people" inverseEntity="Household" syncable="YES"/>
@@ -31,6 +32,6 @@
         <element name="Chore" positionX="430" positionY="-99" width="128" height="148"/>
         <element name="CompletedChore" positionX="117" positionY="-54" width="128" height="90"/>
         <element name="Household" positionX="243" positionY="-207" width="128" height="103"/>
-        <element name="Person" positionX="-126" positionY="-162" width="128" height="120"/>
+        <element name="Person" positionX="-126" positionY="-162" width="128" height="133"/>
     </elements>
 </model>

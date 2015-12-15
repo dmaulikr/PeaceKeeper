@@ -13,9 +13,10 @@
 
 @implementation Person (CoreDataProperties)
 
-@dynamic name;
-@dynamic phoneNumber;
 @dynamic email;
+@dynamic firstName;
+@dynamic phoneNumber;
+@dynamic lastName;
 @dynamic chores;
 @dynamic household;
 

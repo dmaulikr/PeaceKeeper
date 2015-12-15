@@ -123,7 +123,7 @@
         <!--MakeChore-->
         <scene sceneID="b7c-g6-eft">
             <objects>
-                <viewController storyboardIdentifier="MakeChore" title="MakeChore" id="qwY-80-Ff6" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="MakeChore" title="MakeChore" id="qwY-80-Ff6" customClass="MakeChoreViewController" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="tzv-lw-qsh"/>
                         <viewControllerLayoutGuide type="bottom" id="u9N-ZP-D66"/>
@@ -135,7 +135,10 @@
                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="type the chore name here" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="nOO-vz-QFI">
                                 <rect key="frame" x="20" y="72" width="560" height="30"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                <textInputTraits key="textInputTraits"/>
+                                <textInputTraits key="textInputTraits" returnKeyType="done" enablesReturnKeyAutomatically="YES"/>
+                                <connections>
+                                    <action selector="choreNameFieldEditingChanged:" destination="qwY-80-Ff6" eventType="editingChanged" id="eQD-nJ-Qve"/>
+                                </connections>
                             </textField>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" placeholderIntrinsicWidth="78" placeholderIntrinsicHeight="21" text="Start Date" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="l9L-o4-dYd">
                                 <rect key="frame" x="20" y="110" width="560" height="21"/>
@@ -187,12 +190,18 @@
                         </variation>
                     </view>
                     <navigationItem key="navigationItem" title="Make Chore" id="LjI-Ol-Otd">
-                        <barButtonItem key="rightBarButtonItem" title="Assign" id="qoO-kP-Kf4">
+                        <barButtonItem key="rightBarButtonItem" title="Next" id="qoO-kP-Kf4">
                             <connections>
-                                <segue destination="8Yy-g9-3C7" kind="show" id="vCq-wK-vgd"/>
+                                <action selector="doneMakingChoreAction:" destination="qwY-80-Ff6" id="pUm-Gp-anm"/>
+                                <segue destination="8Yy-g9-3C7" kind="show" identifier="AssignChore" id="vCq-wK-vgd"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>
+                    <connections>
+                        <outlet property="choreNameField" destination="nOO-vz-QFI" id="wAu-NK-tJ6"/>
+                        <outlet property="repeatIntervalPicker" destination="iX4-Lf-eCL" id="D89-sR-aPl"/>
+                        <outlet property="startDatePicker" destination="tBe-sT-zjB" id="cwE-0Y-5qy"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Qx9-lT-Jy5" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -201,7 +210,7 @@
         <!--AssignChore-->
         <scene sceneID="i73-hH-uFQ">
             <objects>
-                <viewController title="AssignChore" id="8Yy-g9-3C7" sceneMemberID="viewController">
+                <viewController title="AssignChore" id="8Yy-g9-3C7" customClass="AssignChoreViewController" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="Aa0-8P-v5K"/>
                         <viewControllerLayoutGuide type="bottom" id="ATW-Ds-FFw"/>
@@ -214,12 +223,21 @@
                                 <rect key="frame" x="0.0" y="64" width="600" height="487"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <prototypes>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="Chore" id="V49-9Q-Es9">
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="Person" textLabel="2QH-C1-vwJ" style="IBUITableViewCellStyleDefault" id="V49-9Q-Es9">
                                         <rect key="frame" x="0.0" y="92" width="600" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="V49-9Q-Es9" id="o0J-aU-iGY">
                                             <rect key="frame" x="0.0" y="0.0" width="600" height="43.5"/>
                                             <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" text="Title" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="2QH-C1-vwJ">
+                                                    <rect key="frame" x="15" y="0.0" width="570" height="43.5"/>
+                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="16"/>
+                                                    <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                            </subviews>
                                         </tableViewCellContentView>
                                         <connections>
                                             <segue destination="ZZT-rf-eeb" kind="show" identifier="ChoreOrder" id="fWH-p0-BPY"/>
@@ -237,6 +255,9 @@
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" title="Assign Chore" id="kOb-ov-zrB"/>
+                    <connections>
+                        <outlet property="tableView" destination="hfU-2O-85H" id="yVk-l5-za4"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="4FI-1I-lHt" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
