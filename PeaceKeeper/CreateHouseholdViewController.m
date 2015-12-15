@@ -19,6 +19,8 @@ typedef void (^myCompletion)(BOOL);
 
 @property (weak, nonatomic) IBOutlet UILabel *roomatesLabel;
 
+@property (strong, nonatomic) NSMutableArray *roomates;
+
 @end
 
 @implementation CreateHouseholdViewController
@@ -28,11 +30,12 @@ typedef void (^myCompletion)(BOOL);
     // Do any additional setup after loading the view.
 
     
+    
 }
 
 - (void)contactPicker:(CNContactPickerViewController *)picker didSelectContact:(CNContact *)contact {
     
-    self.roomatesLabel.text = contact.namePrefix;
+    self.roomatesLabel.text = contact.givenName;
     
 }
 
@@ -45,13 +48,14 @@ typedef void (^myCompletion)(BOOL);
         picker.delegate = self;
         [self presentViewController:picker animated:YES completion:nil];
         
-        
         if (accessGranted) {
+            
             NSLog(@"access granted");
-        
             
         } else {
+            
             NSLog(@"GTFO!");
+            
         }
         
     }];
