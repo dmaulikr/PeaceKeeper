@@ -1,5 +1,5 @@
 //
-//  Household+CoreDataProperties.m
+//  CompletedChore+CoreDataProperties.m
 //  PeaceKeeper
 //
 //  Created by Work on 12/14/15.
@@ -9,13 +9,12 @@
 //  to delete and recreate this implementation file for your updated model.
 //
 
-#import "Household+CoreDataProperties.h"
+#import "CompletedChore+CoreDataProperties.h"
 
-@implementation Household (CoreDataProperties)
+@implementation CompletedChore (CoreDataProperties)
 
-@dynamic name;
-@dynamic chores;
-@dynamic people;
-@dynamic archive;
+@dynamic completionDate;
+@dynamic chore;
+@dynamic person;
 
 @end

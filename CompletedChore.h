@@ -1,5 +1,5 @@
 //
-//  Household.h
+//  CompletedChore.h
 //  PeaceKeeper
 //
 //  Created by Work on 12/14/15.
@@ -13,13 +13,13 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
-@interface Household : NSManagedObject
+@interface CompletedChore : NSManagedObject
 
 + (NSString *)name;
-+ (instancetype)householdWithName:(NSString * _Nonnull)name;
++ (instancetype)completedChoreWithCompletionDate:(NSDate * _Nonnull)completionDate chore:(Chore * _Nonnull)chore person:(Person * _Nonnull)person;
 
 @end
 
 NS_ASSUME_NONNULL_END
 
-#import "Household+CoreDataProperties.h"
+#import "CompletedChore+CoreDataProperties.h"
