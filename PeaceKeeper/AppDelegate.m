@@ -35,6 +35,13 @@
     } else {
         NSLog(@"User has not created a household.");
     }
+    
+    NSValue *dayValue = [TimeService calendarUnitForString:@"Day"];
+    if (dayValue) {
+        NSCalendarUnit dayCalUnit = [TimeService getCalendarUnitFromValue:dayValue];
+        NSLog(@"%lu", (unsigned long)dayCalUnit);
+        NSLog(@"%lu", (unsigned long)NSCalendarUnitDay);
+    }
 
     return YES;
 }

@@ -14,6 +14,30 @@
 
 @implementation TimeService
 
++ (NSCalendarUnit)getCalendarUnitFromValue:(NSValue * _Nonnull)valueObject {
+    NSCalendarUnit buffer;
+    [valueObject getValue:&buffer];
+    return buffer;
+}
+
++ (NSValue * _Nullable)calendarUnitForString:(NSString * _Nonnull)target {
+    NSArray<NSString *> *calendarUnitStrings = [self calendarUnitStrings];
+    NSUInteger index = [calendarUnitStrings indexOfObject:target];
+    if (index == NSNotFound) {
+        return nil;
+    }
+    return [self calendarUnits][index];
+}
+
++ (NSString * _Nullable)stringForCalendarUnit:(NSValue * _Nonnull)target {
+    NSArray<NSValue *> *calendarUnits = [self calendarUnits];
+    NSUInteger index = [calendarUnits indexOfObject:target];
+    if (index == NSNotFound) {
+        return nil;
+    }
+    return [self calendarUnitStrings][index];
+}
+
 + (NSArray<NSString *> *)calendarUnitStrings {
     return @[@"Day",
              @"Week",
