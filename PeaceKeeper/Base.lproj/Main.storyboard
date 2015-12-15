@@ -295,7 +295,7 @@
                                 <rect key="frame" x="0.0" y="64" width="600" height="487"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <prototypes>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="Person" textLabel="2QH-C1-vwJ" style="IBUITableViewCellStyleDefault" id="V49-9Q-Es9">
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" reuseIdentifier="Person" textLabel="2QH-C1-vwJ" style="IBUITableViewCellStyleDefault" id="V49-9Q-Es9">
                                         <rect key="frame" x="0.0" y="92" width="600" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="V49-9Q-Es9" id="o0J-aU-iGY">
@@ -306,14 +306,11 @@
                                                     <rect key="frame" x="15" y="0.0" width="570" height="43.5"/>
                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="16"/>
-                                                    <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                                    <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                             </subviews>
                                         </tableViewCellContentView>
-                                        <connections>
-                                            <segue destination="ZZT-rf-eeb" kind="show" identifier="ChoreOrder" id="fWH-p0-BPY"/>
-                                        </connections>
                                     </tableViewCell>
                                 </prototypes>
                             </tableView>
@@ -326,7 +323,13 @@
                             <constraint firstItem="ATW-Ds-FFw" firstAttribute="top" secondItem="hfU-2O-85H" secondAttribute="bottom" id="wmy-hd-x9L"/>
                         </constraints>
                     </view>
-                    <navigationItem key="navigationItem" title="Assign Chore" id="kOb-ov-zrB"/>
+                    <navigationItem key="navigationItem" title="Assign Chore" id="kOb-ov-zrB">
+                        <barButtonItem key="rightBarButtonItem" title="Next" id="qPQ-bL-Byq">
+                            <connections>
+                                <segue destination="ZZT-rf-eeb" kind="show" identifier="ChoreOrder" id="W2K-aD-Qwl"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
                     <connections>
                         <outlet property="tableView" destination="hfU-2O-85H" id="yVk-l5-za4"/>
                     </connections>
@@ -338,7 +341,7 @@
         <!--Chore Order-->
         <scene sceneID="MGw-0h-W4h">
             <objects>
-                <viewController id="ZZT-rf-eeb" sceneMemberID="viewController">
+                <viewController id="ZZT-rf-eeb" customClass="ChoreOrderViewController" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="dDD-sQ-s4P"/>
                         <viewControllerLayoutGuide type="bottom" id="Y5j-Ow-rsS"/>
@@ -351,12 +354,21 @@
                                 <rect key="frame" x="0.0" y="64" width="600" height="487"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <prototypes>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="Order" id="94h-6f-uZb">
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="Person" textLabel="5zl-iU-z7x" style="IBUITableViewCellStyleDefault" id="94h-6f-uZb">
                                         <rect key="frame" x="0.0" y="92" width="600" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="94h-6f-uZb" id="St2-MN-jfu">
                                             <rect key="frame" x="0.0" y="0.0" width="600" height="43.5"/>
                                             <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" text="Title" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="5zl-iU-z7x">
+                                                    <rect key="frame" x="15" y="0.0" width="570" height="43.5"/>
+                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="16"/>
+                                                    <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                            </subviews>
                                         </tableViewCellContentView>
                                     </tableViewCell>
                                 </prototypes>
@@ -373,6 +385,9 @@
                     <navigationItem key="navigationItem" title="Chore Order" id="R5h-Yd-dUM">
                         <barButtonItem key="rightBarButtonItem" title="Done" id="Hbv-1h-OBm"/>
                     </navigationItem>
+                    <connections>
+                        <outlet property="tableView" destination="ACc-mf-cFD" id="ETt-ei-YKF"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="89D-Rn-hqu" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
