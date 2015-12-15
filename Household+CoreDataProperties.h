@@ -2,7 +2,7 @@
 //  Household+CoreDataProperties.h
 //  PeaceKeeper
 //
-//  Created by Work on 12/14/15.
+//  Created by Work on 12/15/15.
 //  Copyright © 2015 Francisco Ragland. All rights reserved.
 //
 //  Choose "Create NSManagedObject Subclass…" from the Core Data editor menu
@@ -17,13 +17,18 @@ NS_ASSUME_NONNULL_BEGIN
 @interface Household (CoreDataProperties)
 
 @property (nullable, nonatomic, retain) NSString *name;
+@property (nullable, nonatomic, retain) NSSet<CompletedChore *> *archive;
 @property (nullable, nonatomic, retain) NSSet<Chore *> *chores;
 @property (nullable, nonatomic, retain) NSSet<Person *> *people;
-@property (nullable, nonatomic, retain) NSSet<CompletedChore *> *archive;
 
 @end
 
 @interface Household (CoreDataGeneratedAccessors)
+
+- (void)addArchiveObject:(CompletedChore *)value;
+- (void)removeArchiveObject:(CompletedChore *)value;
+- (void)addArchive:(NSSet<CompletedChore *> *)values;
+- (void)removeArchive:(NSSet<CompletedChore *> *)values;
 
 - (void)addChoresObject:(Chore *)value;
 - (void)removeChoresObject:(Chore *)value;
@@ -34,11 +39,6 @@ NS_ASSUME_NONNULL_BEGIN
 - (void)removePeopleObject:(Person *)value;
 - (void)addPeople:(NSSet<Person *> *)values;
 - (void)removePeople:(NSSet<Person *> *)values;
-
-- (void)addArchiveObject:(CompletedChore *)value;
-- (void)removeArchiveObject:(CompletedChore *)value;
-- (void)addArchive:(NSSet<CompletedChore *> *)values;
-- (void)removeArchive:(NSSet<CompletedChore *> *)values;
 
 @end
 
