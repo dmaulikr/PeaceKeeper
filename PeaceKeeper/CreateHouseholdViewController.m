@@ -10,14 +10,23 @@
 #import "AppDelegate.h"
 @import Contacts;
 @import ContactsUI;
+#import "Household.h"
+#import "Person.h"
+#import "NSManagedObjectContext+Category.h"
 
-@interface CreateHouseholdViewController () <CNContactPickerDelegate>
+@interface CreateHouseholdViewController () <CNContactPickerDelegate, UITableViewDataSource, UITableViewDelegate>
 
 typedef void (^myCompletion)(BOOL);
 
 @property (weak, nonatomic) IBOutlet UITextField *nameTextField;
 
 @property (weak, nonatomic) IBOutlet UILabel *roomatesLabel;
+
+@property (weak, nonatomic) IBOutlet UITableView *tableView;
+
+@property (strong, nonatomic) NSMutableArray *members;
+
+@property (strong, nonatomic) NSString *contactName;
 
 @end
 
@@ -26,37 +35,45 @@ typedef void (^myCompletion)(BOOL);
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
-
+    self.tableView.delegate = self;
+    self.tableView.dataSource = self;
     
+    self.members = [[NSMutableArray alloc]init];
+    
+    UIButton *button = [UIButton buttonWithType:UIButtonTypeCustom];
+    [button addTarget:self
+               action:@selector(aMethod:)
+     forControlEvents:UIControlEventTouchUpInside];
+    [button setTitle:@"Done" forState:UIControlStateNormal];
+    button.frame = CGRectMake(self.view.frame.size.width/2, self.view.frame.size.height - 40, 160.0, 40.0);
+    button.center = CGPointMake(button.frame.origin.x, button.frame.origin.y);
+    [button setBackgroundColor:[UIColor blueColor]];
+    
+    [self.view addSubview:button];
+    
+}
+
+- (void)aMethod:(UIButton *)sender {
+    Household *household = [Household householdWithName:@"household"];
+    NSMutableSet *memberSet = [NSMutableSet set];
+    for (NSString *memberName in self.members) {
+        Person *person = [Person personWithName:memberName chore:nil household:household];
+        [memberSet addObject:person];
+    }
+    household.people = memberSet;
+    [NSManagedObjectContext saveManagedObjectContext];
+    [self.navigationController popToRootViewControllerAnimated:true];
 }
 
 - (void)contactPicker:(CNContactPickerViewController *)picker didSelectContact:(CNContact *)contact {
     
-    self.roomatesLabel.text = contact.namePrefix;
+    _contactName = contact.givenName;
+    [self.members addObject:_contactName];
+    [self.tableView reloadData];
     
 }
 
 
-- (IBAction)addRoomatesButtonPressed:(id)sender {
-    
-    [self requestForAccess:^(BOOL accessGranted) {
-        
-        CNContactPickerViewController *picker = [[CNContactPickerViewController alloc] init];
-        picker.delegate = self;
-        [self presentViewController:picker animated:YES completion:nil];
-        
-        
-        if (accessGranted) {
-            NSLog(@"access granted");
-        
-            
-        } else {
-            NSLog(@"GTFO!");
-        }
-        
-    }];
-    
-}
 
 
 -(void) requestForAccess:(myCompletion)completionBlock {
@@ -97,6 +114,14 @@ typedef void (^myCompletion)(BOOL);
     
 }
 
+- (IBAction)addMembers:(UIBarButtonItem *)sender {
+    
+    CNContactPickerViewController *picker = [[CNContactPickerViewController alloc] init];
+    picker.delegate = self;
+    [self presentViewController:picker animated:YES completion:nil];
+
+    
+}
 
 
 
@@ -105,14 +130,29 @@ typedef void (^myCompletion)(BOOL);
     // Dispose of any resources that can be recreated.
 }
 
-/*
-#pragma mark - Navigation
 
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
+
+#pragma mark - tableView Methods
+
+//- (UIView *)tableView:(UITableView *)tableView viewForFooterInSection:(NSInteger)section {
+//    
+//}
+
+- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
+    return self.members.count;
 }
-*/
+
+- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
+    
+    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"memberCell" forIndexPath: indexPath]; {
+        cell.textLabel.text = self.members[indexPath.row];
+        
+        return cell;
+    }
+}
+
+
+
+
 
 @end
