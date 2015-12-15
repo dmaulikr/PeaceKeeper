@@ -119,7 +119,7 @@
                                 <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" verticalCompressionResistancePriority="749" text="Interval" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="239-M4-vB4">
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Interval" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="239-M4-vB4">
                                 <rect key="frame" x="20" y="355" width="560" height="20.5"/>
                                 <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="17"/>
                                 <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
@@ -137,7 +137,7 @@
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstItem="u9N-ZP-D66" firstAttribute="top" secondItem="iX4-Lf-eCL" secondAttribute="bottom" constant="8" id="AZL-TQ-Amf"/>
+                            <constraint firstItem="u9N-ZP-D66" firstAttribute="top" secondItem="iX4-Lf-eCL" secondAttribute="bottom" constant="-41" id="AZL-TQ-Amf"/>
                             <constraint firstItem="nOO-vz-QFI" firstAttribute="top" secondItem="tzv-lw-qsh" secondAttribute="bottom" constant="8" id="H4I-QR-VyY"/>
                             <constraint firstItem="iX4-Lf-eCL" firstAttribute="height" secondItem="tBe-sT-zjB" secondAttribute="height" id="IIE-tx-jGT"/>
                             <constraint firstItem="l9L-o4-dYd" firstAttribute="leading" secondItem="81y-dr-dff" secondAttribute="leadingMargin" id="IW9-xB-hlx"/>
