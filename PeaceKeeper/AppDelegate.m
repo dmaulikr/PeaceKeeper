@@ -16,7 +16,16 @@
 @implementation AppDelegate
 
 
++ (AppDelegate *)getAppDelegate {
+    return [UIApplication sharedApplication].delegate;
+}
+
+
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
+    // Override point for customization after application launch.
+    
+    self.contactStore = [[CNContactStore alloc] init];
+    
 
     [self registerForNotifications];
 
