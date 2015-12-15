@@ -7,6 +7,7 @@
 //
 
 #import <XCTest/XCTest.h>
+#import "TimeService.h"
 
 @interface PeaceKeeperTests : XCTestCase
 
@@ -16,24 +17,20 @@
 
 - (void)setUp {
     [super setUp];
-    // Put setup code here. This method is called before the invocation of each test method in the class.
 }
 
 - (void)tearDown {
-    // Put teardown code here. This method is called after the invocation of each test method in the class.
     [super tearDown];
 }
 
-- (void)testExample {
-    // This is an example of a functional test case.
-    // Use XCTAssert and related functions to verify your tests produce the correct results.
-}
-
-- (void)testPerformanceExample {
-    // This is an example of a performance test case.
-    [self measureBlock:^{
-        // Put the code you want to measure the time of here.
-    }];
+- (void)testThatMostRecentDateMethodReturnsAnIntervalLessThanGivenUnitAndValue {
+    NSCalendar *calendar = [NSCalendar calendarWithIdentifier:NSCalendarIdentifierGregorian];
+    NSCalendarUnit weekUnit = NSWeekCalendarUnit;
+    NSDate *today = [NSDate date];
+    NSDate *twoWeeksAgo = [calendar dateByAddingUnit:weekUnit value:-2 toDate:today options:0];
+    NSDate *fiveWeeksAgo = [calendar dateByAddingUnit:weekUnit value:-5 toDate:today options:0];
+    NSDate *mostRecentDateMethodResult = [TimeService calculateMostRecentDateFrom:fiveWeeksAgo steppingInIntervalsOf:@(2) unit:weekUnit];
+    XCTAssertGreaterThanOrEqual(mostRecentDateMethodResult.timeIntervalSince1970, twoWeeksAgo.timeIntervalSince1970);
 }
 
 @end

@@ -9,9 +9,22 @@
 #import "Household.h"
 #import "Chore.h"
 #import "Person.h"
+#import "NSManagedObjectContext+Category.h"
 
 @implementation Household
 
-// Insert code here to add functionality to your managed object subclass
++ (NSString *)name {
+    return @"Household";
+}
+
++ (instancetype)householdWithName:(NSString * _Nonnull)name {
+    Household *household = [NSEntityDescription insertNewObjectForEntityForName:[self name] inManagedObjectContext:[NSManagedObjectContext managedObjectContext]];
+    household.name = name;
+    household.chores = [NSSet set];
+    household.people = [NSSet set];
+    household.archive = [NSSet set];
+    [NSManagedObjectContext saveManagedObjectContext];
+    return household;
+}
 
 @end

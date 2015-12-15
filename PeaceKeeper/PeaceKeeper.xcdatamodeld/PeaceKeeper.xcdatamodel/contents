@@ -1,27 +1,34 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <model userDefinedModelVersionIdentifier="" type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="9525" systemVersion="15C50" minimumToolsVersion="Automatic">
     <entity name="Chore" representedClassName="Chore" syncable="YES">
-        <attribute name="currentPersonIndex" optional="YES" attributeType="Integer 16" defaultValueString="0" syncable="YES"/>
-        <attribute name="name" optional="YES" attributeType="String" syncable="YES"/>
-        <attribute name="repeatIntervalUnit" optional="YES" attributeType="String" syncable="YES"/>
-        <attribute name="repeatIntervalValue" optional="YES" attributeType="Integer 64" defaultValueString="0.0" syncable="YES"/>
-        <attribute name="startDate" optional="YES" attributeType="Date" syncable="YES"/>
-        <relationship name="household" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Household" inverseName="chores" inverseEntity="Household" syncable="YES"/>
-        <relationship name="people" optional="YES" toMany="YES" deletionRule="Nullify" ordered="YES" destinationEntity="Person" inverseName="chores" inverseEntity="Person" syncable="YES"/>
+        <attribute name="currentPersonIndex" attributeType="Integer 16" defaultValueString="0" syncable="YES"/>
+        <attribute name="name" attributeType="String" syncable="YES"/>
+        <attribute name="repeatIntervalUnit" attributeType="String" syncable="YES"/>
+        <attribute name="repeatIntervalValue" attributeType="Integer 64" defaultValueString="0.0" syncable="YES"/>
+        <attribute name="startDate" attributeType="Date" syncable="YES"/>
+        <relationship name="household" maxCount="1" deletionRule="Nullify" destinationEntity="Household" inverseName="chores" inverseEntity="Household" syncable="YES"/>
+        <relationship name="people" toMany="YES" deletionRule="Nullify" ordered="YES" destinationEntity="Person" inverseName="chores" inverseEntity="Person" syncable="YES"/>
+    </entity>
+    <entity name="CompletedChore" representedClassName="CompletedChore" syncable="YES">
+        <attribute name="completionDate" attributeType="Date" syncable="YES"/>
+        <relationship name="chore" maxCount="1" deletionRule="Nullify" destinationEntity="Chore" syncable="YES"/>
+        <relationship name="person" maxCount="1" deletionRule="Nullify" destinationEntity="Person" syncable="YES"/>
     </entity>
     <entity name="Household" representedClassName="Household" syncable="YES">
-        <attribute name="name" optional="YES" attributeType="String" syncable="YES"/>
-        <relationship name="chores" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Chore" inverseName="household" inverseEntity="Chore" syncable="YES"/>
-        <relationship name="people" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Person" inverseName="household" inverseEntity="Person" syncable="YES"/>
+        <attribute name="name" attributeType="String" syncable="YES"/>
+        <relationship name="archive" toMany="YES" deletionRule="Nullify" destinationEntity="CompletedChore" syncable="YES"/>
+        <relationship name="chores" toMany="YES" deletionRule="Nullify" destinationEntity="Chore" inverseName="household" inverseEntity="Chore" syncable="YES"/>
+        <relationship name="people" toMany="YES" deletionRule="Nullify" destinationEntity="Person" inverseName="household" inverseEntity="Person" syncable="YES"/>
     </entity>
     <entity name="Person" representedClassName="Person" syncable="YES">
-        <attribute name="name" optional="YES" attributeType="String" syncable="YES"/>
-        <relationship name="chores" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Chore" inverseName="people" inverseEntity="Chore" syncable="YES"/>
-        <relationship name="household" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Household" inverseName="people" inverseEntity="Household" syncable="YES"/>
+        <attribute name="name" attributeType="String" syncable="YES"/>
+        <relationship name="chores" toMany="YES" deletionRule="Nullify" destinationEntity="Chore" inverseName="people" inverseEntity="Chore" syncable="YES"/>
+        <relationship name="household" maxCount="1" deletionRule="Nullify" destinationEntity="Household" inverseName="people" inverseEntity="Household" syncable="YES"/>
     </entity>
     <elements>
+        <element name="Chore" positionX="430" positionY="-99" width="128" height="148"/>
+        <element name="Household" positionX="243" positionY="-207" width="128" height="103"/>
         <element name="Person" positionX="-126" positionY="-162" width="128" height="88"/>
-        <element name="Chore" positionX="88" positionY="-58" width="128" height="148"/>
-        <element name="Household" positionX="243" positionY="-207" width="128" height="88"/>
+        <element name="CompletedChore" positionX="117" positionY="-54" width="128" height="90"/>
     </elements>
 </model>
