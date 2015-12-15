@@ -163,8 +163,4 @@ typedef void (^myCompletion)(BOOL);
     }
 }
 
-
-
-
-
 @end
