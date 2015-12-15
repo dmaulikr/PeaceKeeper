@@ -15,6 +15,8 @@
 @implementation ViewController
 
 - (void)viewDidLoad {
+    self.navigationController.view.backgroundColor = [UIColor whiteColor];
+
     [super viewDidLoad];
     // Do any additional setup after loading the view, typically from a nib.
 }
