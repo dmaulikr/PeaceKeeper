@@ -12,6 +12,8 @@
 #import "NSManagedObjectContext+Category.h"
 
 @interface ViewController ()
+@property (weak, nonatomic) IBOutlet UIButton *createHouseholdButton;
+@property (weak, nonatomic) IBOutlet UIButton *makeChoreButton;
 
 @end
 
@@ -25,10 +27,30 @@
 }
 
 - (void)viewWillAppear:(BOOL)animated {
+//    NSManagedObjectContext *managedObjectContext = [NSManagedObjectContext managedObjectContext];
+//    NSFetchRequest *request = [NSFetchRequest fetchRequestWithEntityName:[Household name]];
+//    NSError *error;
+//    NSArray *results = [managedObjectContext executeFetchRequest:request error:&error];
+    
     NSManagedObjectContext *managedObjectContext = [NSManagedObjectContext managedObjectContext];
     NSFetchRequest *request = [NSFetchRequest fetchRequestWithEntityName:[Household name]];
     NSError *error;
-    NSArray *results = [managedObjectContext executeFetchRequest:request error:&error];
+    NSUInteger count = [managedObjectContext countForFetchRequest:request error:&error];
+    if (error) {
+        NSLog(@"Error fetching count of %@ objects: %@", [Household name], error.localizedDescription);
+    } else {
+        NSLog(@"Successfully fetched count of %@ objects: %lu", [Household name], (unsigned long)count);
+        self.createHouseholdButton.enabled = false;
+        self.makeChoreButton.enabled = true;
+    }
+    if (count == 0) {
+        NSLog(@"No household to retrieve");
+        self.makeChoreButton.enabled = false;
+        self.createHouseholdButton.enabled = true;
+
+    }
+        NSLog(@"");
+
     
     
 }
