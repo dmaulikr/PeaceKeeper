@@ -7,39 +7,28 @@
 //
 
 #import "TimeService.h"
-@import UIKit;
 
 @implementation TimeService
 
-+ (void)schedule:(NSUInteger)n notificationsEvery:(NSNumber *)m calendarUnit:(NSCalendarUnit)calendarUnit starting:(NSDate *)startDate {
-    
++ (void)schedule:(NSUInteger)n localNotifications:(UILocalNotification * _Nonnull)localNotification every:(NSUInteger)m calendarUnit:(NSCalendarUnit)calendarUnit starting:(NSDate * _Nonnull)startDate {
+    NSCalendar *calendar = [NSCalendar calendarWithIdentifier:NSCalendarIdentifierGregorian];
+    for (NSUInteger i = 0; i < n; i++) {
+        UILocalNotification *notification = localNotification.copy;
+        notification.fireDate = startDate;
+        [[UIApplication sharedApplication] scheduleLocalNotification:notification];
+        startDate = [calendar dateByAddingUnit:calendarUnit value:m toDate:startDate options:0];
+    }
 }
 
-+ (NSDate *)calculateMostRecentDateFrom:(NSDate *)startDate steppingInIntervalsOf:(NSNumber *)n unit:(NSCalendarUnit)unit {
++ (NSDate * _Nullable)calculateMostRecentDateFrom:(NSDate * _Nonnull)startDate steppingInIntervalsOf:(NSUInteger)n unit:(NSCalendarUnit)unit {
     NSCalendar *calendar = [NSCalendar calendarWithIdentifier:NSCalendarIdentifierGregorian];
     NSDate *previousDate = startDate;
-    NSDate *nextDate = [calendar dateByAddingUnit:unit value:n.integerValue toDate:startDate options:0];
+    NSDate *nextDate = [calendar dateByAddingUnit:unit value:n toDate:startDate options:0];
     while (nextDate.timeIntervalSince1970 < startDate.timeIntervalSince1970) {
         previousDate = nextDate;
-        nextDate = [calendar dateByAddingUnit:unit value:n.integerValue toDate:previousDate options:0];
+        nextDate = [calendar dateByAddingUnit:unit value:n toDate:previousDate options:0];
     }
     return previousDate;
-}
-
-
-+ (void)timer {
-    NSLog(@"Y");
-    NSTimer *timer = [NSTimer timerWithTimeInterval:0.0 target:self selector:@selector(printX) userInfo:nil repeats:true];
-    [[NSRunLoop mainRunLoop] addTimer:timer forMode:NSDefaultRunLoopMode];
-}
-
-+ (void)printX {
-    NSLog(@"X");
-    
-    UILocalNotification *notification = [[UILocalNotification alloc] init];
-    notification.alertTitle = @"Timer Fired";
-    notification.alertBody = @"OMG SRSLY!!!";
-    [[UIApplication sharedApplication] presentLocalNotificationNow:notification];
 }
 
 @end

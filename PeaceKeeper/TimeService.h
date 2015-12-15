@@ -7,10 +7,11 @@
 //
 
 #import <Foundation/Foundation.h>
+@import UIKit;
 
 @interface TimeService : NSObject
 
-+ (void)timer;
-+ (NSDate *)calculateMostRecentDateFrom:(NSDate *)startDate steppingInIntervalsOf:(NSNumber *)n unit:(NSCalendarUnit)unit;
++ (void)schedule:(NSUInteger)n localNotifications:(UILocalNotification * _Nonnull)localNotification every:(NSUInteger)m calendarUnit:(NSCalendarUnit)calendarUnit starting:(NSDate * _Nonnull)startDate;
++ (NSDate * _Nullable)calculateMostRecentDateFrom:(NSDate * _Nonnull)startDate steppingInIntervalsOf:(NSUInteger)n unit:(NSCalendarUnit)unit;
 
 @end

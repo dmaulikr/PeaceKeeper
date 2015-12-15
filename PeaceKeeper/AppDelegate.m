@@ -18,19 +18,7 @@
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
 
-//    [TimeService timer];
     [self registerForNotifications];
-    
-//    [[UIApplication sharedApplication] cancelAllLocalNotifications];
-    
-/*
-    UILocalNotification *schedulableLocalNotification = [[UILocalNotification alloc] init];
-    schedulableLocalNotification.fireDate = [NSDate dateWithTimeInterval:60 sinceDate:[NSDate date]];
-    schedulableLocalNotification.repeatInterval = NSCalendarUnitMinute;
-    schedulableLocalNotification.alertTitle = @"SCHEDULED NOTIFICATION MOTHERFUCKER";
-    schedulableLocalNotification.alertBody = @"!!!";
-    [[UIApplication sharedApplication] scheduleLocalNotification:schedulableLocalNotification];
-*/
 
     return YES;
 }
