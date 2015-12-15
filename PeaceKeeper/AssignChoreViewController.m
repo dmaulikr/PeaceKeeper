@@ -15,20 +15,11 @@
 
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
 @property (strong, nonatomic) NSArray<Person *> *people;
-@property (strong, nonatomic) NSArray *tempArray;
 
 @end
 
 @implementation AssignChoreViewController
 
-- (NSArray *)tempArray {
-    if (!_tempArray) {
-        _tempArray = @[@"John", @"Paul", @"Ringo", @"George"];
-    }
-    return _tempArray;
-}
-
-/*
 - (NSArray<Person *> *)people {
     if (!_people) {
         NSManagedObjectContext *managedObjectContext = [NSManagedObjectContext managedObjectContext];
@@ -43,7 +34,7 @@
         }
     }
     return _people;
-}*/
+}
 
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -54,12 +45,13 @@
 
 #pragma mark - UITableViewDataSource
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    return self.tempArray.count;
+    return self.people.count;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     UITableViewCell *cell = [self.tableView dequeueReusableCellWithIdentifier:@"Person"];
-    cell.textLabel.text = self.tempArray[indexPath.row];
+    Person *person = self.people[indexPath.row];
+    cell.textLabel.text = @";
     return cell;
 }
 
