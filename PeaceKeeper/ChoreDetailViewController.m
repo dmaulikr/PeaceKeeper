@@ -7,10 +7,12 @@
 //
 
 #import "ChoreDetailViewController.h"
+#import "Person.h"
+#import "Chore.h"
 @import MessageUI;
 
 
-@interface ChoreDetailViewController () <UITableViewDelegate, UITableViewDataSource, MFMessageComposeViewControllerDelegate>
+@interface ChoreDetailViewController () <UITableViewDelegate, UITableViewDataSource, MFMessageComposeViewControllerDelegate, MFMailComposeViewControllerDelegate>
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
 @property (strong, nonatomic) NSMutableArray *peopleArray;
 @property (strong, nonatomic) NSMutableArray *choreArray;
@@ -109,30 +111,26 @@
     }
     [self dismissViewControllerAnimated:YES completion:nil];
 }
-
 - (void)showSMS{
     
     if (![MFMessageComposeViewController canSendText]) {
         UIAlertView *warningAlert = [[UIAlertView alloc]initWithTitle:@"Error" message:@"your device doesn't support text messages" delegate:nil cancelButtonTitle:@"OK" otherButtonTitles: nil];
         [warningAlert show];
         return;
+        
+//        NSArray *recipients = @[@"123",@"456"];
+        NSString *message = [NSString stringWithFormat:@"Just sent the file to your email"];
+        
+        MFMessageComposeViewController *messageController = [[MFMessageComposeViewController alloc]init];
+        messageController.messageComposeDelegate = self;
+//        [messageController setRecipients:recipients];
+        [messageController setBody:message];
+        
+        [self presentViewController:messageController animated:YES completion:nil];
     }
-    
-    NSArray *recipients = @[@"",@""];
-    NSString *message = [NSString stringWithFormat:@"Just sent the file to your email"];
-    
-    MFMessageComposeViewController *messageController = [[MFMessageComposeViewController alloc]init];
-    messageController.messageComposeDelegate = self;
-    [messageController setRecipients:recipients];
-    [messageController setBody:message];
-    
-    [self presentViewController:messageController animated:YES completion:nil];
-    
 }
-
-
-#pragma mark - MFMailComposeViewController Delegate 
-
+#pragma mark - MFMailComposeViewController Delegate
+        
 - (void)mailComposeController:(MFMailComposeViewController *)controller didFinishWithResult:(MFMailComposeResult)result error:(NSError *)error {
 
     switch (result) {
@@ -154,7 +152,8 @@
     }
     
     [self dismissViewControllerAnimated:YES completion:NULL];
-
 }
+
+
 
 @end
