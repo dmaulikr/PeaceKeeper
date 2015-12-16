@@ -31,20 +31,6 @@
     
     [self registerForNotifications];
     
-    if ([self userHasCreatedAHousehold]) {
-        NSLog(@"User has created a household.");
-    } else {
-        NSLog(@"User has not created a household.");
-        UIViewController *rootViewController = self.window.rootViewController;
-        if (rootViewController) {
-            UIStoryboard *storyboard = rootViewController.storyboard;
-            CreateHouseholdViewController *createHouseholdViewController = [storyboard instantiateViewControllerWithIdentifier:@"CreateHousehold"]; //CreateHouseholdNavigationController
-            [rootViewController addChildViewController:createHouseholdViewController];
-            [rootViewController.view addSubview:createHouseholdViewController.view];
-            [createHouseholdViewController didMoveToParentViewController:rootViewController];
-        }
-    }
-    
     /*
     NSValue *dayValue = [TimeService calendarUnitForString:@"Day"];
     if (dayValue) {

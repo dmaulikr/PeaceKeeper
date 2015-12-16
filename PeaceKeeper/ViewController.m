@@ -11,6 +11,8 @@
 #import "Person.h"
 #import "NSManagedObjectContext+Category.h"
 #import "Chore.h"
+#import "AppDelegate.h"
+#import "CreateHouseholdViewController.h"
 
 @interface ViewController () <UITableViewDataSource, UITableViewDelegate>
 
@@ -58,6 +60,14 @@
     self.navigationController.view.backgroundColor = [UIColor whiteColor];
     self.tableView.delegate = self;
     self.tableView.dataSource = self;
+    
+    if (![Household fetchHousehold]) {
+        AppDelegate *appDelegate = (AppDelegate *)[[UIApplication sharedApplication] delegate];
+        UIStoryboard *storyboard = (UINavigationController *)appDelegate.window.rootViewController.storyboard;
+        CreateHouseholdViewController *createHouseholdNavigationController = [storyboard instantiateViewControllerWithIdentifier:@"CreateHouseholdNavigationController"];
+        CreateHouseholdViewController *createHouseholdViewController = [storyboard instantiateViewControllerWithIdentifier:@"CreateHousehold"];
+        [self presentViewController:createHouseholdNavigationController animated:true completion:nil];
+    }
 }
 
 - (void)viewWillAppear:(BOOL)animated {

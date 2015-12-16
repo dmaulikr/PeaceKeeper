@@ -34,9 +34,6 @@ typedef void (^myCompletion)(BOOL);
 
 @implementation CreateHouseholdViewController
 
-
-
-
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
@@ -61,15 +58,15 @@ typedef void (^myCompletion)(BOOL);
 }
 
 - (void)aMethod:(UIButton *)sender {
-    
-    [self.navigationController popToRootViewControllerAnimated:true];
+    [self dismissViewControllerAnimated:true completion:nil];
+//    [self.navigationController popToRootViewControllerAnimated:true];
 }
 
 - (void)contactPicker:(CNContactPickerViewController *)picker didSelectContact:(CNContact *)contact {
     
     
-    CNLabeledValue *emailAddressValue = (CNLabeledValue *)contact.emailAddresses.lastObject;
-    CNLabeledValue *phoneNumberValue = (CNLabeledValue *)contact.phoneNumbers.lastObject;
+    CNLabeledValue *emailAddressValue = (CNLabeledValue *)contact.emailAddresses.firstObject;
+    CNLabeledValue *phoneNumberValue = (CNLabeledValue *)contact.phoneNumbers.firstObject;
     
     CNPhoneNumber *number = (CNPhoneNumber *)phoneNumberValue.value;
     
