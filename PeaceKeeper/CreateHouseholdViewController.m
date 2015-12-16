@@ -26,9 +26,24 @@ typedef void (^myCompletion)(BOOL);
 
 @property (strong, nonatomic) NSMutableArray<CNContact *> *members;
 
+@property (strong, nonatomic) UIButton *doneButton;
+
 @end
 
 @implementation CreateHouseholdViewController
+
+- (NSMutableArray<CNContact *> *)members {
+    if (_members) {
+        if (_members.count == 0) {
+            self.doneButton.enabled = false;
+            [self.doneButton setBackgroundColor:[UIColor grayColor]];
+        } else {
+            self.doneButton.enabled = true;
+            [self.doneButton setBackgroundColor:[UIColor blueColor]];
+        }
+    }
+    return _members;
+}
 
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -46,6 +61,7 @@ typedef void (^myCompletion)(BOOL);
     button.frame = CGRectMake(self.view.frame.size.width/2, self.view.frame.size.height - 40, 160.0, 40.0);
     button.center = CGPointMake(button.frame.origin.x, button.frame.origin.y);
     [button setBackgroundColor:[UIColor blueColor]];
+    self.doneButton = button;
     
     [self.view addSubview:button];
 }
@@ -70,10 +86,28 @@ typedef void (^myCompletion)(BOOL);
 
 - (void)contactPicker:(CNContactPickerViewController *)picker didSelectContact:(CNContact *)contact {
     [self.members addObject:contact];
+    /*
+    if (contact.givenName.length > 0) {
+        [self.members addObject:contact];
+    } else {
+        [self dismissViewControllerAnimated:YES completion:^{
+            [self presentAlertViewController];
+        }];
+    }
+    */
     [self.tableView reloadData];
 }
 
--(void) requestForAccess:(myCompletion)completionBlock {
+- (void)presentAlertViewController {
+    
+    UIAlertController *alertController = [UIAlertController alertControllerWithTitle:@"Error" message:@"You can't add a contact without a first name." preferredStyle:UIAlertControllerStyleAlert];
+    UIAlertAction *okAction = [UIAlertAction actionWithTitle:@"OK" style:UIAlertActionStyleDefault handler:nil];
+    [alertController addAction:okAction];
+    
+    [self presentViewController:alertController animated:true completion:nil];
+}
+
+-(void)requestForAccess:(myCompletion)completionBlock {
     
     CNAuthorizationStatus authorizationStatus = [CNContactStore authorizationStatusForEntityType:CNEntityTypeContacts];
 
@@ -97,7 +131,6 @@ typedef void (^myCompletion)(BOOL);
                         });
                     }
                 }
-                
             }];
             
             break;
@@ -107,28 +140,19 @@ typedef void (^myCompletion)(BOOL);
             completionBlock(false);
             break;
     }
-    
 }
-
-
 
 - (IBAction)addMembers:(UIBarButtonItem *)sender {
-    
     CNContactPickerViewController *picker = [[CNContactPickerViewController alloc] init];
     picker.delegate = self;
+    picker.predicateForEnablingContact = [NSPredicate predicateWithFormat:@"givenName != ''"];
     [self presentViewController:picker animated:YES completion:nil];
-
-    
 }
-
-
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
 }
-
-
 
 #pragma mark - tableView Methods
 
@@ -139,8 +163,14 @@ typedef void (^myCompletion)(BOOL);
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"memberCell" forIndexPath: indexPath]; {
-        NSString *firstName = [self.members[indexPath.row] givenName];
-        cell.textLabel.text = firstName;
+        CNContact *contact = self.members[indexPath.row];
+        NSMutableString *labelText = [NSMutableString stringWithString:contact.givenName];
+        if (labelText.length > 0) {
+            [labelText appendFormat:@" %@", contact.familyName];
+        } else {
+            [labelText appendString:contact.familyName];
+        }
+        cell.textLabel.text = labelText;
         
         return cell;
     }

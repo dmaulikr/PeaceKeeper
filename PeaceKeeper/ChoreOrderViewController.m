@@ -11,6 +11,8 @@
 #import "Household.h"
 #import "Chore.h"
 #import "NSManagedObjectContext+Category.h"
+#import "TimeService.h"
+#import "Constants.h"
 
 @interface ChoreOrderViewController () <UITableViewDataSource, UITableViewDelegate>
 
@@ -32,12 +34,20 @@
 #pragma mark - Actions
 
 - (IBAction)doneButtonAction:(UIBarButtonItem *)sender {
+    // Save the chore
     NSString *choreName = (NSString *)self.tempDictionary[kTempDictionaryKeyChoreTitleString];
     NSDate *choreStartDate = (NSDate *)self.tempDictionary[kTempDictionaryKeyChoreStartDate];
     NSString *choreIntervalString = (NSString *)self.tempDictionary[kTempDictionaryKeyChoreIntervalString];
     NSOrderedSet *people = [NSOrderedSet orderedSetWithArray:self.selectedPeople];
     Household *household = [Household fetchHousehold];
     [Chore choreWithName:choreName startDate:choreStartDate repeatIntervalValue:@(1) repeatIntervalUnit:choreIntervalString household:household people:people];
+    
+    // Schedule the notification
+    NSCalendarUnit repeatInterval = [TimeService calendarUnitForString:choreIntervalString];
+    NSString *alertTitle = [NSString stringWithFormat:@"“%@” Due", choreName];
+    NSString *alertBody = [NSString stringWithFormat:@"“%@” is due today. Next alert in one %@", choreName, [choreIntervalString lowercaseString]];
+    NSDictionary *userInfo = [NSDictionary dictionaryWithObject:choreName forKey:kChoreNameKey];
+    [TimeService scheduleLocalNotificationInUsersTimeZoneAndCalendarWithFireDate:choreStartDate repeatInterval:repeatInterval alertTitle:alertTitle alertBody:alertBody userInfo:userInfo];
     [self.navigationController popToRootViewControllerAnimated:true];
 }
 

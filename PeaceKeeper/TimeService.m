@@ -14,13 +14,36 @@
 
 @implementation TimeService
 
-+ (NSCalendarUnit)getCalendarUnitFromValue:(NSValue * _Nonnull)valueObject {
++ (void)scheduleLocalNotificationInUsersTimeZoneAndCalendarWithFireDate:(NSDate * _Nonnull)fireDate repeatInterval:(NSCalendarUnit)repeatInterval alertTitle:(NSString * _Nonnull)alertTitle alertBody:(NSString * _Nonnull)alertBody userInfo:(NSDictionary * _Nonnull)userInfo {
+    UILocalNotification *ln = [[UILocalNotification alloc] init];
+    ln.timeZone = [NSTimeZone localTimeZone];
+    ln.repeatCalendar = [NSCalendar currentCalendar];
+    ln.fireDate = fireDate;
+    ln.repeatInterval = repeatInterval;
+    ln.alertTitle = alertTitle;
+    ln.alertBody = alertBody;
+    ln.userInfo = userInfo;
+    [[UIApplication sharedApplication] scheduleLocalNotification:ln];
+}
+
++ (NSCalendarUnit)calendarUnitForString:(NSString * _Nonnull)target {
+    NSCalendarUnit result;
+    NSValue *calendarValue = [self calendarUnitValueForString:target];
+    if (calendarValue) {
+        result = [TimeService calendarUnitFromValue:calendarValue];
+    } else {
+        NSLog(@"Error: no calendar value retrieved for string %@. The result of this method may be garbage. Result as unsigned long: %lu.", target, (unsigned long)result);
+    }
+    return result;
+}
+
++ (NSCalendarUnit)calendarUnitFromValue:(NSValue * _Nonnull)valueObject {
     NSCalendarUnit buffer;
     [valueObject getValue:&buffer];
     return buffer;
 }
 
-+ (NSValue * _Nullable)calendarUnitForString:(NSString * _Nonnull)target {
++ (NSValue * _Nullable)calendarUnitValueForString:(NSString * _Nonnull)target {
     NSArray<NSString *> *calendarUnitStrings = [self calendarUnitStrings];
     NSUInteger index = [calendarUnitStrings indexOfObject:target];
     if (index == NSNotFound) {
