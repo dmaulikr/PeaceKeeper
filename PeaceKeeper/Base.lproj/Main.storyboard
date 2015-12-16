@@ -56,9 +56,17 @@
                         <constraints>
                             <constraint firstItem="gBz-7l-32a" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leadingMargin" constant="-20" id="2Ar-ej-FDy"/>
                             <constraint firstAttribute="trailingMargin" secondItem="gBz-7l-32a" secondAttribute="trailing" constant="-20" id="4RD-Ws-6nK"/>
+                            <constraint firstItem="gBz-7l-32a" firstAttribute="top" secondItem="y3c-jy-aDJ" secondAttribute="bottom" id="J96-WM-ENB"/>
                             <constraint firstItem="gBz-7l-32a" firstAttribute="top" secondItem="y3c-jy-aDJ" secondAttribute="bottom" id="hOw-Wi-0R6"/>
                             <constraint firstItem="wfy-db-euE" firstAttribute="top" secondItem="gBz-7l-32a" secondAttribute="bottom" id="qPk-gM-RWG"/>
+                            <constraint firstItem="gBz-7l-32a" firstAttribute="top" secondItem="8bC-Xf-vdC" secondAttribute="topMargin" id="vxM-Rj-e3v"/>
                         </constraints>
+                        <variation key="default">
+                            <mask key="constraints">
+                                <exclude reference="hOw-Wi-0R6"/>
+                                <exclude reference="vxM-Rj-e3v"/>
+                            </mask>
+                        </variation>
                     </view>
                     <tabBarItem key="tabBarItem" title="Home" id="W9N-Kq-vB4"/>
                     <navigationItem key="navigationItem" id="LNg-NV-6p9"/>
@@ -136,7 +144,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="xyI-iW-Sca" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1694" y="1018"/>
+            <point key="canvasLocation" x="1688" y="980"/>
         </scene>
         <!--CreateHousehold-->
         <scene sceneID="8KO-oG-89m">
@@ -151,7 +159,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="SPf-7a-MYb">
-                                <rect key="frame" x="0.0" y="64" width="600" height="536"/>
+                                <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="memberCell" id="5ri-T7-rov">
@@ -170,8 +178,14 @@
                             <constraint firstItem="Jk7-p4-M1E" firstAttribute="top" secondItem="SPf-7a-MYb" secondAttribute="bottom" id="50S-v1-tLJ"/>
                             <constraint firstAttribute="trailingMargin" secondItem="SPf-7a-MYb" secondAttribute="trailing" constant="-20" id="R1e-q9-pX8"/>
                             <constraint firstItem="SPf-7a-MYb" firstAttribute="top" secondItem="GYb-uW-Teq" secondAttribute="bottom" id="Vvi-ep-nQL"/>
+                            <constraint firstItem="SPf-7a-MYb" firstAttribute="top" secondItem="DOn-gN-ucT" secondAttribute="topMargin" id="ZAv-Bz-2Y4"/>
                             <constraint firstItem="SPf-7a-MYb" firstAttribute="leading" secondItem="DOn-gN-ucT" secondAttribute="leadingMargin" constant="-20" id="vgh-oD-hDI"/>
                         </constraints>
+                        <variation key="default">
+                            <mask key="constraints">
+                                <exclude reference="Vvi-ep-nQL"/>
+                            </mask>
+                        </variation>
                     </view>
                     <navigationItem key="navigationItem" title="Create Household" id="g14-H0-S9X">
                         <barButtonItem key="rightBarButtonItem" systemItem="add" id="wIM-L9-uz1">
@@ -186,7 +200,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="nnI-rf-Elw" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3173" y="-384"/>
+            <point key="canvasLocation" x="3055" y="-384"/>
         </scene>
         <!--MakeChore-->
         <scene sceneID="b7c-g6-eft">
@@ -232,8 +246,10 @@
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
+                            <constraint firstItem="nOO-vz-QFI" firstAttribute="top" secondItem="tzv-lw-qsh" secondAttribute="bottom" constant="8" id="0CO-bO-w8D"/>
+                            <constraint firstItem="nOO-vz-QFI" firstAttribute="top" secondItem="tzv-lw-qsh" secondAttribute="bottom" constant="52" id="5F7-hW-oLy"/>
                             <constraint firstItem="u9N-ZP-D66" firstAttribute="top" secondItem="iX4-Lf-eCL" secondAttribute="bottom" constant="-41" id="AZL-TQ-Amf"/>
-                            <constraint firstItem="nOO-vz-QFI" firstAttribute="top" secondItem="tzv-lw-qsh" secondAttribute="bottom" constant="8" id="H4I-QR-VyY"/>
+                            <constraint firstItem="l9L-o4-dYd" firstAttribute="top" secondItem="nOO-vz-QFI" secondAttribute="bottom" constant="8" id="Ged-pZ-J1Y"/>
                             <constraint firstItem="iX4-Lf-eCL" firstAttribute="height" secondItem="tBe-sT-zjB" secondAttribute="height" id="IIE-tx-jGT"/>
                             <constraint firstItem="l9L-o4-dYd" firstAttribute="leading" secondItem="81y-dr-dff" secondAttribute="leadingMargin" id="IW9-xB-hlx"/>
                             <constraint firstItem="239-M4-vB4" firstAttribute="trailing" secondItem="81y-dr-dff" secondAttribute="trailingMargin" id="MDT-lV-A1n"/>
@@ -253,6 +269,8 @@
                         </constraints>
                         <variation key="default">
                             <mask key="constraints">
+                                <exclude reference="5F7-hW-oLy"/>
+                                <exclude reference="e2y-GS-lAF"/>
                                 <exclude reference="AZL-TQ-Amf"/>
                             </mask>
                         </variation>
@@ -265,6 +283,7 @@
                             </connections>
                         </barButtonItem>
                     </navigationItem>
+                    <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" prompted="NO"/>
                     <connections>
                         <outlet property="choreNameField" destination="nOO-vz-QFI" id="wAu-NK-tJ6"/>
                         <outlet property="repeatIntervalPicker" destination="iX4-Lf-eCL" id="D89-sR-aPl"/>
@@ -292,7 +311,7 @@
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" reuseIdentifier="Person" textLabel="2QH-C1-vwJ" style="IBUITableViewCellStyleDefault" id="V49-9Q-Es9">
-                                        <rect key="frame" x="0.0" y="28" width="600" height="44"/>
+                                        <rect key="frame" x="0.0" y="92" width="600" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="V49-9Q-Es9" id="o0J-aU-iGY">
                                             <rect key="frame" x="0.0" y="0.0" width="600" height="43.5"/>
@@ -359,7 +378,7 @@
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="Person" textLabel="5zl-iU-z7x" style="IBUITableViewCellStyleDefault" id="94h-6f-uZb">
-                                        <rect key="frame" x="0.0" y="28" width="600" height="44"/>
+                                        <rect key="frame" x="0.0" y="92" width="600" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="94h-6f-uZb" id="St2-MN-jfu">
                                             <rect key="frame" x="0.0" y="0.0" width="600" height="43.5"/>
@@ -407,7 +426,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="89D-Rn-hqu" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3822" y="273"/>
+            <point key="canvasLocation" x="3706" y="273"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="aSA-kI-ykg">
@@ -462,7 +481,7 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="zj8-ur-ID2" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2361" y="-384"/>
+            <point key="canvasLocation" x="2361" y="-372"/>
         </scene>
         <!--Household-->
         <scene sceneID="sI4-pe-Bbr">
