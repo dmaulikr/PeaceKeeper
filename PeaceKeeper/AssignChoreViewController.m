@@ -35,12 +35,8 @@
 
 - (NSArray<Person *> *)people {
     if (!_people) {
-        NSManagedObjectContext *managedObjectContext = [NSManagedObjectContext managedObjectContext];
-        NSFetchRequest *request = [NSFetchRequest fetchRequestWithEntityName:[Household name]];
-        NSError *error;
-        NSArray *results = [managedObjectContext executeFetchRequest:request error:&error];
-        if (results.count > 0) {
-            Household *household = results.firstObject;
+        Household *household = [Household fetchHousehold];
+        if (household) {
             _people = [household.people allObjects];
         } else {
             _people = @[];

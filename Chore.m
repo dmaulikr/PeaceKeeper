@@ -18,7 +18,7 @@
     return @"Chore";
 }
 
-+ (instancetype)choreWithName:(NSString * _Nonnull)name startDate:(NSDate * _Nonnull)startDate repeatIntervalValue:(NSNumber * _Nonnull)repeatIntervalValue repeatIntervalUnit:(NSString * _Nonnull)repeatIntervalUnit household:(Household * _Nonnull)household {
++ (instancetype)choreWithName:(NSString * _Nonnull)name startDate:(NSDate * _Nonnull)startDate repeatIntervalValue:(NSNumber * _Nonnull)repeatIntervalValue repeatIntervalUnit:(NSString * _Nonnull)repeatIntervalUnit household:(Household * _Nonnull)household people:(NSOrderedSet *)people {
     Chore *chore = [NSEntityDescription insertNewObjectForEntityForName:[self name] inManagedObjectContext:[NSManagedObjectContext managedObjectContext]];
     chore.name = name;
     chore.startDate = startDate;
@@ -26,10 +26,15 @@
     chore.repeatIntervalUnit = repeatIntervalUnit;
     chore.household = household;
     chore.currentPersonIndex = @(0);
-    chore.people = [NSOrderedSet orderedSet];
+    chore.people = people;
     [household addChoresObject:chore];
     [NSManagedObjectContext saveManagedObjectContext];
     return chore;
+}
+
+- (Person *)currentPerson {
+    NSOrderedSet *people = self.people;
+    return [people objectAtIndex:self.currentPersonIndex.integerValue];
 }
 
 - (void)completeChore {
