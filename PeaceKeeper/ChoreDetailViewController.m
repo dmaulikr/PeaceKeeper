@@ -7,9 +7,12 @@
 //
 
 #import "ChoreDetailViewController.h"
+@import MessageUI;
 
-@interface ChoreDetailViewController () <UITableViewDelegate, UITableViewDataSource>
+
+@interface ChoreDetailViewController () <UITableViewDelegate, UITableViewDataSource, MFMailComposeViewControllerDelegate>
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
+
 
 @end
 
@@ -45,7 +48,26 @@
     
     UIAlertAction *sendMessage = [UIAlertAction actionWithTitle:@"Send Message" style:UIAlertActionStyleDefault handler:nil];
     
-    UIAlertAction *sendEmail = [UIAlertAction actionWithTitle:@"Send Email" style:UIAlertActionStyleDefault handler:nil];
+    UIAlertAction *sendEmail = [UIAlertAction actionWithTitle:@"Send Email" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
+        //Create Email Compose View Controller
+        
+        if ([MFMailComposeViewController canSendMail])
+        {
+            MFMailComposeViewController *mail = [[MFMailComposeViewController alloc] init];
+            mail.mailComposeDelegate = self;
+            [mail setSubject:@"Yo clean dat shit!"];
+            [mail setMessageBody:@"Hurry up dawg!" isHTML:NO];
+            [mail setToRecipients:@[@"testingEmail@example.com"]];
+            
+            [self presentViewController:mail animated:YES completion:NULL];
+        }
+        else
+        {
+            NSLog(@"This device cannot send email");
+        }
+
+
+    }];
     
     UIAlertAction *complete = [UIAlertAction actionWithTitle:@"Complete" style:UIAlertActionStyleDefault handler:nil];
     
