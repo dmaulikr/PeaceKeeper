@@ -24,18 +24,11 @@ typedef void (^myCompletion)(BOOL);
 
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
 
-@property (strong, nonatomic) NSMutableArray *members;
-
-@property (strong, nonatomic) Person *contact;
-
-@property (strong, nonatomic) Household *household;
+@property (strong, nonatomic) NSMutableArray<CNContact *> *members;
 
 @end
 
 @implementation CreateHouseholdViewController
-
-
-
 
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -55,38 +48,30 @@ typedef void (^myCompletion)(BOOL);
     [button setBackgroundColor:[UIColor blueColor]];
     
     [self.view addSubview:button];
-    
-    self.household = [Household householdWithName:@"household"];
-    
 }
 
 - (void)aMethod:(UIButton *)sender {
-    
-    [self.navigationController popToRootViewControllerAnimated:true];
+    if (self.members.count > 0) {
+        Household *household = [Household householdWithName:@"Household"];
+        for (CNContact *contact in self.members) {
+            CNLabeledValue *emailAddressValue = (CNLabeledValue *)contact.emailAddresses.firstObject;
+            CNLabeledValue *phoneNumberValue = (CNLabeledValue *)contact.phoneNumbers.firstObject;
+            
+            CNPhoneNumber *number = (CNPhoneNumber *)phoneNumberValue.value;
+            
+            NSLog(@"%@",emailAddressValue.value);
+            NSLog(@"%@", number.stringValue);
+
+            [Person personWithFirstName:contact.givenName lastName:contact.familyName phoneNumber:number.stringValue email:emailAddressValue.value chore:nil household:household];
+        }
+        [self dismissViewControllerAnimated:true completion:nil];
+    }
 }
 
 - (void)contactPicker:(CNContactPickerViewController *)picker didSelectContact:(CNContact *)contact {
-    
-    
-    CNLabeledValue *emailAddressValue = (CNLabeledValue *)contact.emailAddresses.lastObject;
-    CNLabeledValue *phoneNumberValue = (CNLabeledValue *)contact.phoneNumbers.lastObject;
-    
-    CNPhoneNumber *number = (CNPhoneNumber *)phoneNumberValue.value;
-    
-    NSLog(@"%@",emailAddressValue.value);
-    NSLog(@"%@", number.stringValue);
-
-
-    Person *person = [Person personWithFirstName:contact.givenName lastName:contact.familyName phoneNumber:number.stringValue email:emailAddressValue.value chore:nil household:self.household];
-    
-    [self.members addObject:person];
-
+    [self.members addObject:contact];
     [self.tableView reloadData];
-    
 }
-
-
-
 
 -(void) requestForAccess:(myCompletion)completionBlock {
     
@@ -154,7 +139,7 @@ typedef void (^myCompletion)(BOOL);
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"memberCell" forIndexPath: indexPath]; {
-        NSString *firstName = [self.members[indexPath.row] firstName];
+        NSString *firstName = [self.members[indexPath.row] givenName];
         cell.textLabel.text = firstName;
         
         return cell;

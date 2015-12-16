@@ -10,6 +10,7 @@
 #import "TimeService.h"
 #import "Household.h"
 #import "NSManagedObjectContext+Category.h"
+#import "CreateHouseholdViewController.h"
 
 @interface AppDelegate ()
 
@@ -30,16 +31,12 @@
     
     [self registerForNotifications];
     
-    if ([self userHasCreatedAHousehold]) {
-        NSLog(@"User has created a household.");
-    } else {
-        NSLog(@"User has not created a household.");
-    }
-    
+    /*
     NSValue *dayValue = [TimeService calendarUnitForString:@"Day"];
     if (dayValue) {
         NSCalendarUnit dayCalUnit = [TimeService getCalendarUnitFromValue:dayValue];
     }
+    */
 
     return YES;
 }

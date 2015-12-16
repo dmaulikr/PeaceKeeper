@@ -11,6 +11,8 @@
 #import "Person.h"
 #import "NSManagedObjectContext+Category.h"
 #import "Chore.h"
+#import "AppDelegate.h"
+#import "CreateHouseholdViewController.h"
 
 @interface ViewController () <UITableViewDataSource, UITableViewDelegate>
 
@@ -58,6 +60,7 @@
     self.navigationController.view.backgroundColor = [UIColor whiteColor];
     self.tableView.delegate = self;
     self.tableView.dataSource = self;
+    [self presentCreateHouseholdViewControllerIfNeeded];
 }
 
 - (void)viewWillAppear:(BOOL)animated {
@@ -96,6 +99,16 @@
     // Dispose of any resources that can be recreated.
 }
 
+- (void)presentCreateHouseholdViewControllerIfNeeded {
+    if (![Household fetchHousehold]) {
+        AppDelegate *appDelegate = (AppDelegate *)[[UIApplication sharedApplication] delegate];
+        UIStoryboard *storyboard = (UINavigationController *)appDelegate.window.rootViewController.storyboard;
+        CreateHouseholdViewController *createHouseholdNavigationController = [storyboard instantiateViewControllerWithIdentifier:@"CreateHouseholdNavigationController"];
+        CreateHouseholdViewController *createHouseholdViewController = [storyboard instantiateViewControllerWithIdentifier:@"CreateHousehold"];
+        [self presentViewController:createHouseholdNavigationController animated:true completion:nil];
+    }
+}
+
 #pragma mark - UITableViewDataSource
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
     return self.chores.count;
@@ -104,7 +117,8 @@
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     UITableViewCell *cell = [self.tableView dequeueReusableCellWithIdentifier:@"AssignedChore" forIndexPath:indexPath];
     Chore *chore = self.chores[indexPath.row];
-    cell.textLabel.text = [NSString stringWithFormat:@"%@ next up: %@", chore.name, chore.currentPerson.firstName];
+    cell.textLabel.text = [NSString stringWithFormat:@"%@", chore.name];
+    cell.detailTextLabel.text = [NSString stringWithFormat:@"Next up: %@", chore.currentPerson.firstName];
     return cell;
 }
 
