@@ -13,11 +13,11 @@
 #import "Chore.h"
 #import "AppDelegate.h"
 #import "CreateHouseholdViewController.h"
+#import "HouseholdViewController.h"
+#import "MakeChoreViewController.h"
 
 @interface ViewController () <UITableViewDataSource, UITableViewDelegate>
 
-@property (weak, nonatomic) IBOutlet UIButton *createHouseholdButton;
-@property (weak, nonatomic) IBOutlet UIButton *makeChoreButton;
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
 @property (strong, nonatomic) NSArray<Chore *> *chores;
 
@@ -61,6 +61,10 @@
     self.tableView.delegate = self;
     self.tableView.dataSource = self;
     [self presentCreateHouseholdViewControllerIfNeeded];
+    [self setUpNavBarButtons];
+    
+    self.navigationController.navigationBar.topItem.title = @"Chores";
+
 }
 
 - (void)viewWillAppear:(BOOL)animated {
@@ -120,6 +124,40 @@
     cell.textLabel.text = [NSString stringWithFormat:@"%@", chore.name];
     cell.detailTextLabel.text = [NSString stringWithFormat:@"Next up: %@", chore.currentPerson.firstName];
     return cell;
+}
+//
+//- (void)setUpNavBarButtons {
+//    UIBarButtonItem *lulwat = [[UIBarButtonItem alloc ]initWithTitle:@"hello world" style:UIBarButtonItemStylePlain target:self action:@selector(lulwatFire)];
+//    
+//
+//    [self.navigationController.navigationBar.topItem setRightBarButtonItem:lulwat];
+//}
+//
+//-(void)lulwatFire{
+//    NSLog(@"LULWAT SLUG");
+//}
+
+- (void)setUpNavBarButtons {
+    
+    UIBarButtonItem *makeChore = [[UIBarButtonItem alloc]initWithTitle:@"Make Chore" style:UIBarButtonItemStylePlain target:self action:@selector(makeChoreButtonPressed)];
+    
+    [self.navigationController.navigationBar.topItem setRightBarButtonItem:makeChore];
+    
+    UIBarButtonItem *houseHold = [[UIBarButtonItem alloc]initWithTitle:@"Household" style:UIBarButtonItemStylePlain target:self action:@selector(householdButtonPressed)];
+    
+    [self.navigationController.navigationBar.topItem setLeftBarButtonItem:houseHold];
+    
+    
+}
+
+- (void)householdButtonPressed {
+    HouseholdViewController *householdViewController = [self.storyboard instantiateViewControllerWithIdentifier:@"Household"];
+    [self.navigationController pushViewController:householdViewController animated:YES];
+}
+
+- (void)makeChoreButtonPressed {
+    MakeChoreViewController *makeChoreViewController = [self.storyboard instantiateViewControllerWithIdentifier:@"MakeChore"];
+    [self.navigationController pushViewController:makeChoreViewController animated:YES];
 }
 
 #pragma mark - UITableViewDelegate
