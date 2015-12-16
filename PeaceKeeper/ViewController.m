@@ -88,7 +88,6 @@
         NSLog(@"No household to retrieve");
         self.makeChoreButton.enabled = false;
         self.createHouseholdButton.enabled = true;
-
     }
         NSLog(@"");
     */
@@ -102,9 +101,9 @@
 - (void)presentCreateHouseholdViewControllerIfNeeded {
     if (![Household fetchHousehold]) {
         AppDelegate *appDelegate = (AppDelegate *)[[UIApplication sharedApplication] delegate];
-        UIStoryboard *storyboard = (UINavigationController *)appDelegate.window.rootViewController.storyboard;
+        UIStoryboard *storyboard = (UIStoryboard *)appDelegate.window.rootViewController.storyboard;
         CreateHouseholdViewController *createHouseholdNavigationController = [storyboard instantiateViewControllerWithIdentifier:@"CreateHouseholdNavigationController"];
-        CreateHouseholdViewController *createHouseholdViewController = [storyboard instantiateViewControllerWithIdentifier:@"CreateHousehold"];
+//        CreateHouseholdViewController *createHouseholdViewController = [storyboard instantiateViewControllerWithIdentifier:@"CreateHousehold"];
         [self presentViewController:createHouseholdNavigationController animated:true completion:nil];
     }
 }

@@ -11,9 +11,13 @@
 
 @interface TimeService : NSObject
 
-+ (NSCalendarUnit)getCalendarUnitFromValue:(NSValue * _Nonnull)value;
++ (void)scheduleLocalNotificationInUsersTimeZoneAndCalendarWithFireDate:(NSDate * _Nonnull)fireDate repeatInterval:(NSCalendarUnit)repeatInterval alertTitle:(NSString * _Nonnull)alertTitle alertBody:(NSString * _Nonnull)alertBody userInfo:(NSDictionary * _Nonnull)userInfo;
 
-+ (NSValue * _Nullable)calendarUnitForString:(NSString * _Nonnull)target;
++ (NSCalendarUnit)calendarUnitForString:(NSString * _Nonnull)target;
+
++ (NSCalendarUnit)calendarUnitFromValue:(NSValue * _Nonnull)value;
+
++ (NSValue * _Nullable)calendarUnitValueForString:(NSString * _Nonnull)target;
 + (NSString * _Nullable)stringForCalendarUnit:(NSValue * _Nonnull)target;
 
 + (NSArray<NSString *> *_Nonnull)calendarUnitStrings;

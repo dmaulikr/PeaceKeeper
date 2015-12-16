@@ -15,6 +15,7 @@
 		964074FB1C20C532003403CB /* CompletedChore+CoreDataProperties.m in Sources */ = {isa = PBXBuildFile; fileRef = 964074F61C20C532003403CB /* CompletedChore+CoreDataProperties.m */; };
 		964074FC1C20C532003403CB /* Household+CoreDataProperties.m in Sources */ = {isa = PBXBuildFile; fileRef = 964074F81C20C532003403CB /* Household+CoreDataProperties.m */; };
 		964D151A1C21EA0C00D71C81 /* HouseholdViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 964D15191C21EA0C00D71C81 /* HouseholdViewController.m */; };
+		964D151D1C22093500D71C81 /* ArchiveViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 964D151C1C22093500D71C81 /* ArchiveViewController.m */; };
 		966C01681C1F61B30028CBF7 /* TimeService.m in Sources */ = {isa = PBXBuildFile; fileRef = 966C01671C1F61B30028CBF7 /* TimeService.m */; };
 		96A346101C20C7D000883BBD /* ChoreOrderViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 96A3460F1C20C7D000883BBD /* ChoreOrderViewController.m */; };
 		96F653C41C1F3EF60098A317 /* PeaceKeeper.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 96F653C21C1F3EF60098A317 /* PeaceKeeper.xcdatamodeld */; };
@@ -69,6 +70,8 @@
 		964074F81C20C532003403CB /* Household+CoreDataProperties.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "Household+CoreDataProperties.m"; sourceTree = "<group>"; };
 		964D15181C21EA0C00D71C81 /* HouseholdViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HouseholdViewController.h; sourceTree = "<group>"; };
 		964D15191C21EA0C00D71C81 /* HouseholdViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HouseholdViewController.m; sourceTree = "<group>"; };
+		964D151B1C22093500D71C81 /* ArchiveViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ArchiveViewController.h; sourceTree = "<group>"; };
+		964D151C1C22093500D71C81 /* ArchiveViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ArchiveViewController.m; sourceTree = "<group>"; };
 		966C01661C1F61B30028CBF7 /* TimeService.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TimeService.h; sourceTree = "<group>"; };
 		966C01671C1F61B30028CBF7 /* TimeService.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TimeService.m; sourceTree = "<group>"; };
 		96A3460E1C20C7D000883BBD /* ChoreOrderViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ChoreOrderViewController.h; sourceTree = "<group>"; };
@@ -210,6 +213,8 @@
 				C1353C301C20F72E00F9F0E8 /* ChoreDetailViewController.m */,
 				964D15181C21EA0C00D71C81 /* HouseholdViewController.h */,
 				964D15191C21EA0C00D71C81 /* HouseholdViewController.m */,
+				964D151B1C22093500D71C81 /* ArchiveViewController.h */,
+				964D151C1C22093500D71C81 /* ArchiveViewController.m */,
 				96F653D71C1F3F0B0098A317 /* Model */,
 				C137BA4B1C1F38D80075B349 /* Assets.xcassets */,
 				C137BA4D1C1F38D80075B349 /* LaunchScreen.storyboard */,
@@ -377,6 +382,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				A96740A31C1F49830021DB71 /* CreateHouseholdViewController.m in Sources */,
+				964D151D1C22093500D71C81 /* ArchiveViewController.m in Sources */,
 				964074FA1C20C532003403CB /* Chore+CoreDataProperties.m in Sources */,
 				C137BA441C1F38D80075B349 /* ViewController.m in Sources */,
 				964074EA1C209DEC003403CB /* AssignChoreViewController.m in Sources */,

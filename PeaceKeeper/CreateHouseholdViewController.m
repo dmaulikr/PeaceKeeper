@@ -26,9 +26,24 @@ typedef void (^myCompletion)(BOOL);
 
 @property (strong, nonatomic) NSMutableArray<CNContact *> *members;
 
+@property (strong, nonatomic) UIButton *doneButton;
+
 @end
 
 @implementation CreateHouseholdViewController
+
+- (NSMutableArray<CNContact *> *)members {
+    if (_members) {
+        if (_members.count == 0) {
+            self.doneButton.enabled = false;
+            [self.doneButton setBackgroundColor:[UIColor grayColor]];
+        } else {
+            self.doneButton.enabled = true;
+            [self.doneButton setBackgroundColor:[UIColor blueColor]];
+        }
+    }
+    return _members;
+}
 
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -46,6 +61,7 @@ typedef void (^myCompletion)(BOOL);
     button.frame = CGRectMake(self.view.frame.size.width/2, self.view.frame.size.height - 40, 160.0, 40.0);
     button.center = CGPointMake(button.frame.origin.x, button.frame.origin.y);
     [button setBackgroundColor:[UIColor blueColor]];
+    self.doneButton = button;
     
     [self.view addSubview:button];
 }
@@ -69,11 +85,12 @@ typedef void (^myCompletion)(BOOL);
 }
 
 - (void)contactPicker:(CNContactPickerViewController *)picker didSelectContact:(CNContact *)contact {
+    NSLog(@"givenName: ->%@<-", contact.givenName);
     [self.members addObject:contact];
     [self.tableView reloadData];
 }
 
--(void) requestForAccess:(myCompletion)completionBlock {
+-(void)requestForAccess:(myCompletion)completionBlock {
     
     CNAuthorizationStatus authorizationStatus = [CNContactStore authorizationStatusForEntityType:CNEntityTypeContacts];
 
@@ -107,28 +124,18 @@ typedef void (^myCompletion)(BOOL);
             completionBlock(false);
             break;
     }
-    
 }
 
-
-
 - (IBAction)addMembers:(UIBarButtonItem *)sender {
-    
     CNContactPickerViewController *picker = [[CNContactPickerViewController alloc] init];
     picker.delegate = self;
     [self presentViewController:picker animated:YES completion:nil];
-
-    
 }
-
-
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
 }
-
-
 
 #pragma mark - tableView Methods
 
@@ -139,8 +146,14 @@ typedef void (^myCompletion)(BOOL);
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"memberCell" forIndexPath: indexPath]; {
-        NSString *firstName = [self.members[indexPath.row] givenName];
-        cell.textLabel.text = firstName;
+        CNContact *contact = self.members[indexPath.row];
+        NSMutableString *labelText = [NSMutableString stringWithString:contact.givenName];
+        if (labelText.length > 0) {
+            [labelText appendFormat:@" %@", contact.familyName];
+        } else {
+            [labelText appendString:contact.familyName];
+        }
+        cell.textLabel.text = labelText;
         
         return cell;
     }

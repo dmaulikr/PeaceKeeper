@@ -30,13 +30,8 @@
     self.contactStore = [[CNContactStore alloc] init];
     
     [self registerForNotifications];
-    
-    /*
-    NSValue *dayValue = [TimeService calendarUnitForString:@"Day"];
-    if (dayValue) {
-        NSCalendarUnit dayCalUnit = [TimeService getCalendarUnitFromValue:dayValue];
-    }
-    */
+  
+//    [application cancelAllLocalNotifications];
 
     return YES;
 }

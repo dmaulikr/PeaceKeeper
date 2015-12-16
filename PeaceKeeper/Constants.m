@@ -11,3 +11,5 @@
 NSString *const kTempDictionaryKeyChoreTitleString = @"kTempDictionaryKeyChoreTitleString";
 NSString *const kTempDictionaryKeyChoreStartDate = @"kTempDictionaryKeyChoreStartDate";
 NSString *const kTempDictionaryKeyChoreIntervalString = @"kTempDictionaryKeyChoreIntervalString";
+
+NSString *const kChoreNameKey = @"kChoreNameKey";

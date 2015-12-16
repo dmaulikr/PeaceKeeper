@@ -9,6 +9,7 @@
 #import "HouseholdViewController.h"
 #import "Household.h"
 #import "Person.h"
+
 @interface HouseholdViewController () <UITableViewDataSource, UITableViewDelegate>
 
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
