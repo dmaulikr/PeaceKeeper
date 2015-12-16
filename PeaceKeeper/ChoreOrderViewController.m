@@ -7,6 +7,10 @@
 //
 
 #import "ChoreOrderViewController.h"
+#import "Constants.h"
+#import "Household.h"
+#import "Chore.h"
+#import "NSManagedObjectContext+Category.h"
 
 @interface ChoreOrderViewController () <UITableViewDataSource, UITableViewDelegate>
 
@@ -23,6 +27,18 @@
     [self.tableView setEditing:true animated:true];
     NSLog(@"tempDictionary: %@", self.tempDictionary);
     NSLog(@"selectedPeople: %@", self.selectedPeople);
+}
+
+#pragma mark - Actions
+
+- (IBAction)doneButtonAction:(UIBarButtonItem *)sender {
+    NSString *choreName = (NSString *)self.tempDictionary[kTempDictionaryKeyChoreTitleString];
+    NSDate *choreStartDate = (NSDate *)self.tempDictionary[kTempDictionaryKeyChoreStartDate];
+    NSString *choreIntervalString = (NSString *)self.tempDictionary[kTempDictionaryKeyChoreIntervalString];
+    NSOrderedSet *people = [NSOrderedSet orderedSetWithArray:self.selectedPeople];
+    Household *household = [Household fetchHousehold];
+    [Chore choreWithName:choreName startDate:choreStartDate repeatIntervalValue:@(1) repeatIntervalUnit:choreIntervalString household:household people:people];
+    [self.navigationController popToRootViewControllerAnimated:true];
 }
 
 #pragma mark - UITableViewDataSource

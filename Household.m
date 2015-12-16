@@ -17,6 +17,22 @@
     return @"Household";
 }
 
++ (instancetype)fetchHousehold {
+    NSManagedObjectContext *managedObjectContext = [NSManagedObjectContext managedObjectContext];
+    NSFetchRequest *request = [NSFetchRequest fetchRequestWithEntityName:[Household name]];
+    NSError *error;
+    NSArray *results = [managedObjectContext executeFetchRequest:request error:&error];
+    if (error) {
+        NSLog(@"Error fetching %@ objects: %@", [Household name], error.localizedDescription);
+    } else {
+        NSLog(@"Successfully fetched %@ objects", [Household name]);
+    }
+    if (results.count > 0) {
+        return results.firstObject;
+    }
+    return nil;
+}
+
 + (instancetype)householdWithName:(NSString * _Nonnull)name {
     Household *household = [NSEntityDescription insertNewObjectForEntityForName:[self name] inManagedObjectContext:[NSManagedObjectContext managedObjectContext]];
     household.name = name;

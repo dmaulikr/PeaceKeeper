@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="9531" systemVersion="15B42" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="1j1-Ae-Amc">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="9531" systemVersion="15C50" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="1j1-Ae-Amc">
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9529"/>
@@ -81,6 +81,7 @@
                     <connections>
                         <outlet property="createHouseholdButton" destination="Yco-d0-szK" id="TSW-pt-Ebl"/>
                         <outlet property="makeChoreButton" destination="fbW-Yn-OuZ" id="G1g-eI-fuD"/>
+                        <outlet property="tableView" destination="gBz-7l-32a" id="JkB-mG-Ht7"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
@@ -182,7 +183,7 @@
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" title="Create Household" id="g14-H0-S9X">
-                        <barButtonItem key="rightBarButtonItem" title="+" id="wIM-L9-uz1">
+                        <barButtonItem key="rightBarButtonItem" systemItem="add" id="wIM-L9-uz1">
                             <connections>
                                 <action selector="addMembers:" destination="IL7-vq-xUU" id="KxD-TZ-jTV"/>
                             </connections>
@@ -387,7 +388,11 @@
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" title="Chore Order" id="R5h-Yd-dUM">
-                        <barButtonItem key="rightBarButtonItem" title="Done" id="Hbv-1h-OBm"/>
+                        <barButtonItem key="rightBarButtonItem" systemItem="done" id="Hbv-1h-OBm">
+                            <connections>
+                                <action selector="doneButtonAction:" destination="ZZT-rf-eeb" id="JnN-w8-EyT"/>
+                            </connections>
+                        </barButtonItem>
                     </navigationItem>
                     <connections>
                         <outlet property="tableView" destination="ACc-mf-cFD" id="ETt-ei-YKF"/>

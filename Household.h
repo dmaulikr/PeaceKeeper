@@ -16,6 +16,7 @@ NS_ASSUME_NONNULL_BEGIN
 @interface Household : NSManagedObject
 
 + (NSString *)name;
++ (instancetype)fetchHousehold;
 + (instancetype)householdWithName:(NSString * _Nonnull)name;
 
 @end
