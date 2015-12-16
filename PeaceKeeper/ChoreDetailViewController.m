@@ -7,9 +7,19 @@
 //
 
 #import "ChoreDetailViewController.h"
+#import "Person.h"
+#import "Chore.h"
+@import MessageUI;
 
-@interface ChoreDetailViewController () <UITableViewDelegate, UITableViewDataSource>
+
+@interface ChoreDetailViewController () <UITableViewDelegate, UITableViewDataSource, MFMailComposeViewControllerDelegate>
+
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
+@property (strong, nonatomic) NSMutableArray *peopleArray;
+@property (strong, nonatomic) NSMutableArray *choreArray;
+
+
+
 
 @end
 
@@ -42,10 +52,29 @@
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     
     UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"HEY!" message:@"Pick one" preferredStyle:UIAlertControllerStyleActionSheet];
-    
     UIAlertAction *sendMessage = [UIAlertAction actionWithTitle:@"Send Message" style:UIAlertActionStyleDefault handler:nil];
     
-    UIAlertAction *sendEmail = [UIAlertAction actionWithTitle:@"Send Email" style:UIAlertActionStyleDefault handler:nil];
+    UIAlertAction *sendEmail = [UIAlertAction actionWithTitle:@"Send Email" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
+        //Create Email Compose View Controller
+        NSString *subjectString = [NSString stringWithFormat:@"Peace Keeper: %@ reminder", [self.choreArray[indexPath.row] name]];
+        NSString *messageBodyString = [NSString stringWithFormat:@"Hey %@, friendly reminder about your %@ task", [self.peopleArray[indexPath.row] firstName],
+                                                                                                                  [self.choreArray[indexPath.row] name]];
+        
+        if ([MFMailComposeViewController canSendMail])
+        {
+            MFMailComposeViewController *mail = [[MFMailComposeViewController alloc] init];
+            mail.mailComposeDelegate = self;
+            [mail setSubject:subjectString];
+            [mail setMessageBody:messageBodyString isHTML:NO];
+            [mail setToRecipients:@[[self.peopleArray[indexPath.row] firstName]]];
+            
+            [self presentViewController:mail animated:YES completion:NULL];
+        }
+        else
+        {
+            NSLog(@"This device cannot send email");
+        }
+    }];
     
     UIAlertAction *complete = [UIAlertAction actionWithTitle:@"Complete" style:UIAlertActionStyleDefault handler:nil];
     
@@ -60,5 +89,30 @@
 }
 
 
+#pragma mark - MFMailComposeViewController Delegate 
+
+- (void)mailComposeController:(MFMailComposeViewController *)controller didFinishWithResult:(MFMailComposeResult)result error:(NSError *)error {
+
+    switch (result) {
+        case MFMailComposeResultSent:
+            NSLog(@"You sent the email.");
+            break;
+        case MFMailComposeResultSaved:
+            NSLog(@"You saved a draft of this email");
+            break;
+        case MFMailComposeResultCancelled:
+            NSLog(@"You cancelled sending this email.");
+            break;
+        case MFMailComposeResultFailed:
+            NSLog(@"Mail failed:  An error occurred when trying to compose this email");
+            break;
+        default:
+            NSLog(@"An error occurred when trying to compose this email");
+            break;
+    }
+    
+    [self dismissViewControllerAnimated:YES completion:NULL];
+
+}
 
 @end
