@@ -27,6 +27,7 @@
 
 @end
 
+
 @implementation ChoreDetailViewController
 
 - (void)viewDidAppear:(BOOL)animated {
