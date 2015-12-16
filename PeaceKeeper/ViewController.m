@@ -60,41 +60,19 @@
     self.navigationController.view.backgroundColor = [UIColor whiteColor];
     self.tableView.delegate = self;
     self.tableView.dataSource = self;
-    [self presentCreateHouseholdViewControllerIfNeeded];
     [self setUpNavBarButtons];
     
     self.navigationController.navigationBar.topItem.title = @"Chores";
-
 }
 
 - (void)viewWillAppear:(BOOL)animated {
     self.chores = nil; // Force refetch
     [self.tableView reloadData];
-    
-    /*
-//    NSManagedObjectContext *managedObjectContext = [NSManagedObjectContext managedObjectContext];
-//    NSFetchRequest *request = [NSFetchRequest fetchRequestWithEntityName:[Household name]];
-//    NSError *error;
-//    NSArray *results = [managedObjectContext executeFetchRequest:request error:&error];
-    
-    NSManagedObjectContext *managedObjectContext = [NSManagedObjectContext managedObjectContext];
-    NSFetchRequest *request = [NSFetchRequest fetchRequestWithEntityName:[Household name]];
-    NSError *error;
-    NSUInteger count = [managedObjectContext countForFetchRequest:request error:&error];
-    if (error) {
-        NSLog(@"Error fetching count of %@ objects: %@", [Household name], error.localizedDescription);
-    } else {
-        NSLog(@"Successfully fetched count of %@ objects: %lu", [Household name], (unsigned long)count);
-        self.createHouseholdButton.enabled = false;
-        self.makeChoreButton.enabled = true;
-    }
-    if (count == 0) {
-        NSLog(@"No household to retrieve");
-        self.makeChoreButton.enabled = false;
-        self.createHouseholdButton.enabled = true;
-    }
-        NSLog(@"");
-    */
+}
+
+- (void)viewDidAppear:(BOOL)animated {
+    [super viewDidAppear:animated];
+    [self presentCreateHouseholdViewControllerIfNeeded];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -106,8 +84,8 @@
     if (![Household fetchHousehold]) {
         AppDelegate *appDelegate = (AppDelegate *)[[UIApplication sharedApplication] delegate];
         UIStoryboard *storyboard = (UIStoryboard *)appDelegate.window.rootViewController.storyboard;
-        CreateHouseholdViewController *createHouseholdNavigationController = [storyboard instantiateViewControllerWithIdentifier:@"CreateHouseholdNavigationController"];
-//        CreateHouseholdViewController *createHouseholdViewController = [storyboard instantiateViewControllerWithIdentifier:@"CreateHousehold"];
+        UINavigationController *createHouseholdNavigationController = [storyboard instantiateViewControllerWithIdentifier:@"CreateHouseholdNavigationController"];
+        CreateHouseholdViewController *createHouseholdViewController = [storyboard instantiateViewControllerWithIdentifier:@"CreateHousehold"];
         [self presentViewController:createHouseholdNavigationController animated:true completion:nil];
     }
 }

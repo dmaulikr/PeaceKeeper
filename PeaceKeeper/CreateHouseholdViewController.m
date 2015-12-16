@@ -85,9 +85,26 @@ typedef void (^myCompletion)(BOOL);
 }
 
 - (void)contactPicker:(CNContactPickerViewController *)picker didSelectContact:(CNContact *)contact {
-    NSLog(@"givenName: ->%@<-", contact.givenName);
     [self.members addObject:contact];
+    /*
+    if (contact.givenName.length > 0) {
+        [self.members addObject:contact];
+    } else {
+        [self dismissViewControllerAnimated:YES completion:^{
+            [self presentAlertViewController];
+        }];
+    }
+    */
     [self.tableView reloadData];
+}
+
+- (void)presentAlertViewController {
+    
+    UIAlertController *alertController = [UIAlertController alertControllerWithTitle:@"Error" message:@"You can't add a contact without a first name." preferredStyle:UIAlertControllerStyleAlert];
+    UIAlertAction *okAction = [UIAlertAction actionWithTitle:@"OK" style:UIAlertActionStyleDefault handler:nil];
+    [alertController addAction:okAction];
+    
+    [self presentViewController:alertController animated:true completion:nil];
 }
 
 -(void)requestForAccess:(myCompletion)completionBlock {
@@ -114,7 +131,6 @@ typedef void (^myCompletion)(BOOL);
                         });
                     }
                 }
-                
             }];
             
             break;
@@ -129,6 +145,7 @@ typedef void (^myCompletion)(BOOL);
 - (IBAction)addMembers:(UIBarButtonItem *)sender {
     CNContactPickerViewController *picker = [[CNContactPickerViewController alloc] init];
     picker.delegate = self;
+    picker.predicateForEnablingContact = [NSPredicate predicateWithFormat:@"givenName != ''"];
     [self presentViewController:picker animated:YES completion:nil];
 }
 
