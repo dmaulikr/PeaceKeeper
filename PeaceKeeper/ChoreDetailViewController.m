@@ -18,21 +18,76 @@
 @property (strong, nonatomic) NSMutableArray *peopleArray;
 @property (strong, nonatomic) NSMutableArray *choreArray;
 
+@property (strong, nonatomic) MFMessageComposeViewController *messageController;
+@property (strong, nonatomic) MFMailComposeViewController *mailController;
+@property (strong, nonatomic) UIAlertController *alert;
+
 @end
 
 @implementation ChoreDetailViewController
+
+- (void)viewWillAppear:(BOOL)animated {
+    
+    self.mailController = [[MFMailComposeViewController alloc] init];
+    self.mailController.mailComposeDelegate = self;
+
+
+
+}
 
 - (void)viewDidLoad {
     [super viewDidLoad];
     self.tableView.delegate = self;
     self.tableView.dataSource = self;
-    // Do any additional setup after loading the view.
+
+    self.messageController = [[MFMessageComposeViewController alloc]init];
+    self.alert = [UIAlertController alertControllerWithTitle:@"HEY!" message:@"Pick one" preferredStyle:UIAlertControllerStyleActionSheet];
+    
+    [self setupAlertController];
+    
 }
+
+-(void) setupAlertController {
+    
+    UIAlertAction *sendMessage = [UIAlertAction actionWithTitle:@"Send Message" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
+        [self showSMS];
+    }];
+    
+    UIAlertAction *sendEmail = [UIAlertAction actionWithTitle:@"Send Email" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
+        NSString *subjectString = @"Yooooooo clean that shit up!";
+        
+        NSString *messageBodyString = @"Hey, friendly reminder about your task";
+        
+        if ([MFMailComposeViewController canSendMail])
+        {
+            self.mailController.mailComposeDelegate = self;
+            [self.mailController setSubject:subjectString];
+            [self.mailController setMessageBody:messageBodyString isHTML:NO];
+            [self.mailController setToRecipients:@[@"test@gmail.com"]];
+            
+            [self presentViewController:self.mailController animated:YES completion:NULL];
+        } else {
+            NSLog(@"This device cannot send email");
+        }
+    }];
+    
+    UIAlertAction *complete = [UIAlertAction actionWithTitle:@"Complete" style:UIAlertActionStyleDefault handler:nil];
+    
+    UIAlertAction *cancel = [UIAlertAction actionWithTitle:@"Cancel" style:UIAlertActionStyleDestructive handler:nil];
+    
+    [self.alert addAction:sendMessage];
+    [self.alert addAction:sendEmail];
+    [self.alert addAction:complete];
+    [self.alert addAction:cancel];
+    
+}
+
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
 }
+
 
 #pragma mark - UITableView methods
 
@@ -48,49 +103,8 @@
 
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     
-    UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"HEY!" message:@"Pick one" preferredStyle:UIAlertControllerStyleActionSheet];
+    [self presentViewController:self.alert animated:true completion:nil];
     
-    UIAlertAction *sendMessage = [UIAlertAction actionWithTitle:@"Send Message" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
-        [self showSMS];
-    }];
-    
-    UIAlertAction *sendEmail = [UIAlertAction actionWithTitle:@"Send Email" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
-        ///////////////////////////////////////////////
-
-        NSString *subjectString = @"Yooooooo clean that shit up!";
-        
-        NSString *messageBodyString = @"Hey, friendly reminder about your task";
-        
-        if ([MFMailComposeViewController canSendMail])
-        {
-            MFMailComposeViewController *mail = [[MFMailComposeViewController alloc] init];
-            mail.mailComposeDelegate = self;
-            [mail setSubject:subjectString];
-            [mail setMessageBody:messageBodyString isHTML:NO];
-            [mail setToRecipients:@[@"test@gmail.com"]];
-            
-            [self presentViewController:mail animated:YES completion:NULL];
-        } else {
-            NSLog(@"This device cannot send email");
-        }
-        
-        
-        ///////////////////////////////////////////////
-    }];
-    
-    UIAlertAction *complete = [UIAlertAction actionWithTitle:@"Complete" style:UIAlertActionStyleDefault handler:nil];
-    
-    UIAlertAction *cancel = [UIAlertAction actionWithTitle:@"Cancel" style:UIAlertActionStyleDestructive handler:nil];
-    
-    [alert addAction:sendMessage];
-    [alert addAction:sendEmail];
-    [alert addAction:complete];
-    [alert addAction:cancel];
-    
-    [self presentViewController:alert animated:true completion:nil];
-    
-//    NSString *selectedFile = [_files objectAtIndex:indexPath.row];
-//    [self showSMS:selectedFile];
 }
 
 #pragma mark - MFMessageComposerView methods
@@ -120,16 +134,14 @@
         [warningAlert show];
         return;
     }
-//        NSArray *recipients = @[@"123",@"456"];
+    
         NSString *message = [NSString stringWithFormat:@"Just sent the file to your email"];
+        self.messageController.messageComposeDelegate = self;
+//      [self.messageController setRecipients:@[]];
+        [self.messageController setBody:message];
         
-        MFMessageComposeViewController *messageController = [[MFMessageComposeViewController alloc]init];
-        messageController.messageComposeDelegate = self;
-//        [messageController setRecipients:recipients];
-        [messageController setBody:message];
-        
-        [self presentViewController:messageController animated:YES completion:nil];
-    }
+        [self presentViewController:self.messageController animated:YES completion:nil];
+}
 
 
 #pragma mark - MFMailComposeViewController Delegate
