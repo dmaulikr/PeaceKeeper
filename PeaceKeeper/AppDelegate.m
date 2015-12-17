@@ -60,6 +60,7 @@
             if ([identifier isEqualToString:kChoreNotificationActionIdentifierCompleteChore]) {
                 [chore completeChore];
             } else if ([identifier isEqualToString:kChoreNotificationActionIdentifierNotifyChoree]) {
+                
                 // Get a pointer to ViewController
                     // Get the root view controller
                     // Get the tab bar controller
