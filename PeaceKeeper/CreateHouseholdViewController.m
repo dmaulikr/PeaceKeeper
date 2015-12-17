@@ -84,20 +84,21 @@ typedef void (^myCompletion)(BOOL);
     }
 }
 
-//- (void)contactPicker:(CNContactPickerViewController *)picker didSelectContacts:(NSArray<CNContact *> *)contacts {
-//    for (CNContact *contact in contacts) {
-//        if (![self.members containsObject:contact]) {
-//            [self.members addObject:contact];
-//        }
-//    }
-//}
-
-- (void)contactPicker:(CNContactPickerViewController *)picker didSelectContact:(CNContact *)contact {
-    if (![self.members containsObject:contact]) {
-        [self.members addObject:contact];
+- (void)contactPicker:(CNContactPickerViewController *)picker didSelectContacts:(NSArray<CNContact *> *)contacts {
+    for (CNContact *contact in contacts) {
+        if (![self.members containsObject:contact]) {
+            [self.members addObject:contact];
+        }
     }
     [self.tableView reloadData];
 }
+
+//- (void)contactPicker:(CNContactPickerViewController *)picker didSelectContact:(CNContact *)contact {
+//    if (![self.members containsObject:contact]) {
+//        [self.members addObject:contact];
+//    }
+//    [self.tableView reloadData];
+//}
 
 -(void)requestForAccess:(myCompletion)completionBlock {
     
