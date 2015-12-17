@@ -32,11 +32,11 @@
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
     if ([segue.identifier isEqualToString:@"AssignChore"]) {
         AssignChoreViewController *assignChoreViewController = (AssignChoreViewController *)segue.destinationViewController;
-        NSMutableDictionary *tempDictionary = [NSMutableDictionary dictionary];
-        tempDictionary[kTempDictionaryKeyChoreIntervalString] = [TimeService calendarUnitStrings][[self.repeatIntervalPicker selectedRowInComponent:0]];
-        tempDictionary[kTempDictionaryKeyChoreStartDate] = self.startDatePicker.date;
-        tempDictionary[kTempDictionaryKeyChoreTitleString] = self.choreNameField.text;
-        assignChoreViewController.tempDictionary = tempDictionary;
+        NSMutableDictionary *choreInfo = [NSMutableDictionary dictionary];
+        choreInfo[kChoreInfoKeyIntervalString] = [TimeService calendarUnitStrings][[self.repeatIntervalPicker selectedRowInComponent:0]];
+        choreInfo[kChoreInfoKeyStartDate] = self.startDatePicker.date;
+        choreInfo[kChoreInfoKeyTitleString] = self.choreNameField.text;
+        assignChoreViewController.choreInfo = choreInfo;
     }
 }
 

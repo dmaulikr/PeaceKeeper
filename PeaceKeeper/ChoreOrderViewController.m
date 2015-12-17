@@ -27,17 +27,15 @@
     self.tableView.dataSource = self;
     self.tableView.delegate = self;
     [self.tableView setEditing:true animated:true];
-    NSLog(@"tempDictionary: %@", self.tempDictionary);
-    NSLog(@"selectedPeople: %@", self.selectedPeople);
 }
 
 #pragma mark - Actions
 
 - (IBAction)doneButtonAction:(UIBarButtonItem *)sender {
     // Save the chore
-    NSString *choreName = (NSString *)self.tempDictionary[kTempDictionaryKeyChoreTitleString];
-    NSDate *choreStartDate = (NSDate *)self.tempDictionary[kTempDictionaryKeyChoreStartDate];
-    NSString *choreIntervalString = (NSString *)self.tempDictionary[kTempDictionaryKeyChoreIntervalString];
+    NSString *choreName = (NSString *)self.choreInfo[kChoreInfoKeyTitleString];
+    NSDate *choreStartDate = (NSDate *)self.choreInfo[kChoreInfoKeyStartDate];
+    NSString *choreIntervalString = (NSString *)self.choreInfo[kChoreInfoKeyIntervalString];
     NSOrderedSet *people = [NSOrderedSet orderedSetWithArray:self.selectedPeople];
     Household *household = [Household fetchHousehold];
     [Chore choreWithName:choreName startDate:choreStartDate repeatIntervalValue:@(1) repeatIntervalUnit:choreIntervalString household:household people:people];

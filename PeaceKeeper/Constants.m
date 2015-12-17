@@ -8,8 +8,8 @@
 
 #import "Constants.h"
 
-NSString *const kTempDictionaryKeyChoreTitleString = @"kTempDictionaryKeyChoreTitleString";
-NSString *const kTempDictionaryKeyChoreStartDate = @"kTempDictionaryKeyChoreStartDate";
-NSString *const kTempDictionaryKeyChoreIntervalString = @"kTempDictionaryKeyChoreIntervalString";
+NSString *const kChoreInfoKeyTitleString = @"kChoreInfoKeyTitleString";
+NSString *const kChoreInfoKeyStartDate = @"kChoreInfoKeyStartDate";
+NSString *const kChoreInfoKeyIntervalString = @"kChoreInfoKeyIntervalString";
 
 NSString *const kChoreNameKey = @"kChoreNameKey";

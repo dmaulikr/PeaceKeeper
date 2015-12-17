@@ -9,8 +9,8 @@
 #import <UIKit/UIKit.h>
 
 
-extern NSString *const kTempDictionaryKeyChoreTitleString;
-extern NSString *const kTempDictionaryKeyChoreStartDate;
-extern NSString *const kTempDictionaryKeyChoreIntervalString;
+extern NSString *const kChoreInfoKeyTitleString;
+extern NSString *const kChoreInfoKeyStartDate;
+extern NSString *const kChoreInfoKeyIntervalString;
 
 extern NSString *const kChoreNameKey;
