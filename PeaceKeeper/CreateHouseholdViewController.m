@@ -75,7 +75,7 @@ typedef void (^myCompletion)(BOOL);
             
             CNPhoneNumber *number = (CNPhoneNumber *)phoneNumberValue.value;
             
-            NSLog(@"%@",emailAddressValue.value);
+            NSLog(@"%@", emailAddressValue.value);
             NSLog(@"%@", number.stringValue);
 
             [Person personWithFirstName:contact.givenName lastName:contact.familyName phoneNumber:number.stringValue email:emailAddressValue.value chore:nil household:household];

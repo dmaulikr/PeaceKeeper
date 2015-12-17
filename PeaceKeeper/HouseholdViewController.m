@@ -46,15 +46,13 @@
     UITableViewCell *cell = [self.tableView dequeueReusableCellWithIdentifier:@"Person" forIndexPath:indexPath];
     Person *person = self.people[indexPath.row];
 
-    NSMutableString *contactString = [NSMutableString string];
-    if (person.phoneNumber) {
-        [contactString appendString:person.phoneNumber];
-    }
-    if (person.email) {
-        if (person.phoneNumber) {
-            [contactString appendString:@" "];
-        }
-        [contactString appendString:person.email];
+    NSString *contactString = @"";
+    if (person.email && person.phoneNumber) {
+        contactString = [NSString stringWithFormat:@"%@, %@", person.email, person.phoneNumber];
+    } else if (person.email) {
+        contactString = person.email;
+    } else if (person.phoneNumber) {
+        contactString = person.phoneNumber;
     }
     cell.textLabel.text = [NSString stringWithFormat:@"%@ %@", person.firstName, person.lastName];
     cell.detailTextLabel.text = contactString;

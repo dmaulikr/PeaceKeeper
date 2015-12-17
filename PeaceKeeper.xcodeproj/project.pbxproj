@@ -134,6 +134,29 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		964D151E1C22435500D71C81 /* Controllers */ = {
+			isa = PBXGroup;
+			children = (
+				C137BA421C1F38D80075B349 /* ViewController.h */,
+				C137BA431C1F38D80075B349 /* ViewController.m */,
+				A96740A11C1F49830021DB71 /* CreateHouseholdViewController.h */,
+				A96740A21C1F49830021DB71 /* CreateHouseholdViewController.m */,
+				964074E51C2092F5003403CB /* MakeChoreViewController.h */,
+				964074E61C2092F5003403CB /* MakeChoreViewController.m */,
+				964074E81C209DEC003403CB /* AssignChoreViewController.h */,
+				964074E91C209DEC003403CB /* AssignChoreViewController.m */,
+				96A3460E1C20C7D000883BBD /* ChoreOrderViewController.h */,
+				96A3460F1C20C7D000883BBD /* ChoreOrderViewController.m */,
+				C1353C2F1C20F72E00F9F0E8 /* ChoreDetailViewController.h */,
+				C1353C301C20F72E00F9F0E8 /* ChoreDetailViewController.m */,
+				964D15181C21EA0C00D71C81 /* HouseholdViewController.h */,
+				964D15191C21EA0C00D71C81 /* HouseholdViewController.m */,
+				964D151B1C22093500D71C81 /* ArchiveViewController.h */,
+				964D151C1C22093500D71C81 /* ArchiveViewController.m */,
+			);
+			name = Controllers;
+			sourceTree = "<group>";
+		};
 		96F653D71C1F3F0B0098A317 /* Model */ = {
 			isa = PBXGroup;
 			children = (
@@ -197,24 +220,9 @@
 				C137BA401C1F38D80075B349 /* AppDelegate.m */,
 				964074EB1C209EA0003403CB /* Constants.h */,
 				964074EC1C209EA0003403CB /* Constants.m */,
-				C137BA421C1F38D80075B349 /* ViewController.h */,
-				C137BA431C1F38D80075B349 /* ViewController.m */,
-				A96740A11C1F49830021DB71 /* CreateHouseholdViewController.h */,
-				A96740A21C1F49830021DB71 /* CreateHouseholdViewController.m */,
 				966C01661C1F61B30028CBF7 /* TimeService.h */,
 				966C01671C1F61B30028CBF7 /* TimeService.m */,
-				964074E51C2092F5003403CB /* MakeChoreViewController.h */,
-				964074E61C2092F5003403CB /* MakeChoreViewController.m */,
-				964074E81C209DEC003403CB /* AssignChoreViewController.h */,
-				964074E91C209DEC003403CB /* AssignChoreViewController.m */,
-				96A3460E1C20C7D000883BBD /* ChoreOrderViewController.h */,
-				96A3460F1C20C7D000883BBD /* ChoreOrderViewController.m */,
-				C1353C2F1C20F72E00F9F0E8 /* ChoreDetailViewController.h */,
-				C1353C301C20F72E00F9F0E8 /* ChoreDetailViewController.m */,
-				964D15181C21EA0C00D71C81 /* HouseholdViewController.h */,
-				964D15191C21EA0C00D71C81 /* HouseholdViewController.m */,
-				964D151B1C22093500D71C81 /* ArchiveViewController.h */,
-				964D151C1C22093500D71C81 /* ArchiveViewController.m */,
+				964D151E1C22435500D71C81 /* Controllers */,
 				96F653D71C1F3F0B0098A317 /* Model */,
 				C137BA4B1C1F38D80075B349 /* Assets.xcassets */,
 				C137BA4D1C1F38D80075B349 /* LaunchScreen.storyboard */,
@@ -317,7 +325,7 @@
 				TargetAttributes = {
 					C137BA381C1F38D70075B349 = {
 						CreatedOnToolsVersion = 7.2;
-						DevelopmentTeam = 42AK92S3WA;
+						DevelopmentTeam = RBU43E9PMH;
 					};
 					C137BA541C1F38D80075B349 = {
 						CreatedOnToolsVersion = 7.2;

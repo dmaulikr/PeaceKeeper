@@ -61,10 +61,11 @@
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-    UITableViewCell *cell = [self.tableView dequeueReusableCellWithIdentifier:@"Person" forIndexPath:indexPath];
+    UITableViewCell *cell = [self.tableView dequeueReusableCellWithIdentifier:@"CompletedChore" forIndexPath:indexPath];
     CompletedChore *completedChore = self.completedChores[indexPath.row];
-    cell.textLabel.text = [NSString stringWithFormat:@"%@ completed by %@ on %@", completedChore.chore
-                           .name, completedChore.person.firstName, [self.dateFormatter stringFromDate:completedChore.completionDate]];
+    cell.textLabel.text = [NSString stringWithFormat:@"%@ completed %@", completedChore.chore
+                           .name, [self.dateFormatter stringFromDate:completedChore.completionDate]];
+    cell.detailTextLabel.text = [NSString stringWithFormat:@"by %@", completedChore.person.firstName];
     return cell;
 }
 
