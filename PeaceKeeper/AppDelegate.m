@@ -40,7 +40,7 @@
     
     [self registerForNotifications];
   
-    [application cancelAllLocalNotifications];
+//    [application cancelAllLocalNotifications];
 
     return YES;
 }

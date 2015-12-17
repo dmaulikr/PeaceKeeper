@@ -155,7 +155,7 @@
     if ([MFMailComposeViewController canSendMail]) {
         
         NSString *subjectString = [NSString stringWithFormat:@"Peace Keeper %@ Reminder", self.chore.name];
-        NSString *messageBodyString = [NSString stringWithFormat:@"Hey %@, PeaceKeeper reminder about your %@ task (:", self.chore.currentPerson.firstName, self.chore.name];
+        NSString *messageBodyString = [NSString stringWithFormat:@"Hey %@, PeaceKeeper reminder about your %@ task 😀", self.chore.currentPerson.firstName, self.chore.name];
         
         MFMailComposeViewController *mailViewController = [[MFMailComposeViewController alloc] init];
         mailViewController.mailComposeDelegate = self;
