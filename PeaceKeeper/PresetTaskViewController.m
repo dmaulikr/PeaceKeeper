@@ -58,6 +58,41 @@
     
 }
 
+
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
+    
+    
+    
+    if (indexPath.row == self.taskArray.count) {
+        
+        
+        
+        UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"Set task name" message:@"" preferredStyle:UIAlertControllerStyleAlert];
+        
+        UIAlertAction* ok = [UIAlertAction actionWithTitle:@"OK" style:UIAlertActionStyleDefault handler:nil];
+        
+        UIAlertAction* cancel = [UIAlertAction actionWithTitle:@"Cancel" style:UIAlertActionStyleDestructive handler:nil];
+        
+        [alert addAction:cancel];
+        [alert addAction:ok];
+        
+        
+        [alert addTextFieldWithConfigurationHandler:^(UITextField * _Nonnull textField) {
+            
+            textField.placeholder = @"Task Name";
+            
+        }];
+        
+        [self presentViewController:alert animated:true completion:nil];
+        
+        
+        
+    }
+    
+    
+    
+}
+
 /*
 #pragma mark - Navigation
 
