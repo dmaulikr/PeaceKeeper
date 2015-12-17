@@ -7,6 +7,8 @@
 //
 
 #import "PresetTaskViewController.h"
+#import "MakeChoreViewController.h"
+#import "Constants.h"
 
 @interface PresetTaskViewController () <UITableViewDataSource, UITableViewDelegate>
 
@@ -31,9 +33,27 @@
     // Dispose of any resources that can be recreated.
 }
 
+#pragma mark - Segue
+
+- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
+
+    if ([segue.identifier isEqualToString:@"MakeChore"]) {
+
+        MakeChoreViewController *makeChoreViewController = (MakeChoreViewController *)segue.destinationViewController;
+        NSMutableDictionary *choreInfo = [NSMutableDictionary dictionary];
+        if ([sender isKindOfClass:[NSIndexPath class]]) {
+            choreInfo[kChoreInfoKeyTitleString] = self.taskArray[((NSIndexPath *)sender).row];
+        }
+        if ([sender isKindOfClass:[NSString class]]) {
+            choreInfo[kChoreInfoKeyTitleString] = (NSString *)sender;
+        }
+        // fill choreInfo
+        makeChoreViewController.choreInfo = choreInfo;
+    }
+}
 
 
-#pragma mark UITableViewDelegate Methods
+#pragma mark - UITableViewDelegate Methods
 
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
@@ -69,7 +89,10 @@
         
         UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"Set task name" message:@"" preferredStyle:UIAlertControllerStyleAlert];
         
-        UIAlertAction* ok = [UIAlertAction actionWithTitle:@"OK" style:UIAlertActionStyleDefault handler:nil];
+        UIAlertAction* ok = [UIAlertAction actionWithTitle:@"OK" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
+            NSString *text = alert.textFields.firstObject.text;
+            [self performSegueWithIdentifier:@"MakeChore" sender:text];
+        }];
         
         UIAlertAction* cancel = [UIAlertAction actionWithTitle:@"Cancel" style:UIAlertActionStyleDestructive handler:nil];
         
@@ -87,6 +110,8 @@
         
         
         
+    } else {
+        [self performSegueWithIdentifier:@"MakeChore" sender:indexPath];
     }
     
     

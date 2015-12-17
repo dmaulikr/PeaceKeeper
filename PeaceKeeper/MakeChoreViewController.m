@@ -25,17 +25,15 @@
     self.repeatIntervalPicker.delegate = self;
     self.repeatIntervalPicker.dataSource = self;
     self.choreNameField.delegate = self;
-    self.navigationItem.rightBarButtonItem.enabled = false;
 }
 
 #pragma mark - Segue
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
     if ([segue.identifier isEqualToString:@"AssignChore"]) {
         AssignChoreViewController *assignChoreViewController = (AssignChoreViewController *)segue.destinationViewController;
-        NSMutableDictionary *choreInfo = [NSMutableDictionary dictionary];
+        NSMutableDictionary *choreInfo = [NSMutableDictionary dictionaryWithDictionary:self.choreInfo];
         choreInfo[kChoreInfoKeyIntervalString] = [TimeService calendarUnitStrings][[self.repeatIntervalPicker selectedRowInComponent:0]];
         choreInfo[kChoreInfoKeyStartDate] = self.startDatePicker.date;
-        choreInfo[kChoreInfoKeyTitleString] = self.choreNameField.text;
         assignChoreViewController.choreInfo = choreInfo;
     }
 }
@@ -44,14 +42,6 @@
 #pragma mark - Actions
 - (IBAction)doneMakingChoreAction:(UIBarButtonItem *)sender {
     NSLog(@"Chore action!");
-}
-- (IBAction)choreNameFieldEditingChanged:(UITextField *)sender {
-    NSString *trimmedString = [sender.text stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceCharacterSet]];
-    if (trimmedString.length == 0) {
-        self.navigationItem.rightBarButtonItem.enabled = false;
-    } else {
-        self.navigationItem.rightBarButtonItem.enabled = true;
-    }
 }
 
 #pragma mark - UIPickerViewDelegate 
