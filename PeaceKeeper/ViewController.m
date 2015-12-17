@@ -15,6 +15,7 @@
 #import "CreateHouseholdViewController.h"
 #import "HouseholdViewController.h"
 #import "MakeChoreViewController.h"
+#import "ChoreDetailViewController.h"
 
 #import "MMParallaxCell.h"
 #import "PresetTaskViewController.h"
@@ -28,7 +29,6 @@
 
 @end
 
-
 @implementation ViewController
 
 - (NSArray<Chore *> *)chores {
@@ -38,24 +38,12 @@
         NSError *error;
         NSArray *results = [managedObjectContext executeFetchRequest:request error:&error];
         _chores = results;
-        
         if (error) {
             NSLog(@"Error fetching %@ objects: %@", [Chore name], error.localizedDescription);
         } else {
             NSLog(@"Successfully fetched %@ objects", [Chore name]);
             NSLog(@"Chore count: %@", @(_chores.count));
         }
-        // DELETE ME
-        /*
-        for (Chore *chore in _chores) {
-            NSLog(@"~ * ~ * ~ * ~ * ~ * ~ * ~ * ~ * ~ * ~ * ~ * ~ * ~ *");
-            NSLog(@"CHORE NAME: %@", chore.name);
-            for (Person *person in chore.people) {
-                NSLog(@"%@", person.firstName);
-            }
-        }
-        */
-        // DELETE ME
     }
     return _chores;
 }
@@ -111,16 +99,19 @@
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
 }
 
 - (void)presentCreateHouseholdViewControllerIfNeeded {
     if (![Household fetchHousehold]) {
-        AppDelegate *appDelegate = (AppDelegate *)[[UIApplication sharedApplication] delegate];
-        UIStoryboard *storyboard = (UIStoryboard *)appDelegate.window.rootViewController.storyboard;
-        UINavigationController *createHouseholdNavigationController = [storyboard instantiateViewControllerWithIdentifier:@"CreateHouseholdNavigationController"];
-        CreateHouseholdViewController *createHouseholdViewController = [storyboard instantiateViewControllerWithIdentifier:@"CreateHousehold"];
+        UINavigationController *createHouseholdNavigationController = [self.storyboard instantiateViewControllerWithIdentifier:@"CreateHouseholdNavigationController"];
         [self presentViewController:createHouseholdNavigationController animated:true completion:nil];
+    }
+}
+#pragma mark - Segue
+- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
+    if ([segue.identifier isEqualToString:@"ChoreDetail"]) {
+        ChoreDetailViewController *choreDetailViewController = (ChoreDetailViewController *)segue.destinationViewController;
+        choreDetailViewController.chore = self.chores[[self.tableView indexPathForSelectedRow].row];
     }
 }
 
@@ -195,8 +186,6 @@
     houseHold.tintColor = [UIColor whiteColor];
     
     [self.navigationController.navigationBar.topItem setLeftBarButtonItem:houseHold];
-    
-    
 }
 
 - (void)householdButtonPressed {

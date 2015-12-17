@@ -6,7 +6,7 @@
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
     </dependencies>
     <scenes>
-        <!--Home-->
+        <!--View Controller-->
         <scene sceneID="tne-QT-ifu">
             <objects>
                 <viewController id="BYZ-38-t0r" customClass="ViewController" sceneMemberID="viewController">
@@ -51,7 +51,7 @@
                                         </tableViewCellContentView>
                                         <animations/>
                                         <connections>
-                                            <segue destination="xQB-vb-L46" kind="show" id="tWN-Ba-xtK"/>
+                                            <segue destination="xQB-vb-L46" kind="show" identifier="ChoreDetail" id="tWN-Ba-xtK"/>
                                         </connections>
                                     </tableViewCell>
                                 </prototypes>
@@ -62,6 +62,7 @@
                         <constraints>
                             <constraint firstItem="gBz-7l-32a" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leadingMargin" constant="-20" id="2Ar-ej-FDy"/>
                             <constraint firstAttribute="trailingMargin" secondItem="gBz-7l-32a" secondAttribute="trailing" constant="-20" id="4RD-Ws-6nK"/>
+                            <constraint firstItem="gBz-7l-32a" firstAttribute="top" secondItem="8bC-Xf-vdC" secondAttribute="topMargin" id="Del-ja-C3Z"/>
                             <constraint firstItem="gBz-7l-32a" firstAttribute="top" secondItem="y3c-jy-aDJ" secondAttribute="bottom" id="J96-WM-ENB"/>
                             <constraint firstItem="gBz-7l-32a" firstAttribute="top" secondItem="y3c-jy-aDJ" secondAttribute="bottom" id="hOw-Wi-0R6"/>
                             <constraint firstItem="wfy-db-euE" firstAttribute="top" secondItem="gBz-7l-32a" secondAttribute="bottom" id="qPk-gM-RWG"/>
@@ -69,6 +70,7 @@
                         </constraints>
                         <variation key="default">
                             <mask key="constraints">
+                                <exclude reference="J96-WM-ENB"/>
                                 <exclude reference="hOw-Wi-0R6"/>
                                 <exclude reference="vxM-Rj-e3v"/>
                             </mask>
@@ -82,7 +84,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1688" y="273"/>
+            <point key="canvasLocation" x="2500" y="331"/>
         </scene>
         <!--Archive View Controller-->
         <scene sceneID="kV0-RW-DGg">
@@ -102,7 +104,7 @@
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="CompletedChore" textLabel="f3r-Qb-E5u" detailTextLabel="hHv-u0-uhT" style="IBUITableViewCellStyleSubtitle" id="CEd-mV-9JA">
-                                        <rect key="frame" x="0.0" y="92" width="600" height="44"/>
+                                        <rect key="frame" x="0.0" y="28" width="600" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="CEd-mV-9JA" id="ICQ-05-9jq">
                                             <rect key="frame" x="0.0" y="0.0" width="600" height="43"/>
@@ -134,6 +136,12 @@
                         </subviews>
                         <animations/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstAttribute="trailingMargin" secondItem="TjU-Am-jrV" secondAttribute="trailing" constant="-20" id="U7Q-5w-wo8"/>
+                            <constraint firstItem="TjU-Am-jrV" firstAttribute="leading" secondItem="EKs-sd-65J" secondAttribute="leadingMargin" constant="-20" id="VmA-Zd-HNE"/>
+                            <constraint firstItem="Tow-df-oUC" firstAttribute="top" secondItem="TjU-Am-jrV" secondAttribute="bottom" id="YWt-Mm-Ctv"/>
+                            <constraint firstItem="TjU-Am-jrV" firstAttribute="top" secondItem="i5w-Wb-Gae" secondAttribute="bottom" id="ZgW-qx-83J"/>
+                        </constraints>
                     </view>
                     <tabBarItem key="tabBarItem" systemItem="history" id="AL9-8Z-plK"/>
                     <connections>
@@ -161,7 +169,7 @@
                                 <animations/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <prototypes>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="Choree" id="LSK-yS-Xu8">
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="Choree" textLabel="lxP-3k-6O3" detailTextLabel="mLi-tc-UVL" style="IBUITableViewCellStyleValue1" id="LSK-yS-Xu8">
                                         <rect key="frame" x="0.0" y="92" width="600" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="LSK-yS-Xu8" id="Lwe-Jp-KVM">
@@ -249,7 +257,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="nnI-rf-Elw" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3055" y="-384"/>
+            <point key="canvasLocation" x="2500" y="-372"/>
         </scene>
         <!--MakeChore-->
         <scene sceneID="b7c-g6-eft">
@@ -524,13 +532,13 @@
                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                     </tabBar>
                     <connections>
-                        <segue destination="BYZ-38-t0r" kind="relationship" relationship="viewControllers" id="OBc-8f-NYC"/>
+                        <segue destination="RWe-jf-Xp8" kind="relationship" relationship="viewControllers" id="OBc-8f-NYC"/>
                         <segue destination="cCt-q3-3Bi" kind="relationship" relationship="viewControllers" id="AzH-eX-p6c"/>
                     </connections>
                 </tabBarController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="geR-OW-Tzh" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="882" y="273"/>
+            <point key="canvasLocation" x="858" y="273"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="ioB-HP-ljI">
@@ -549,7 +557,7 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="zj8-ur-ID2" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2361" y="-372"/>
+            <point key="canvasLocation" x="3173" y="-372"/>
         </scene>
         <!--Preset Task View Controller-->
         <scene sceneID="c8f-h5-w6C">
@@ -670,7 +678,26 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="OGI-7Y-Dai" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1688" y="-372"/>
+            <point key="canvasLocation" x="1710" y="-442"/>
+        </scene>
+        <!--Home-->
+        <scene sceneID="1TI-Mi-xeM">
+            <objects>
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="RWe-jf-Xp8" sceneMemberID="viewController">
+                    <tabBarItem key="tabBarItem" title="Home" id="W9N-Kq-vB4"/>
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="i2v-cN-UMv">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="BYZ-38-t0r" kind="relationship" relationship="rootViewController" id="hbS-rZ-e9k"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="wZO-7A-gXX" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1688" y="273"/>
         </scene>
     </scenes>
     <resources>

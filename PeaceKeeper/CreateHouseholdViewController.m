@@ -84,27 +84,19 @@ typedef void (^myCompletion)(BOOL);
     }
 }
 
-- (void)contactPicker:(CNContactPickerViewController *)picker didSelectContact:(CNContact *)contact {
-    [self.members addObject:contact];
-    /*
-    if (contact.givenName.length > 0) {
-        [self.members addObject:contact];
-    } else {
-        [self dismissViewControllerAnimated:YES completion:^{
-            [self presentAlertViewController];
-        }];
-    }
-    */
-    [self.tableView reloadData];
-}
+//- (void)contactPicker:(CNContactPickerViewController *)picker didSelectContacts:(NSArray<CNContact *> *)contacts {
+//    for (CNContact *contact in contacts) {
+//        if (![self.members containsObject:contact]) {
+//            [self.members addObject:contact];
+//        }
+//    }
+//}
 
-- (void)presentAlertViewController {
-    
-    UIAlertController *alertController = [UIAlertController alertControllerWithTitle:@"Error" message:@"You can't add a contact without a first name." preferredStyle:UIAlertControllerStyleAlert];
-    UIAlertAction *okAction = [UIAlertAction actionWithTitle:@"OK" style:UIAlertActionStyleDefault handler:nil];
-    [alertController addAction:okAction];
-    
-    [self presentViewController:alertController animated:true completion:nil];
+- (void)contactPicker:(CNContactPickerViewController *)picker didSelectContact:(CNContact *)contact {
+    if (![self.members containsObject:contact]) {
+        [self.members addObject:contact];
+    }
+    [self.tableView reloadData];
 }
 
 -(void)requestForAccess:(myCompletion)completionBlock {

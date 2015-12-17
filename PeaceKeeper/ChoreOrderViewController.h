@@ -11,7 +11,7 @@
 
 @interface ChoreOrderViewController : UIViewController
 
-@property (strong, nonatomic) NSDictionary *tempDictionary;
+@property (strong, nonatomic) NSDictionary *choreInfo;
 @property (strong, nonatomic) NSMutableArray<Person *> *selectedPeople;
 
 @end
