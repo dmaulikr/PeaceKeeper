@@ -80,8 +80,12 @@
 
 -(void) setupNavigationBar {
     
-    UIColor *navColor = [UIColor colorWithRed:3.0f/255.0f green:203.0f/255.0f blue:171.0f/255.0f alpha:1.0];
+    [[UINavigationBar appearance] setTitleTextAttributes:@{NSFontAttributeName: [UIFont fontWithName:@"Helvetica" size:25]}];
     
+    UIImage* logoImage = [UIImage imageNamed:@"logo.png"];
+    self.navigationItem.titleView = [[UIImageView alloc] initWithImage:logoImage];
+    
+    UIColor *navColor = [UIColor colorWithRed:102.0f/255.0f green:205.0f/255.0f blue:154.0f/255.0f alpha:1.0];
     self.navigationController.navigationBar.barTintColor = navColor;
     [self.navigationController.navigationBar setTitleTextAttributes:@{NSForegroundColorAttributeName:[UIColor whiteColor]}];
     
@@ -120,6 +124,18 @@
 }
 
 #pragma mark - UITableViewDataSource
+
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
+    
+    
+    
+    
+}
+
+
+
+
+
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
     return self.chores.count;
 }
@@ -128,18 +144,6 @@
 //    MMParallaxCell *cell = (MMParallaxCell *)[self.tableView dequeueReusableCellWithIdentifier:@"homeCell" forIndexPath:indexPath];
     
     Chore *chore = self.chores[indexPath.row];
-    
-//    NSArray *nib = [[NSBundle mainBundle] loadNibNamed:@"HomeCell" owner:self options:nil];
-//    
-//    cell = [nib objectAtIndex:0];
-//    
-//    cell.roomateLabel.text = @"hi";//[NSString stringWithFormat:@"%@", chore.name];
-    
-//    NSLog(@"%@", chore.name);
-//    
-//    cell.taskLabel.text = [NSString stringWithFormat:@"Next up: %@", chore.currentPerson.firstName];
-//    
-//    return cell;
     
     MMParallaxCell* cell = [tableView dequeueReusableCellWithIdentifier:@"homeCell"];
     if (cell == nil)
@@ -152,7 +156,7 @@
     
     //NEW CODE
     cell.taskLabel.text = [self.chores[indexPath.row] name];
-    cell.taskLabel.frame = CGRectMake(cell.contentView.frame.size.width/2, cell.contentView.frame.size.height / 2, 400, 50);
+    cell.taskLabel.frame = CGRectMake(cell.contentView.frame.size.width/2, cell.contentView.frame.size.height / 2 - 10, 400, 50);
     cell.taskLabel.textColor = [UIColor whiteColor];
     //cell.taskLabel.backgroundColor = [UIColor blackColor];
     cell.taskLabel.center = CGPointMake(cell.taskLabel.frame.origin.x, cell.taskLabel.frame.origin.y);
@@ -170,8 +174,6 @@
     cell.personLabel.font = [UIFont systemFontOfSize:25];
     cell.personLabel.font = [UIFont fontWithName:@"Avenir" size:25];
     
-    
-    
     return cell;
 
     
@@ -179,27 +181,15 @@
 
 
 
-//
-//- (void)setUpNavBarButtons {
-//    UIBarButtonItem *lulwat = [[UIBarButtonItem alloc ]initWithTitle:@"hello world" style:UIBarButtonItemStylePlain target:self action:@selector(lulwatFire)];
-//    
-//
-//    [self.navigationController.navigationBar.topItem setRightBarButtonItem:lulwat];
-//}
-//
-//-(void)lulwatFire{
-//    NSLog(@"LULWAT SLUG");
-//}
-
 - (void)setUpNavBarButtons {
     
-    UIBarButtonItem *makeChore = [[UIBarButtonItem alloc]initWithTitle:@"Add Chore" style:UIBarButtonItemStylePlain target:self action:@selector(makeChoreButtonPressed)];
+    UIBarButtonItem *makeChore = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"addChoreIcon"] landscapeImagePhone:nil style:UIBarButtonItemStylePlain target:self action:@selector(makeChoreButtonPressed)];
     
     makeChore.tintColor = [UIColor whiteColor];
     
     [self.navigationController.navigationBar.topItem setRightBarButtonItem:makeChore];
     
-    UIBarButtonItem *houseHold = [[UIBarButtonItem alloc]initWithTitle:@"Household" style:UIBarButtonItemStylePlain target:self action:@selector(householdButtonPressed)];
+    UIBarButtonItem *houseHold = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"householdIcon"] landscapeImagePhone:nil style:UIBarButtonItemStylePlain target:self action:@selector(householdButtonPressed)];
     
     houseHold.tintColor = [UIColor whiteColor];
     

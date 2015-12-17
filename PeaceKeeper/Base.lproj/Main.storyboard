@@ -74,7 +74,7 @@
                             </mask>
                         </variation>
                     </view>
-                    <tabBarItem key="tabBarItem" title="Home" id="W9N-Kq-vB4"/>
+                    <tabBarItem key="tabBarItem" title="Home" image="homeIcon.png" id="W9N-Kq-vB4"/>
                     <navigationItem key="navigationItem" id="LNg-NV-6p9"/>
                     <connections>
                         <outlet property="tableView" destination="gBz-7l-32a" id="JkB-mG-Ht7"/>
@@ -624,4 +624,7 @@
             <point key="canvasLocation" x="1688" y="-372"/>
         </scene>
     </scenes>
+    <resources>
+        <image name="homeIcon.png" width="26" height="26"/>
+    </resources>
 </document>
