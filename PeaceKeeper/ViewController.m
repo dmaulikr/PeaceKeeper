@@ -16,6 +16,10 @@
 #import "HouseholdViewController.h"
 #import "MakeChoreViewController.h"
 
+#import "MMParallaxCell.h"
+
+#import "HomeCell.h"
+
 @interface ViewController () <UITableViewDataSource, UITableViewDelegate>
 
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
@@ -55,6 +59,8 @@
     return _chores;
 }
 
+
+
 - (void)viewDidLoad {
     [super viewDidLoad];
     self.navigationController.view.backgroundColor = [UIColor whiteColor];
@@ -62,7 +68,30 @@
     self.tableView.dataSource = self;
     [self setUpNavBarButtons];
     
-    self.navigationController.navigationBar.topItem.title = @"Chores";
+    [self setupNavigationBar];
+    
+    //setting up custom cell
+//    [self.tableView registerNib:[UINib nibWithNibName:@"HomeCell" bundle:nil]
+//         forCellReuseIdentifier:@"homeCell"];
+    
+    self.navigationController.navigationBar.topItem.title = @"PeaceKeeper";
+    
+}
+
+-(void) setupNavigationBar {
+    
+    UIColor *navColor = [UIColor colorWithRed:3.0f/255.0f green:203.0f/255.0f blue:171.0f/255.0f alpha:1.0];
+    
+    self.navigationController.navigationBar.barTintColor = navColor;
+    [self.navigationController.navigationBar setTitleTextAttributes:@{NSForegroundColorAttributeName:[UIColor whiteColor]}];
+    
+    [self.tabBarController.tabBar setTintColor:[UIColor whiteColor]];
+    [self.tabBarController.tabBar setBarTintColor:navColor];
+    
+}
+
+- (UIStatusBarStyle)preferredStatusBarStyle {
+    return UIStatusBarStyleLightContent;
 }
 
 - (void)viewWillAppear:(BOOL)animated {
@@ -96,12 +125,60 @@
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-    UITableViewCell *cell = [self.tableView dequeueReusableCellWithIdentifier:@"AssignedChore" forIndexPath:indexPath];
+//    MMParallaxCell *cell = (MMParallaxCell *)[self.tableView dequeueReusableCellWithIdentifier:@"homeCell" forIndexPath:indexPath];
+    
     Chore *chore = self.chores[indexPath.row];
-    cell.textLabel.text = [NSString stringWithFormat:@"%@", chore.name];
-    cell.detailTextLabel.text = [NSString stringWithFormat:@"Next up: %@", chore.currentPerson.firstName];
+    
+//    NSArray *nib = [[NSBundle mainBundle] loadNibNamed:@"HomeCell" owner:self options:nil];
+//    
+//    cell = [nib objectAtIndex:0];
+//    
+//    cell.roomateLabel.text = @"hi";//[NSString stringWithFormat:@"%@", chore.name];
+    
+//    NSLog(@"%@", chore.name);
+//    
+//    cell.taskLabel.text = [NSString stringWithFormat:@"Next up: %@", chore.currentPerson.firstName];
+//    
+//    return cell;
+    
+    MMParallaxCell* cell = [tableView dequeueReusableCellWithIdentifier:@"homeCell"];
+    if (cell == nil)
+    {
+        cell = [[MMParallaxCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"homeCell"];
+        cell.parallaxRatio = 1.8f;
+    }
+        
+    [cell.parallaxImage setImage:[UIImage imageNamed:@"sweep.jpg"]];
+    
+    //NEW CODE
+    cell.taskLabel.text = [self.chores[indexPath.row] name];
+    cell.taskLabel.frame = CGRectMake(cell.contentView.frame.size.width/2, cell.contentView.frame.size.height / 2, 400, 50);
+    cell.taskLabel.textColor = [UIColor whiteColor];
+    //cell.taskLabel.backgroundColor = [UIColor blackColor];
+    cell.taskLabel.center = CGPointMake(cell.taskLabel.frame.origin.x, cell.taskLabel.frame.origin.y);
+    cell.taskLabel.textAlignment = NSTextAlignmentCenter;
+    cell.taskLabel.font = [UIFont systemFontOfSize:25];
+    cell.taskLabel.font = [UIFont fontWithName:@"Avenir" size:25];
+
+    
+    cell.personLabel.text = [NSString stringWithFormat:@"Next up: %@",[[self.chores[indexPath.row] currentPerson] firstName]];
+    cell.personLabel.frame = CGRectMake(cell.contentView.frame.size.width/2, cell.contentView.frame.size.height / 2 + 60, 400, 50);
+    cell.personLabel.textColor = [UIColor whiteColor];
+    cell.personLabel.backgroundColor = [UIColor colorWithRed:0.0f/255.0f green:0.0f/255.0f blue:0.0f/255.0f alpha:0.5];
+    cell.personLabel.center = CGPointMake(cell.personLabel.frame.origin.x, cell.personLabel.frame.origin.y);
+    cell.personLabel.textAlignment = NSTextAlignmentCenter;
+    cell.personLabel.font = [UIFont systemFontOfSize:25];
+    cell.personLabel.font = [UIFont fontWithName:@"Avenir" size:25];
+    
+    
+    
     return cell;
+
+    
 }
+
+
+
 //
 //- (void)setUpNavBarButtons {
 //    UIBarButtonItem *lulwat = [[UIBarButtonItem alloc ]initWithTitle:@"hello world" style:UIBarButtonItemStylePlain target:self action:@selector(lulwatFire)];
@@ -116,11 +193,15 @@
 
 - (void)setUpNavBarButtons {
     
-    UIBarButtonItem *makeChore = [[UIBarButtonItem alloc]initWithTitle:@"Make Chore" style:UIBarButtonItemStylePlain target:self action:@selector(makeChoreButtonPressed)];
+    UIBarButtonItem *makeChore = [[UIBarButtonItem alloc]initWithTitle:@"Add Chore" style:UIBarButtonItemStylePlain target:self action:@selector(makeChoreButtonPressed)];
+    
+    makeChore.tintColor = [UIColor whiteColor];
     
     [self.navigationController.navigationBar.topItem setRightBarButtonItem:makeChore];
     
     UIBarButtonItem *houseHold = [[UIBarButtonItem alloc]initWithTitle:@"Household" style:UIBarButtonItemStylePlain target:self action:@selector(householdButtonPressed)];
+    
+    houseHold.tintColor = [UIColor whiteColor];
     
     [self.navigationController.navigationBar.topItem setLeftBarButtonItem:houseHold];
     

@@ -30,6 +30,9 @@
     self.contactStore = [[CNContactStore alloc] init];
     
     [self registerForNotifications];
+    
+    [UIApplication sharedApplication].statusBarStyle = UIStatusBarStyleLightContent;
+
   
 //    [application cancelAllLocalNotifications];
 
