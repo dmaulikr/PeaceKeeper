@@ -25,6 +25,7 @@
 		96F654081C1F4BD50098A317 /* CompletedChore.m in Sources */ = {isa = PBXBuildFile; fileRef = 96F654061C1F4BD50098A317 /* CompletedChore.m */; };
 		96F654111C1F50C80098A317 /* NSManagedObjectContext+Category.m in Sources */ = {isa = PBXBuildFile; fileRef = 96F654101C1F50C80098A317 /* NSManagedObjectContext+Category.m */; };
 		A96740A31C1F49830021DB71 /* CreateHouseholdViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A96740A21C1F49830021DB71 /* CreateHouseholdViewController.m */; };
+		A9ACCC451C235AA5002A0729 /* PresetTaskViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A9ACCC441C235AA5002A0729 /* PresetTaskViewController.m */; };
 		A9C7CE9E1C22A8CD009E6BB1 /* HomeCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = A9C7CE9D1C22A8CD009E6BB1 /* HomeCell.xib */; };
 		A9C7CEA11C22A8ED009E6BB1 /* HomeCell.m in Sources */ = {isa = PBXBuildFile; fileRef = A9C7CEA01C22A8ED009E6BB1 /* HomeCell.m */; };
 		A9C7CEA41C22C13A009E6BB1 /* MMParallaxCell.m in Sources */ = {isa = PBXBuildFile; fileRef = A9C7CEA31C22C13A009E6BB1 /* MMParallaxCell.m */; };
@@ -96,6 +97,8 @@
 		96F654101C1F50C80098A317 /* NSManagedObjectContext+Category.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSManagedObjectContext+Category.m"; sourceTree = "<group>"; };
 		A96740A11C1F49830021DB71 /* CreateHouseholdViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CreateHouseholdViewController.h; sourceTree = "<group>"; };
 		A96740A21C1F49830021DB71 /* CreateHouseholdViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CreateHouseholdViewController.m; sourceTree = "<group>"; };
+		A9ACCC431C235AA5002A0729 /* PresetTaskViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PresetTaskViewController.h; sourceTree = "<group>"; };
+		A9ACCC441C235AA5002A0729 /* PresetTaskViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PresetTaskViewController.m; sourceTree = "<group>"; };
 		A9C7CE9D1C22A8CD009E6BB1 /* HomeCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = HomeCell.xib; sourceTree = "<group>"; };
 		A9C7CE9F1C22A8ED009E6BB1 /* HomeCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HomeCell.h; sourceTree = "<group>"; };
 		A9C7CEA01C22A8ED009E6BB1 /* HomeCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HomeCell.m; sourceTree = "<group>"; };
@@ -169,6 +172,8 @@
 				964D15191C21EA0C00D71C81 /* HouseholdViewController.m */,
 				964D151B1C22093500D71C81 /* ArchiveViewController.h */,
 				964D151C1C22093500D71C81 /* ArchiveViewController.m */,
+				A9ACCC431C235AA5002A0729 /* PresetTaskViewController.h */,
+				A9ACCC441C235AA5002A0729 /* PresetTaskViewController.m */,
 			);
 			name = Controllers;
 			sourceTree = "<group>";
@@ -442,6 +447,7 @@
 				966C01681C1F61B30028CBF7 /* TimeService.m in Sources */,
 				964074ED1C209EA0003403CB /* Constants.m in Sources */,
 				A9C7CEA11C22A8ED009E6BB1 /* HomeCell.m in Sources */,
+				A9ACCC451C235AA5002A0729 /* PresetTaskViewController.m in Sources */,
 				964074F91C20C532003403CB /* Person+CoreDataProperties.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

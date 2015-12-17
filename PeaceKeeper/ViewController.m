@@ -17,6 +17,7 @@
 #import "MakeChoreViewController.h"
 
 #import "MMParallaxCell.h"
+#import "PresetTaskViewController.h"
 
 #import "HomeCell.h"
 
@@ -80,7 +81,7 @@
 
 -(void) setupNavigationBar {
     
-    [[UINavigationBar appearance] setTitleTextAttributes:@{NSFontAttributeName: [UIFont fontWithName:@"Helvetica" size:25]}];
+    [[UINavigationBar appearance] setTitleTextAttributes:@{UITextAttributeFont: [UIFont fontWithName:@"Helvetica" size:25]}];
     
     UIImage* logoImage = [UIImage imageNamed:@"logo.png"];
     self.navigationItem.titleView = [[UIImageView alloc] initWithImage:logoImage];
@@ -201,11 +202,19 @@
 - (void)householdButtonPressed {
     HouseholdViewController *householdViewController = [self.storyboard instantiateViewControllerWithIdentifier:@"Household"];
     [self.navigationController pushViewController:householdViewController animated:YES];
+    
+    
 }
 
 - (void)makeChoreButtonPressed {
-    MakeChoreViewController *makeChoreViewController = [self.storyboard instantiateViewControllerWithIdentifier:@"MakeChore"];
-    [self.navigationController pushViewController:makeChoreViewController animated:YES];
+//    MakeChoreViewController *makeChoreViewController = [self.storyboard instantiateViewControllerWithIdentifier:@"MakeChore"];
+//    [self.navigationController pushViewController:makeChoreViewController animated:YES];
+    
+    
+    PresetTaskViewController *presetTaskVC = [self.storyboard instantiateViewControllerWithIdentifier:@"presetTaskVC"];
+    
+    [self.navigationController pushViewController:presetTaskVC animated:true];
+    
 }
 
 #pragma mark - UITableViewDelegate
