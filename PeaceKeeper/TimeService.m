@@ -14,7 +14,7 @@
 
 @implementation TimeService
 
-+ (void)scheduleLocalNotificationInUsersTimeZoneAndCalendarWithFireDate:(NSDate * _Nonnull)fireDate repeatInterval:(NSCalendarUnit)repeatInterval alertTitle:(NSString * _Nonnull)alertTitle alertBody:(NSString * _Nonnull)alertBody userInfo:(NSDictionary * _Nonnull)userInfo {
++ (void)scheduleLocalNotificationInUsersTimeZoneAndCalendarWithFireDate:(NSDate * _Nonnull)fireDate repeatInterval:(NSCalendarUnit)repeatInterval alertTitle:(NSString * _Nonnull)alertTitle alertBody:(NSString * _Nonnull)alertBody userInfo:(NSDictionary * _Nonnull)userInfo category:(NSString * _Nonnull)category {
     UILocalNotification *ln = [[UILocalNotification alloc] init];
     ln.timeZone = [NSTimeZone localTimeZone];
     ln.repeatCalendar = [NSCalendar currentCalendar];
@@ -23,6 +23,7 @@
     ln.alertTitle = alertTitle;
     ln.alertBody = alertBody;
     ln.userInfo = userInfo;
+    ln.category = category;
     [[UIApplication sharedApplication] scheduleLocalNotification:ln];
 }
 

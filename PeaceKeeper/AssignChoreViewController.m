@@ -51,18 +51,18 @@
     self.tableView.delegate = self;
     self.selectedRows = [NSMutableArray array];
     self.navigationItem.rightBarButtonItem.enabled = false;
-
-    NSLog(@"%@", self.tempDictionary);
 }
 
 #pragma mark - Segue
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
     if ([segue.identifier isEqualToString:@"ChoreOrder"]) {
         ChoreOrderViewController *choreOrderViewController = (ChoreOrderViewController *)segue.destinationViewController;
-        choreOrderViewController.tempDictionary = self.tempDictionary;
+        choreOrderViewController.choreInfo = self.choreInfo;
         NSMutableArray *selectedPeople = [NSMutableArray array];
-        for (NSNumber *row in self.selectedRows) {
-            [selectedPeople addObject:self.people[row.integerValue]];
+        for (NSUInteger i = 0; i < self.people.count; i++) {
+            if ([self.selectedRows containsObject:@(i)]) {
+                [selectedPeople addObject:self.people[i]];
+            }
         }
         choreOrderViewController.selectedPeople = selectedPeople;
     }

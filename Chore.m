@@ -18,6 +18,23 @@
     return @"Chore";
 }
 
++ (instancetype)fetchChoreWithName:(NSString * _Nonnull)name {
+    NSManagedObjectContext *managedObjectContext = [NSManagedObjectContext managedObjectContext];
+    NSFetchRequest *request = [NSFetchRequest fetchRequestWithEntityName:[Chore name]];
+    request.predicate = [NSPredicate predicateWithFormat:@"name = %@", name];
+    NSError *error;
+    NSArray *results = [managedObjectContext executeFetchRequest:request error:&error];
+    if (error) {
+        NSLog(@"Error fetching %@ objects: %@", [Chore name], error.localizedDescription);
+    } else {
+        NSLog(@"Successfully fetched %@ object!", [Chore name]);
+    }
+    if (results.count > 0) {
+        return results.firstObject;
+    }
+    return nil;
+}
+
 + (instancetype)choreWithName:(NSString * _Nonnull)name startDate:(NSDate * _Nonnull)startDate repeatIntervalValue:(NSNumber * _Nonnull)repeatIntervalValue repeatIntervalUnit:(NSString * _Nonnull)repeatIntervalUnit household:(Household * _Nonnull)household people:(NSOrderedSet *)people {
     Chore *chore = [NSEntityDescription insertNewObjectForEntityForName:[self name] inManagedObjectContext:[NSManagedObjectContext managedObjectContext]];
     chore.name = name;

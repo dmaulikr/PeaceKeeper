@@ -23,7 +23,6 @@
 
 @end
 
-
 @implementation ViewController
 
 - (NSArray<Chore *> *)chores {
@@ -33,24 +32,12 @@
         NSError *error;
         NSArray *results = [managedObjectContext executeFetchRequest:request error:&error];
         _chores = results;
-        
         if (error) {
             NSLog(@"Error fetching %@ objects: %@", [Chore name], error.localizedDescription);
         } else {
             NSLog(@"Successfully fetched %@ objects", [Chore name]);
             NSLog(@"Chore count: %@", @(_chores.count));
         }
-        // DELETE ME
-        /*
-        for (Chore *chore in _chores) {
-            NSLog(@"~ * ~ * ~ * ~ * ~ * ~ * ~ * ~ * ~ * ~ * ~ * ~ * ~ *");
-            NSLog(@"CHORE NAME: %@", chore.name);
-            for (Person *person in chore.people) {
-                NSLog(@"%@", person.firstName);
-            }
-        }
-        */
-        // DELETE ME
     }
     return _chores;
 }
@@ -77,15 +64,11 @@
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
 }
 
 - (void)presentCreateHouseholdViewControllerIfNeeded {
     if (![Household fetchHousehold]) {
-        AppDelegate *appDelegate = (AppDelegate *)[[UIApplication sharedApplication] delegate];
-        UIStoryboard *storyboard = (UIStoryboard *)appDelegate.window.rootViewController.storyboard;
-        UINavigationController *createHouseholdNavigationController = [storyboard instantiateViewControllerWithIdentifier:@"CreateHouseholdNavigationController"];
-        CreateHouseholdViewController *createHouseholdViewController = [storyboard instantiateViewControllerWithIdentifier:@"CreateHousehold"];
+        UINavigationController *createHouseholdNavigationController = [self.storyboard instantiateViewControllerWithIdentifier:@"CreateHouseholdNavigationController"];
         [self presentViewController:createHouseholdNavigationController animated:true completion:nil];
     }
 }
@@ -102,7 +85,7 @@
     cell.detailTextLabel.text = [NSString stringWithFormat:@"Next up: %@", chore.currentPerson.firstName];
     return cell;
 }
-//
+
 //- (void)setUpNavBarButtons {
 //    UIBarButtonItem *lulwat = [[UIBarButtonItem alloc ]initWithTitle:@"hello world" style:UIBarButtonItemStylePlain target:self action:@selector(lulwatFire)];
 //    
@@ -123,8 +106,6 @@
     UIBarButtonItem *houseHold = [[UIBarButtonItem alloc]initWithTitle:@"Household" style:UIBarButtonItemStylePlain target:self action:@selector(householdButtonPressed)];
     
     [self.navigationController.navigationBar.topItem setLeftBarButtonItem:houseHold];
-    
-    
 }
 
 - (void)householdButtonPressed {

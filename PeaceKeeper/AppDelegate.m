@@ -11,6 +11,8 @@
 #import "Household.h"
 #import "NSManagedObjectContext+Category.h"
 #import "CreateHouseholdViewController.h"
+#import "Constants.h"
+#import "Chore.h"
 
 @interface AppDelegate ()
 
@@ -26,14 +28,50 @@
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     // Override point for customization after application launch.
+
+    UILocalNotification *localNotification = launchOptions[UIApplicationLaunchOptionsLocalNotificationKey];
+    
+    if (localNotification) {
+        NSLog(@"Inside application:didFinishLaunchingWithOptions:");
+        NSLog(@"Local notification user info: %@", localNotification.userInfo);
+    }
     
     self.contactStore = [[CNContactStore alloc] init];
     
     [self registerForNotifications];
   
-//    [application cancelAllLocalNotifications];
+    [application cancelAllLocalNotifications];
 
     return YES;
+}
+
+- (void)application:(UIApplication *)application didReceiveLocalNotification:(UILocalNotification *)notification {
+    NSLog(@"Inside application:didReceiveLocalNotification:");
+    NSLog(@"Local notification user info: %@", notification.userInfo);
+}
+
+- (void)application:(UIApplication *)application handleActionWithIdentifier:(NSString *)identifier forLocalNotification:(UILocalNotification *)notification completionHandler:(void (^)())completionHandler {
+
+    NSDictionary *userInfo = notification.userInfo;
+    if (userInfo) {
+        NSString *choreName = (NSString *)userInfo[kChoreNameKey];
+        Chore *chore = [Chore fetchChoreWithName:choreName];
+        if (chore) {
+            if ([identifier isEqualToString:kChoreNotificationActionIdentifierCompleteChore]) {
+                [chore completeChore];
+            } else if ([identifier isEqualToString:kChoreNotificationActionIdentifierNotifyChoree]) {
+                
+                // Get a pointer to ViewController
+                    // Get the root view controller
+                    // Get the tab bar controller
+                    // Get the selected controller
+                    // Check that it's the right class
+                        // Perform the segue from ViewController to ChoreDetailViewController with the Chore as sender
+                // Get a pointer to ChoreDetailViewController an activate the contact pop-up
+            }
+        }
+    }
+    completionHandler();
 }
 
 - (void)applicationWillResignActive:(UIApplication *)application {
@@ -77,7 +115,28 @@
 } 
 
 - (void)registerForNotifications {
-    UIUserNotificationSettings *notificationSettings = [UIUserNotificationSettings settingsForTypes:UIUserNotificationTypeAlert|UIUserNotificationTypeBadge|UIUserNotificationTypeSound categories:nil];
+    UIMutableUserNotificationAction *completeChoreAction = [[UIMutableUserNotificationAction alloc] init];
+    completeChoreAction.identifier = kChoreNotificationActionIdentifierCompleteChore;
+    completeChoreAction.title = kChoreNotificationActionTitleCompleteChore;
+    completeChoreAction.activationMode = UIUserNotificationActivationModeBackground;
+    completeChoreAction.authenticationRequired = false;
+    
+    UIMutableUserNotificationAction *notifyChoreeAction = [[UIMutableUserNotificationAction alloc] init];
+    notifyChoreeAction.identifier = kChoreNotificationActionIdentifierNotifyChoree;
+    notifyChoreeAction.title = kChoreNotificationActionTitleNotifyChoree;
+    notifyChoreeAction.activationMode = UIUserNotificationActivationModeForeground;
+    notifyChoreeAction.authenticationRequired = true;
+
+    UIMutableUserNotificationCategory *notificationCategory = [[UIMutableUserNotificationCategory alloc] init];
+    notificationCategory.identifier = kChoreNotificationCategoryIdentifier;
+    NSArray *actions = @[completeChoreAction, notifyChoreeAction];
+    [notificationCategory setActions:actions forContext:UIUserNotificationActionContextDefault];
+    [notificationCategory setActions:actions forContext:UIUserNotificationActionContextMinimal];
+    
+    NSSet *categories = [NSSet setWithObject:notificationCategory];
+    
+    UIUserNotificationSettings *notificationSettings = [UIUserNotificationSettings settingsForTypes:UIUserNotificationTypeAlert|UIUserNotificationTypeBadge|UIUserNotificationTypeSound categories:categories];
+
     [[UIApplication sharedApplication] registerUserNotificationSettings:notificationSettings];
 }
 

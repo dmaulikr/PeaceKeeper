@@ -10,6 +10,6 @@
 
 @interface AssignChoreViewController : UIViewController
 
-@property (strong, nonatomic) NSDictionary *tempDictionary;
+@property (strong, nonatomic) NSDictionary *choreInfo;
 
 @end
