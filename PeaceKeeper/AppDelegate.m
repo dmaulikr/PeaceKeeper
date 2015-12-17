@@ -40,7 +40,7 @@
     
     [self registerForNotifications];
   
-    [application cancelAllLocalNotifications];
+//    [application cancelAllLocalNotifications];
 
     return YES;
 }
@@ -121,15 +121,17 @@
     completeChoreAction.activationMode = UIUserNotificationActivationModeBackground;
     completeChoreAction.authenticationRequired = false;
     
+    /*
     UIMutableUserNotificationAction *notifyChoreeAction = [[UIMutableUserNotificationAction alloc] init];
     notifyChoreeAction.identifier = kChoreNotificationActionIdentifierNotifyChoree;
     notifyChoreeAction.title = kChoreNotificationActionTitleNotifyChoree;
     notifyChoreeAction.activationMode = UIUserNotificationActivationModeForeground;
     notifyChoreeAction.authenticationRequired = true;
+     */
 
     UIMutableUserNotificationCategory *notificationCategory = [[UIMutableUserNotificationCategory alloc] init];
     notificationCategory.identifier = kChoreNotificationCategoryIdentifier;
-    NSArray *actions = @[completeChoreAction, notifyChoreeAction];
+    NSArray *actions = @[completeChoreAction/*, notifyChoreeAction*/];
     [notificationCategory setActions:actions forContext:UIUserNotificationActionContextDefault];
     [notificationCategory setActions:actions forContext:UIUserNotificationActionContextMinimal];
     
