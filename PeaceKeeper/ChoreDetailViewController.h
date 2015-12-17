@@ -7,7 +7,10 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "Chore.h"
 
 @interface ChoreDetailViewController : UIViewController
+
+@property (strong, nonatomic) Chore *chore;
 
 @end
