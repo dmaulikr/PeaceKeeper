@@ -15,6 +15,7 @@
 #import "CreateHouseholdViewController.h"
 #import "HouseholdViewController.h"
 #import "MakeChoreViewController.h"
+#import "ChoreDetailViewController.h"
 
 @interface ViewController () <UITableViewDataSource, UITableViewDelegate>
 
@@ -87,6 +88,13 @@
         UINavigationController *createHouseholdNavigationController = [storyboard instantiateViewControllerWithIdentifier:@"CreateHouseholdNavigationController"];
         CreateHouseholdViewController *createHouseholdViewController = [storyboard instantiateViewControllerWithIdentifier:@"CreateHousehold"];
         [self presentViewController:createHouseholdNavigationController animated:true completion:nil];
+    }
+}
+#pragma mark - Segue
+- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
+    if ([segue.identifier isEqualToString:@"ChoreDetail"]) {
+        ChoreDetailViewController *choreDetailViewController = (ChoreDetailViewController *)segue.destinationViewController;
+        choreDetailViewController.chore = self.chores[[self.tableView indexPathForSelectedRow].row];
     }
 }
 
