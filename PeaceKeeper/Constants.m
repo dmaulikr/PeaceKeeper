@@ -13,3 +13,11 @@ NSString *const kChoreInfoKeyStartDate = @"kChoreInfoKeyStartDate";
 NSString *const kChoreInfoKeyIntervalString = @"kChoreInfoKeyIntervalString";
 
 NSString *const kChoreNameKey = @"kChoreNameKey";
+
+NSString *const kChoreNotificationCategoryIdentifier = @"kChoreNotificationCategoryIdentifier";
+
+NSString *const kChoreNotificationActionIdentifierCompleteChore = @"kChoreNotificationActionIdentifierCompleteChore";
+NSString *const kChoreNotificationActionTitleCompleteChore = @"Complete Chore";
+
+NSString *const kChoreNotificationActionIdentifierNotifyChoree = @"kChoreNotificationActionIdentifierNotifyChoree";
+NSString *const kChoreNotificationActionTitleNotifyChoree = @"Notify";

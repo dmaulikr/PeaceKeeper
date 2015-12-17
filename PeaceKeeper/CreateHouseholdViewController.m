@@ -85,7 +85,9 @@ typedef void (^myCompletion)(BOOL);
 }
 
 - (void)contactPicker:(CNContactPickerViewController *)picker didSelectContact:(CNContact *)contact {
-    [self.members addObject:contact];
+    if (![self.members containsObject:contact]) {
+        [self.members addObject:contact];
+    }
     [self.tableView reloadData];
 }
 

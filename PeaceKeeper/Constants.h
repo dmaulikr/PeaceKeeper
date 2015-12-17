@@ -14,3 +14,11 @@ extern NSString *const kChoreInfoKeyStartDate;
 extern NSString *const kChoreInfoKeyIntervalString;
 
 extern NSString *const kChoreNameKey;
+
+extern NSString *const kChoreNotificationCategoryIdentifier;
+
+extern NSString *const kChoreNotificationActionIdentifierCompleteChore;
+extern NSString *const kChoreNotificationActionTitleCompleteChore;
+
+extern NSString *const kChoreNotificationActionIdentifierNotifyChoree;
+extern NSString *const kChoreNotificationActionTitleNotifyChoree;
