@@ -82,10 +82,7 @@
 
 - (void)presentCreateHouseholdViewControllerIfNeeded {
     if (![Household fetchHousehold]) {
-        AppDelegate *appDelegate = (AppDelegate *)[[UIApplication sharedApplication] delegate];
-        UIStoryboard *storyboard = (UIStoryboard *)appDelegate.window.rootViewController.storyboard;
-        UINavigationController *createHouseholdNavigationController = [storyboard instantiateViewControllerWithIdentifier:@"CreateHouseholdNavigationController"];
-        CreateHouseholdViewController *createHouseholdViewController = [storyboard instantiateViewControllerWithIdentifier:@"CreateHousehold"];
+        UINavigationController *createHouseholdNavigationController = [self.storyboard instantiateViewControllerWithIdentifier:@"CreateHouseholdNavigationController"];
         [self presentViewController:createHouseholdNavigationController animated:true completion:nil];
     }
 }
