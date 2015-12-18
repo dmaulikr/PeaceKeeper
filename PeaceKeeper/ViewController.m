@@ -132,8 +132,7 @@
 #pragma mark - UITableViewDataSource
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
-    
-    
+    [self performSegueWithIdentifier:@"ChoreDetail" sender:nil];
     
     
 }

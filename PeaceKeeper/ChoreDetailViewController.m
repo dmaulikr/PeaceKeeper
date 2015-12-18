@@ -153,7 +153,6 @@
 - (void)showEmail {
     
     if ([MFMailComposeViewController canSendMail]) {
-        
         NSString *subjectString = [NSString stringWithFormat:@"Peace Keeper %@ Reminder", self.chore.name];
         NSString *messageBodyString = [NSString stringWithFormat:@"Hey %@, PeaceKeeper reminder about your %@ task 😀", self.chore.currentPerson.firstName, self.chore.name];
         
@@ -161,6 +160,9 @@
         mailViewController.mailComposeDelegate = self;
         [mailViewController setSubject:subjectString];
         [mailViewController setMessageBody:messageBodyString isHTML:NO];
+        if (self.chore.currentPerson.email) {
+            [mailViewController setToRecipients:@[self.chore.currentPerson.email]];
+        }
         
         [self presentViewController:mailViewController animated:YES completion:nil];
     }
