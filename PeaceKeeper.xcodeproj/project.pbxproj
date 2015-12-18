@@ -32,6 +32,10 @@
 		A9ACCC5D1C239BB3002A0729 /* mopDark.png in Resources */ = {isa = PBXBuildFile; fileRef = A9ACCC5C1C239BB3002A0729 /* mopDark.png */; };
 		A9ACCC5F1C239BBD002A0729 /* sweepDark.png in Resources */ = {isa = PBXBuildFile; fileRef = A9ACCC5E1C239BBD002A0729 /* sweepDark.png */; };
 		A9ACCC631C23B20D002A0729 /* defaultDark.png in Resources */ = {isa = PBXBuildFile; fileRef = A9ACCC621C23B20D002A0729 /* defaultDark.png */; };
+		A9ACCC651C23F177002A0729 /* storeDark.png in Resources */ = {isa = PBXBuildFile; fileRef = A9ACCC641C23F177002A0729 /* storeDark.png */; };
+		A9ACCC671C23F615002A0729 /* rakeDark.png in Resources */ = {isa = PBXBuildFile; fileRef = A9ACCC661C23F615002A0729 /* rakeDark.png */; };
+		A9ACCC691C23FB96002A0729 /* dishesDark.png in Resources */ = {isa = PBXBuildFile; fileRef = A9ACCC681C23FB96002A0729 /* dishesDark.png */; };
+		A9ACCC6B1C24138F002A0729 /* peaceIcon.png in Resources */ = {isa = PBXBuildFile; fileRef = A9ACCC6A1C24138F002A0729 /* peaceIcon.png */; };
 		A9C7CE9E1C22A8CD009E6BB1 /* HomeCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = A9C7CE9D1C22A8CD009E6BB1 /* HomeCell.xib */; };
 		A9C7CEA11C22A8ED009E6BB1 /* HomeCell.m in Sources */ = {isa = PBXBuildFile; fileRef = A9C7CEA01C22A8ED009E6BB1 /* HomeCell.m */; };
 		A9C7CEA41C22C13A009E6BB1 /* MMParallaxCell.m in Sources */ = {isa = PBXBuildFile; fileRef = A9C7CEA31C22C13A009E6BB1 /* MMParallaxCell.m */; };
@@ -111,6 +115,10 @@
 		A9ACCC5C1C239BB3002A0729 /* mopDark.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = mopDark.png; sourceTree = "<group>"; };
 		A9ACCC5E1C239BBD002A0729 /* sweepDark.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = sweepDark.png; sourceTree = "<group>"; };
 		A9ACCC621C23B20D002A0729 /* defaultDark.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = defaultDark.png; sourceTree = "<group>"; };
+		A9ACCC641C23F177002A0729 /* storeDark.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = storeDark.png; sourceTree = "<group>"; };
+		A9ACCC661C23F615002A0729 /* rakeDark.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = rakeDark.png; sourceTree = "<group>"; };
+		A9ACCC681C23FB96002A0729 /* dishesDark.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = dishesDark.png; sourceTree = "<group>"; };
+		A9ACCC6A1C24138F002A0729 /* peaceIcon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = peaceIcon.png; sourceTree = "<group>"; };
 		A9C7CE9D1C22A8CD009E6BB1 /* HomeCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = HomeCell.xib; sourceTree = "<group>"; };
 		A9C7CE9F1C22A8ED009E6BB1 /* HomeCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HomeCell.h; sourceTree = "<group>"; };
 		A9C7CEA01C22A8ED009E6BB1 /* HomeCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HomeCell.m; sourceTree = "<group>"; };
@@ -234,6 +242,9 @@
 				A9ACCC5A1C239BAB002A0729 /* kitchenDark.png */,
 				A9ACCC581C239BA1002A0729 /* trashDark.png */,
 				A9ACCC621C23B20D002A0729 /* defaultDark.png */,
+				A9ACCC641C23F177002A0729 /* storeDark.png */,
+				A9ACCC661C23F615002A0729 /* rakeDark.png */,
+				A9ACCC681C23FB96002A0729 /* dishesDark.png */,
 				A9C7CE9F1C22A8ED009E6BB1 /* HomeCell.h */,
 				A9C7CEA01C22A8ED009E6BB1 /* HomeCell.m */,
 				A9C7CEA21C22C13A009E6BB1 /* MMParallaxCell.h */,
@@ -241,6 +252,7 @@
 				A9C7CEA91C2338F5009E6BB1 /* homeIcon.png */,
 				A9C7CEAB1C233A3B009E6BB1 /* householdIcon.png */,
 				A9C7CEAD1C233C78009E6BB1 /* addChoreIcon.png */,
+				A9ACCC6A1C24138F002A0729 /* peaceIcon.png */,
 				C137BA3B1C1F38D70075B349 /* PeaceKeeper */,
 				C137BA581C1F38D80075B349 /* PeaceKeeperTests */,
 				C137BA631C1F38D80075B349 /* PeaceKeeperUITests */,
@@ -411,13 +423,17 @@
 			files = (
 				C137BA4F1C1F38D80075B349 /* LaunchScreen.storyboard in Resources */,
 				A9ACCC631C23B20D002A0729 /* defaultDark.png in Resources */,
+				A9ACCC651C23F177002A0729 /* storeDark.png in Resources */,
 				C137BA4C1C1F38D80075B349 /* Assets.xcassets in Resources */,
 				A9C7CE9E1C22A8CD009E6BB1 /* HomeCell.xib in Resources */,
 				A9ACCC5F1C239BBD002A0729 /* sweepDark.png in Resources */,
 				C137BA471C1F38D80075B349 /* Main.storyboard in Resources */,
+				A9ACCC6B1C24138F002A0729 /* peaceIcon.png in Resources */,
 				A9ACCC591C239BA1002A0729 /* trashDark.png in Resources */,
+				A9ACCC691C23FB96002A0729 /* dishesDark.png in Resources */,
 				A9C7CEAC1C233A3B009E6BB1 /* householdIcon.png in Resources */,
 				A9ACCC5D1C239BB3002A0729 /* mopDark.png in Resources */,
+				A9ACCC671C23F615002A0729 /* rakeDark.png in Resources */,
 				A9C7CEAE1C233C78009E6BB1 /* addChoreIcon.png in Resources */,
 				A9ACCC5B1C239BAB002A0729 /* kitchenDark.png in Resources */,
 				A9C7CEAA1C2338F5009E6BB1 /* homeIcon.png in Resources */,

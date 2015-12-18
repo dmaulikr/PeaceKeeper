@@ -26,8 +26,10 @@
     [super viewDidLoad];
     self.tableView.dataSource = self;
     self.tableView.delegate = self;
-    self.taskArray = @[@"Sweep", @"Mop", @"Clean Kitchen", @"Take Out Trash"];
-    self.imageArray = @[[UIImage imageNamed:@"sweepDark.png"], [UIImage imageNamed:@"mopDark.png"], [UIImage imageNamed:@"kitchenDark.png"], [UIImage imageNamed:@"trashDark.png"]];
+    self.taskArray = @[@"Sweep", @"Mop", @"Clean Kitchen", @"Take Out Trash", @"Buy Groceries Hommie", @"Rake Leaves", @"Clean Dishes"];
+    self.imageArray = @[[UIImage imageNamed:@"sweepDark.png"], [UIImage imageNamed:@"mopDark.png"], [UIImage imageNamed:@"kitchenDark.png"], [UIImage imageNamed:@"trashDark.png"], [UIImage imageNamed:@"storeDark.png"],[UIImage imageNamed:@"rakeDark.png"],[UIImage imageNamed:@"dishesDark.png"]];
+    
+    [self.navigationController.navigationBar setTranslucent:true];
     
     self.defaultImg = [UIImage imageNamed:@"defaultDark.png"];
     

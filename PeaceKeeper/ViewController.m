@@ -57,6 +57,7 @@
     self.tableView.delegate = self;
     self.tableView.dataSource = self;
     [self.tableView layoutIfNeeded];
+    [self.tableView setSeparatorStyle:UITableViewCellSeparatorStyleNone];
     
     // FIXME
     AppDelegate *appDelegate = (AppDelegate *)[[UIApplication sharedApplication] delegate];
@@ -84,7 +85,7 @@
     
     [[UINavigationBar appearance] setTitleTextAttributes:@{NSFontAttributeName: [UIFont fontWithName:@"Avenir" size:25]}];
 
-    UIColor *navColor = [UIColor colorWithRed:212.0f/255.0f green:64.0f/255.0f blue:75.0f/255.0f alpha:1.0];
+    UIColor *navColor = [UIColor colorWithRed:3.0f/255.0f green:203.0f/255.0f blue:171.0f/255.0f alpha:1.0];
     self.navigationController.navigationBar.barTintColor = navColor;
     [self.navigationController.navigationBar setTitleTextAttributes:@{NSForegroundColorAttributeName:[UIColor whiteColor]}];
     
