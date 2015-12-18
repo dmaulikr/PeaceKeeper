@@ -18,6 +18,8 @@
 		964D151D1C22093500D71C81 /* ArchiveViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 964D151C1C22093500D71C81 /* ArchiveViewController.m */; };
 		965014591C239E60003DCEDA /* ImageArchiverService.m in Sources */ = {isa = PBXBuildFile; fileRef = 965014581C239E60003DCEDA /* ImageArchiverService.m */; };
 		966C01681C1F61B30028CBF7 /* TimeService.m in Sources */ = {isa = PBXBuildFile; fileRef = 966C01671C1F61B30028CBF7 /* TimeService.m */; };
+		968D67291C2476E900AC43B9 /* icon-60_3x_360.png in Resources */ = {isa = PBXBuildFile; fileRef = 968D67281C2476E900AC43B9 /* icon-60_3x_360.png */; };
+		968D672B1C24771B00AC43B9 /* icon-60_2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 968D672A1C24771B00AC43B9 /* icon-60_2x.png */; };
 		96A346101C20C7D000883BBD /* ChoreOrderViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 96A3460F1C20C7D000883BBD /* ChoreOrderViewController.m */; };
 		96F653C41C1F3EF60098A317 /* PeaceKeeper.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 96F653C21C1F3EF60098A317 /* PeaceKeeper.xcdatamodeld */; };
 		96F653D21C1F3F060098A317 /* Chore.m in Sources */ = {isa = PBXBuildFile; fileRef = 96F653C81C1F3F060098A317 /* Chore.m */; };
@@ -89,6 +91,8 @@
 		965014581C239E60003DCEDA /* ImageArchiverService.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ImageArchiverService.m; sourceTree = "<group>"; };
 		966C01661C1F61B30028CBF7 /* TimeService.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TimeService.h; sourceTree = "<group>"; };
 		966C01671C1F61B30028CBF7 /* TimeService.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TimeService.m; sourceTree = "<group>"; };
+		968D67281C2476E900AC43B9 /* icon-60_3x_360.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "icon-60_3x_360.png"; sourceTree = "<group>"; };
+		968D672A1C24771B00AC43B9 /* icon-60_2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "icon-60_2x.png"; sourceTree = "<group>"; };
 		96A3460E1C20C7D000883BBD /* ChoreOrderViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ChoreOrderViewController.h; sourceTree = "<group>"; };
 		96A3460F1C20C7D000883BBD /* ChoreOrderViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ChoreOrderViewController.m; sourceTree = "<group>"; };
 		96F653C31C1F3EF60098A317 /* PeaceKeeper.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = PeaceKeeper.xcdatamodel; sourceTree = "<group>"; };
@@ -272,6 +276,8 @@
 				964D151E1C22435500D71C81 /* Controllers */,
 				96F653D71C1F3F0B0098A317 /* Model */,
 				C137BA4B1C1F38D80075B349 /* Assets.xcassets */,
+				968D67281C2476E900AC43B9 /* icon-60_3x_360.png */,
+				968D672A1C24771B00AC43B9 /* icon-60_2x.png */,
 				C137BA4D1C1F38D80075B349 /* LaunchScreen.storyboard */,
 				C137BA501C1F38D80075B349 /* Info.plist */,
 				C137BA3C1C1F38D70075B349 /* Supporting Files */,
@@ -417,7 +423,9 @@
 				C137BA471C1F38D80075B349 /* Main.storyboard in Resources */,
 				A9ACCC591C239BA1002A0729 /* trashDark.png in Resources */,
 				A9C7CEAC1C233A3B009E6BB1 /* householdIcon.png in Resources */,
+				968D672B1C24771B00AC43B9 /* icon-60_2x.png in Resources */,
 				A9ACCC5D1C239BB3002A0729 /* mopDark.png in Resources */,
+				968D67291C2476E900AC43B9 /* icon-60_3x_360.png in Resources */,
 				A9C7CEAE1C233C78009E6BB1 /* addChoreIcon.png in Resources */,
 				A9ACCC5B1C239BAB002A0729 /* kitchenDark.png in Resources */,
 				A9C7CEAA1C2338F5009E6BB1 /* homeIcon.png in Resources */,
