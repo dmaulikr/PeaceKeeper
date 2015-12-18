@@ -100,15 +100,11 @@
 - (void)viewWillAppear:(BOOL)animated {
     self.chores = nil; // Force refetch
     [self.tableView reloadData];
-    [[UINavigationBar appearance] setTitleTextAttributes:@{NSFontAttributeName: [UIFont fontWithName:@"Avenir" size:25]}];
-
 }
 
 - (void)viewDidAppear:(BOOL)animated {
     [super viewDidAppear:animated];
     [self presentCreateHouseholdViewControllerIfNeeded];
-    [[UINavigationBar appearance] setTitleTextAttributes:@{NSFontAttributeName: [UIFont fontWithName:@"Avenir" size:25]}];
-
 }
 
 - (void)didReceiveMemoryWarning {
