@@ -31,6 +31,7 @@
 		A9ACCC5B1C239BAB002A0729 /* kitchenDark.png in Resources */ = {isa = PBXBuildFile; fileRef = A9ACCC5A1C239BAB002A0729 /* kitchenDark.png */; };
 		A9ACCC5D1C239BB3002A0729 /* mopDark.png in Resources */ = {isa = PBXBuildFile; fileRef = A9ACCC5C1C239BB3002A0729 /* mopDark.png */; };
 		A9ACCC5F1C239BBD002A0729 /* sweepDark.png in Resources */ = {isa = PBXBuildFile; fileRef = A9ACCC5E1C239BBD002A0729 /* sweepDark.png */; };
+		A9ACCC631C23B20D002A0729 /* defaultDark.png in Resources */ = {isa = PBXBuildFile; fileRef = A9ACCC621C23B20D002A0729 /* defaultDark.png */; };
 		A9C7CE9E1C22A8CD009E6BB1 /* HomeCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = A9C7CE9D1C22A8CD009E6BB1 /* HomeCell.xib */; };
 		A9C7CEA11C22A8ED009E6BB1 /* HomeCell.m in Sources */ = {isa = PBXBuildFile; fileRef = A9C7CEA01C22A8ED009E6BB1 /* HomeCell.m */; };
 		A9C7CEA41C22C13A009E6BB1 /* MMParallaxCell.m in Sources */ = {isa = PBXBuildFile; fileRef = A9C7CEA31C22C13A009E6BB1 /* MMParallaxCell.m */; };
@@ -109,6 +110,7 @@
 		A9ACCC5A1C239BAB002A0729 /* kitchenDark.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = kitchenDark.png; sourceTree = "<group>"; };
 		A9ACCC5C1C239BB3002A0729 /* mopDark.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = mopDark.png; sourceTree = "<group>"; };
 		A9ACCC5E1C239BBD002A0729 /* sweepDark.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = sweepDark.png; sourceTree = "<group>"; };
+		A9ACCC621C23B20D002A0729 /* defaultDark.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = defaultDark.png; sourceTree = "<group>"; };
 		A9C7CE9D1C22A8CD009E6BB1 /* HomeCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = HomeCell.xib; sourceTree = "<group>"; };
 		A9C7CE9F1C22A8ED009E6BB1 /* HomeCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HomeCell.h; sourceTree = "<group>"; };
 		A9C7CEA01C22A8ED009E6BB1 /* HomeCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HomeCell.m; sourceTree = "<group>"; };
@@ -231,6 +233,7 @@
 				A9ACCC5C1C239BB3002A0729 /* mopDark.png */,
 				A9ACCC5A1C239BAB002A0729 /* kitchenDark.png */,
 				A9ACCC581C239BA1002A0729 /* trashDark.png */,
+				A9ACCC621C23B20D002A0729 /* defaultDark.png */,
 				A9C7CE9F1C22A8ED009E6BB1 /* HomeCell.h */,
 				A9C7CEA01C22A8ED009E6BB1 /* HomeCell.m */,
 				A9C7CEA21C22C13A009E6BB1 /* MMParallaxCell.h */,
@@ -407,6 +410,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				C137BA4F1C1F38D80075B349 /* LaunchScreen.storyboard in Resources */,
+				A9ACCC631C23B20D002A0729 /* defaultDark.png in Resources */,
 				C137BA4C1C1F38D80075B349 /* Assets.xcassets in Resources */,
 				A9C7CE9E1C22A8CD009E6BB1 /* HomeCell.xib in Resources */,
 				A9ACCC5F1C239BBD002A0729 /* sweepDark.png in Resources */,

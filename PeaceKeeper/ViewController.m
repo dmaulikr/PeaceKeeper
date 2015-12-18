@@ -51,7 +51,6 @@
 }
 
 
-
 - (void)viewDidLoad {
     [super viewDidLoad];
     self.navigationController.view.backgroundColor = [UIColor whiteColor];
@@ -59,11 +58,7 @@
     self.tableView.dataSource = self;
     [self.tableView layoutIfNeeded];
     
-    // Initializing an app delegate property in a viewDidLoad!
     // FIXME
-    // ???
-    // !!!
-    // WTF
     AppDelegate *appDelegate = (AppDelegate *)[[UIApplication sharedApplication] delegate];
     if (!appDelegate.images) {
         NSMutableArray *images = [ImageArchiverService getMutableImagesArray];
@@ -80,9 +75,7 @@
     //setting up custom cell
 //    [self.tableView registerNib:[UINib nibWithNibName:@"HomeCell" bundle:nil]
 //         forCellReuseIdentifier:@"homeCell"];
-    
-    self.navigationController.navigationBar.topItem.title = @"PeaceKeeper";
-    
+    self.navigationItem.title = @"PeaceKeeper";
 }
 
 
@@ -90,11 +83,8 @@
 -(void) setupNavigationBar {
     
     [[UINavigationBar appearance] setTitleTextAttributes:@{NSFontAttributeName: [UIFont fontWithName:@"Avenir" size:25]}];
-    
-    UIImage* logoImage = [UIImage imageNamed:@"logo.png"];
-    self.navigationItem.titleView = [[UIImageView alloc] initWithImage:logoImage];
-    
-    UIColor *navColor = [UIColor colorWithRed:209.0f/255.0f green:77.0f/255.0f blue:87.0f/255.0f alpha:1.0];
+
+    UIColor *navColor = [UIColor colorWithRed:212.0f/255.0f green:64.0f/255.0f blue:75.0f/255.0f alpha:1.0];
     self.navigationController.navigationBar.barTintColor = navColor;
     [self.navigationController.navigationBar setTitleTextAttributes:@{NSForegroundColorAttributeName:[UIColor whiteColor]}];
     
@@ -110,11 +100,15 @@
 - (void)viewWillAppear:(BOOL)animated {
     self.chores = nil; // Force refetch
     [self.tableView reloadData];
+    [[UINavigationBar appearance] setTitleTextAttributes:@{NSFontAttributeName: [UIFont fontWithName:@"Avenir" size:25]}];
+
 }
 
 - (void)viewDidAppear:(BOOL)animated {
     [super viewDidAppear:animated];
     [self presentCreateHouseholdViewControllerIfNeeded];
+    [[UINavigationBar appearance] setTitleTextAttributes:@{NSFontAttributeName: [UIFont fontWithName:@"Avenir" size:25]}];
+
 }
 
 - (void)didReceiveMemoryWarning {

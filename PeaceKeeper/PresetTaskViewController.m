@@ -16,6 +16,7 @@
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
 @property (strong, nonatomic) NSArray *taskArray;
 @property (strong, nonatomic) NSArray<UIImage *> *imageArray;
+@property (strong, nonatomic) UIImage *defaultImg;
 
 @end
 
@@ -27,6 +28,10 @@
     self.tableView.delegate = self;
     self.taskArray = @[@"Sweep", @"Mop", @"Clean Kitchen", @"Take Out Trash"];
     self.imageArray = @[[UIImage imageNamed:@"sweepDark.png"], [UIImage imageNamed:@"mopDark.png"], [UIImage imageNamed:@"kitchenDark.png"], [UIImage imageNamed:@"trashDark.png"]];
+    
+    self.defaultImg = [UIImage imageNamed:@"defaultDark.png"];
+    
+    
     // Do any additional setup after loading the view.
 }
 
@@ -50,7 +55,7 @@
         }
         if ([sender isKindOfClass:[NSString class]]) {
             choreInfo[kChoreInfoKeyTitleString] = (NSString *)sender;
-//            choreInfo[kChoreInfoKeyImage] = self.imageArray[row];
+            choreInfo[kChoreInfoKeyImage] = self.defaultImg;
         }
         makeChoreViewController.choreInfo = choreInfo;
     }
