@@ -143,8 +143,10 @@
         cell = [[MMParallaxCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"homeCell"];
         cell.parallaxRatio = 1.8f;
     }
-        
-    [cell.parallaxImage setImage:[UIImage imageNamed:@"sweep.jpg"]];
+    
+    AppDelegate *appDelegate = (AppDelegate *)[[UIApplication sharedApplication] delegate];
+
+    [cell.parallaxImage setImage:appDelegate.images[indexPath.row]];
     
     //NEW CODE
     cell.taskLabel.text = [self.chores[indexPath.row] name];
