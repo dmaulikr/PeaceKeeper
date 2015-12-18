@@ -26,8 +26,17 @@
 }
 
 
+
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     // Override point for customization after application launch.
+    
+    [[UINavigationBar appearance] setTintColor:[UIColor whiteColor]];
+    
+    
+    [[UINavigationBar appearance] setTitleTextAttributes:@{NSFontAttributeName: [UIFont fontWithName:@"Avenir" size:25]}];
+//    ((UINavigationController *)self.window.rootViewController).navigationBar.topItem.title = @"PeaceKeeper";
+//    [[UINavigationController ]]    self.navigationController.navigationBar.topItem.title = @"PeaceKeeper";
+
 
     UILocalNotification *localNotification = launchOptions[UIApplicationLaunchOptionsLocalNotificationKey];
     
