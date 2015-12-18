@@ -34,10 +34,7 @@
     UIColor *navColor = [UIColor colorWithRed:212.0f/255.0f green:64.0f/255.0f blue:75.0f/255.0f alpha:1.0];
     [[UINavigationBar appearance] setBarTintColor:navColor];
     
-    [[UINavigationBar appearance] setTitleTextAttributes:@{NSFontAttributeName: [UIFont fontWithName:@"Avenir" size:25]}];
-//    ((UINavigationController *)self.window.rootViewController).navigationBar.topItem.title = @"PeaceKeeper";
-//    [[UINavigationController ]]    self.navigationController.navigationBar.topItem.title = @"PeaceKeeper";
-
+    [[UINavigationBar appearance] setTitleTextAttributes:@{NSFontAttributeName: [UIFont fontWithName:@"Avenir" size:25], NSForegroundColorAttributeName: [UIColor whiteColor]}];
 
     UILocalNotification *localNotification = launchOptions[UIApplicationLaunchOptionsLocalNotificationKey];
     
