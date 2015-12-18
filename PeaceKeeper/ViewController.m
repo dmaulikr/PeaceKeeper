@@ -69,6 +69,7 @@
     
 }
 
+
 -(void) setupNavigationBar {
     
     [[UINavigationBar appearance] setTitleTextAttributes:@{NSFontAttributeName: [UIFont fontWithName:@"Avenir" size:25]}];
