@@ -27,13 +27,13 @@
 		96F654111C1F50C80098A317 /* NSManagedObjectContext+Category.m in Sources */ = {isa = PBXBuildFile; fileRef = 96F654101C1F50C80098A317 /* NSManagedObjectContext+Category.m */; };
 		A96740A31C1F49830021DB71 /* CreateHouseholdViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A96740A21C1F49830021DB71 /* CreateHouseholdViewController.m */; };
 		A9ACCC451C235AA5002A0729 /* PresetTaskViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A9ACCC441C235AA5002A0729 /* PresetTaskViewController.m */; };
-		A9ACCC471C23862A002A0729 /* mop2.png in Resources */ = {isa = PBXBuildFile; fileRef = A9ACCC461C23862A002A0729 /* mop2.png */; };
-		A9ACCC491C238630002A0729 /* trash2.png in Resources */ = {isa = PBXBuildFile; fileRef = A9ACCC481C238630002A0729 /* trash2.png */; };
-		A9ACCC4B1C238638002A0729 /* kitchen2.png in Resources */ = {isa = PBXBuildFile; fileRef = A9ACCC4A1C238638002A0729 /* kitchen2.png */; };
+		A9ACCC591C239BA1002A0729 /* trashDark.png in Resources */ = {isa = PBXBuildFile; fileRef = A9ACCC581C239BA1002A0729 /* trashDark.png */; };
+		A9ACCC5B1C239BAB002A0729 /* kitchenDark.png in Resources */ = {isa = PBXBuildFile; fileRef = A9ACCC5A1C239BAB002A0729 /* kitchenDark.png */; };
+		A9ACCC5D1C239BB3002A0729 /* mopDark.png in Resources */ = {isa = PBXBuildFile; fileRef = A9ACCC5C1C239BB3002A0729 /* mopDark.png */; };
+		A9ACCC5F1C239BBD002A0729 /* sweepDark.png in Resources */ = {isa = PBXBuildFile; fileRef = A9ACCC5E1C239BBD002A0729 /* sweepDark.png */; };
 		A9C7CE9E1C22A8CD009E6BB1 /* HomeCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = A9C7CE9D1C22A8CD009E6BB1 /* HomeCell.xib */; };
 		A9C7CEA11C22A8ED009E6BB1 /* HomeCell.m in Sources */ = {isa = PBXBuildFile; fileRef = A9C7CEA01C22A8ED009E6BB1 /* HomeCell.m */; };
 		A9C7CEA41C22C13A009E6BB1 /* MMParallaxCell.m in Sources */ = {isa = PBXBuildFile; fileRef = A9C7CEA31C22C13A009E6BB1 /* MMParallaxCell.m */; };
-		A9C7CEA61C22C2DE009E6BB1 /* sweep.jpg in Resources */ = {isa = PBXBuildFile; fileRef = A9C7CEA51C22C2DE009E6BB1 /* sweep.jpg */; };
 		A9C7CEAA1C2338F5009E6BB1 /* homeIcon.png in Resources */ = {isa = PBXBuildFile; fileRef = A9C7CEA91C2338F5009E6BB1 /* homeIcon.png */; };
 		A9C7CEAC1C233A3B009E6BB1 /* householdIcon.png in Resources */ = {isa = PBXBuildFile; fileRef = A9C7CEAB1C233A3B009E6BB1 /* householdIcon.png */; };
 		A9C7CEAE1C233C78009E6BB1 /* addChoreIcon.png in Resources */ = {isa = PBXBuildFile; fileRef = A9C7CEAD1C233C78009E6BB1 /* addChoreIcon.png */; };
@@ -105,15 +105,15 @@
 		A96740A21C1F49830021DB71 /* CreateHouseholdViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CreateHouseholdViewController.m; sourceTree = "<group>"; };
 		A9ACCC431C235AA5002A0729 /* PresetTaskViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PresetTaskViewController.h; sourceTree = "<group>"; };
 		A9ACCC441C235AA5002A0729 /* PresetTaskViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PresetTaskViewController.m; sourceTree = "<group>"; };
-		A9ACCC461C23862A002A0729 /* mop2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = mop2.png; sourceTree = "<group>"; };
-		A9ACCC481C238630002A0729 /* trash2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = trash2.png; sourceTree = "<group>"; };
-		A9ACCC4A1C238638002A0729 /* kitchen2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = kitchen2.png; sourceTree = "<group>"; };
+		A9ACCC581C239BA1002A0729 /* trashDark.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = trashDark.png; sourceTree = "<group>"; };
+		A9ACCC5A1C239BAB002A0729 /* kitchenDark.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = kitchenDark.png; sourceTree = "<group>"; };
+		A9ACCC5C1C239BB3002A0729 /* mopDark.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = mopDark.png; sourceTree = "<group>"; };
+		A9ACCC5E1C239BBD002A0729 /* sweepDark.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = sweepDark.png; sourceTree = "<group>"; };
 		A9C7CE9D1C22A8CD009E6BB1 /* HomeCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = HomeCell.xib; sourceTree = "<group>"; };
 		A9C7CE9F1C22A8ED009E6BB1 /* HomeCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HomeCell.h; sourceTree = "<group>"; };
 		A9C7CEA01C22A8ED009E6BB1 /* HomeCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HomeCell.m; sourceTree = "<group>"; };
 		A9C7CEA21C22C13A009E6BB1 /* MMParallaxCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MMParallaxCell.h; sourceTree = "<group>"; };
 		A9C7CEA31C22C13A009E6BB1 /* MMParallaxCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MMParallaxCell.m; sourceTree = "<group>"; };
-		A9C7CEA51C22C2DE009E6BB1 /* sweep.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = sweep.jpg; sourceTree = "<group>"; };
 		A9C7CEA91C2338F5009E6BB1 /* homeIcon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = homeIcon.png; sourceTree = "<group>"; };
 		A9C7CEAB1C233A3B009E6BB1 /* householdIcon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = householdIcon.png; sourceTree = "<group>"; };
 		A9C7CEAD1C233C78009E6BB1 /* addChoreIcon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = addChoreIcon.png; sourceTree = "<group>"; };
@@ -227,14 +227,14 @@
 			children = (
 				C137BA451C1F38D80075B349 /* Main.storyboard */,
 				A9C7CE9D1C22A8CD009E6BB1 /* HomeCell.xib */,
+				A9ACCC5E1C239BBD002A0729 /* sweepDark.png */,
+				A9ACCC5C1C239BB3002A0729 /* mopDark.png */,
+				A9ACCC5A1C239BAB002A0729 /* kitchenDark.png */,
+				A9ACCC581C239BA1002A0729 /* trashDark.png */,
 				A9C7CE9F1C22A8ED009E6BB1 /* HomeCell.h */,
 				A9C7CEA01C22A8ED009E6BB1 /* HomeCell.m */,
 				A9C7CEA21C22C13A009E6BB1 /* MMParallaxCell.h */,
 				A9C7CEA31C22C13A009E6BB1 /* MMParallaxCell.m */,
-				A9C7CEA51C22C2DE009E6BB1 /* sweep.jpg */,
-				A9ACCC461C23862A002A0729 /* mop2.png */,
-				A9ACCC481C238630002A0729 /* trash2.png */,
-				A9ACCC4A1C238638002A0729 /* kitchen2.png */,
 				A9C7CEA91C2338F5009E6BB1 /* homeIcon.png */,
 				A9C7CEAB1C233A3B009E6BB1 /* householdIcon.png */,
 				A9C7CEAD1C233C78009E6BB1 /* addChoreIcon.png */,
@@ -369,7 +369,7 @@
 				TargetAttributes = {
 					C137BA381C1F38D70075B349 = {
 						CreatedOnToolsVersion = 7.2;
-						DevelopmentTeam = RBU43E9PMH;
+						DevelopmentTeam = 7JPV3NX8Z6;
 					};
 					C137BA541C1F38D80075B349 = {
 						CreatedOnToolsVersion = 7.2;
@@ -406,16 +406,16 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				A9C7CEA61C22C2DE009E6BB1 /* sweep.jpg in Resources */,
 				C137BA4F1C1F38D80075B349 /* LaunchScreen.storyboard in Resources */,
-				A9ACCC471C23862A002A0729 /* mop2.png in Resources */,
 				C137BA4C1C1F38D80075B349 /* Assets.xcassets in Resources */,
-				A9ACCC4B1C238638002A0729 /* kitchen2.png in Resources */,
 				A9C7CE9E1C22A8CD009E6BB1 /* HomeCell.xib in Resources */,
+				A9ACCC5F1C239BBD002A0729 /* sweepDark.png in Resources */,
 				C137BA471C1F38D80075B349 /* Main.storyboard in Resources */,
+				A9ACCC591C239BA1002A0729 /* trashDark.png in Resources */,
 				A9C7CEAC1C233A3B009E6BB1 /* householdIcon.png in Resources */,
-				A9ACCC491C238630002A0729 /* trash2.png in Resources */,
+				A9ACCC5D1C239BB3002A0729 /* mopDark.png in Resources */,
 				A9C7CEAE1C233C78009E6BB1 /* addChoreIcon.png in Resources */,
+				A9ACCC5B1C239BAB002A0729 /* kitchenDark.png in Resources */,
 				A9C7CEAA1C2338F5009E6BB1 /* homeIcon.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

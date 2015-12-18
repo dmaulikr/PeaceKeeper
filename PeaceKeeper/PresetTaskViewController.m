@@ -26,7 +26,7 @@
     self.tableView.dataSource = self;
     self.tableView.delegate = self;
     self.taskArray = @[@"Sweep", @"Mop", @"Clean Kitchen", @"Take Out Trash"];
-    self.imageArray = @[[UIImage imageNamed:@"sweep.jpg"], [UIImage imageNamed:@"mop2.png"], [UIImage imageNamed:@"kitchen2.png"], [UIImage imageNamed:@"trash2.png"]];
+    self.imageArray = @[[UIImage imageNamed:@"sweepDark.png"], [UIImage imageNamed:@"mopDark.png"], [UIImage imageNamed:@"kitchenDark.png"], [UIImage imageNamed:@"trashDark.png"]];
     // Do any additional setup after loading the view.
 }
 

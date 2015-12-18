@@ -86,6 +86,7 @@
 }
 
 
+
 -(void) setupNavigationBar {
     
     [[UINavigationBar appearance] setTitleTextAttributes:@{NSFontAttributeName: [UIFont fontWithName:@"Avenir" size:25]}];
@@ -93,7 +94,7 @@
     UIImage* logoImage = [UIImage imageNamed:@"logo.png"];
     self.navigationItem.titleView = [[UIImageView alloc] initWithImage:logoImage];
     
-    UIColor *navColor = [UIColor colorWithRed:102.0f/255.0f green:205.0f/255.0f blue:154.0f/255.0f alpha:1.0];
+    UIColor *navColor = [UIColor colorWithRed:209.0f/255.0f green:77.0f/255.0f blue:87.0f/255.0f alpha:1.0];
     self.navigationController.navigationBar.barTintColor = navColor;
     [self.navigationController.navigationBar setTitleTextAttributes:@{NSForegroundColorAttributeName:[UIColor whiteColor]}];
     
