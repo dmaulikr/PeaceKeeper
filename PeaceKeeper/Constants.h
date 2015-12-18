@@ -14,6 +14,8 @@ extern NSString *const kChoreInfoKeyStartDate;
 extern NSString *const kChoreInfoKeyIntervalString;
 extern NSString *const kChoreInfoKeyImage;
 
+extern NSString *const kChoreImagesMutableArrayName;
+
 extern NSString *const kChoreNameKey;
 
 extern NSString *const kChoreNotificationCategoryIdentifier;
