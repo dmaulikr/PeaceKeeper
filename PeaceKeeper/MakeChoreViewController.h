@@ -10,4 +10,6 @@
 
 @interface MakeChoreViewController : UIViewController
 
+@property (strong, nonatomic) NSDictionary *choreInfo;
+
 @end

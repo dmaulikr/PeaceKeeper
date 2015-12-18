@@ -7,12 +7,15 @@
 //
 
 #import "PresetTaskViewController.h"
+#import "MakeChoreViewController.h"
+#import "Constants.h"
 
 @interface PresetTaskViewController () <UITableViewDataSource, UITableViewDelegate>
 
 
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
 @property (strong, nonatomic) NSArray *taskArray;
+@property (strong, nonatomic) NSArray<UIImage *> *imageArray;
 
 @end
 
@@ -23,6 +26,7 @@
     self.tableView.dataSource = self;
     self.tableView.delegate = self;
     self.taskArray = @[@"Sweep", @"Mop", @"Clean Kitchen", @"Take Out Trash"];
+    self.imageArray = @[[UIImage imageNamed:@"sweep.jpg"], [UIImage imageNamed:@"mop2.png"], [UIImage imageNamed:@"kitchen2.png"], [UIImage imageNamed:@"trash2.png"]];
     // Do any additional setup after loading the view.
 }
 
@@ -31,9 +35,29 @@
     // Dispose of any resources that can be recreated.
 }
 
+#pragma mark - Segue
+
+- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
+
+    if ([segue.identifier isEqualToString:@"MakeChore"]) {
+
+        MakeChoreViewController *makeChoreViewController = (MakeChoreViewController *)segue.destinationViewController;
+        NSMutableDictionary *choreInfo = [NSMutableDictionary dictionary];
+        if ([sender isKindOfClass:[NSIndexPath class]]) {
+            NSUInteger row = ((NSIndexPath *)sender).row;
+            choreInfo[kChoreInfoKeyTitleString] = self.taskArray[row];
+            choreInfo[kChoreInfoKeyImage] = self.imageArray[row];
+        }
+        if ([sender isKindOfClass:[NSString class]]) {
+            choreInfo[kChoreInfoKeyTitleString] = (NSString *)sender;
+//            choreInfo[kChoreInfoKeyImage] = self.imageArray[row];
+        }
+        makeChoreViewController.choreInfo = choreInfo;
+    }
+}
 
 
-#pragma mark UITableViewDelegate Methods
+#pragma mark - UITableViewDelegate Methods
 
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
@@ -69,7 +93,10 @@
         
         UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"Set task name" message:@"" preferredStyle:UIAlertControllerStyleAlert];
         
-        UIAlertAction* ok = [UIAlertAction actionWithTitle:@"OK" style:UIAlertActionStyleDefault handler:nil];
+        UIAlertAction* ok = [UIAlertAction actionWithTitle:@"OK" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
+            NSString *text = alert.textFields.firstObject.text;
+            [self performSegueWithIdentifier:@"MakeChore" sender:text];
+        }];
         
         UIAlertAction* cancel = [UIAlertAction actionWithTitle:@"Cancel" style:UIAlertActionStyleDestructive handler:nil];
         
@@ -87,6 +114,8 @@
         
         
         
+    } else {
+        [self performSegueWithIdentifier:@"MakeChore" sender:indexPath];
     }
     
     

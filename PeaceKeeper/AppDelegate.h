@@ -24,6 +24,7 @@
 
 + (AppDelegate *)getAppDelegate;
 
+@property (strong, nonatomic) NSMutableArray<UIImage *> *images;
 
 @end
 

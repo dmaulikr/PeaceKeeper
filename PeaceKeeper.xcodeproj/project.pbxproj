@@ -166,6 +166,8 @@
 				C137BA431C1F38D80075B349 /* ViewController.m */,
 				A96740A11C1F49830021DB71 /* CreateHouseholdViewController.h */,
 				A96740A21C1F49830021DB71 /* CreateHouseholdViewController.m */,
+				A9ACCC431C235AA5002A0729 /* PresetTaskViewController.h */,
+				A9ACCC441C235AA5002A0729 /* PresetTaskViewController.m */,
 				964074E51C2092F5003403CB /* MakeChoreViewController.h */,
 				964074E61C2092F5003403CB /* MakeChoreViewController.m */,
 				964074E81C209DEC003403CB /* AssignChoreViewController.h */,
@@ -178,8 +180,6 @@
 				964D15191C21EA0C00D71C81 /* HouseholdViewController.m */,
 				964D151B1C22093500D71C81 /* ArchiveViewController.h */,
 				964D151C1C22093500D71C81 /* ArchiveViewController.m */,
-				A9ACCC431C235AA5002A0729 /* PresetTaskViewController.h */,
-				A9ACCC441C235AA5002A0729 /* PresetTaskViewController.m */,
 			);
 			name = Controllers;
 			sourceTree = "<group>";
@@ -364,7 +364,7 @@
 				TargetAttributes = {
 					C137BA381C1F38D70075B349 = {
 						CreatedOnToolsVersion = 7.2;
-						DevelopmentTeam = 7JPV3NX8Z6;
+						DevelopmentTeam = RBU43E9PMH;
 					};
 					C137BA541C1F38D80075B349 = {
 						CreatedOnToolsVersion = 7.2;
