@@ -14,6 +14,7 @@
 #import "TimeService.h"
 #import "Constants.h"
 #import "AppDelegate.h"
+#import "ImageArchiverService.h"
 
 @interface ChoreOrderViewController () <UITableViewDataSource, UITableViewDelegate>
 
@@ -43,17 +44,9 @@
     
     // Put the chore image in the
     AppDelegate *appDelegate = (AppDelegate *)[[UIApplication sharedApplication] delegate];
-    if (!appDelegate.images) {
-        NSMutableArray *images = [self getMutableImagesArray];
-        if (images) {
-            appDelegate.images = images;
-        } else {
-            appDelegate.images = [NSMutableArray array];
-        }
-    }
     [appDelegate.images addObject:(UIImage *)self.choreInfo[kChoreInfoKeyImage]];
-    [self archiveMutableImagesArray:appDelegate.images];
-    
+    [ImageArchiverService archiveMutableImagesArray:appDelegate.images];
+
     // Schedule the notification
     NSCalendarUnit repeatInterval = [TimeService calendarUnitForString:choreIntervalString];
     NSString *alertTitle = [NSString stringWithFormat:@"“%@” Due", choreName];
@@ -61,21 +54,6 @@
     NSDictionary *userInfo = [NSDictionary dictionaryWithObject:choreName forKey:kChoreNameKey];
     [TimeService scheduleLocalNotificationInUsersTimeZoneAndCalendarWithFireDate:choreStartDate repeatInterval:repeatInterval alertTitle:alertTitle alertBody:alertBody userInfo:userInfo category:kChoreNotificationCategoryIdentifier];
     [self.navigationController popToRootViewControllerAnimated:true];
-}
-
-- (NSMutableArray *)getMutableImagesArray {
-    NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, true);
-    NSString *documentDirectory = paths.firstObject;
-    NSString *filePath = [documentDirectory stringByAppendingPathComponent:kChoreImagesMutableArrayName];
-    NSMutableArray *images = [NSKeyedUnarchiver unarchiveObjectWithFile:filePath];
-    return images;
-}
-
-- (void)archiveMutableImagesArray:(NSMutableArray *)mutableImagesArray {
-    NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, true);
-    NSString *documentDirectory = paths.firstObject;
-    NSString *filePath = [documentDirectory stringByAppendingPathComponent:kChoreImagesMutableArrayName];
-    [NSKeyedArchiver archiveRootObject:mutableImagesArray toFile:filePath];
 }
 
 #pragma mark - UITableViewDataSource

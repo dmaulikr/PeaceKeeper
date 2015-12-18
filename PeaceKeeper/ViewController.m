@@ -22,6 +22,8 @@
 
 #import "HomeCell.h"
 
+#import "ImageArchiverService.h"
+
 @interface ViewController () <UITableViewDataSource, UITableViewDelegate>
 
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
@@ -57,6 +59,20 @@
     self.tableView.dataSource = self;
     [self.tableView layoutIfNeeded];
     
+    // Initializing an app delegate property in a viewDidLoad!
+    // FIXME
+    // ???
+    // !!!
+    // WTF
+    AppDelegate *appDelegate = (AppDelegate *)[[UIApplication sharedApplication] delegate];
+    if (!appDelegate.images) {
+        NSMutableArray *images = [ImageArchiverService getMutableImagesArray];
+        if (images) {
+            appDelegate.images = images;
+        } else {
+            appDelegate.images = [NSMutableArray array];
+        }
+    }
     
     [self setUpNavBarButtons];
     [self setupNavigationBar];
@@ -148,7 +164,6 @@
     }
     
     AppDelegate *appDelegate = (AppDelegate *)[[UIApplication sharedApplication] delegate];
-
     [cell.parallaxImage setImage:appDelegate.images[indexPath.row]];
     
     //NEW CODE
