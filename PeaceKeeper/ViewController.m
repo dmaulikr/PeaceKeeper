@@ -55,8 +55,10 @@
     self.navigationController.view.backgroundColor = [UIColor whiteColor];
     self.tableView.delegate = self;
     self.tableView.dataSource = self;
-    [self setUpNavBarButtons];
+    [self.tableView layoutIfNeeded];
     
+    
+    [self setUpNavBarButtons];
     [self setupNavigationBar];
     
     //setting up custom cell
@@ -69,7 +71,7 @@
 
 -(void) setupNavigationBar {
     
-    [[UINavigationBar appearance] setTitleTextAttributes:@{UITextAttributeFont: [UIFont fontWithName:@"Helvetica" size:25]}];
+    [[UINavigationBar appearance] setTitleTextAttributes:@{NSFontAttributeName: [UIFont fontWithName:@"Avenir" size:25]}];
     
     UIImage* logoImage = [UIImage imageNamed:@"logo.png"];
     self.navigationItem.titleView = [[UIImageView alloc] initWithImage:logoImage];
