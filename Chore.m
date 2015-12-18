@@ -56,13 +56,16 @@
 
 - (void)completeChore {
     [CompletedChore completedChoreWithCompletionDate:[NSDate date] chore:self person:[self.people objectAtIndex:self.currentPersonIndex.integerValue] household:self.household];
-    
+    NSLog(@"CPI: %@", self.currentPersonIndex);
     NSInteger currentPersonIndexValue = self.currentPersonIndex.integerValue;
     if (currentPersonIndexValue >= [self.people count] - 1) {
         self.currentPersonIndex = @(0);
     } else {
-        self.currentPersonIndex = @(currentPersonIndexValue++);
+        NSUInteger i = currentPersonIndexValue;
+        i++;
+        self.currentPersonIndex = @(i);
     }
+    NSLog(@"CPI: %@", self.currentPersonIndex);
     [NSManagedObjectContext saveManagedObjectContext];
 }
 

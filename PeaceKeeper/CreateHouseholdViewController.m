@@ -62,6 +62,7 @@ typedef void (^myCompletion)(BOOL);
     button.center = CGPointMake(button.frame.origin.x, button.frame.origin.y);
     [button setBackgroundColor:[UIColor blueColor]];
     self.doneButton = button;
+    self.navigationItem.rightBarButtonItem.tintColor = [UIColor blueColor];
     
     [self.view addSubview:button];
 }
