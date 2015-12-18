@@ -16,11 +16,7 @@
 #import "HouseholdViewController.h"
 #import "MakeChoreViewController.h"
 #import "ChoreDetailViewController.h"
-
-#import "MMParallaxCell.h"
 #import "PresetTaskViewController.h"
-
-#import "HomeCell.h"
 
 @interface ViewController () <UITableViewDataSource, UITableViewDelegate>
 
@@ -55,31 +51,8 @@
     self.navigationController.view.backgroundColor = [UIColor whiteColor];
     self.tableView.delegate = self;
     self.tableView.dataSource = self;
-    [self setUpNavBarButtons];
-    
-    [self setupNavigationBar];
-    
-    //setting up custom cell
-//    [self.tableView registerNib:[UINib nibWithNibName:@"HomeCell" bundle:nil]
-//         forCellReuseIdentifier:@"homeCell"];
     
     self.navigationController.navigationBar.topItem.title = @"PeaceKeeper";
-    
-}
-
--(void) setupNavigationBar {
-    
-    [[UINavigationBar appearance] setTitleTextAttributes:@{UITextAttributeFont: [UIFont fontWithName:@"Helvetica" size:25]}];
-    
-    UIImage* logoImage = [UIImage imageNamed:@"logo.png"];
-    self.navigationItem.titleView = [[UIImageView alloc] initWithImage:logoImage];
-    
-    UIColor *navColor = [UIColor colorWithRed:102.0f/255.0f green:205.0f/255.0f blue:154.0f/255.0f alpha:1.0];
-    self.navigationController.navigationBar.barTintColor = navColor;
-    [self.navigationController.navigationBar setTitleTextAttributes:@{NSForegroundColorAttributeName:[UIColor whiteColor]}];
-    
-    [self.tabBarController.tabBar setTintColor:[UIColor whiteColor]];
-    [self.tabBarController.tabBar setBarTintColor:navColor];
     
 }
 
@@ -133,68 +106,10 @@
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-//    MMParallaxCell *cell = (MMParallaxCell *)[self.tableView dequeueReusableCellWithIdentifier:@"homeCell" forIndexPath:indexPath];
-    
+    UITableViewCell *cell = [self.tableView dequeueReusableCellWithIdentifier:@"Chore" forIndexPath:indexPath];
     Chore *chore = self.chores[indexPath.row];
-    
-    MMParallaxCell* cell = [tableView dequeueReusableCellWithIdentifier:@"homeCell"];
-    if (cell == nil)
-    {
-        cell = [[MMParallaxCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"homeCell"];
-        cell.parallaxRatio = 1.8f;
-    }
-    
-    AppDelegate *appDelegate = (AppDelegate *)[[UIApplication sharedApplication] delegate];
-
-    [cell.parallaxImage setImage:appDelegate.images[indexPath.row]];
-    
-    //NEW CODE
-    cell.taskLabel.text = [self.chores[indexPath.row] name];
-    cell.taskLabel.frame = CGRectMake(cell.contentView.frame.size.width/2, cell.contentView.frame.size.height / 2 - 10, 400, 50);
-    cell.taskLabel.textColor = [UIColor whiteColor];
-    //cell.taskLabel.backgroundColor = [UIColor blackColor];
-    cell.taskLabel.center = CGPointMake(cell.taskLabel.frame.origin.x, cell.taskLabel.frame.origin.y);
-    cell.taskLabel.textAlignment = NSTextAlignmentCenter;
-    cell.taskLabel.font = [UIFont systemFontOfSize:25];
-    cell.taskLabel.font = [UIFont fontWithName:@"Avenir" size:25];
-
-    
-    cell.personLabel.text = [NSString stringWithFormat:@"Next up: %@",[[self.chores[indexPath.row] currentPerson] firstName]];
-    cell.personLabel.frame = CGRectMake(cell.contentView.frame.size.width/2, cell.contentView.frame.size.height / 2 + 60, 400, 50);
-    cell.personLabel.textColor = [UIColor whiteColor];
-    cell.personLabel.backgroundColor = [UIColor colorWithRed:0.0f/255.0f green:0.0f/255.0f blue:0.0f/255.0f alpha:0.5];
-    cell.personLabel.center = CGPointMake(cell.personLabel.frame.origin.x, cell.personLabel.frame.origin.y);
-    cell.personLabel.textAlignment = NSTextAlignmentCenter;
-    cell.personLabel.font = [UIFont systemFontOfSize:25];
-    cell.personLabel.font = [UIFont fontWithName:@"Avenir" size:25];
-    
+    cell.textLabel.text = chore.name;
     return cell;
-
-    
-}
-
-
-
-- (void)setUpNavBarButtons {
-    
-    UIBarButtonItem *makeChore = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"addChoreIcon"] landscapeImagePhone:nil style:UIBarButtonItemStylePlain target:self action:@selector(makeChoreButtonPressed)];
-    
-    makeChore.tintColor = [UIColor whiteColor];
-    
-    [self.navigationController.navigationBar.topItem setRightBarButtonItem:makeChore];
-    
-    UIBarButtonItem *houseHold = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"householdIcon"] landscapeImagePhone:nil style:UIBarButtonItemStylePlain target:self action:@selector(householdButtonPressed)];
-    
-    houseHold.tintColor = [UIColor whiteColor];
-    
-    [self.navigationController.navigationBar.topItem setLeftBarButtonItem:houseHold];
-}
-
-- (void)householdButtonPressed {
-    HouseholdViewController *householdViewController = [self.storyboard instantiateViewControllerWithIdentifier:@"Household"];
-    [self.navigationController pushViewController:householdViewController animated:YES];
-    
-    
 }
 
 - (void)makeChoreButtonPressed {

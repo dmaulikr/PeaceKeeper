@@ -25,7 +25,6 @@
     return [UIApplication sharedApplication].delegate;
 }
 
-
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     // Override point for customization after application launch.
 
@@ -39,11 +38,6 @@
     self.contactStore = [[CNContactStore alloc] init];
     
     [self registerForNotifications];
-    
-    [UIApplication sharedApplication].statusBarStyle = UIStatusBarStyleLightContent;
-
-  
-//    [application cancelAllLocalNotifications];
 
     return YES;
 }
