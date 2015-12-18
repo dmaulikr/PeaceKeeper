@@ -13,6 +13,7 @@
 #import "NSManagedObjectContext+Category.h"
 #import "TimeService.h"
 #import "Constants.h"
+#import "AppDelegate.h"
 
 @interface ChoreOrderViewController () <UITableViewDataSource, UITableViewDelegate>
 
@@ -39,6 +40,13 @@
     NSOrderedSet *people = [NSOrderedSet orderedSetWithArray:self.selectedPeople];
     Household *household = [Household fetchHousehold];
     [Chore choreWithName:choreName startDate:choreStartDate repeatIntervalValue:@(1) repeatIntervalUnit:choreIntervalString household:household people:people];
+    
+    // Put the chore image in the
+    AppDelegate *appDelegate = (AppDelegate *)[[UIApplication sharedApplication] delegate];
+    if (!appDelegate.images) {
+        appDelegate.images = [NSMutableArray array];
+    }
+    [appDelegate.images addObject:(UIImage *)self.choreInfo[kChoreInfoKeyImage]];
     
     // Schedule the notification
     NSCalendarUnit repeatInterval = [TimeService calendarUnitForString:choreIntervalString];

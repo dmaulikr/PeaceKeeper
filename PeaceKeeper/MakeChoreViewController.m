@@ -13,7 +13,6 @@
 
 @interface MakeChoreViewController () <UIPickerViewDelegate, UIPickerViewDataSource, UITextFieldDelegate>
 
-@property (weak, nonatomic) IBOutlet UITextField *choreNameField;
 @property (weak, nonatomic) IBOutlet UIDatePicker *startDatePicker;
 @property (weak, nonatomic) IBOutlet UIPickerView *repeatIntervalPicker;
 
@@ -24,7 +23,6 @@
 - (void)viewDidLoad {
     self.repeatIntervalPicker.delegate = self;
     self.repeatIntervalPicker.dataSource = self;
-    self.choreNameField.delegate = self;
 }
 
 #pragma mark - Segue

@@ -43,9 +43,11 @@
         NSMutableDictionary *choreInfo = [NSMutableDictionary dictionary];
         if ([sender isKindOfClass:[NSIndexPath class]]) {
             choreInfo[kChoreInfoKeyTitleString] = self.taskArray[((NSIndexPath *)sender).row];
+//            choreInfo[kChoreInfoKeyImage] =
         }
         if ([sender isKindOfClass:[NSString class]]) {
             choreInfo[kChoreInfoKeyTitleString] = (NSString *)sender;
+//            choreInfo[kChoreInfoKeyImage] =
         }
         // fill choreInfo
         makeChoreViewController.choreInfo = choreInfo;
