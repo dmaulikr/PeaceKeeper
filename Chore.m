@@ -61,9 +61,8 @@
     if (currentPersonIndexValue >= [self.people count] - 1) {
         self.currentPersonIndex = @(0);
     } else {
-        NSUInteger i = currentPersonIndexValue;
-        i++;
-        self.currentPersonIndex = @(i);
+        currentPersonIndexValue++;
+        self.currentPersonIndex = @(currentPersonIndexValue);
     }
     NSLog(@"CPI: %@", self.currentPersonIndex);
     [NSManagedObjectContext saveManagedObjectContext];
