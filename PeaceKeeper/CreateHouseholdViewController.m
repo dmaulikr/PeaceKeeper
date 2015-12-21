@@ -35,10 +35,10 @@ typedef void (^myCompletion)(BOOL);
 - (NSMutableArray<CNContact *> *)members {
     if (_members) {
         if (_members.count == 0) {
-            self.doneButton.enabled = false;
+            self.doneButton.enabled = NO;
             [self.doneButton setBackgroundColor:[UIColor grayColor]];
         } else {
-            self.doneButton.enabled = true;
+            self.doneButton.enabled = YES;
             [self.doneButton setBackgroundColor:[UIColor blueColor]];
         }
     }
@@ -80,7 +80,7 @@ typedef void (^myCompletion)(BOOL);
 
             [Person personWithFirstName:contact.givenName lastName:contact.familyName phoneNumber:number.stringValue email:emailAddressValue.value chore:nil household:household];
         }
-        [self dismissViewControllerAnimated:true completion:nil];
+        [self dismissViewControllerAnimated:YES completion:nil];
     }
 }
 
@@ -107,7 +107,7 @@ typedef void (^myCompletion)(BOOL);
     switch (authorizationStatus) {
             
         case CNAuthorizationStatusAuthorized: {
-            completionBlock(true);
+            completionBlock(YES);
             break;
         }
             
@@ -116,7 +116,7 @@ typedef void (^myCompletion)(BOOL);
             [[[AppDelegate getAppDelegate] contactStore] requestAccessForEntityType:CNEntityTypeContacts completionHandler:^(BOOL granted, NSError * _Nullable error) {
                 
                 if (granted) {
-                    completionBlock(true);
+                    completionBlock(YES);
                 } else {
                     if (authorizationStatus == CNAuthorizationStatusDenied) {
                         dispatch_async(dispatch_get_main_queue(), ^{
@@ -130,7 +130,7 @@ typedef void (^myCompletion)(BOOL);
         }
             
         default:
-            completionBlock(false);
+            completionBlock(NO);
             break;
     }
 }

@@ -27,7 +27,7 @@
     [super viewDidLoad];
     self.tableView.dataSource = self;
     self.tableView.delegate = self;
-    [self.tableView setEditing:true animated:true];
+    [self.tableView setEditing:YES animated:YES];
 }
 
 #pragma mark - Actions
@@ -54,7 +54,7 @@
     NSString *alertBody = [NSString stringWithFormat:@"“%@” is due today. Next alert in one %@", choreName, [choreIntervalString lowercaseString]];
     NSDictionary *userInfo = [NSDictionary dictionaryWithObject:choreName forKey:kChoreNameKey];
     [TimeService scheduleLocalNotificationInUsersTimeZoneAndCalendarWithFireDate:choreStartDate repeatInterval:repeatInterval alertTitle:alertTitle alertBody:alertBody userInfo:userInfo category:kChoreNotificationCategoryIdentifier];
-    [self.navigationController popToRootViewControllerAnimated:true];
+    [self.navigationController popToRootViewControllerAnimated:YES];
 }
 
 #pragma mark - UITableViewDataSource
@@ -72,7 +72,7 @@
 #pragma mark - UITableViewDelegate
 
 - (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath {
-    return true;
+    return YES;
 }
 
 - (UITableViewCellEditingStyle)tableView:(UITableView *)tableView editingStyleForRowAtIndexPath:(NSIndexPath *)indexPath {
@@ -80,11 +80,11 @@
 }
 
 - (BOOL)tableView:(UITableView *)tableView shouldIndentWhileEditingRowAtIndexPath:(NSIndexPath *)indexPath {
-    return false;
+    return NO;
 }
 
 - (BOOL)tableView:(UITableView *)tableView canMoveRowAtIndexPath:(NSIndexPath *)indexPath {
-    return true;
+    return YES;
 }
 
 - (void)tableView:(UITableView *)tableView moveRowAtIndexPath:(NSIndexPath *)sourceIndexPath toIndexPath:(NSIndexPath *)destinationIndexPath {

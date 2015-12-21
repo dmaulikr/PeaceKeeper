@@ -43,7 +43,7 @@
         } else {
             NSLog(@"Successfully fetched %@ objects", [CompletedChore name]);
         }
-        NSSortDescriptor *sortDescriptor = [NSSortDescriptor sortDescriptorWithKey:@"completionDate" ascending:false];
+        NSSortDescriptor *sortDescriptor = [NSSortDescriptor sortDescriptorWithKey:@"completionDate" ascending:NO];
         _completedChores = [results sortedArrayUsingDescriptors:@[sortDescriptor]];
     }
     return _completedChores;

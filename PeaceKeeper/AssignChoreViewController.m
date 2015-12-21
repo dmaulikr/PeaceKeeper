@@ -16,22 +16,10 @@
 
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
 @property (strong, nonatomic) NSArray<Person *> *people;
-@property (strong, nonatomic) NSMutableArray<NSNumber *> *selectedRows;
 
 @end
 
 @implementation AssignChoreViewController
-
-- (NSMutableArray<NSNumber *> *)selectedRows {
-    if (_selectedRows) {
-        if (_selectedRows.count == 0) {
-            self.navigationItem.rightBarButtonItem.enabled = false;
-        } else {
-            self.navigationItem.rightBarButtonItem.enabled = true;
-        }
-    }
-    return _selectedRows;
-}
 
 - (NSArray<Person *> *)people {
     if (!_people) {
@@ -49,8 +37,19 @@
     [super viewDidLoad];
     self.tableView.dataSource = self;
     self.tableView.delegate = self;
-    self.selectedRows = [NSMutableArray array];
-    self.navigationItem.rightBarButtonItem.enabled = false;
+    
+    self.tableView.allowsMultipleSelectionDuringEditing = YES;
+    [self.tableView setEditing:YES animated:YES];
+    
+    self.navigationItem.rightBarButtonItem.enabled = NO;
+}
+
+- (void)toggleDoneButtonIfRowsAreSelected {
+    if ([self.tableView indexPathsForSelectedRows].count > 0) {
+        self.navigationItem.rightBarButtonItem.enabled = YES;
+    } else {
+        self.navigationItem.rightBarButtonItem.enabled = NO;
+    }
 }
 
 #pragma mark - Segue
@@ -59,8 +58,8 @@
         ChoreOrderViewController *choreOrderViewController = (ChoreOrderViewController *)segue.destinationViewController;
         choreOrderViewController.choreInfo = self.choreInfo;
         NSMutableArray *selectedPeople = [NSMutableArray array];
-        for (NSNumber *i in self.selectedRows) {
-            [selectedPeople addObject:self.people[i.integerValue]];
+        for (NSIndexPath *indexPath in [self.tableView indexPathsForSelectedRows]) {
+            [selectedPeople addObject:self.people[indexPath.row]];
         }
         choreOrderViewController.selectedPeople = selectedPeople;
     }
@@ -72,27 +71,19 @@
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-    UITableViewCell *cell = [self.tableView dequeueReusableCellWithIdentifier:@"Person" forIndexPath:indexPath];
+    UITableViewCell *cell = [self.tableView dequeueReusableCellWithIdentifier:@"Person"];
     Person *person = self.people[indexPath.row];
-    if ([self.selectedRows containsObject:@(indexPath.row)]) {
-        cell.accessoryType = UITableViewCellAccessoryCheckmark;
-    } else {
-        cell.accessoryType = UITableViewCellAccessoryNone;
-    }
     cell.textLabel.text = [NSString stringWithFormat:@"%@ %@", person.firstName, person.lastName];
     return cell;
 }
 
 #pragma mark - UITableViewDelegate
-- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
-    NSNumber *selectedRow = @(indexPath.row);
-    if ([self.selectedRows containsObject:selectedRow]) {
-        [self.selectedRows removeObject:selectedRow];
-    } else {
-        [self.selectedRows addObject:selectedRow];
-    }
-    [self.tableView reloadData];
-}
+ - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
+     [self toggleDoneButtonIfRowsAreSelected];
+ }
 
+- (void)tableView:(UITableView *)tableView didDeselectRowAtIndexPath:(NSIndexPath *)indexPath {
+    [self toggleDoneButtonIfRowsAreSelected];
+}
 
 @end

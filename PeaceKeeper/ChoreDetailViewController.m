@@ -107,7 +107,7 @@
             [self.messageController setRecipients:@[self.chore.currentPerson.phoneNumber]];
         }
         [self.messageController setBody:message];
-        [self presentViewController:[self alertControllerForSelectedPerson] animated:true completion:nil];
+        [self presentViewController:[self alertControllerForSelectedPerson] animated:YES completion:nil];
     }
 }
 
@@ -131,7 +131,7 @@
     
     switch (result) {
         case MessageComposeResultCancelled:
-            [self viewDidAppear:true];
+            [self viewDidAppear:YES];
             break;
         case MessageComposeResultFailed:{
             UIAlertView *warningAlert = [[UIAlertView alloc]initWithTitle:@"Error" message:@"Failed to send message!"delegate: nil cancelButtonTitle:@"OK" otherButtonTitles:nil];

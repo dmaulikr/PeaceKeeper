@@ -87,7 +87,7 @@
         [alert addTextFieldWithConfigurationHandler:^(UITextField * _Nonnull textField) {
             textField.placeholder = @"Task Name";
         }];
-        [self presentViewController:alert animated:true completion:nil];
+        [self presentViewController:alert animated:YES completion:nil];
     } else {
         [self performSegueWithIdentifier:@"MakeChore" sender:indexPath];
     }

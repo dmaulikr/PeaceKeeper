@@ -77,7 +77,7 @@
 - (void)presentCreateHouseholdViewControllerIfNeeded {
     if (![Household fetchHousehold]) {
         UINavigationController *createHouseholdNavigationController = [self.storyboard instantiateViewControllerWithIdentifier:@"CreateHouseholdNavigationController"];
-        [self presentViewController:createHouseholdNavigationController animated:true completion:nil];
+        [self presentViewController:createHouseholdNavigationController animated:YES completion:nil];
     }
 }
 #pragma mark - Segue
@@ -118,7 +118,7 @@
     
     PresetTaskViewController *presetTaskVC = [self.storyboard instantiateViewControllerWithIdentifier:@"presetTaskVC"];
     
-    [self.navigationController pushViewController:presetTaskVC animated:true];
+    [self.navigationController pushViewController:presetTaskVC animated:YES];
     
 }
 
