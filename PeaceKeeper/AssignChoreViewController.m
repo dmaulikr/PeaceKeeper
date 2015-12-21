@@ -59,10 +59,8 @@
         ChoreOrderViewController *choreOrderViewController = (ChoreOrderViewController *)segue.destinationViewController;
         choreOrderViewController.choreInfo = self.choreInfo;
         NSMutableArray *selectedPeople = [NSMutableArray array];
-        for (NSUInteger i = 0; i < self.people.count; i++) {
-            if ([self.selectedRows containsObject:@(i)]) {
-                [selectedPeople addObject:self.people[i]];
-            }
+        for (NSNumber *i in self.selectedRows) {
+            [selectedPeople addObject:self.people[i.integerValue]];
         }
         choreOrderViewController.selectedPeople = selectedPeople;
     }

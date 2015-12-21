@@ -15,7 +15,7 @@
 
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
 @property (strong, nonatomic) NSArray *taskArray;
-@property (strong, nonatomic) NSArray<UIImage *> *imageArray;
+//@property (strong, nonatomic) NSArray<UIImage *> *imageArray;
 
 @end
 
@@ -26,13 +26,11 @@
     self.tableView.dataSource = self;
     self.tableView.delegate = self;
     self.taskArray = @[@"Sweep", @"Mop", @"Clean Kitchen", @"Take Out Trash"];
-    self.imageArray = @[[UIImage imageNamed:@"sweep.jpg"], [UIImage imageNamed:@"mop2.png"], [UIImage imageNamed:@"kitchen2.png"], [UIImage imageNamed:@"trash2.png"]];
-    // Do any additional setup after loading the view.
+//    self.imageArray = @[[UIImage imageNamed:@"sweep.jpg"], [UIImage imageNamed:@"mop2.png"], [UIImage imageNamed:@"kitchen2.png"], [UIImage imageNamed:@"trash2.png"]];
 }
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
 }
 
 #pragma mark - Segue
@@ -46,25 +44,18 @@
         if ([sender isKindOfClass:[NSIndexPath class]]) {
             NSUInteger row = ((NSIndexPath *)sender).row;
             choreInfo[kChoreInfoKeyTitleString] = self.taskArray[row];
-            choreInfo[kChoreInfoKeyImage] = self.imageArray[row];
         }
         if ([sender isKindOfClass:[NSString class]]) {
             choreInfo[kChoreInfoKeyTitleString] = (NSString *)sender;
-//            choreInfo[kChoreInfoKeyImage] = self.imageArray[row];
         }
         makeChoreViewController.choreInfo = choreInfo;
     }
 }
 
-
 #pragma mark - UITableViewDelegate Methods
-
-
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
     return self.taskArray.count + 1;
 }
-
-
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"Preset" forIndexPath:indexPath];
@@ -76,21 +67,11 @@
     if (indexPath.row == self.taskArray.count) {
         cell.textLabel.text = @"Create Custom Task";
     }
-    
-    
     return cell;
-    
 }
 
-
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
-    
-    
-    
     if (indexPath.row == self.taskArray.count) {
-        
-        
-        
         UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"Set task name" message:@"" preferredStyle:UIAlertControllerStyleAlert];
         
         UIAlertAction* ok = [UIAlertAction actionWithTitle:@"OK" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
@@ -103,33 +84,13 @@
         [alert addAction:cancel];
         [alert addAction:ok];
         
-        
         [alert addTextFieldWithConfigurationHandler:^(UITextField * _Nonnull textField) {
-            
             textField.placeholder = @"Task Name";
-            
         }];
-        
         [self presentViewController:alert animated:true completion:nil];
-        
-        
-        
     } else {
         [self performSegueWithIdentifier:@"MakeChore" sender:indexPath];
     }
-    
-    
-    
 }
-
-/*
-#pragma mark - Navigation
-
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
-}
-*/
 
 @end

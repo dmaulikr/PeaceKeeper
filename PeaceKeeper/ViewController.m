@@ -86,6 +86,9 @@
         ChoreDetailViewController *choreDetailViewController = (ChoreDetailViewController *)segue.destinationViewController;
         choreDetailViewController.chore = self.chores[[self.tableView indexPathForSelectedRow].row];
     }
+    if ([segue.identifier isEqualToString:@"PresetTask"]) {
+        
+    }
 }
 
 #pragma mark - UITableViewDataSource
@@ -96,10 +99,6 @@
     
     
 }
-
-
-
-
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
     return self.chores.count;
