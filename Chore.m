@@ -61,7 +61,8 @@
     if (currentPersonIndexValue >= [self.people count] - 1) {
         self.currentPersonIndex = @(0);
     } else {
-        self.currentPersonIndex = @(currentPersonIndexValue++);
+        currentPersonIndexValue++;
+        self.currentPersonIndex = @(currentPersonIndexValue);
     }
     [NSManagedObjectContext saveManagedObjectContext];
 }

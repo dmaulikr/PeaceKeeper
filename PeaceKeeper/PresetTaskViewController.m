@@ -71,6 +71,7 @@
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
+    [tableView deselectRowAtIndexPath:indexPath animated:YES];
     if (indexPath.row == self.taskArray.count) {
         UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"Set task name" message:@"" preferredStyle:UIAlertControllerStyleAlert];
         

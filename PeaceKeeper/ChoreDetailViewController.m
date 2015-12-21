@@ -12,6 +12,7 @@
 @import MessageUI;
 #import "NSManagedObjectContext+Category.h"
 #import "Chore.h"
+#import "EditChoreViewController.h"
 
 @interface ChoreDetailViewController () <UITableViewDelegate, UITableViewDataSource, MFMessageComposeViewControllerDelegate, MFMailComposeViewControllerDelegate>
 
@@ -61,7 +62,7 @@
         [self showEmail];
     }];
     
-    UIAlertAction *cancel = [UIAlertAction actionWithTitle:@"Cancel" style:UIAlertActionStyleDestructive handler:nil];
+    UIAlertAction *cancel = [UIAlertAction actionWithTitle:@"Cancel" style:UIAlertActionStyleCancel handler:nil];
     
     if (self.chore.currentPerson.phoneNumber) {
         [alert addAction:sendMessage];
@@ -77,6 +78,13 @@
     return alert;
 }
 
+#pragma mark - Segue
+- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
+    if ([segue.identifier isEqualToString:@"EditChore"]) {
+        EditChoreViewController *editChoreViewController = segue.destinationViewController;
+        editChoreViewController.chore = self.chore;
+    }
+}
 
 #pragma mark - UITableView methods
 

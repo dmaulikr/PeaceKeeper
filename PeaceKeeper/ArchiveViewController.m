@@ -65,7 +65,7 @@
     CompletedChore *completedChore = self.completedChores[indexPath.row];
     cell.textLabel.text = [NSString stringWithFormat:@"%@ completed %@", completedChore.chore
                            .name, [self.dateFormatter stringFromDate:completedChore.completionDate]];
-    cell.detailTextLabel.text = [NSString stringWithFormat:@"by %@", completedChore.person.firstName];
+    cell.detailTextLabel.text = [NSString stringWithFormat:@"by %@", [completedChore.person fullName]];
     return cell;
 }
 

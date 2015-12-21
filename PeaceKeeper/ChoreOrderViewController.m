@@ -41,13 +41,6 @@
     Household *household = [Household fetchHousehold];
     [Chore choreWithName:choreName startDate:choreStartDate repeatIntervalValue:@(1) repeatIntervalUnit:choreIntervalString household:household people:people];
     
-    // Put the chore image in the
-    AppDelegate *appDelegate = (AppDelegate *)[[UIApplication sharedApplication] delegate];
-    if (!appDelegate.images) {
-        appDelegate.images = [NSMutableArray array];
-    }
-    [appDelegate.images addObject:(UIImage *)self.choreInfo[kChoreInfoKeyImage]];
-    
     // Schedule the notification
     NSCalendarUnit repeatInterval = [TimeService calendarUnitForString:choreIntervalString];
     NSString *alertTitle = [NSString stringWithFormat:@"“%@” Due", choreName];
@@ -69,18 +62,8 @@
     return cell;
 }
 
-#pragma mark - UITableViewDelegate
-
 - (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath {
     return YES;
-}
-
-- (UITableViewCellEditingStyle)tableView:(UITableView *)tableView editingStyleForRowAtIndexPath:(NSIndexPath *)indexPath {
-    return UITableViewCellEditingStyleNone;
-}
-
-- (BOOL)tableView:(UITableView *)tableView shouldIndentWhileEditingRowAtIndexPath:(NSIndexPath *)indexPath {
-    return NO;
 }
 
 - (BOOL)tableView:(UITableView *)tableView canMoveRowAtIndexPath:(NSIndexPath *)indexPath {
@@ -91,6 +74,16 @@
     Person *selectedPerson = [self.selectedPeople objectAtIndex:sourceIndexPath.row];
     [self.selectedPeople removeObjectAtIndex:sourceIndexPath.row];
     [self.selectedPeople insertObject:selectedPerson atIndex:destinationIndexPath.row];
+}
+
+#pragma mark - UITableViewDelegate
+
+- (UITableViewCellEditingStyle)tableView:(UITableView *)tableView editingStyleForRowAtIndexPath:(NSIndexPath *)indexPath {
+    return UITableViewCellEditingStyleNone;
+}
+
+- (BOOL)tableView:(UITableView *)tableView shouldIndentWhileEditingRowAtIndexPath:(NSIndexPath *)indexPath {
+    return NO;
 }
 
 @end
