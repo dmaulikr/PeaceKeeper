@@ -54,7 +54,7 @@
     } else if (person.phoneNumber) {
         contactString = person.phoneNumber;
     }
-    cell.textLabel.text = [NSString stringWithFormat:@"%@ %@", person.firstName, person.lastName];
+    cell.textLabel.text = [person fullName];
     cell.detailTextLabel.text = contactString;
     return cell;
 }

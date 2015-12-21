@@ -65,7 +65,7 @@
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     UITableViewCell *cell = [self.tableView dequeueReusableCellWithIdentifier:@"Person" forIndexPath:indexPath];
     Person *person = self.selectedPeople[indexPath.row];
-    cell.textLabel.text = [NSString stringWithFormat:@"%@ %@", person.firstName, person.lastName];
+    cell.textLabel.text = [person fullName];
     return cell;
 }
 

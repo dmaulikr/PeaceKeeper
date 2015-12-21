@@ -45,7 +45,7 @@
 }
 
 - (void)toggleDoneButtonIfRowsAreSelected {
-    if ([self.tableView indexPathsForSelectedRows].count > 0) {
+    if (self.tableView.indexPathsForSelectedRows.count > 0) {
         self.navigationItem.rightBarButtonItem.enabled = YES;
     } else {
         self.navigationItem.rightBarButtonItem.enabled = NO;
@@ -73,7 +73,7 @@
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     UITableViewCell *cell = [self.tableView dequeueReusableCellWithIdentifier:@"Person"];
     Person *person = self.people[indexPath.row];
-    cell.textLabel.text = [NSString stringWithFormat:@"%@ %@", person.firstName, person.lastName];
+    cell.textLabel.text = [person fullName];
     return cell;
 }
 

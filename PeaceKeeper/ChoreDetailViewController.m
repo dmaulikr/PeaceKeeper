@@ -88,7 +88,7 @@
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"Choree" forIndexPath:indexPath];
     Person *person = self.chore.people[indexPath.row];
-    cell.textLabel.text = [NSString stringWithFormat:@"%@ %@", person.firstName, person.lastName];
+    cell.textLabel.text = [person fullName];
     if (indexPath.row == self.chore.currentPersonIndex.integerValue) {
         cell.detailTextLabel.text = @"Next up";
     } else {
