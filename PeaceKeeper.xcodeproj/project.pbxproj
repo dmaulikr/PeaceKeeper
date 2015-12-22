@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		961C7E681C288D760072627A /* EditChoreViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 961C7E671C288D760072627A /* EditChoreViewController.m */; };
+		961C7E6B1C28C56D0072627A /* AddPersonViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 961C7E6A1C28C56D0072627A /* AddPersonViewController.m */; };
 		964074E71C2092F5003403CB /* MakeChoreViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 964074E61C2092F5003403CB /* MakeChoreViewController.m */; };
 		964074EA1C209DEC003403CB /* AssignChoreViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 964074E91C209DEC003403CB /* AssignChoreViewController.m */; };
 		964074ED1C209EA0003403CB /* Constants.m in Sources */ = {isa = PBXBuildFile; fileRef = 964074EC1C209EA0003403CB /* Constants.m */; };
@@ -58,6 +59,9 @@
 /* Begin PBXFileReference section */
 		961C7E661C288D760072627A /* EditChoreViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EditChoreViewController.h; sourceTree = "<group>"; };
 		961C7E671C288D760072627A /* EditChoreViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EditChoreViewController.m; sourceTree = "<group>"; };
+		961C7E691C28C56D0072627A /* AddPersonViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AddPersonViewController.h; sourceTree = "<group>"; };
+		961C7E6A1C28C56D0072627A /* AddPersonViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AddPersonViewController.m; sourceTree = "<group>"; };
+		961C7E6C1C28D1EF0072627A /* AddPersonViewControllerDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AddPersonViewControllerDelegate.h; sourceTree = "<group>"; };
 		964074E51C2092F5003403CB /* MakeChoreViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MakeChoreViewController.h; sourceTree = "<group>"; };
 		964074E61C2092F5003403CB /* MakeChoreViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MakeChoreViewController.m; sourceTree = "<group>"; };
 		964074E81C209DEC003403CB /* AssignChoreViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AssignChoreViewController.h; sourceTree = "<group>"; };
@@ -159,6 +163,9 @@
 				C1353C301C20F72E00F9F0E8 /* ChoreDetailViewController.m */,
 				961C7E661C288D760072627A /* EditChoreViewController.h */,
 				961C7E671C288D760072627A /* EditChoreViewController.m */,
+				961C7E691C28C56D0072627A /* AddPersonViewController.h */,
+				961C7E6A1C28C56D0072627A /* AddPersonViewController.m */,
+				961C7E6C1C28D1EF0072627A /* AddPersonViewControllerDelegate.h */,
 				964D15181C21EA0C00D71C81 /* HouseholdViewController.h */,
 				964D15191C21EA0C00D71C81 /* HouseholdViewController.m */,
 				964D151B1C22093500D71C81 /* ArchiveViewController.h */,
@@ -408,6 +415,7 @@
 				96A346101C20C7D000883BBD /* ChoreOrderViewController.m in Sources */,
 				964074FC1C20C532003403CB /* Household+CoreDataProperties.m in Sources */,
 				96F653D41C1F3F060098A317 /* Household.m in Sources */,
+				961C7E6B1C28C56D0072627A /* AddPersonViewController.m in Sources */,
 				964D151A1C21EA0C00D71C81 /* HouseholdViewController.m in Sources */,
 				96F653D61C1F3F060098A317 /* Person.m in Sources */,
 				C1353C311C20F72E00F9F0E8 /* ChoreDetailViewController.m in Sources */,

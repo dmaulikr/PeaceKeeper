@@ -8,13 +8,15 @@
 
 #import "EditChoreViewController.h"
 #import "Person.h"
+#import "AddPersonViewController.h"
+#import "AddPersonViewControllerDelegate.h"
 
-@interface EditChoreViewController () <UITableViewDelegate, UITableViewDataSource>
+@interface EditChoreViewController () <UITableViewDelegate, UITableViewDataSource, AddPersonViewControllerDelegate>
 
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
 
 @property (strong, nonatomic) NSMutableOrderedSet<Person *> *peopleMutableCopy;
-@property (strong, nonatomic) NSNumber *currentPersonIndexCopy;
+@property (strong, nonatomic) Person *currentPerson;
 
 @end
 
@@ -27,31 +29,45 @@ NSUInteger const kEditableSection = 1;
     [super viewDidLoad];
     self.tableView.delegate = self;
     self.tableView.dataSource = self;
+    self.tableView.allowsSelectionDuringEditing = YES;
     [self.tableView setEditing:YES animated:YES];
 
     self.peopleMutableCopy = [NSMutableOrderedSet orderedSetWithOrderedSet:self.chore.people];
-    self.currentPersonIndexCopy = [self.chore.currentPersonIndex copy];
+    self.currentPerson = [self.chore currentPerson];
 }
 
-- (void)toggleDoneButtonIfRowsAreSelected {
-    if (self.tableView.indexPathsForSelectedRows.count > 0) {
-        self.navigationItem.rightBarButtonItem.enabled = YES;
-    } else {
+- (void)toggleSaveButtonIfNeeded {
+    if (![self.peopleMutableCopy containsObject:self.currentPerson] || self.peopleMutableCopy.count == 0) {
         self.navigationItem.rightBarButtonItem.enabled = NO;
+    } else {
+        self.navigationItem.rightBarButtonItem.enabled = YES;
     }
 }
 
 - (void)printPeople {
     NSLog(@"[");
     for (NSInteger i = 0; i < self.peopleMutableCopy.count; i++) {
-        if (self.currentPersonIndexCopy.integerValue == i) {
-            NSLog(@"%ld. * %@", (long)i, [((Person *)[self.peopleMutableCopy objectAtIndex:i]) fullName]);
+        Person *person = (Person *)[self.peopleMutableCopy objectAtIndex:i];
+        if (self.currentPerson == person) {
+            NSLog(@"%ld. * %@", (long)(i + 1), [person fullName]);
         } else {
-            NSLog(@"%ld.   %@", (long)i, [((Person *)[self.peopleMutableCopy objectAtIndex:i]) fullName]);
+            NSLog(@"%ld.   %@", (long)(i + 1), [person fullName]);
         }
     }
     NSLog(@"]");
 }
+
+#pragma mark - Segue
+- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
+    if ([segue.identifier isEqualToString:@"AddPerson"]) {
+        UINavigationController *navController = segue.destinationViewController;
+        AddPersonViewController *addPersonViewController = navController.viewControllers.firstObject;
+        addPersonViewController.household = self.chore.household;
+        addPersonViewController.peopleMutableCopy = self.peopleMutableCopy;
+        addPersonViewController.delegate = self;
+    }
+}
+
 
 #pragma mark - Actions
 
@@ -60,10 +76,27 @@ NSUInteger const kEditableSection = 1;
         CGPoint pressedPoint = [sender locationInView:self.tableView];
         NSIndexPath *indexPathUnderPress = [self.tableView indexPathForRowAtPoint:pressedPoint];
         if (indexPathUnderPress.section == kEditableSection && indexPathUnderPress.row < self.peopleMutableCopy.count) {
-            self.currentPersonIndexCopy = @(indexPathUnderPress.row);
-            [self.tableView reloadData];
+            NSUInteger prevCurrentPersonIndex = [self.peopleMutableCopy indexOfObject:self.currentPerson];
+            self.currentPerson = self.peopleMutableCopy[indexPathUnderPress.row];
+            if (prevCurrentPersonIndex == NSNotFound || prevCurrentPersonIndex == indexPathUnderPress.row) {
+                [self.tableView reloadRowsAtIndexPaths:@[indexPathUnderPress] withRowAnimation:UITableViewRowAnimationFade];
+            } else {
+                [self.tableView reloadRowsAtIndexPaths:@[indexPathUnderPress, [NSIndexPath indexPathForRow:prevCurrentPersonIndex inSection:kEditableSection]] withRowAnimation:UITableViewRowAnimationFade];
+            }
+            [self toggleSaveButtonIfNeeded];
         }
     }
+}
+
+#pragma mark - Segue
+- (void)addPersonViewControllerDidSelectPerson:(Person *)selectedPerson {
+    [self.peopleMutableCopy addObject:selectedPerson];
+    [self dismissViewControllerAnimated:YES completion:nil];
+    [self.tableView reloadData];
+}
+
+- (void)addPersonViewControllerCancel {
+    [self dismissViewControllerAnimated:YES completion:nil];
 }
 
 #pragma mark - UITableViewDataSource
@@ -91,14 +124,15 @@ NSUInteger const kEditableSection = 1;
             break;
         case 1:
             if (indexPath.row < self.peopleMutableCopy.count) {
-                cell.textLabel.text = [NSString stringWithFormat:@"%@", [((Person *)[self.peopleMutableCopy objectAtIndex:indexPath.row]) fullName]];
-                if (self.currentPersonIndexCopy.integerValue == indexPath.row) {
+                Person *person = (Person *)[self.peopleMutableCopy objectAtIndex:indexPath.row];
+                cell.textLabel.text = [NSString stringWithFormat:@"%@", [person fullName]];
+                if (self.currentPerson == person) {
                     cell.detailTextLabel.text = @"Next up";
                 } else {
                     cell.detailTextLabel.text = @"";
                 }
             } else {
-                cell.textLabel.text = @"Add another person";
+                cell.textLabel.text = @"Add person";
                 cell.detailTextLabel.text = @"";
             }
             break;
@@ -124,16 +158,16 @@ NSUInteger const kEditableSection = 1;
 
 - (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath {
     if (editingStyle == UITableViewCellEditingStyleDelete) {
-        if (self.peopleMutableCopy.count > 1) {
+        if (self.peopleMutableCopy.count == 1) {
+            UIAlertController *alertController = [UIAlertController alertControllerWithTitle:@"Cannot Remove the Last Person From a Chore" message:@"A chore cannot have zero people." preferredStyle:UIAlertControllerStyleAlert];
+            UIAlertAction *okAction = [UIAlertAction actionWithTitle:@"OK" style:UIAlertActionStyleDefault handler:nil];
+            [alertController addAction:okAction];
+            [self presentViewController:alertController animated:YES completion:nil];
+        } else {
             [self.peopleMutableCopy removeObjectAtIndex:indexPath.row];
             [tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:YES];
-        } else {
-            UIAlertController *alertController = [UIAlertController alertControllerWithTitle:@"Cannot Delete Last Person" message:[NSString stringWithFormat:@"“%@” must have at least one person.", self.chore.name] preferredStyle:UIAlertControllerStyleAlert];
-            UIAlertAction *alertAction = [UIAlertAction actionWithTitle:@"OK" style:UIAlertActionStyleDefault handler:nil];
-            [alertController addAction:alertAction];
-            [self presentViewController:alertController animated:YES completion:nil];
+            [self toggleSaveButtonIfNeeded];
         }
-
     }
     [self printPeople];
 }
@@ -153,6 +187,13 @@ NSUInteger const kEditableSection = 1;
 }
 
 #pragma mark - UITableViewDelegate
+
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
+    NSLog(@"%ld-%ld", (long)indexPath.section, (long)indexPath.row);
+    if (indexPath.section == kEditableSection && indexPath.row == self.peopleMutableCopy.count) {
+        [self performSegueWithIdentifier:@"AddPerson" sender:nil];
+    }
+}
 
 - (UITableViewCellEditingStyle)tableView:(UITableView *)tableView editingStyleForRowAtIndexPath:(NSIndexPath *)indexPath {
     if (indexPath.section == kEditableSection) {
