@@ -6,10 +6,14 @@
 //  Copyright © 2015 Francisco Ragland. All rights reserved.
 //
 
-#import <Foundation/Foundation.h>
 @import UIKit;
+#import "Chore.h"
 
 @interface TimeService : NSObject
+
++ (void)removeChoreNotificationsWithName:(NSString * _Nonnull)choreName;
+
++ (void)scheduleNotificationForChore:(Chore * _Nonnull)chore;
 
 + (void)scheduleLocalNotificationInUsersTimeZoneAndCalendarWithFireDate:(NSDate * _Nonnull)fireDate repeatInterval:(NSCalendarUnit)repeatInterval alertTitle:(NSString * _Nonnull)alertTitle alertBody:(NSString * _Nonnull)alertBody userInfo:(NSDictionary * _Nonnull)userInfo category:(NSString * _Nonnull)category;
 

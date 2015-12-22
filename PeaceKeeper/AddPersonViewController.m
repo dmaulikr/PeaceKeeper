@@ -25,7 +25,7 @@
 }
 
 - (IBAction)cancelAction:(UIBarButtonItem *)sender {
-    [self.delegate addPersonViewControllerCancel];
+    [self.delegate addPersonViewControllerDidCancel];
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
@@ -36,7 +36,7 @@
     UITableViewCell *cell = [self.tableView dequeueReusableCellWithIdentifier:@"Cell" forIndexPath:indexPath];
     Person *person = self.household.people.allObjects[indexPath.row];
     cell.textLabel.text = [person fullName];
-    if ([self.peopleMutableCopy containsObject:person]) {
+    if ([self.mutablePeople containsObject:person]) {
         cell.textLabel.textColor = [UIColor grayColor];
     } else {
         cell.textLabel.textColor = [UIColor blackColor];
@@ -46,7 +46,7 @@
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     Person *person = self.household.people.allObjects[indexPath.row];
-    if (![self.peopleMutableCopy containsObject:person]) {
+    if (![self.mutablePeople containsObject:person]) {
         [self.delegate addPersonViewControllerDidSelectPerson:person];
     }
     [tableView deselectRowAtIndexPath:indexPath animated:YES];

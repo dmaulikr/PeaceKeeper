@@ -39,14 +39,10 @@
     NSString *choreIntervalString = (NSString *)self.choreInfo[kChoreInfoKeyIntervalString];
     NSOrderedSet *people = [NSOrderedSet orderedSetWithArray:self.selectedPeople];
     Household *household = [Household fetchHousehold];
-    [Chore choreWithName:choreName startDate:choreStartDate repeatIntervalValue:@(1) repeatIntervalUnit:choreIntervalString household:household people:people];
+    Chore *chore = [Chore choreWithName:choreName startDate:choreStartDate repeatIntervalValue:@(1) repeatIntervalUnit:choreIntervalString household:household people:people];
     
     // Schedule the notification
-    NSCalendarUnit repeatInterval = [TimeService calendarUnitForString:choreIntervalString];
-    NSString *alertTitle = [NSString stringWithFormat:@"“%@” Due", choreName];
-    NSString *alertBody = [NSString stringWithFormat:@"“%@” is due today. Next alert in one %@", choreName, [choreIntervalString lowercaseString]];
-    NSDictionary *userInfo = [NSDictionary dictionaryWithObject:choreName forKey:kChoreNameKey];
-    [TimeService scheduleLocalNotificationInUsersTimeZoneAndCalendarWithFireDate:choreStartDate repeatInterval:repeatInterval alertTitle:alertTitle alertBody:alertBody userInfo:userInfo category:kChoreNotificationCategoryIdentifier];
+    [TimeService scheduleNotificationForChore:chore];
     [self.navigationController popToRootViewControllerAnimated:YES];
 }
 

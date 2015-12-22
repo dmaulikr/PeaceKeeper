@@ -13,7 +13,7 @@
 @interface AddPersonViewController : UIViewController
 
 @property (strong, nonatomic) Household *household;
-@property (strong, nonatomic) NSMutableOrderedSet<Person *> *peopleMutableCopy;
+@property (strong, nonatomic) NSMutableOrderedSet<Person *> *mutablePeople;
 @property (weak, nonatomic) id<AddPersonViewControllerDelegate> delegate;
 
 @end

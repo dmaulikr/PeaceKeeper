@@ -26,11 +26,6 @@
 
 @implementation ChoreDetailViewController
 
-- (void)viewDidAppear:(BOOL)animated {
- 
-    self.messageController = [[MFMessageComposeViewController alloc] init];
-    self.messageController.messageComposeDelegate = self;
-}
 
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -38,10 +33,19 @@
     self.tableView.dataSource = self;
 }
 
-- (void)didReceiveMemoryWarning {
-    
-    [super didReceiveMemoryWarning];
+- (void)viewWillAppear:(BOOL)animated {
+    [super viewWillAppear:animated];
+    [self.tableView reloadData];
+}
 
+- (void)viewDidAppear:(BOOL)animated {
+    [super viewDidAppear:animated];
+    self.messageController = [[MFMessageComposeViewController alloc] init];
+    self.messageController.messageComposeDelegate = self;
+}
+
+- (void)didReceiveMemoryWarning {
+    [super didReceiveMemoryWarning];
 }
 
 - (UIAlertController *)alertControllerForSelectedPerson {

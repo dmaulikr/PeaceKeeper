@@ -49,6 +49,45 @@
     return chore;
 }
 
+- (void)removePerson:(Person * _Nonnull)person {
+    // Remove the person from the chore
+    NSMutableOrderedSet *mutablePeople = [NSMutableOrderedSet orderedSetWithOrderedSet:self.people];
+    [mutablePeople removeObject:person];
+    self.people = mutablePeople;
+    
+    // Remove the chore from the person
+    NSMutableSet *mutableChores = [NSMutableSet setWithSet:person.chores];
+    [mutableChores removeObject:self];
+    person.chores = mutableChores;
+    
+    [NSManagedObjectContext saveManagedObjectContext];
+}
+
+- (void)addPerson:(Person * _Nonnull)person {
+    // Add the person to the chore
+    NSMutableOrderedSet *mutablePeople = [NSMutableOrderedSet orderedSetWithOrderedSet:self.people];
+    [mutablePeople addObject:person];
+    self.people = mutablePeople;
+    
+    // Add the chore to the person
+    NSMutableSet *mutableChores = [NSMutableSet setWithSet:person.chores];
+    [mutableChores addObject:self];
+    person.chores = mutableChores;
+
+    [NSManagedObjectContext saveManagedObjectContext];
+}
+
+- (void)replacePeople:(NSOrderedSet<Person *> * _Nonnull)people {
+    self.people = people;
+    [NSManagedObjectContext saveManagedObjectContext];
+}
+
+- (void)replaceStartDate:(NSDate *)startDate repeatIntervalUnit:(NSString *)repeatIntervalUnit {
+    self.startDate = startDate;
+    self.repeatIntervalUnit = repeatIntervalUnit;
+    [NSManagedObjectContext saveManagedObjectContext];
+}
+
 - (Person *)currentPerson {
     NSOrderedSet *people = self.people;
     return [people objectAtIndex:self.currentPersonIndex.integerValue];

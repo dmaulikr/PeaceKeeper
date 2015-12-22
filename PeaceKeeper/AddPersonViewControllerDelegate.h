@@ -11,6 +11,6 @@
 @protocol AddPersonViewControllerDelegate <NSObject>
 
 - (void)addPersonViewControllerDidSelectPerson:(Person *)selectedPerson;
-- (void)addPersonViewControllerCancel;
+- (void)addPersonViewControllerDidCancel;
 
 @end

@@ -21,6 +21,7 @@
 @implementation MakeChoreViewController
 
 - (void)viewDidLoad {
+    [super viewDidLoad];
     self.repeatIntervalPicker.delegate = self;
     self.repeatIntervalPicker.dataSource = self;
 }
