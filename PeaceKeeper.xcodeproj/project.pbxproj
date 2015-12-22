@@ -83,6 +83,7 @@
 		964D151C1C22093500D71C81 /* ArchiveViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ArchiveViewController.m; sourceTree = "<group>"; };
 		966C01661C1F61B30028CBF7 /* TimeService.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TimeService.h; sourceTree = "<group>"; };
 		966C01671C1F61B30028CBF7 /* TimeService.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TimeService.m; sourceTree = "<group>"; };
+		967CB0191C2A1054000A6C77 /* EditChoreViewControllerDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EditChoreViewControllerDelegate.h; sourceTree = "<group>"; };
 		96A3460E1C20C7D000883BBD /* ChoreOrderViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ChoreOrderViewController.h; sourceTree = "<group>"; };
 		96A3460F1C20C7D000883BBD /* ChoreOrderViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ChoreOrderViewController.m; sourceTree = "<group>"; };
 		96EE76281C29C424006C0C2D /* EditAlertViewControllerDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EditAlertViewControllerDelegate.h; sourceTree = "<group>"; };
@@ -185,6 +186,7 @@
 			children = (
 				961C7E6C1C28D1EF0072627A /* AddPersonViewControllerDelegate.h */,
 				96EE76281C29C424006C0C2D /* EditAlertViewControllerDelegate.h */,
+				967CB0191C2A1054000A6C77 /* EditChoreViewControllerDelegate.h */,
 			);
 			name = Protocols;
 			sourceTree = "<group>";

@@ -137,6 +137,8 @@ NSUInteger const kEditableSection = 1;
     } else {
         self.chore.currentPersonIndex = @(currentPersonIndex);
     }
+    
+    [self.delegate editChoreViewControllerDidSave];
 }
 
 #pragma mark - AddPersonViewControllerDelegate

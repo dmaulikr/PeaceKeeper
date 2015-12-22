@@ -13,8 +13,9 @@
 #import "NSManagedObjectContext+Category.h"
 #import "Chore.h"
 #import "EditChoreViewController.h"
+#import "EditChoreViewControllerDelegate.h"
 
-@interface ChoreDetailViewController () <UITableViewDelegate, UITableViewDataSource, MFMessageComposeViewControllerDelegate, MFMailComposeViewControllerDelegate>
+@interface ChoreDetailViewController () <UITableViewDelegate, UITableViewDataSource, MFMessageComposeViewControllerDelegate, MFMailComposeViewControllerDelegate, EditChoreViewControllerDelegate>
 
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
 
@@ -31,6 +32,7 @@
     [super viewDidLoad];
     self.tableView.delegate = self;
     self.tableView.dataSource = self;
+    self.navigationItem.title = self.chore.name;
 }
 
 - (void)viewWillAppear:(BOOL)animated {
@@ -87,6 +89,7 @@
     if ([segue.identifier isEqualToString:@"EditChore"]) {
         EditChoreViewController *editChoreViewController = segue.destinationViewController;
         editChoreViewController.chore = self.chore;
+        editChoreViewController.delegate = self;
     }
 }
 
@@ -200,6 +203,11 @@
     }
     
     [self dismissViewControllerAnimated:YES completion:NULL];
+}
+
+#pragma mark - EditChoreViewControllerDelegate
+- (void)editChoreViewControllerDidSave {
+    [self.navigationController popViewControllerAnimated:YES];
 }
 
 @end

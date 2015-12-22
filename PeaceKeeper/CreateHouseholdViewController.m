@@ -70,15 +70,7 @@ typedef void (^myCompletion)(BOOL);
     if (self.members.count > 0) {
         Household *household = [Household householdWithName:@"Household"];
         for (CNContact *contact in self.members) {
-            CNLabeledValue *emailAddressValue = (CNLabeledValue *)contact.emailAddresses.firstObject;
-            CNLabeledValue *phoneNumberValue = (CNLabeledValue *)contact.phoneNumbers.firstObject;
-            
-            CNPhoneNumber *number = (CNPhoneNumber *)phoneNumberValue.value;
-            
-            NSLog(@"%@", emailAddressValue.value);
-            NSLog(@"%@", number.stringValue);
-
-            [Person personWithFirstName:contact.givenName lastName:contact.familyName phoneNumber:number.stringValue email:emailAddressValue.value chore:nil household:household];
+            [Person personFromContact:contact withHousehold:household];
         }
         [self dismissViewControllerAnimated:YES completion:nil];
     }
@@ -92,13 +84,6 @@ typedef void (^myCompletion)(BOOL);
     }
     [self.tableView reloadData];
 }
-
-//- (void)contactPicker:(CNContactPickerViewController *)picker didSelectContact:(CNContact *)contact {
-//    if (![self.members containsObject:contact]) {
-//        [self.members addObject:contact];
-//    }
-//    [self.tableView reloadData];
-//}
 
 -(void)requestForAccess:(myCompletion)completionBlock {
     

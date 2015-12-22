@@ -8,9 +8,11 @@
 
 #import <UIKit/UIKit.h>
 #import "Chore.h"
+#import "EditChoreViewControllerDelegate.h"
 
 @interface EditChoreViewController : UIViewController
 
 @property (strong, nonatomic) Chore *chore;
+@property (weak, nonatomic) id<EditChoreViewControllerDelegate> delegate;
 
 @end

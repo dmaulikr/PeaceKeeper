@@ -756,7 +756,11 @@
                         </variation>
                     </view>
                     <navigationItem key="navigationItem" title="Household" id="c4U-5H-dtw">
-                        <barButtonItem key="rightBarButtonItem" systemItem="add" id="hqi-sX-u9J"/>
+                        <barButtonItem key="rightBarButtonItem" systemItem="add" id="hqi-sX-u9J">
+                            <connections>
+                                <action selector="addAction:" destination="e28-8a-eZg" id="fNF-Dh-B3r"/>
+                            </connections>
+                        </barButtonItem>
                     </navigationItem>
                     <connections>
                         <outlet property="tableView" destination="pBt-zi-2TD" id="3kK-Ke-WeP"/>
