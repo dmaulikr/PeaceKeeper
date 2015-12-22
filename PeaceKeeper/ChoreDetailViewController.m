@@ -210,5 +210,9 @@
     [self.navigationController popViewControllerAnimated:YES];
 }
 
+- (void)editChoreViewControllerDidCancel {
+    [self.navigationController popViewControllerAnimated:YES];
+}
+
 @end
 

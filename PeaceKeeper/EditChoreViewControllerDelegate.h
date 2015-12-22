@@ -11,5 +11,6 @@
 @protocol EditChoreViewControllerDelegate <NSObject>
 
 - (void)editChoreViewControllerDidSave;
+- (void)editChoreViewControllerDidCancel;
 
 @end

@@ -3,7 +3,7 @@
 //  PeaceKeeper
 //
 //  Created by Work on 12/21/15.
-//  Copyright © 2015 Francisco Ragland. All rights reserved.
+//  Copyright © 2015 Francisco Ragland. All rights reserved. 
 //
 
 #import "EditChoreViewController.h"
@@ -139,6 +139,10 @@ NSUInteger const kEditableSection = 1;
     }
     
     [self.delegate editChoreViewControllerDidSave];
+}
+
+- (IBAction)cancelAction:(UIBarButtonItem *)sender {
+    [self.delegate editChoreViewControllerDidCancel];
 }
 
 #pragma mark - AddPersonViewControllerDelegate

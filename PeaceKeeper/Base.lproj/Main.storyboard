@@ -618,6 +618,11 @@
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" title="Edit Chore" id="glx-k0-TsG">
+                        <barButtonItem key="leftBarButtonItem" systemItem="cancel" id="Agm-PO-3i6">
+                            <connections>
+                                <action selector="cancelAction:" destination="HRI-bz-gnS" id="bry-2H-7GC"/>
+                            </connections>
+                        </barButtonItem>
                         <barButtonItem key="rightBarButtonItem" systemItem="save" id="W5N-dZ-PRC">
                             <connections>
                                 <action selector="saveAction:" destination="HRI-bz-gnS" id="kas-Lc-ek0"/>
