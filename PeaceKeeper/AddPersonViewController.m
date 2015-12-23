@@ -8,15 +8,24 @@
 
 #import "AddPersonViewController.h"
 #import "Person.h"
+#import "Household.h"
 
 @interface AddPersonViewController () <UITableViewDataSource, UITableViewDelegate>
 
+@property (strong, nonatomic) Household *household;
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
 @property (strong, nonatomic) NSArray<Person *> *dataArray;
 
 @end
 
 @implementation AddPersonViewController
+
+- (Household *)household {
+    if (!_household) {
+        _household = [Household fetchHousehold];
+    }
+    return _household;
+}
 
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -36,7 +45,7 @@
     UITableViewCell *cell = [self.tableView dequeueReusableCellWithIdentifier:@"Cell" forIndexPath:indexPath];
     Person *person = self.household.people.allObjects[indexPath.row];
     cell.textLabel.text = [person fullName];
-    if ([self.mutablePeople containsObject:person]) {
+    if ([self.alreadySelected containsObject:person]) {
         cell.textLabel.textColor = [UIColor grayColor];
     } else {
         cell.textLabel.textColor = [UIColor blackColor];
@@ -46,7 +55,7 @@
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     Person *person = self.household.people.allObjects[indexPath.row];
-    if (![self.mutablePeople containsObject:person]) {
+    if (![self.alreadySelected containsObject:person]) {
         [self.delegate addPersonViewControllerDidSelectPerson:person];
     }
     [tableView deselectRowAtIndexPath:indexPath animated:YES];

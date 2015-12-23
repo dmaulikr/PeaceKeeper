@@ -8,6 +8,8 @@
 
 #import <Foundation/Foundation.h>
 
+@class Person;
+
 @protocol AddPersonViewControllerDelegate <NSObject>
 
 - (void)addPersonViewControllerDidSelectPerson:(Person *)selectedPerson;

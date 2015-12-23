@@ -10,7 +10,7 @@
 
 @protocol EditAlertViewControllerDelegate <NSObject>
 
-- (void)editAlertViewControllerDidSelectStartDate:(NSDate *)startDate repeatIntervalString:(NSString *)repeatIntervalString;
+- (void)editAlertViewControllerDidSelectStartDate:(NSDate * _Nonnull)startDate repeatIntervalValue:(NSNumber * _Nonnull)repeatIntervalValue repeatIntervalUnit:(NSString * _Nonnull)repeatIntervalUnit;
 - (void)editAlertViewControllerDidCancel;
 
 @end

@@ -12,7 +12,12 @@
 
 @interface EditChoreViewController : UIViewController
 
-@property (strong, nonatomic) Chore *chore;
+@property (strong, nonatomic) NSMutableOrderedSet<Person *> *mutablePeople;
+@property (strong, nonatomic) Person *currentPerson;
+
+@property (strong, nonatomic) NSDate *startDate;
+@property (strong, nonatomic) NSString *repeatIntervalUnit;
+
 @property (weak, nonatomic) id<EditChoreViewControllerDelegate> delegate;
 
 @end

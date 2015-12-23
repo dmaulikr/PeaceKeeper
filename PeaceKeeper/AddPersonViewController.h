@@ -7,13 +7,11 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "Household.h"
 #import "AddPersonViewControllerDelegate.h"
 
 @interface AddPersonViewController : UIViewController
 
-@property (strong, nonatomic) Household *household;
-@property (strong, nonatomic) NSMutableOrderedSet<Person *> *mutablePeople;
+@property (strong, nonatomic) NSMutableOrderedSet<Person *> *alreadySelected;
 @property (weak, nonatomic) id<AddPersonViewControllerDelegate> delegate;
 
 @end

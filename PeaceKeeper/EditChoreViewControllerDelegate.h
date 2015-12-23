@@ -8,9 +8,15 @@
 
 #import <Foundation/Foundation.h>
 
+@class Person;
+
 @protocol EditChoreViewControllerDelegate <NSObject>
 
-- (void)editChoreViewControllerDidSave;
+- (void)editChoreViewControllerDidSaveWithPeople:(NSOrderedSet * _Nonnull)updatedPeople
+                                   currentPerson:(Person * _Nonnull)updatedCurrentPerson
+                                       startDate:(NSDate * _Nonnull)updatedStartDate
+                             repeatIntervalValue:(NSNumber * _Nonnull)updatedRepeatIntervalValue
+                              repeatIntervalUnit:(NSString * _Nonnull)updatedRepeatIntervalUnit;
 - (void)editChoreViewControllerDidCancel;
 
 @end

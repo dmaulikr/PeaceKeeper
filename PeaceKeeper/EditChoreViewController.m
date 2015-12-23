@@ -11,17 +11,12 @@
 #import "AddPersonViewController.h"
 #import "AddPersonViewControllerDelegate.h"
 #import "EditAlertViewController.h"
-#import "TimeService.h"
 
 @interface EditChoreViewController () <UITableViewDelegate, UITableViewDataSource, AddPersonViewControllerDelegate, EditAlertViewControllerDelegate>
 
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
 
-@property (strong, nonatomic) NSMutableOrderedSet<Person *> *mutablePeople;
-@property (strong, nonatomic) Person *currentPerson;
-
-@property (strong, nonatomic) NSDate *updatedStartDate;
-@property (strong, nonatomic) NSString *updatedRepeatIntervalString;
+@property (nonatomic) BOOL userDidUpdateStartDateOrRepeatInterval;
 
 @end
 
@@ -37,9 +32,8 @@ NSUInteger const kEditableSection = 1;
     self.tableView.dataSource = self;
     self.tableView.allowsSelectionDuringEditing = YES;
     [self.tableView setEditing:YES animated:YES];
-
-    self.mutablePeople = [NSMutableOrderedSet orderedSetWithOrderedSet:self.chore.people];
-    self.currentPerson = [self.chore currentPerson];
+    
+    self.userDidUpdateStartDateOrRepeatInterval = NO;
 }
 
 - (void)toggleSaveButtonIfNeeded {
@@ -68,20 +62,14 @@ NSUInteger const kEditableSection = 1;
     if ([segue.identifier isEqualToString:@"AddPerson"]) {
         UINavigationController *navController = segue.destinationViewController;
         AddPersonViewController *addPersonViewController = navController.viewControllers.firstObject;
-        addPersonViewController.household = self.chore.household;
-        addPersonViewController.mutablePeople = self.mutablePeople;
+        addPersonViewController.alreadySelected = self.mutablePeople;
         addPersonViewController.delegate = self;
     }
     if ([segue.identifier isEqualToString:@"EditAlert"]) {
         UINavigationController *navController = segue.destinationViewController;
         EditAlertViewController *editAlertViewController = navController.viewControllers.firstObject;
-        if (self.updatedStartDate && self.updatedRepeatIntervalString) {
-            editAlertViewController.initialDate = self.updatedStartDate;
-            editAlertViewController.initialRepeatIntervalString = self.updatedRepeatIntervalString;
-        } else {
-            editAlertViewController.initialDate = self.chore.startDate;
-            editAlertViewController.initialRepeatIntervalString = self.chore.repeatIntervalUnit;
-        }
+        editAlertViewController.initialDate = self.startDate;
+        editAlertViewController.initialRepeatIntervalString = self.repeatIntervalUnit;
         editAlertViewController.delegate = self;
     }
 }
@@ -107,38 +95,7 @@ NSUInteger const kEditableSection = 1;
 }
 
 - (IBAction)saveAction:(UIBarButtonItem *)sender {
-    
-    if (self.updatedStartDate && self.updatedRepeatIntervalString) {
-        [self.chore replaceStartDate:self.updatedStartDate repeatIntervalUnit:self.updatedRepeatIntervalString];
-        [TimeService removeChoreNotificationsWithName:self.chore.name];
-        [TimeService scheduleNotificationForChore:self.chore];
-    }
-    
-    // Remove people who aren't in self.mutablePeople
-    for (Person *person in self.chore.people) {
-        if (![self.mutablePeople containsObject:person]) {
-            [self.chore removePerson:person];
-        }
-    }
-    
-    // Add people who aren't self.chore.people
-    for (Person *person in self.mutablePeople) {
-        if (![self.chore.people containsObject:person]) {
-            [self.chore addPerson:person];
-        }
-    }
-    
-    [self.chore replacePeople:self.mutablePeople];
-    
-    // Reset the current person index
-    NSUInteger currentPersonIndex = [self.chore.people indexOfObject:self.currentPerson];
-    if (currentPersonIndex == NSNotFound) {
-        self.chore.currentPersonIndex = @(0);
-    } else {
-        self.chore.currentPersonIndex = @(currentPersonIndex);
-    }
-    
-    [self.delegate editChoreViewControllerDidSave];
+    [self.delegate editChoreViewControllerDidSaveWithPeople:self.mutablePeople currentPerson:self.currentPerson startDate:self.startDate repeatIntervalValue:@(1) repeatIntervalUnit:self.repeatIntervalUnit];
 }
 
 - (IBAction)cancelAction:(UIBarButtonItem *)sender {
@@ -158,9 +115,13 @@ NSUInteger const kEditableSection = 1;
 }
 
 #pragma mark - EditAlertViewControllerDelegate
-- (void)editAlertViewControllerDidSelectStartDate:(NSDate *)startDate repeatIntervalString:(NSString *)repeatIntervalString {
-    self.updatedStartDate = startDate;
-    self.updatedRepeatIntervalString = repeatIntervalString;
+
+- (void)editAlertViewControllerDidSelectStartDate:(NSDate * _Nonnull)startDate repeatIntervalValue:(NSNumber * _Nonnull)repeatIntervalValue repeatIntervalUnit:(NSString * _Nonnull)repeatIntervalUnit {
+    if (![startDate isEqualToDate:self.startDate] || ![repeatIntervalUnit isEqualToString:self.repeatIntervalUnit]) {
+        self.startDate = startDate;
+        self.repeatIntervalUnit = repeatIntervalUnit;
+        self.userDidUpdateStartDateOrRepeatInterval = YES;
+    }
     [self.tableView reloadSections:[NSIndexSet indexSetWithIndex:kAlertSection] withRowAnimation:UITableViewRowAnimationFade];
     [self dismissViewControllerAnimated:YES completion:nil];
 }
@@ -168,7 +129,7 @@ NSUInteger const kEditableSection = 1;
 - (void)editAlertViewControllerDidCancel {
     [self dismissViewControllerAnimated:YES completion:nil];
 }
-
+ 
 #pragma mark - UITableViewDataSource
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
@@ -253,16 +214,13 @@ NSUInteger const kEditableSection = 1;
 
 - (NSString *)tableView:(UITableView *)tableView titleForFooterInSection:(NSInteger)section {
     if (section == kAlertSection) {
-        if (self.updatedStartDate && self.updatedRepeatIntervalString) {
-            return [NSString stringWithFormat:@"Updated alert will start on %@ at %@ and repeat every %@.",
-                    [NSDateFormatter localizedStringFromDate:self.updatedStartDate dateStyle:NSDateFormatterShortStyle timeStyle:NSDateFormatterNoStyle],
-                    [NSDateFormatter localizedStringFromDate:self.updatedStartDate dateStyle:NSDateFormatterNoStyle timeStyle:NSDateFormatterShortStyle],
-                    [self.updatedRepeatIntervalString lowercaseString]];
+        NSString *dateString = [NSDateFormatter localizedStringFromDate:self.startDate dateStyle:NSDateFormatterShortStyle timeStyle:NSDateFormatterNoStyle];
+        NSString *timeString = [NSDateFormatter localizedStringFromDate:self.startDate dateStyle:NSDateFormatterNoStyle timeStyle:NSDateFormatterShortStyle];
+        NSString *lowercaseRepeatIntervalUnit = [self.repeatIntervalUnit lowercaseString];
+        if (self.userDidUpdateStartDateOrRepeatInterval) {
+            return [NSString stringWithFormat:@"Updated alert will start on %@ at %@ and repeat every %@.", dateString, timeString, lowercaseRepeatIntervalUnit];
         }
-        return [NSString stringWithFormat:@"Alerts currently start on %@ at %@ and repeat every %@.",
-                [NSDateFormatter localizedStringFromDate:self.chore.startDate dateStyle:NSDateFormatterShortStyle timeStyle:NSDateFormatterNoStyle],
-                [NSDateFormatter localizedStringFromDate:self.chore.startDate dateStyle:NSDateFormatterNoStyle timeStyle:NSDateFormatterShortStyle],
-                [self.chore.repeatIntervalUnit lowercaseString]];
+        return [NSString stringWithFormat:@"Alerts currently start on %@ at %@ and repeat every %@.", dateString, timeString, lowercaseRepeatIntervalUnit];
     }
     
     if (section == kEditableSection) {

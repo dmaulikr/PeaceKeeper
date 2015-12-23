@@ -35,7 +35,7 @@
 
 - (IBAction)doneAction:(UIBarButtonItem *)sender {
     NSString *repeatIntervalString = [TimeService calendarUnitStrings][[self.repeatIntervalPicker selectedRowInComponent:0]];
-    [self.delegate editAlertViewControllerDidSelectStartDate:self.startDatePicker.date repeatIntervalString:repeatIntervalString];
+    [self.delegate editAlertViewControllerDidSelectStartDate:self.startDatePicker.date repeatIntervalValue:@(1) repeatIntervalUnit:repeatIntervalString];
 }
 
 #pragma mark - UIPickerViewDelegate

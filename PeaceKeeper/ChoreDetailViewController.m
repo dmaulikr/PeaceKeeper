@@ -14,6 +14,7 @@
 #import "Chore.h"
 #import "EditChoreViewController.h"
 #import "EditChoreViewControllerDelegate.h"
+#import "TimeService.h"
 
 @interface ChoreDetailViewController () <UITableViewDelegate, UITableViewDataSource, MFMessageComposeViewControllerDelegate, MFMailComposeViewControllerDelegate, EditChoreViewControllerDelegate>
 
@@ -85,10 +86,23 @@
 }
 
 #pragma mark - Segue
+
+/*
+ @property (strong, nonatomic) NSMutableOrderedSet<Person *> *mutablePeople;
+ @property (strong, nonatomic) Person *currentPerson;
+ 
+ @property (strong, nonatomic) NSDate *startDate;
+ @property (strong, nonatomic) NSString *repeatIntervalString;
+ 
+ @property (weak, nonatomic) id<EditChoreViewControllerDelegate> delegate;
+ */
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
     if ([segue.identifier isEqualToString:@"EditChore"]) {
         EditChoreViewController *editChoreViewController = segue.destinationViewController;
-        editChoreViewController.chore = self.chore;
+        editChoreViewController.mutablePeople = [NSMutableOrderedSet orderedSetWithOrderedSet:self.chore.people];
+        editChoreViewController.currentPerson = [self.chore currentPerson];
+        editChoreViewController.startDate = self.chore.startDate;
+        editChoreViewController.repeatIntervalUnit = self.chore.repeatIntervalUnit;
         editChoreViewController.delegate = self;
     }
 }
@@ -206,7 +220,42 @@
 }
 
 #pragma mark - EditChoreViewControllerDelegate
-- (void)editChoreViewControllerDidSave {
+- (void)editChoreViewControllerDidSaveWithPeople:(NSOrderedSet * _Nonnull)updatedPeople
+                                  currentPerson:(Person * _Nonnull)updatedCurrentPerson
+                                       startDate:(NSDate * _Nonnull)updatedStartDate
+                             repeatIntervalValue:(NSNumber * _Nonnull)updatedRepeatIntervalValue
+                              repeatIntervalUnit:(NSString * _Nonnull)updatedRepeatIntervalUnit {
+    
+    if (![updatedStartDate isEqualToDate:self.chore.startDate] || ![updatedRepeatIntervalUnit isEqualToString:self.chore.repeatIntervalUnit]) {
+        [self.chore replaceStartDate:updatedStartDate repeatIntervalUnit:updatedRepeatIntervalUnit];
+        [TimeService removeChoreNotificationsWithName:self.chore.name];
+        [TimeService scheduleNotificationForChore:self.chore];
+    }
+    
+    // Remove people who aren't in self.mutablePeople
+    for (Person *person in self.chore.people) {
+        if (![updatedPeople containsObject:person]) {
+            [self.chore removePerson:person];
+        }
+    }
+    
+    // Add people who aren't self.chore.people
+    for (Person *person in updatedPeople) {
+        if (![self.chore.people containsObject:person]) {
+            [self.chore addPerson:person];
+        }
+    }
+    
+    [self.chore replacePeople:updatedPeople];
+    
+    // Reset the current person index
+    NSUInteger currentPersonIndex = [self.chore.people indexOfObject:updatedCurrentPerson];
+    if (currentPersonIndex == NSNotFound) {
+        self.chore.currentPersonIndex = @(0);
+    } else {
+        self.chore.currentPersonIndex = @(currentPersonIndex);
+    }
+    
     [self.navigationController popViewControllerAnimated:YES];
 }
 
