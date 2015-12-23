@@ -28,6 +28,6 @@
 + (NSArray<NSValue *> * _Nonnull)calendarUnits;
 
 + (void)schedule:(NSUInteger)n localNotifications:(UILocalNotification * _Nonnull)localNotification every:(NSUInteger)m calendarUnit:(NSCalendarUnit)calendarUnit starting:(NSDate * _Nonnull)startDate;
-+ (NSDate * _Nullable)calculateMostRecentDateFrom:(NSDate * _Nonnull)startDate steppingInIntervalsOf:(NSUInteger)n unit:(NSCalendarUnit)unit;
++ (NSDate * _Nullable)calculateMostRecentDateBySteppingInIntervalsOf:(NSUInteger)n unit:(NSCalendarUnit)unit fromStartDate:(NSDate * _Nonnull)startDate;
 
 @end

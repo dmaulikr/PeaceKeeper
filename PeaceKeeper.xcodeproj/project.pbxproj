@@ -9,6 +9,8 @@
 /* Begin PBXBuildFile section */
 		961C7E681C288D760072627A /* EditChoreViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 961C7E671C288D760072627A /* EditChoreViewController.m */; };
 		961C7E6B1C28C56D0072627A /* AddPersonViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 961C7E6A1C28C56D0072627A /* AddPersonViewController.m */; };
+		962680461C2B544F0025E8A5 /* PeaceKeeperTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 962680451C2B544F0025E8A5 /* PeaceKeeperTests.m */; };
+		9626804E1C2B554A0025E8A5 /* TimeServiceTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 9626804D1C2B554A0025E8A5 /* TimeServiceTests.m */; };
 		964074E71C2092F5003403CB /* MakeChoreViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 964074E61C2092F5003403CB /* MakeChoreViewController.m */; };
 		964074EA1C209DEC003403CB /* AssignChoreViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 964074E91C209DEC003403CB /* AssignChoreViewController.m */; };
 		964074ED1C209EA0003403CB /* Constants.m in Sources */ = {isa = PBXBuildFile; fileRef = 964074EC1C209EA0003403CB /* Constants.m */; };
@@ -36,12 +38,11 @@
 		C137BA471C1F38D80075B349 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C137BA451C1F38D80075B349 /* Main.storyboard */; };
 		C137BA4C1C1F38D80075B349 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = C137BA4B1C1F38D80075B349 /* Assets.xcassets */; };
 		C137BA4F1C1F38D80075B349 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C137BA4D1C1F38D80075B349 /* LaunchScreen.storyboard */; };
-		C137BA5A1C1F38D80075B349 /* PeaceKeeperTests.m in Sources */ = {isa = PBXBuildFile; fileRef = C137BA591C1F38D80075B349 /* PeaceKeeperTests.m */; };
 		C137BA651C1F38D80075B349 /* PeaceKeeperUITests.m in Sources */ = {isa = PBXBuildFile; fileRef = C137BA641C1F38D80075B349 /* PeaceKeeperUITests.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
-		C137BA561C1F38D80075B349 /* PBXContainerItemProxy */ = {
+		962680481C2B544F0025E8A5 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = C137BA311C1F38D70075B349 /* Project object */;
 			proxyType = 1;
@@ -63,6 +64,10 @@
 		961C7E691C28C56D0072627A /* AddPersonViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AddPersonViewController.h; sourceTree = "<group>"; };
 		961C7E6A1C28C56D0072627A /* AddPersonViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AddPersonViewController.m; sourceTree = "<group>"; };
 		961C7E6C1C28D1EF0072627A /* AddPersonViewControllerDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AddPersonViewControllerDelegate.h; sourceTree = "<group>"; };
+		962680431C2B544F0025E8A5 /* PeaceKeeperTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = PeaceKeeperTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		962680451C2B544F0025E8A5 /* PeaceKeeperTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PeaceKeeperTests.m; sourceTree = "<group>"; };
+		962680471C2B544F0025E8A5 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		9626804D1C2B554A0025E8A5 /* TimeServiceTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TimeServiceTests.m; sourceTree = "<group>"; };
 		964074E51C2092F5003403CB /* MakeChoreViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MakeChoreViewController.h; sourceTree = "<group>"; };
 		964074E61C2092F5003403CB /* MakeChoreViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MakeChoreViewController.m; sourceTree = "<group>"; };
 		964074E81C209DEC003403CB /* AssignChoreViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AssignChoreViewController.h; sourceTree = "<group>"; };
@@ -116,23 +121,20 @@
 		C137BA4B1C1F38D80075B349 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		C137BA4E1C1F38D80075B349 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		C137BA501C1F38D80075B349 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		C137BA551C1F38D80075B349 /* PeaceKeeperTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = PeaceKeeperTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		C137BA591C1F38D80075B349 /* PeaceKeeperTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PeaceKeeperTests.m; sourceTree = "<group>"; };
-		C137BA5B1C1F38D80075B349 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		C137BA601C1F38D80075B349 /* PeaceKeeperUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = PeaceKeeperUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		C137BA641C1F38D80075B349 /* PeaceKeeperUITests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PeaceKeeperUITests.m; sourceTree = "<group>"; };
 		C137BA661C1F38D80075B349 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
-		C137BA361C1F38D70075B349 /* Frameworks */ = {
+		962680401C2B544F0025E8A5 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		C137BA521C1F38D80075B349 /* Frameworks */ = {
+		C137BA361C1F38D70075B349 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -149,6 +151,16 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		962680441C2B544F0025E8A5 /* PeaceKeeperTests */ = {
+			isa = PBXGroup;
+			children = (
+				962680451C2B544F0025E8A5 /* PeaceKeeperTests.m */,
+				9626804D1C2B554A0025E8A5 /* TimeServiceTests.m */,
+				962680471C2B544F0025E8A5 /* Info.plist */,
+			);
+			path = PeaceKeeperTests;
+			sourceTree = "<group>";
+		};
 		964D151E1C22435500D71C81 /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
@@ -231,8 +243,8 @@
 			children = (
 				C137BA451C1F38D80075B349 /* Main.storyboard */,
 				C137BA3B1C1F38D70075B349 /* PeaceKeeper */,
-				C137BA581C1F38D80075B349 /* PeaceKeeperTests */,
 				C137BA631C1F38D80075B349 /* PeaceKeeperUITests */,
+				962680441C2B544F0025E8A5 /* PeaceKeeperTests */,
 				C137BA3A1C1F38D70075B349 /* Products */,
 			);
 			sourceTree = "<group>";
@@ -241,8 +253,8 @@
 			isa = PBXGroup;
 			children = (
 				C137BA391C1F38D70075B349 /* PeaceKeeper.app */,
-				C137BA551C1F38D80075B349 /* PeaceKeeperTests.xctest */,
 				C137BA601C1F38D80075B349 /* PeaceKeeperUITests.xctest */,
+				962680431C2B544F0025E8A5 /* PeaceKeeperTests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -274,15 +286,6 @@
 			name = "Supporting Files";
 			sourceTree = "<group>";
 		};
-		C137BA581C1F38D80075B349 /* PeaceKeeperTests */ = {
-			isa = PBXGroup;
-			children = (
-				C137BA591C1F38D80075B349 /* PeaceKeeperTests.m */,
-				C137BA5B1C1F38D80075B349 /* Info.plist */,
-			);
-			path = PeaceKeeperTests;
-			sourceTree = "<group>";
-		};
 		C137BA631C1F38D80075B349 /* PeaceKeeperUITests */ = {
 			isa = PBXGroup;
 			children = (
@@ -295,6 +298,24 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
+		962680421C2B544F0025E8A5 /* PeaceKeeperTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 9626804A1C2B544F0025E8A5 /* Build configuration list for PBXNativeTarget "PeaceKeeperTests" */;
+			buildPhases = (
+				9626803F1C2B544F0025E8A5 /* Sources */,
+				962680401C2B544F0025E8A5 /* Frameworks */,
+				962680411C2B544F0025E8A5 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				962680491C2B544F0025E8A5 /* PBXTargetDependency */,
+			);
+			name = PeaceKeeperTests;
+			productName = PeaceKeeperTests;
+			productReference = 962680431C2B544F0025E8A5 /* PeaceKeeperTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
 		C137BA381C1F38D70075B349 /* PeaceKeeper */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = C137BA691C1F38D80075B349 /* Build configuration list for PBXNativeTarget "PeaceKeeper" */;
@@ -311,24 +332,6 @@
 			productName = PeaceKeeper;
 			productReference = C137BA391C1F38D70075B349 /* PeaceKeeper.app */;
 			productType = "com.apple.product-type.application";
-		};
-		C137BA541C1F38D80075B349 /* PeaceKeeperTests */ = {
-			isa = PBXNativeTarget;
-			buildConfigurationList = C137BA6C1C1F38D80075B349 /* Build configuration list for PBXNativeTarget "PeaceKeeperTests" */;
-			buildPhases = (
-				C137BA511C1F38D80075B349 /* Sources */,
-				C137BA521C1F38D80075B349 /* Frameworks */,
-				C137BA531C1F38D80075B349 /* Resources */,
-			);
-			buildRules = (
-			);
-			dependencies = (
-				C137BA571C1F38D80075B349 /* PBXTargetDependency */,
-			);
-			name = PeaceKeeperTests;
-			productName = PeaceKeeperTests;
-			productReference = C137BA551C1F38D80075B349 /* PeaceKeeperTests.xctest */;
-			productType = "com.apple.product-type.bundle.unit-test";
 		};
 		C137BA5F1C1F38D80075B349 /* PeaceKeeperUITests */ = {
 			isa = PBXNativeTarget;
@@ -357,13 +360,13 @@
 				LastUpgradeCheck = 0720;
 				ORGANIZATIONNAME = "Francisco Ragland";
 				TargetAttributes = {
+					962680421C2B544F0025E8A5 = {
+						CreatedOnToolsVersion = 7.2;
+						TestTargetID = C137BA381C1F38D70075B349;
+					};
 					C137BA381C1F38D70075B349 = {
 						CreatedOnToolsVersion = 7.2;
 						DevelopmentTeam = RBU43E9PMH;
-					};
-					C137BA541C1F38D80075B349 = {
-						CreatedOnToolsVersion = 7.2;
-						TestTargetID = C137BA381C1F38D70075B349;
 					};
 					C137BA5F1C1F38D80075B349 = {
 						CreatedOnToolsVersion = 7.2;
@@ -385,13 +388,20 @@
 			projectRoot = "";
 			targets = (
 				C137BA381C1F38D70075B349 /* PeaceKeeper */,
-				C137BA541C1F38D80075B349 /* PeaceKeeperTests */,
 				C137BA5F1C1F38D80075B349 /* PeaceKeeperUITests */,
+				962680421C2B544F0025E8A5 /* PeaceKeeperTests */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXResourcesBuildPhase section */
+		962680411C2B544F0025E8A5 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		C137BA371C1F38D70075B349 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -399,13 +409,6 @@
 				C137BA4F1C1F38D80075B349 /* LaunchScreen.storyboard in Resources */,
 				C137BA4C1C1F38D80075B349 /* Assets.xcassets in Resources */,
 				C137BA471C1F38D80075B349 /* Main.storyboard in Resources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		C137BA531C1F38D80075B349 /* Resources */ = {
-			isa = PBXResourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -419,6 +422,15 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
+		9626803F1C2B544F0025E8A5 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				9626804E1C2B554A0025E8A5 /* TimeServiceTests.m in Sources */,
+				962680461C2B544F0025E8A5 /* PeaceKeeperTests.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		C137BA351C1F38D70075B349 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -452,14 +464,6 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		C137BA511C1F38D80075B349 /* Sources */ = {
-			isa = PBXSourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				C137BA5A1C1F38D80075B349 /* PeaceKeeperTests.m in Sources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 		C137BA5C1C1F38D80075B349 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -471,10 +475,10 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
-		C137BA571C1F38D80075B349 /* PBXTargetDependency */ = {
+		962680491C2B544F0025E8A5 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			target = C137BA381C1F38D70075B349 /* PeaceKeeper */;
-			targetProxy = C137BA561C1F38D80075B349 /* PBXContainerItemProxy */;
+			targetProxy = 962680481C2B544F0025E8A5 /* PBXContainerItemProxy */;
 		};
 		C137BA621C1F38D80075B349 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
@@ -504,6 +508,30 @@
 /* End PBXVariantGroup section */
 
 /* Begin XCBuildConfiguration section */
+		9626804B1C2B544F0025E8A5 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				INFOPLIST_FILE = PeaceKeeperTests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.jb.PeaceKeeperTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/PeaceKeeper.app/PeaceKeeper";
+			};
+			name = Debug;
+		};
+		9626804C1C2B544F0025E8A5 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				INFOPLIST_FILE = PeaceKeeperTests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.jb.PeaceKeeperTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/PeaceKeeper.app/PeaceKeeper";
+			};
+			name = Release;
+		};
 		C137BA671C1F38D80075B349 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -616,30 +644,6 @@
 			};
 			name = Release;
 		};
-		C137BA6D1C1F38D80075B349 /* Debug */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				BUNDLE_LOADER = "$(TEST_HOST)";
-				INFOPLIST_FILE = PeaceKeeperTests/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.franciscoragland.PeaceKeeperTests;
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/PeaceKeeper.app/PeaceKeeper";
-			};
-			name = Debug;
-		};
-		C137BA6E1C1F38D80075B349 /* Release */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				BUNDLE_LOADER = "$(TEST_HOST)";
-				INFOPLIST_FILE = PeaceKeeperTests/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.franciscoragland.PeaceKeeperTests;
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/PeaceKeeper.app/PeaceKeeper";
-			};
-			name = Release;
-		};
 		C137BA701C1F38D80075B349 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -667,6 +671,14 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
+		9626804A1C2B544F0025E8A5 /* Build configuration list for PBXNativeTarget "PeaceKeeperTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				9626804B1C2B544F0025E8A5 /* Debug */,
+				9626804C1C2B544F0025E8A5 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
 		C137BA341C1F38D70075B349 /* Build configuration list for PBXProject "PeaceKeeper" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
@@ -681,15 +693,6 @@
 			buildConfigurations = (
 				C137BA6A1C1F38D80075B349 /* Debug */,
 				C137BA6B1C1F38D80075B349 /* Release */,
-			);
-			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
-		};
-		C137BA6C1C1F38D80075B349 /* Build configuration list for PBXNativeTarget "PeaceKeeperTests" */ = {
-			isa = XCConfigurationList;
-			buildConfigurations = (
-				C137BA6D1C1F38D80075B349 /* Debug */,
-				C137BA6E1C1F38D80075B349 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;

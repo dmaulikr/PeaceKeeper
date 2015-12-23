@@ -119,11 +119,11 @@
     }
 }
 
-+ (NSDate * _Nullable)calculateMostRecentDateFrom:(NSDate * _Nonnull)startDate steppingInIntervalsOf:(NSUInteger)n unit:(NSCalendarUnit)unit {
++ (NSDate * _Nullable)calculateMostRecentDateBySteppingInIntervalsOf:(NSUInteger)n unit:(NSCalendarUnit)unit fromStartDate:(NSDate * _Nonnull)startDate {
     NSCalendar *calendar = [NSCalendar calendarWithIdentifier:NSCalendarIdentifierGregorian];
     NSDate *previousDate = startDate;
     NSDate *nextDate = [calendar dateByAddingUnit:unit value:n toDate:startDate options:0];
-    while (nextDate.timeIntervalSince1970 < startDate.timeIntervalSince1970) {
+    while (nextDate.timeIntervalSinceNow < 0) {
         previousDate = nextDate;
         nextDate = [calendar dateByAddingUnit:unit value:n toDate:previousDate options:0];
     }

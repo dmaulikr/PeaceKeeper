@@ -28,6 +28,18 @@
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     // Override point for customization after application launch.
 
+    // DELETE ME
+    NSCalendar *cal = [NSCalendar calendarWithIdentifier:NSCalendarIdentifierGregorian];
+    NSDateComponents *firstOf2015Components = [[NSDateComponents alloc] init];
+    firstOf2015Components.year = 2015;
+    firstOf2015Components.month = 1;
+    firstOf2015Components.day = 1;
+    firstOf2015Components.hour = 0;
+    firstOf2015Components.minute = 1;
+    firstOf2015Components.second = 1;
+    NSDate *firstOf2015 = [cal dateFromComponents:firstOf2015Components];
+    // DELETE ME
+    
     UILocalNotification *localNotification = launchOptions[UIApplicationLaunchOptionsLocalNotificationKey];
     
     if (localNotification) {
