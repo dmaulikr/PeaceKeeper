@@ -25,7 +25,6 @@
     return [UIApplication sharedApplication].delegate;
 }
 
-
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     // Override point for customization after application launch.
 
@@ -39,11 +38,6 @@
     self.contactStore = [[CNContactStore alloc] init];
     
     [self registerForNotifications];
-    
-    [UIApplication sharedApplication].statusBarStyle = UIStatusBarStyleLightContent;
-
-  
-//    [application cancelAllLocalNotifications];
 
     return YES;
 }
@@ -112,9 +106,9 @@
         NSLog(@"Successfully fetched count of %@ objects: %lu", [Household name], (unsigned long)count);
     }
     if (count == 0) {
-        return false;
+        return NO;
     }
-    return true;
+    return YES;
 } 
 
 - (void)registerForNotifications {
@@ -122,14 +116,14 @@
     completeChoreAction.identifier = kChoreNotificationActionIdentifierCompleteChore;
     completeChoreAction.title = kChoreNotificationActionTitleCompleteChore;
     completeChoreAction.activationMode = UIUserNotificationActivationModeBackground;
-    completeChoreAction.authenticationRequired = false;
+    completeChoreAction.authenticationRequired = NO;
     
     /*
     UIMutableUserNotificationAction *notifyChoreeAction = [[UIMutableUserNotificationAction alloc] init];
     notifyChoreeAction.identifier = kChoreNotificationActionIdentifierNotifyChoree;
     notifyChoreeAction.title = kChoreNotificationActionTitleNotifyChoree;
     notifyChoreeAction.activationMode = UIUserNotificationActivationModeForeground;
-    notifyChoreeAction.authenticationRequired = true;
+    notifyChoreeAction.authenticationRequired = YES;
      */
 
     UIMutableUserNotificationCategory *notificationCategory = [[UIMutableUserNotificationCategory alloc] init];

@@ -21,6 +21,7 @@
 @implementation MakeChoreViewController
 
 - (void)viewDidLoad {
+    [super viewDidLoad];
     self.repeatIntervalPicker.delegate = self;
     self.repeatIntervalPicker.dataSource = self;
 }
@@ -59,7 +60,7 @@
 #pragma mark - UITextFieldDelegate
 - (BOOL)textFieldShouldReturn:(UITextField *)textField {
     [textField resignFirstResponder];
-    return false;
+    return NO;
 }
 
 

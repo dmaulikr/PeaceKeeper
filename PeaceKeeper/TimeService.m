@@ -7,12 +7,34 @@
 //
 
 #import "TimeService.h"
+#import "Constants.h"
 
 @interface TimeService ()
 
 @end
 
 @implementation TimeService
+
++ (void)removeChoreNotificationsWithName:(NSString * _Nonnull)choreName {
+    NSMutableArray<UILocalNotification *> *matches = [NSMutableArray array];
+    for (UILocalNotification *ln in [UIApplication sharedApplication].scheduledLocalNotifications) {
+        NSString *value = [ln.userInfo valueForKey:kChoreNameKey];
+        if (value && [value isEqualToString:choreName]) {
+            [matches addObject:ln];
+        }
+    }
+    for (UILocalNotification *ln in matches) {
+        [[UIApplication sharedApplication] cancelLocalNotification:ln];
+    }
+}
+
++ (void)scheduleNotificationForChore:(Chore * _Nonnull)chore {
+    NSCalendarUnit repeatInterval = [TimeService calendarUnitForString:chore.repeatIntervalUnit];
+    NSString *alertTitle = [NSString stringWithFormat:@"“%@” Due", chore.name];
+    NSString *alertBody = [NSString stringWithFormat:@"“%@” is due today. Next alert in one %@", chore.name, [chore.repeatIntervalUnit lowercaseString]];
+    NSDictionary *userInfo = [NSDictionary dictionaryWithObject:chore.name forKey:kChoreNameKey];
+    [TimeService scheduleLocalNotificationInUsersTimeZoneAndCalendarWithFireDate:chore.startDate repeatInterval:repeatInterval alertTitle:alertTitle alertBody:alertBody userInfo:userInfo category:kChoreNotificationCategoryIdentifier];
+}
 
 + (void)scheduleLocalNotificationInUsersTimeZoneAndCalendarWithFireDate:(NSDate * _Nonnull)fireDate repeatInterval:(NSCalendarUnit)repeatInterval alertTitle:(NSString * _Nonnull)alertTitle alertBody:(NSString * _Nonnull)alertBody userInfo:(NSDictionary * _Nonnull)userInfo category:(NSString * _Nonnull)category {
     UILocalNotification *ln = [[UILocalNotification alloc] init];
@@ -63,19 +85,25 @@
 }
 
 + (NSArray<NSString *> * _Nonnull)calendarUnitStrings {
-    return @[@"Day",
+    return @[@"Minute", // FIXME
+             @"Hour", // FIXME
+             @"Day",
              @"Week",
              @"Month",
              @"Year"];
 }
 
 + (NSArray<NSValue *> * _Nonnull)calendarUnits {
+    NSCalendarUnit minute = NSCalendarUnitMinute; // FIXME
+    NSCalendarUnit hour = NSCalendarUnitHour; // FIXME
     NSCalendarUnit day = NSCalendarUnitDay;
     NSCalendarUnit week = NSCalendarUnitWeekOfYear;
     NSCalendarUnit month = NSCalendarUnitMonth;
     NSCalendarUnit year = NSCalendarUnitYear;
 
-    return @[[NSValue value:&day withObjCType:@encode(NSCalendarUnit)],
+    return @[[NSValue value:&minute withObjCType:@encode(NSCalendarUnit)], // FIXME
+             [NSValue value:&hour withObjCType:@encode(NSCalendarUnit)], // FIXME
+             [NSValue value:&day withObjCType:@encode(NSCalendarUnit)],
              [NSValue value:&week withObjCType:@encode(NSCalendarUnit)],
              [NSValue value:&month withObjCType:@encode(NSCalendarUnit)],
              [NSValue value:&year withObjCType:@encode(NSCalendarUnit)]];

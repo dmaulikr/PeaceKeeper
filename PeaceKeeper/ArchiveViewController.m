@@ -43,7 +43,7 @@
         } else {
             NSLog(@"Successfully fetched %@ objects", [CompletedChore name]);
         }
-        NSSortDescriptor *sortDescriptor = [NSSortDescriptor sortDescriptorWithKey:@"completionDate" ascending:false];
+        NSSortDescriptor *sortDescriptor = [NSSortDescriptor sortDescriptorWithKey:@"completionDate" ascending:NO];
         _completedChores = [results sortedArrayUsingDescriptors:@[sortDescriptor]];
     }
     return _completedChores;
@@ -65,7 +65,7 @@
     CompletedChore *completedChore = self.completedChores[indexPath.row];
     cell.textLabel.text = [NSString stringWithFormat:@"%@ completed %@", completedChore.chore
                            .name, [self.dateFormatter stringFromDate:completedChore.completionDate]];
-    cell.detailTextLabel.text = [NSString stringWithFormat:@"by %@", completedChore.person.firstName];
+    cell.detailTextLabel.text = [NSString stringWithFormat:@"by %@", [completedChore.person fullName]];
     return cell;
 }
 
