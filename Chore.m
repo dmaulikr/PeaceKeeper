@@ -53,7 +53,7 @@
     return chore;
 }
 
-- (void)replacePeople:(NSOrderedSet<Person *> * _Nonnull)updatedPeople {
+- (void)replacePeople:(NSOrderedSet<Person *> * _Nonnull)updatedPeople currentPersonIndex:(NSNumber * _Nonnull)updatedCurrentPersonIndex {
     for (Person *person in self.people) {
         if (![updatedPeople containsObject:person]) {
             [self removePerson:person];
@@ -64,6 +64,8 @@
             [self addPerson:person];
         }
     }
+    self.people = updatedPeople;
+    self.currentPersonIndex = updatedCurrentPersonIndex;
     self.alertDates = [TimeService alertDatesForChore:self];
     [NSManagedObjectContext saveManagedObjectContext];
 }

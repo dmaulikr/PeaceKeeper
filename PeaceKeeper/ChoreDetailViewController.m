@@ -232,16 +232,14 @@
         [TimeService scheduleNotificationForChore:self.chore];
     }
         
-    [self.chore replacePeople:updatedPeople];
-    
-    // Reset the current person index
-    NSUInteger currentPersonIndex = [self.chore.people indexOfObject:updatedCurrentPerson];
-    if (currentPersonIndex == NSNotFound) {
-        self.chore.currentPersonIndex = @(0);
+    NSNumber *updatedCurrentPersonIndex;
+    NSUInteger i = [updatedPeople indexOfObject:updatedCurrentPerson];
+    if (i == NSNotFound) {
+        updatedCurrentPersonIndex = @(0);
     } else {
-        self.chore.currentPersonIndex = @(currentPersonIndex);
+        updatedCurrentPersonIndex = @(i);
     }
-    
+    [self.chore replacePeople:updatedPeople currentPersonIndex:updatedCurrentPersonIndex];
     [self.navigationController popViewControllerAnimated:YES];
 }
 
