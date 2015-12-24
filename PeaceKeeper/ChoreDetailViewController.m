@@ -87,15 +87,6 @@
 
 #pragma mark - Segue
 
-/*
- @property (strong, nonatomic) NSMutableOrderedSet<Person *> *mutablePeople;
- @property (strong, nonatomic) Person *currentPerson;
- 
- @property (strong, nonatomic) NSDate *startDate;
- @property (strong, nonatomic) NSString *repeatIntervalString;
- 
- @property (weak, nonatomic) id<EditChoreViewControllerDelegate> delegate;
- */
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
     if ([segue.identifier isEqualToString:@"EditChore"]) {
         EditChoreViewController *editChoreViewController = segue.destinationViewController;

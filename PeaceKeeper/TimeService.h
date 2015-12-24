@@ -11,6 +11,8 @@
 
 @interface TimeService : NSObject
 
++ (NSArray<NSDate *> * _Nonnull)alertDatesWithCount:(NSUInteger)count startIndex:(NSUInteger)startIndex startDate:(NSDate * _Nonnull)startDate steppingInIntervalsOf:(NSUInteger)n calendarUnit:(NSCalendarUnit)calendarUnit;
+
 + (void)removeChoreNotificationsWithName:(NSString * _Nonnull)choreName;
 
 + (void)scheduleNotificationForChore:(Chore * _Nonnull)chore;

@@ -47,7 +47,8 @@
     chore.household = household;
     chore.currentPersonIndex = @(0);
     chore.people = people;
-    chore.alertDates = [TimeService alertDatesForChore:self];
+    // FIXME
+//    chore.alertDates = [TimeService alertDatesForChore:self];
     [household addChoresObject:chore];
     [NSManagedObjectContext saveManagedObjectContext];
     return chore;
@@ -66,14 +67,16 @@
     }
     self.people = updatedPeople;
     self.currentPersonIndex = updatedCurrentPersonIndex;
-    self.alertDates = [TimeService alertDatesForChore:self];
+    // FIXME
+//    self.alertDates = [TimeService alertDatesForChore:self];
     [NSManagedObjectContext saveManagedObjectContext];
 }
 
 - (void)replaceStartDate:(NSDate *)startDate repeatIntervalUnit:(NSString *)repeatIntervalUnit {
     self.startDate = startDate;
     self.repeatIntervalUnit = repeatIntervalUnit;
-    self.alertDates = [TimeService alertDatesForChore:self];
+    // FIXME
+//    self.alertDates = [TimeService alertDatesForChore:self];
     [NSManagedObjectContext saveManagedObjectContext];
     
 }
@@ -88,7 +91,8 @@
     
     NSInteger currentPersonIndexValue = self.currentPersonIndex.integerValue;
     
-    self.alertDates = [TimeService updateAlertDates:self.alertDates forCompletedDateAtIndex:currentPersonIndexValue];
+    // FIXME
+//    self.alertDates = [TimeService updateAlertDates:self.alertDates forCompletedDateAtIndex:currentPersonIndexValue];
     
     if (currentPersonIndexValue >= [self.people count] - 1) {
         self.currentPersonIndex = @(0);

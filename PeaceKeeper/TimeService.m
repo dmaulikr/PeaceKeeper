@@ -15,6 +15,38 @@
 
 @implementation TimeService
 
+
+
++ (NSArray<NSDate *> * _Nonnull)alertDatesWithCount:(NSUInteger)count startIndex:(NSUInteger)startIndex startDate:(NSDate * _Nonnull)startDate steppingInIntervalsOf:(NSUInteger)n calendarUnit:(NSCalendarUnit)calendarUnit {
+    if (count == 0) {
+        return @[];
+    }
+    if (startIndex > count - 1) {
+        return @[];
+    }
+    
+    NSMutableArray *mutableResult = [NSMutableArray array];
+    for (NSUInteger i = 0; i < count; i++) {
+        [mutableResult addObject:[NSNull null]];
+    }
+        
+    NSCalendar *cal = [NSCalendar currentCalendar];
+    NSDate *alertDate = startDate;
+    for (NSUInteger i = startIndex; i < (startIndex + count); i++) {
+        NSUInteger index = i % count;
+        mutableResult[index] = alertDate;
+        alertDate = [cal dateByAddingUnit:calendarUnit value:n toDate:alertDate options:0];
+    }
+    
+    // FIXME
+    for (NSUInteger i = 0; i < count; i++) {
+        NSLog(@"%@", mutableResult[i]);
+        NSAssert([mutableResult[i] isKindOfClass:[NSDate class]], @"Resulting array must all be of type NSDate!");
+    }
+    
+    return mutableResult;
+}
+
 + (void)removeChoreNotificationsWithName:(NSString * _Nonnull)choreName {
     NSMutableArray<UILocalNotification *> *matches = [NSMutableArray array];
     for (UILocalNotification *ln in [UIApplication sharedApplication].scheduledLocalNotifications) {
