@@ -77,4 +77,47 @@
     XCTAssertTrue([startDate isEqualToDate:result[startIndex]]);
 }
 
+#pragma mark - indexOfEarliest/LatestDateInAlertDates: class methods
+
+- (void)testThatIndexOfEarliestDateInAlertDateFindsTheEarliestDate {
+    NSDate *today = [NSDate date];
+    NSDate *oneDayAgo = [self.calendar dateByAddingUnit:NSCalendarUnitDay value:-1 toDate:today options:0];
+    NSDate *twoDaysAgo = [self.calendar dateByAddingUnit:NSCalendarUnitDay value:-2 toDate:today options:0];
+    NSDate *threeDaysAgo = [self.calendar dateByAddingUnit:NSCalendarUnitDay value:-3 toDate:today options:0];
+    NSInteger indexOfEarliest = 2;
+    NSArray<NSDate *> *alertDates = @[oneDayAgo, twoDaysAgo, threeDaysAgo];
+    NSInteger result = [TimeService indexOfEarliestDateInAlertDates:alertDates];
+    XCTAssertEqual(result, indexOfEarliest);
+}
+
+- (void)testThatIndexOfLatestDateInAlertDateFindsTheLatestDate {
+    NSDate *today = [NSDate date];
+    NSDate *oneDayAgo = [self.calendar dateByAddingUnit:NSCalendarUnitDay value:-1 toDate:today options:0];
+    NSDate *twoDaysAgo = [self.calendar dateByAddingUnit:NSCalendarUnitDay value:-2 toDate:today options:0];
+    NSDate *threeDaysAgo = [self.calendar dateByAddingUnit:NSCalendarUnitDay value:-3 toDate:today options:0];
+    NSInteger indexOfLatest = 2;
+    NSArray<NSDate *> *alertDates = @[threeDaysAgo, twoDaysAgo, oneDayAgo];
+    NSInteger result = [TimeService indexOfLatestDateInAlertDates:alertDates];
+    XCTAssertEqual(result, indexOfLatest);
+}
+
+#pragma mark - advanceAlertDates... class method
+
+- (void)testThatAdvanceAlertDatesAdvances {
+    NSUInteger n = 1;
+    NSCalendarUnit unit = NSCalendarUnitDay;
+    NSDate *today = [NSDate date];
+    NSDate *oneDayAgo = [self.calendar dateByAddingUnit:NSCalendarUnitDay value:-1 toDate:today options:0];
+    NSDate *twoDaysAgo = [self.calendar dateByAddingUnit:NSCalendarUnitDay value:-2 toDate:today options:0];
+    NSDate *threeDaysAgo = [self.calendar dateByAddingUnit:NSCalendarUnitDay value:-3 toDate:today options:0];
+    NSDate *fourDaysAgo = [self.calendar dateByAddingUnit:NSCalendarUnitDay value:-4 toDate:today options:0];
+    NSArray<NSDate *> *initialDates = @[twoDaysAgo, threeDaysAgo, fourDaysAgo];
+    NSArray<NSDate *> *targetDates = @[twoDaysAgo, threeDaysAgo, oneDayAgo];
+    NSArray<NSDate *> *resultDates = [TimeService advanceAlertDates:initialDates steppingInIntervalsOf:n calendarUnit:unit];
+    for (NSUInteger i = 0; i < targetDates.count; i++) {
+        XCTAssertTrue([resultDates[i] isEqualToDate: targetDates[i]]);
+    }
+}
+
+
 @end

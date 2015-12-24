@@ -15,7 +15,53 @@
 
 @implementation TimeService
 
++ (NSInteger)indexOfEarliestDateInAlertDates:(NSArray<NSDate *> * _Nonnull)alertDates {
+    if (alertDates.count == 0) {
+        return NSNotFound;
+    }
+    if (alertDates.count == 1) {
+        return 0;
+    }
+    NSInteger result = 0;
+    for (NSUInteger i = 1; i < alertDates.count; i++) {
+        if (alertDates[i].timeIntervalSinceReferenceDate < alertDates[result].timeIntervalSinceReferenceDate) {
+            result = i;
+        }
+    }
+    return result;
+}
 
++ (NSInteger)indexOfLatestDateInAlertDates:(NSArray<NSDate *> * _Nonnull)alertDates {
+    if (alertDates.count == 0) {
+        return NSNotFound;
+    }
+    if (alertDates.count == 1) {
+        return 0;
+    }
+    NSInteger result = 0;
+    for (NSUInteger i = 1; i < alertDates.count; i++) {
+        if (alertDates[i].timeIntervalSinceReferenceDate > alertDates[result].timeIntervalSinceReferenceDate) {
+            result = i;
+        }
+    }
+    return result;
+}
+
+
++ (NSArray<NSDate *> * _Nonnull)advanceAlertDates:(NSArray<NSDate *> * _Nonnull)alertDates steppingInIntervalsOf:(NSUInteger)n calendarUnit:(NSCalendarUnit)calendarUnit {
+    if (alertDates.count == 0) {
+        return alertDates;
+    }
+    
+    NSInteger earliest = [TimeService indexOfEarliestDateInAlertDates:alertDates];
+    NSInteger latest = [TimeService indexOfLatestDateInAlertDates:alertDates];
+    
+    NSMutableArray *mutableResult = [NSMutableArray arrayWithArray:alertDates];
+    
+    mutableResult[earliest] = [[NSCalendar currentCalendar] dateByAddingUnit:calendarUnit value:n toDate:alertDates[latest] options:0];
+
+    return mutableResult;
+}
 
 + (NSArray<NSDate *> * _Nonnull)alertDatesWithCount:(NSUInteger)count startIndex:(NSUInteger)startIndex startDate:(NSDate * _Nonnull)startDate steppingInIntervalsOf:(NSUInteger)n calendarUnit:(NSCalendarUnit)calendarUnit {
     if (count == 0) {
