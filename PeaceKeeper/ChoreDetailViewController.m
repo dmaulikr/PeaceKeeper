@@ -231,21 +231,7 @@
         [TimeService removeChoreNotificationsWithName:self.chore.name];
         [TimeService scheduleNotificationForChore:self.chore];
     }
-    
-    // Remove people who aren't in self.mutablePeople
-    for (Person *person in self.chore.people) {
-        if (![updatedPeople containsObject:person]) {
-            [self.chore removePerson:person];
-        }
-    }
-    
-    // Add people who aren't self.chore.people
-    for (Person *person in updatedPeople) {
-        if (![self.chore.people containsObject:person]) {
-            [self.chore addPerson:person];
-        }
-    }
-    
+        
     [self.chore replacePeople:updatedPeople];
     
     // Reset the current person index

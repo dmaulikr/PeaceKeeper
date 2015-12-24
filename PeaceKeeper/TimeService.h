@@ -24,10 +24,10 @@
 + (NSValue * _Nullable)calendarUnitValueForString:(NSString * _Nonnull)target;
 + (NSString * _Nullable)stringForCalendarUnit:(NSValue * _Nonnull)target;
 
-+ (NSArray<NSString *> *_Nonnull)calendarUnitStrings;
++ (NSArray<NSString *> * _Nonnull)calendarUnitStrings;
 + (NSArray<NSValue *> * _Nonnull)calendarUnits;
 
-+ (void)schedule:(NSUInteger)n localNotifications:(UILocalNotification * _Nonnull)localNotification every:(NSUInteger)m calendarUnit:(NSCalendarUnit)calendarUnit starting:(NSDate * _Nonnull)startDate;
-+ (NSDate * _Nullable)calculateMostRecentDateBySteppingInIntervalsOf:(NSUInteger)n unit:(NSCalendarUnit)unit fromStartDate:(NSDate * _Nonnull)startDate;
++ (void)schedule:(NSUInteger)n localNotifications:(UILocalNotification * _Nonnull)localNotification every:(NSUInteger)m calendarUnit:(NSCalendarUnit)calendarUnit startingOn:(NSDate * _Nonnull)startDate;
++ (NSDate * _Nonnull)calculateMostRecentDateBySteppingInIntervalsOf:(NSUInteger)n unit:(NSCalendarUnit)unit fromStartDate:(NSDate * _Nonnull)startDate;
 
 @end

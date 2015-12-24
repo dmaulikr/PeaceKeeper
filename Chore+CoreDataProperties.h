@@ -2,7 +2,7 @@
 //  Chore+CoreDataProperties.h
 //  PeaceKeeper
 //
-//  Created by Work on 12/15/15.
+//  Created by Work on 12/23/15.
 //  Copyright © 2015 Francisco Ragland. All rights reserved.
 //
 //  Choose "Create NSManagedObject Subclass…" from the Core Data editor menu
@@ -20,6 +20,7 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nullable, nonatomic, retain) NSString *repeatIntervalUnit;
 @property (nullable, nonatomic, retain) NSNumber *repeatIntervalValue;
 @property (nullable, nonatomic, retain) NSDate *startDate;
+@property (nullable, nonatomic, retain) id alertDates;
 @property (nullable, nonatomic, retain) Household *household;
 @property (nullable, nonatomic, retain) NSOrderedSet<Person *> *people;
 

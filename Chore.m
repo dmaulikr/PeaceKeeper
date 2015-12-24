@@ -11,8 +11,11 @@
 #import "Person.h"
 #import "CompletedChore.h"
 #import "NSManagedObjectContext+Category.h"
+#import "TimeService.h"
 
 @implementation Chore
+
+#pragma mark - Interface methods
 
 + (NSString *)name {
     return @"Chore";
@@ -44,10 +47,57 @@
     chore.household = household;
     chore.currentPersonIndex = @(0);
     chore.people = people;
+    chore.alertDates = [TimeService alertDatesForChore:self];
     [household addChoresObject:chore];
     [NSManagedObjectContext saveManagedObjectContext];
     return chore;
 }
+
+- (void)replacePeople:(NSOrderedSet<Person *> * _Nonnull)updatedPeople {
+    for (Person *person in self.people) {
+        if (![updatedPeople containsObject:person]) {
+            [self removePerson:person];
+        }
+    }
+    for (Person *person in updatedPeople) {
+        if (![self.people containsObject:person]) {
+            [self addPerson:person];
+        }
+    }
+    self.alertDates = [TimeService alertDatesForChore:self];
+    [NSManagedObjectContext saveManagedObjectContext];
+}
+
+- (void)replaceStartDate:(NSDate *)startDate repeatIntervalUnit:(NSString *)repeatIntervalUnit {
+    self.startDate = startDate;
+    self.repeatIntervalUnit = repeatIntervalUnit;
+    self.alertDates = [TimeService alertDatesForChore:self];
+    [NSManagedObjectContext saveManagedObjectContext];
+    
+}
+
+- (Person *)currentPerson {
+    NSOrderedSet *people = self.people;
+    return [people objectAtIndex:self.currentPersonIndex.integerValue];
+}
+
+- (void)completeChore {
+    [CompletedChore completedChoreWithCompletionDate:[NSDate date] chore:self person:[self.people objectAtIndex:self.currentPersonIndex.integerValue] household:self.household];
+    
+    NSInteger currentPersonIndexValue = self.currentPersonIndex.integerValue;
+    
+    self.alertDates = [TimeService updateAlertDates:self.alertDates forCompletedDateAtIndex:currentPersonIndexValue];
+    
+    if (currentPersonIndexValue >= [self.people count] - 1) {
+        self.currentPersonIndex = @(0);
+    } else {
+        currentPersonIndexValue++;
+        self.currentPersonIndex = @(currentPersonIndexValue);
+    }
+    [NSManagedObjectContext saveManagedObjectContext];
+}
+
+#pragma mark - Internal methods
 
 - (void)removePerson:(Person * _Nonnull)person {
     // Remove the person from the chore
@@ -73,36 +123,7 @@
     NSMutableSet *mutableChores = [NSMutableSet setWithSet:person.chores];
     [mutableChores addObject:self];
     person.chores = mutableChores;
-
-    [NSManagedObjectContext saveManagedObjectContext];
-}
-
-- (void)replacePeople:(NSOrderedSet<Person *> * _Nonnull)people {
-    self.people = people;
-    [NSManagedObjectContext saveManagedObjectContext];
-}
-
-- (void)replaceStartDate:(NSDate *)startDate repeatIntervalUnit:(NSString *)repeatIntervalUnit {
-    self.startDate = startDate;
-    self.repeatIntervalUnit = repeatIntervalUnit;
-    [NSManagedObjectContext saveManagedObjectContext];
-}
-
-- (Person *)currentPerson {
-    NSOrderedSet *people = self.people;
-    return [people objectAtIndex:self.currentPersonIndex.integerValue];
-}
-
-- (void)completeChore {
-    [CompletedChore completedChoreWithCompletionDate:[NSDate date] chore:self person:[self.people objectAtIndex:self.currentPersonIndex.integerValue] household:self.household];
     
-    NSInteger currentPersonIndexValue = self.currentPersonIndex.integerValue;
-    if (currentPersonIndexValue >= [self.people count] - 1) {
-        self.currentPersonIndex = @(0);
-    } else {
-        currentPersonIndexValue++;
-        self.currentPersonIndex = @(currentPersonIndexValue);
-    }
     [NSManagedObjectContext saveManagedObjectContext];
 }
 

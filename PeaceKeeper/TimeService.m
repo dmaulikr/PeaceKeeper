@@ -109,7 +109,7 @@
              [NSValue value:&year withObjCType:@encode(NSCalendarUnit)]];
 }
 
-+ (void)schedule:(NSUInteger)n localNotifications:(UILocalNotification * _Nonnull)localNotification every:(NSUInteger)m calendarUnit:(NSCalendarUnit)calendarUnit starting:(NSDate * _Nonnull)startDate {
++ (void)schedule:(NSUInteger)n localNotifications:(UILocalNotification * _Nonnull)localNotification every:(NSUInteger)m calendarUnit:(NSCalendarUnit)calendarUnit startingOn:(NSDate * _Nonnull)startDate {
     NSCalendar *calendar = [NSCalendar calendarWithIdentifier:NSCalendarIdentifierGregorian];
     for (NSUInteger i = 0; i < n; i++) {
         UILocalNotification *notification = localNotification.copy;
@@ -119,7 +119,7 @@
     }
 }
 
-+ (NSDate * _Nullable)calculateMostRecentDateBySteppingInIntervalsOf:(NSUInteger)n unit:(NSCalendarUnit)unit fromStartDate:(NSDate * _Nonnull)startDate {
++ (NSDate * _Nonnull)calculateMostRecentDateBySteppingInIntervalsOf:(NSUInteger)n unit:(NSCalendarUnit)unit fromStartDate:(NSDate * _Nonnull)startDate {
     NSCalendar *calendar = [NSCalendar calendarWithIdentifier:NSCalendarIdentifierGregorian];
     NSDate *previousDate = startDate;
     NSDate *nextDate = [calendar dateByAddingUnit:unit value:n toDate:startDate options:0];
