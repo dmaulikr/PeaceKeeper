@@ -15,6 +15,21 @@
 
 @implementation TimeService
 
++ (NSArray<NSDate *> * _Nonnull)alertDatesForChore:(Chore * _Nonnull)chore withStartIndex:(NSUInteger)startIndex {
+    return [self alertDatesWithCount:chore.people.count startIndex:startIndex startDate:chore.startDate steppingInIntervalsOf:chore.repeatIntervalValue.integerValue calendarUnit:[self calendarUnitForString:chore.repeatIntervalUnit]];
+}
+
++ (NSInteger)insertionIndexForLatestDateInAlertDates:(NSArray<NSDate *> * _Nonnull)alertDates {
+    if (alertDates.count == 0) {
+        return NSNotFound;
+    }
+    NSInteger earliest = [self indexOfEarliestDateInAlertDates:alertDates];
+    if (earliest == 0) {
+        return alertDates.count;
+    }
+    return earliest;
+}
+
 + (NSInteger)indexOfEarliestDateInAlertDates:(NSArray<NSDate *> * _Nonnull)alertDates {
     if (alertDates.count == 0) {
         return NSNotFound;

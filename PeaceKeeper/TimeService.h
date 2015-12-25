@@ -11,6 +11,10 @@
 
 @interface TimeService : NSObject
 
++ (NSArray<NSDate *> * _Nonnull)alertDatesForChore:(Chore * _Nonnull)chore withStartIndex:(NSUInteger)startIndex;
+
++ (NSInteger)insertionIndexForLatestDateInAlertDates:(NSArray<NSDate *> * _Nonnull)alertDates;
+
 + (NSInteger)indexOfEarliestDateInAlertDates:(NSArray<NSDate *> * _Nonnull)alertDates;
 + (NSInteger)indexOfLatestDateInAlertDates:(NSArray<NSDate *> * _Nonnull)alertDates;
 

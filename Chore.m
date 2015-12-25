@@ -45,16 +45,33 @@
     chore.repeatIntervalValue = repeatIntervalValue;
     chore.repeatIntervalUnit = repeatIntervalUnit;
     chore.household = household;
-    chore.currentPersonIndex = @(0);
     chore.people = people;
-    // FIXME
-//    chore.alertDates = [TimeService alertDatesForChore:self];
+    chore.alertDates = [TimeService alertDatesForChore:chore withStartIndex:0];
     [household addChoresObject:chore];
     [NSManagedObjectContext saveManagedObjectContext];
     return chore;
 }
 
-- (void)replacePeople:(NSOrderedSet<Person *> * _Nonnull)updatedPeople currentPersonIndex:(NSNumber * _Nonnull)updatedCurrentPersonIndex {
+- (void)personAtIndexHasCompletedChore:(NSUInteger)targetIndex {
+    NSMutableOrderedSet *mutablePeople = [NSMutableOrderedSet orderedSetWithOrderedSet:self.people];
+    NSMutableArray<NSDate *> *mutableAlertDates = [NSMutableArray arrayWithArray:self.alertDates];
+    
+    Person *targetPerson = [mutablePeople objectAtIndex:targetIndex];
+    [mutablePeople removeObjectAtIndex:targetIndex];
+
+    NSDate *latestDate = mutableAlertDates[[TimeService indexOfLatestDateInAlertDates:mutableAlertDates]];
+    latestDate = [[NSCalendar currentCalendar] dateByAddingUnit:[TimeService calendarUnitForString:self.repeatIntervalUnit] value:self.repeatIntervalValue.integerValue toDate:latestDate options:0];
+    [mutableAlertDates removeObjectAtIndex:targetIndex];
+    
+    NSInteger insertionIndex = [TimeService insertionIndexForLatestDateInAlertDates:mutableAlertDates];
+    [mutableAlertDates insertObject:latestDate atIndex:insertionIndex];
+    [mutablePeople insertObject:targetPerson atIndex:insertionIndex];
+    
+    self.people = mutablePeople;
+    self.alertDates = mutableAlertDates;
+}
+
+- (void)replacePeople:(NSOrderedSet<Person *> * _Nonnull)updatedPeople startIndex:(NSUInteger)startIndex {
     for (Person *person in self.people) {
         if (![updatedPeople containsObject:person]) {
             [self removePerson:person];
@@ -66,40 +83,29 @@
         }
     }
     self.people = updatedPeople;
-    self.currentPersonIndex = updatedCurrentPersonIndex;
-    // FIXME
-//    self.alertDates = [TimeService alertDatesForChore:self];
+    self.alertDates = [TimeService alertDatesForChore:self withStartIndex:startIndex];
     [NSManagedObjectContext saveManagedObjectContext];
 }
 
 - (void)replaceStartDate:(NSDate *)startDate repeatIntervalUnit:(NSString *)repeatIntervalUnit {
     self.startDate = startDate;
     self.repeatIntervalUnit = repeatIntervalUnit;
-    // FIXME
-//    self.alertDates = [TimeService alertDatesForChore:self];
+    NSUInteger startIndex = [TimeService indexOfEarliestDateInAlertDates:self.alertDates];
+    self.alertDates = [TimeService alertDatesForChore:self withStartIndex:startIndex];
     [NSManagedObjectContext saveManagedObjectContext];
     
 }
 
 - (Person *)currentPerson {
-    NSOrderedSet *people = self.people;
-    return [people objectAtIndex:self.currentPersonIndex.integerValue];
+    NSInteger earliest = [TimeService indexOfEarliestDateInAlertDates:self.alertDates];
+    return [self.people objectAtIndex:earliest];
 }
 
 - (void)completeChore {
     [CompletedChore completedChoreWithCompletionDate:[NSDate date] chore:self person:[self.people objectAtIndex:self.currentPersonIndex.integerValue] household:self.household];
-    
-    NSInteger currentPersonIndexValue = self.currentPersonIndex.integerValue;
-    
-    // FIXME
-//    self.alertDates = [TimeService updateAlertDates:self.alertDates forCompletedDateAtIndex:currentPersonIndexValue];
-    
-    if (currentPersonIndexValue >= [self.people count] - 1) {
-        self.currentPersonIndex = @(0);
-    } else {
-        currentPersonIndexValue++;
-        self.currentPersonIndex = @(currentPersonIndexValue);
-    }
+    self.alertDates = [TimeService advanceAlertDates:self.alertDates
+                               steppingInIntervalsOf:self.repeatIntervalValue.integerValue
+                                        calendarUnit:[TimeService calendarUnitForString:self.repeatIntervalUnit]];
     [NSManagedObjectContext saveManagedObjectContext];
 }
 
