@@ -223,14 +223,14 @@
         [TimeService scheduleNotificationForChore:self.chore];
     }
         
-    NSNumber *updatedCurrentPersonIndex;
+    NSUInteger startIndex;
     NSUInteger i = [updatedPeople indexOfObject:updatedCurrentPerson];
     if (i == NSNotFound) {
-        updatedCurrentPersonIndex = @(0);
+        startIndex = 0;
     } else {
-        updatedCurrentPersonIndex = @(i);
+        startIndex = i;
     }
-    [self.chore replacePeople:updatedPeople currentPersonIndex:updatedCurrentPersonIndex];
+    [self.chore replacePeople:updatedPeople startIndex:startIndex];
     [self.navigationController popViewControllerAnimated:YES];
 }
 

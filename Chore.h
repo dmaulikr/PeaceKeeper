@@ -18,7 +18,7 @@ NS_ASSUME_NONNULL_BEGIN
 + (NSString *)name;
 + (instancetype)fetchChoreWithName:(NSString * _Nonnull)name;
 + (instancetype)choreWithName:(NSString * _Nonnull)name startDate:(NSDate * _Nonnull)startDate repeatIntervalValue:(NSNumber * _Nonnull)repeatIntervalValue repeatIntervalUnit:(NSString * _Nonnull)repeatIntervalUnit household:(Household * _Nonnull)household people:(NSOrderedSet *)people;
-- (void)replacePeople:(NSOrderedSet<Person *> * _Nonnull)updatedPeople currentPersonIndex:(NSNumber * _Nonnull)updatedCurrentPersonIndex;
+- (void)replacePeople:(NSOrderedSet<Person *> * _Nonnull)updatedPeople startIndex:(NSUInteger)startIndex;
 - (void)replaceStartDate:(NSDate *)startDate repeatIntervalUnit:(NSString *)repeatIntervalUnit;
 - (Person *)currentPerson;
 - (void)completeChore;

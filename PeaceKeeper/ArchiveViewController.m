@@ -34,14 +34,15 @@
 
 - (NSArray<CompletedChore *> *)completedChores {
     if (!_completedChores) {
+        NSString *entityName = [CompletedChore name];
         NSManagedObjectContext *managedObjectContext = [NSManagedObjectContext managedObjectContext];
-        NSFetchRequest *request = [NSFetchRequest fetchRequestWithEntityName:[CompletedChore name]];
+        NSFetchRequest *request = [NSFetchRequest fetchRequestWithEntityName:entityName];
         NSError *error;
         NSArray *results = [managedObjectContext executeFetchRequest:request error:&error];
         if (error) {
-            NSLog(@"Error fetching %@ objects: %@", [CompletedChore name], error.localizedDescription);
+            NSLog(@"Error fetching %@ objects: %@", entityName, error.localizedDescription);
         } else {
-            NSLog(@"Successfully fetched %@ objects", [CompletedChore name]);
+            NSLog(@"Successfully fetched %@ objects", entityName);
         }
         NSSortDescriptor *sortDescriptor = [NSSortDescriptor sortDescriptorWithKey:@"completionDate" ascending:NO];
         _completedChores = [results sortedArrayUsingDescriptors:@[sortDescriptor]];

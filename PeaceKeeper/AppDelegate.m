@@ -107,22 +107,6 @@
     [self saveContext];
 }
 
-- (BOOL)userHasCreatedAHousehold {
-    NSManagedObjectContext *managedObjectContext = [NSManagedObjectContext managedObjectContext];
-    NSFetchRequest *request = [NSFetchRequest fetchRequestWithEntityName:[Household name]];
-    NSError *error;
-    NSUInteger count = [managedObjectContext countForFetchRequest:request error:&error];
-    if (error) {
-        NSLog(@"Error fetching count of %@ objects: %@", [Household name], error.localizedDescription);
-    } else {
-        NSLog(@"Successfully fetched count of %@ objects: %lu", [Household name], (unsigned long)count);
-    }
-    if (count == 0) {
-        return NO;
-    }
-    return YES;
-} 
-
 - (void)registerForNotifications {
     UIMutableUserNotificationAction *completeChoreAction = [[UIMutableUserNotificationAction alloc] init];
     completeChoreAction.identifier = kChoreNotificationActionIdentifierCompleteChore;

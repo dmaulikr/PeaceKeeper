@@ -29,16 +29,17 @@
 
 - (NSArray<Chore *> *)chores {
     if (!_chores) {
+        NSString *entityName = [Chore name];
         NSManagedObjectContext *managedObjectContext = [NSManagedObjectContext managedObjectContext];
-        NSFetchRequest *request = [NSFetchRequest fetchRequestWithEntityName:[Chore name]];
+        NSFetchRequest *request = [NSFetchRequest fetchRequestWithEntityName:entityName];
         NSError *error;
         NSArray *results = [managedObjectContext executeFetchRequest:request error:&error];
         _chores = results;
         if (error) {
-            NSLog(@"Error fetching %@ objects: %@", [Chore name], error.localizedDescription);
+            NSLog(@"Error fetching %@ objects: %@", entityName, error.localizedDescription);
         } else {
-            NSLog(@"Successfully fetched %@ objects", [Chore name]);
-            NSLog(@"Chore count: %@", @(_chores.count));
+            NSLog(@"Successfully fetched %@ objects", entityName);
+            NSLog(@"%@ count: %@", entityName, @(_chores.count));
         }
     }
     return _chores;

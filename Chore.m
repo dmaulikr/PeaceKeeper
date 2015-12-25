@@ -22,15 +22,16 @@
 }
 
 + (instancetype)fetchChoreWithName:(NSString * _Nonnull)name {
+    NSString *entityName = [Chore name];
     NSManagedObjectContext *managedObjectContext = [NSManagedObjectContext managedObjectContext];
-    NSFetchRequest *request = [NSFetchRequest fetchRequestWithEntityName:[Chore name]];
+    NSFetchRequest *request = [NSFetchRequest fetchRequestWithEntityName:entityName];
     request.predicate = [NSPredicate predicateWithFormat:@"name = %@", name];
     NSError *error;
     NSArray *results = [managedObjectContext executeFetchRequest:request error:&error];
     if (error) {
-        NSLog(@"Error fetching %@ objects: %@", [Chore name], error.localizedDescription);
+        NSLog(@"Error fetching %@ objects: %@", entityName, error.localizedDescription);
     } else {
-        NSLog(@"Successfully fetched %@ object!", [Chore name]);
+        NSLog(@"Successfully fetched %@ object!", entityName);
     }
     if (results.count > 0) {
         return results.firstObject;
