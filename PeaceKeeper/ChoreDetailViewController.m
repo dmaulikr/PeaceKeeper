@@ -28,6 +28,9 @@
 @property (strong, nonatomic) MFMessageComposeViewController *messageController;
 @property (strong, nonatomic) MFMailComposeViewController *mailController;
 
+@property (strong, nonatomic) NSOrderedSet<Choree *> *unrolledChorees;
+@property (strong, nonatomic) Person *currentPerson;
+
 @end
 
 
@@ -43,7 +46,7 @@
 
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
-    [self.tableView reloadData];
+    [self reloadTableView];
 }
 
 - (void)viewDidAppear:(BOOL)animated {
@@ -58,12 +61,20 @@
     [super didReceiveMemoryWarning];
 }
 
+- (void)reloadTableView {
+    if (self.chore) {
+        self.unrolledChorees = [self.chore unrolledChorees];
+        self.currentPerson = [self.chore currentPerson];
+    }
+    [self.tableView reloadData];
+}
+
 - (void)configureMessageAndMailControllersForPerson:(Person *)person {
     NSString *messageBody;
     NSString *mailSubject;
     NSString *mailBody;
     
-    if (person == self.chore.currentPerson) {
+    if (person == self.currentPerson) {
         messageBody = [NSString stringWithFormat:@"PeaceKeeper Reminder: It's your turn to do %@, thanks 😀", self.chore.name];
         mailSubject = [NSString stringWithFormat:@"PeaceKeeper %@ Reminder", self.chore.name];
         mailBody = [NSString stringWithFormat:@"Hey %@, it's your turn to do %@, thanks 😀", person.firstName, self.chore.name];
@@ -101,10 +112,10 @@
         [alert addAction:sendEmail];
     }
     
-    if (person == self.chore.currentPerson) {
+    if (person == self.currentPerson) {
         UIAlertAction *complete = [UIAlertAction actionWithTitle:@"Mark as Completed" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
             [self.chore completeChore];
-            [self.tableView reloadData];
+            [self reloadTableView];
         }];
         [alert addAction:complete];
     }
@@ -120,8 +131,14 @@
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
     if ([segue.identifier isEqualToString:@"EditChore"]) {
         EditChoreViewController *editChoreViewController = segue.destinationViewController;
-        editChoreViewController.mutablePeople = [self.chore mutablePeople];
-        editChoreViewController.currentPerson = [self.chore currentPerson];
+        
+        NSMutableOrderedSet *mutableUnrolledPeople = [NSMutableOrderedSet orderedSet];
+        for (Choree *choree in self.unrolledChorees) {
+            [mutableUnrolledPeople addObject:choree.person];
+        }
+        
+        editChoreViewController.mutablePeople = mutableUnrolledPeople;
+        editChoreViewController.currentPerson = self.currentPerson;
         editChoreViewController.startDate = self.chore.startDate;
         editChoreViewController.repeatIntervalValue = self.chore.repeatIntervalValue;
         editChoreViewController.repeatIntervalUnit = self.chore.repeatIntervalUnit;
@@ -132,17 +149,17 @@
 #pragma mark - UITableView methods
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    return [self.chore.chorees count];
+    return [self.unrolledChorees count];
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"Choree" forIndexPath:indexPath];
-    Choree *choree = self.chore.chorees[indexPath.row];
+    Choree *choree = self.unrolledChorees[indexPath.row];
     cell.textLabel.text = choree.person.firstName;
     if (!cell.accessoryView) {
         cell.accessoryView = [EllipsisView ellipsisViewWithSize:CGSizeMake(20.0, 20.0) leftMargin:8 color:self.view.tintColor];
     }
-    if (indexPath.row == [self.chore currentPersonIndex].integerValue) {
+    if (choree.person == self.currentPerson) {
         cell.detailTextLabel.text = [NSString stringWithFormat:@"Next up in %@", [choree.alertDate descriptionOfTimeToNowInDaysHoursOrMinutes]];
     } else {
         cell.detailTextLabel.text = [NSString stringWithFormat:@"Due in %@", [choree.alertDate descriptionOfTimeToNowInDaysHoursOrMinutes]];
@@ -153,7 +170,7 @@
 
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
-    Person *person = [self.chore.chorees objectAtIndex:indexPath.row].person;
+    Person *person = [self.unrolledChorees objectAtIndex:indexPath.row].person;
     [self configureMessageAndMailControllersForPerson:person];
     [self presentViewController:[self alertControllerForPerson:person] animated:YES completion:nil];
 }
@@ -191,9 +208,6 @@
     }
     [self dismissViewControllerAnimated:YES completion:nil];
 }
-
-
-
 
 #pragma mark - MFMailComposeViewController methods
 

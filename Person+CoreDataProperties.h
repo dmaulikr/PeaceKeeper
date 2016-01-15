@@ -10,6 +10,7 @@
 //
 
 #import "Person.h"
+#import "Choree.h"
 
 NS_ASSUME_NONNULL_BEGIN
 
