@@ -22,8 +22,8 @@
 
 @implementation EditChoreViewController
 
-NSUInteger const kAlertSection = 0;
-NSUInteger const kEditableSection = 1;
+NSUInteger const alertSection = 0;
+NSUInteger const editableSection = 1;
 
 - (void)viewDidLoad {
     
@@ -68,8 +68,9 @@ NSUInteger const kEditableSection = 1;
     if ([segue.identifier isEqualToString:@"EditAlert"]) {
         UINavigationController *navController = segue.destinationViewController;
         EditAlertViewController *editAlertViewController = navController.viewControllers.firstObject;
-        editAlertViewController.initialDate = self.startDate;
-        editAlertViewController.initialRepeatIntervalString = self.repeatIntervalUnit;
+        editAlertViewController.startDate = self.startDate;
+        editAlertViewController.repeatIntervalValue = self.repeatIntervalValue;
+        editAlertViewController.repeatIntervalUnit = self.repeatIntervalUnit;
         editAlertViewController.delegate = self;
     }
 }
@@ -81,13 +82,13 @@ NSUInteger const kEditableSection = 1;
     if (sender.state == UIGestureRecognizerStateBegan) {
         CGPoint pressedPoint = [sender locationInView:self.tableView];
         NSIndexPath *indexPathUnderPress = [self.tableView indexPathForRowAtPoint:pressedPoint];
-        if (indexPathUnderPress.section == kEditableSection && indexPathUnderPress.row < self.mutablePeople.count) {
+        if (indexPathUnderPress.section == editableSection && indexPathUnderPress.row < self.mutablePeople.count) {
             NSUInteger prevCurrentPersonIndex = [self.mutablePeople indexOfObject:self.currentPerson];
             self.currentPerson = self.mutablePeople[indexPathUnderPress.row];
             if (prevCurrentPersonIndex == NSNotFound || prevCurrentPersonIndex == indexPathUnderPress.row) {
                 [self.tableView reloadRowsAtIndexPaths:@[indexPathUnderPress] withRowAnimation:UITableViewRowAnimationFade];
             } else {
-                [self.tableView reloadRowsAtIndexPaths:@[indexPathUnderPress, [NSIndexPath indexPathForRow:prevCurrentPersonIndex inSection:kEditableSection]] withRowAnimation:UITableViewRowAnimationFade];
+                [self.tableView reloadRowsAtIndexPaths:@[indexPathUnderPress, [NSIndexPath indexPathForRow:prevCurrentPersonIndex inSection:editableSection]] withRowAnimation:UITableViewRowAnimationFade];
             }
             [self toggleSaveButtonIfNeeded];
         }
@@ -95,7 +96,7 @@ NSUInteger const kEditableSection = 1;
 }
 
 - (IBAction)saveAction:(UIBarButtonItem *)sender {
-    [self.delegate editChoreViewControllerDidSaveWithPeople:self.mutablePeople currentPerson:self.currentPerson startDate:self.startDate repeatIntervalValue:@(1) repeatIntervalUnit:self.repeatIntervalUnit];
+    [self.delegate editChoreViewControllerDidSaveWithPeople:self.mutablePeople currentPerson:self.currentPerson startDate:self.startDate repeatIntervalValue:self.repeatIntervalValue repeatIntervalUnit:self.repeatIntervalUnit];
 }
 
 - (IBAction)cancelAction:(UIBarButtonItem *)sender {
@@ -119,10 +120,11 @@ NSUInteger const kEditableSection = 1;
 - (void)editAlertViewControllerDidSelectStartDate:(NSDate * _Nonnull)startDate repeatIntervalValue:(NSNumber * _Nonnull)repeatIntervalValue repeatIntervalUnit:(NSString * _Nonnull)repeatIntervalUnit {
     if (![startDate isEqualToDate:self.startDate] || ![repeatIntervalUnit isEqualToString:self.repeatIntervalUnit]) {
         self.startDate = startDate;
+        self.repeatIntervalValue = repeatIntervalValue;
         self.repeatIntervalUnit = repeatIntervalUnit;
         self.userDidUpdateStartDateOrRepeatInterval = YES;
     }
-    [self.tableView reloadSections:[NSIndexSet indexSetWithIndex:kAlertSection] withRowAnimation:UITableViewRowAnimationFade];
+    [self.tableView reloadSections:[NSIndexSet indexSetWithIndex:alertSection] withRowAnimation:UITableViewRowAnimationFade];
     [self dismissViewControllerAnimated:YES completion:nil];
 }
 
@@ -138,9 +140,9 @@ NSUInteger const kEditableSection = 1;
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
     switch (section) {
-        case kAlertSection:
+        case alertSection:
             return 1;
-        case kEditableSection:
+        case editableSection:
             return self.mutablePeople.count + 1;
         default:
             return 0;
@@ -150,11 +152,11 @@ NSUInteger const kEditableSection = 1;
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     UITableViewCell *cell = [self.tableView dequeueReusableCellWithIdentifier:@"Cell" forIndexPath:indexPath];
     switch (indexPath.section) {
-        case kAlertSection:
+        case alertSection:
             cell.textLabel.text = @"Edit Alert";
             cell.detailTextLabel.text = @"";
             break;
-        case kEditableSection:
+        case editableSection:
             if (indexPath.row < self.mutablePeople.count) {
                 Person *person = (Person *)[self.mutablePeople objectAtIndex:indexPath.row];
                 cell.textLabel.text = [NSString stringWithFormat:@"%@", [person fullName]];
@@ -175,7 +177,7 @@ NSUInteger const kEditableSection = 1;
 }
 
 - (BOOL)tableView:(UITableView *)tableView canMoveRowAtIndexPath:(NSIndexPath *)indexPath {
-    if (indexPath.section == kEditableSection && indexPath.row < self.mutablePeople.count) {
+    if (indexPath.section == editableSection && indexPath.row < self.mutablePeople.count) {
         return YES;
     }
     return NO;
@@ -213,24 +215,30 @@ NSUInteger const kEditableSection = 1;
 }
 
 - (NSString *)tableView:(UITableView *)tableView titleForFooterInSection:(NSInteger)section {
-    if (section == kAlertSection) {
+    if (section == alertSection) {
         NSString *dateString = [NSDateFormatter localizedStringFromDate:self.startDate dateStyle:NSDateFormatterShortStyle timeStyle:NSDateFormatterNoStyle];
         NSString *timeString = [NSDateFormatter localizedStringFromDate:self.startDate dateStyle:NSDateFormatterNoStyle timeStyle:NSDateFormatterShortStyle];
         NSString *lowercaseRepeatIntervalUnit = [self.repeatIntervalUnit lowercaseString];
         if (self.userDidUpdateStartDateOrRepeatInterval) {
-            return [NSString stringWithFormat:@"Updated alert will start on %@ at %@ and repeat every %@.", dateString, timeString, lowercaseRepeatIntervalUnit];
+            if (self.repeatIntervalValue.integerValue == 1) {
+                return [NSString stringWithFormat:@"Updated alert will start on %@ at %@ and repeat every %@.", dateString, timeString, lowercaseRepeatIntervalUnit];
+            }
+            return [NSString stringWithFormat:@"Updated alert will start on %@ at %@ and repeat every %@ %@s.", dateString, timeString, self.repeatIntervalValue, lowercaseRepeatIntervalUnit];
         }
-        return [NSString stringWithFormat:@"Alerts currently start on %@ at %@ and repeat every %@.", dateString, timeString, lowercaseRepeatIntervalUnit];
+        if (self.repeatIntervalValue.integerValue == 1) {
+            return [NSString stringWithFormat:@"Alerts currently start on %@ at %@ and repeat every %@.", dateString, timeString, lowercaseRepeatIntervalUnit];
+        }
+        return [NSString stringWithFormat:@"Alerts currently start on %@ at %@ and repeat every %@ %@s.", dateString, timeString, self.repeatIntervalValue, lowercaseRepeatIntervalUnit];
     }
     
-    if (section == kEditableSection) {
+    if (section == editableSection) {
         return @"Press and hold on a person to make them next up.";
     }
     return nil;
 }
 
 - (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath {
-    if (indexPath.section == kEditableSection) {
+    if (indexPath.section == editableSection) {
         return YES;
     }
     return NO;
@@ -239,17 +247,17 @@ NSUInteger const kEditableSection = 1;
 #pragma mark - UITableViewDelegate
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
-    if (indexPath.section == kEditableSection && indexPath.row == self.mutablePeople.count) {
+    if (indexPath.section == editableSection && indexPath.row == self.mutablePeople.count) {
         [self performSegueWithIdentifier:@"AddPerson" sender:nil];
     }
-    if (indexPath.section == kAlertSection) {
+    if (indexPath.section == alertSection) {
         [self performSegueWithIdentifier:@"EditAlert" sender:nil];
     }
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
 }
 
 - (UITableViewCellEditingStyle)tableView:(UITableView *)tableView editingStyleForRowAtIndexPath:(NSIndexPath *)indexPath {
-    if (indexPath.section == kEditableSection) {
+    if (indexPath.section == editableSection) {
         if (indexPath.row < self.mutablePeople.count) {
             return UITableViewCellEditingStyleDelete;
         } else {
@@ -264,7 +272,7 @@ NSUInteger const kEditableSection = 1;
 }
 
 - (NSIndexPath *)tableView:(UITableView *)tableView targetIndexPathForMoveFromRowAtIndexPath:(NSIndexPath *)sourceIndexPath toProposedIndexPath:(NSIndexPath *)proposedDestinationIndexPath {
-    if (proposedDestinationIndexPath.section == kEditableSection && proposedDestinationIndexPath.row < self.mutablePeople.count) {
+    if (proposedDestinationIndexPath.section == editableSection && proposedDestinationIndexPath.row < self.mutablePeople.count) {
         return proposedDestinationIndexPath;
     }
     return sourceIndexPath;

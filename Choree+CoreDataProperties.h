@@ -1,5 +1,5 @@
 //
-//  CompletedChore+CoreDataProperties.h
+//  Choree+CoreDataProperties.h
 //  PeaceKeeper
 //
 //  Created by Work on 1/15/16.
@@ -9,17 +9,14 @@
 //  to delete and recreate this implementation file for your updated model.
 //
 
-#import "CompletedChore.h"
+#import "Choree.h"
 
 NS_ASSUME_NONNULL_BEGIN
 
-@interface CompletedChore (CoreDataProperties)
+@interface Choree (CoreDataProperties)
 
 @property (nullable, nonatomic, retain) NSDate *alertDate;
-@property (nullable, nonatomic, retain) NSDate *completionDate;
-@property (nullable, nonatomic, retain) NSString *imageName;
 @property (nullable, nonatomic, retain) Chore *chore;
-@property (nullable, nonatomic, retain) Household *household;
 @property (nullable, nonatomic, retain) Person *person;
 
 @end

@@ -8,12 +8,18 @@
 
 #import "TimeService.h"
 #import "Constants.h"
+#import "Choree.h"
 
 @interface TimeService ()
 
 @end
 
 @implementation TimeService
+
++ (void)rescheduleNotificationsForChore:(Chore * _Nonnull)chore {
+    [self removeChoreNotificationsWithName:chore.name];
+    [self scheduleNotificationsForChore:chore];
+}
 
 + (void)removeChoreNotificationsWithName:(NSString * _Nonnull)choreName {
     NSMutableArray<UILocalNotification *> *matches = [NSMutableArray array];
@@ -28,20 +34,20 @@
     }
 }
 
-+ (void)scheduleNotificationForChore:(Chore * _Nonnull)chore {
-    NSCalendarUnit repeatInterval = [TimeService calendarUnitForString:chore.repeatIntervalUnit];
-    NSString *alertTitle = [NSString stringWithFormat:@"“%@” Due", chore.name];
-    NSString *alertBody = [NSString stringWithFormat:@"“%@” is due today. Next alert in one %@", chore.name, [chore.repeatIntervalUnit lowercaseString]];
-    NSDictionary *userInfo = [NSDictionary dictionaryWithObject:chore.name forKey:kChoreNameKey];
-    [TimeService scheduleLocalNotificationInUsersTimeZoneAndCalendarWithFireDate:chore.startDate repeatInterval:repeatInterval alertTitle:alertTitle alertBody:alertBody userInfo:userInfo category:kChoreNotificationCategoryIdentifier];
++ (void)scheduleNotificationsForChore:(Chore * _Nonnull)chore {
+    for (Choree *choree in chore.chorees) {
+        NSString *alertTitle = [NSString stringWithFormat:@"“%@” Due", chore.name];
+        NSString *alertBody = [NSString stringWithFormat:@"“%@” is due today.", chore.name];
+        NSDictionary *userInfo = [NSDictionary dictionaryWithObject:chore.name forKey:kChoreNameKey];
+        [TimeService scheduleLocalNotificationInUsersTimeZoneAndCalendarWithFireDate:choree.alertDate alertTitle:alertTitle alertBody:alertBody userInfo:userInfo category:kChoreNotificationCategoryIdentifier];
+    }
 }
 
-+ (void)scheduleLocalNotificationInUsersTimeZoneAndCalendarWithFireDate:(NSDate * _Nonnull)fireDate repeatInterval:(NSCalendarUnit)repeatInterval alertTitle:(NSString * _Nonnull)alertTitle alertBody:(NSString * _Nonnull)alertBody userInfo:(NSDictionary * _Nonnull)userInfo category:(NSString * _Nonnull)category {
++ (void)scheduleLocalNotificationInUsersTimeZoneAndCalendarWithFireDate:(NSDate * _Nonnull)fireDate alertTitle:(NSString * _Nonnull)alertTitle alertBody:(NSString * _Nonnull)alertBody userInfo:(NSDictionary * _Nonnull)userInfo category:(NSString * _Nonnull)category {
     UILocalNotification *ln = [[UILocalNotification alloc] init];
     ln.timeZone = [NSTimeZone localTimeZone];
     ln.repeatCalendar = [NSCalendar currentCalendar];
     ln.fireDate = fireDate;
-    ln.repeatInterval = repeatInterval;
     ln.alertTitle = alertTitle;
     ln.alertBody = alertBody;
     ln.userInfo = userInfo;
@@ -112,7 +118,7 @@
 + (void)schedule:(NSUInteger)n localNotifications:(UILocalNotification * _Nonnull)localNotification every:(NSUInteger)m calendarUnit:(NSCalendarUnit)calendarUnit startingOn:(NSDate * _Nonnull)startDate {
     NSCalendar *calendar = [NSCalendar calendarWithIdentifier:NSCalendarIdentifierGregorian];
     for (NSUInteger i = 0; i < n; i++) {
-        UILocalNotification *notification = localNotification.copy;
+        UILocalNotification *notification = [localNotification copy];
         notification.fireDate = startDate;
         [[UIApplication sharedApplication] scheduleLocalNotification:notification];
         startDate = [calendar dateByAddingUnit:calendarUnit value:m toDate:startDate options:0];

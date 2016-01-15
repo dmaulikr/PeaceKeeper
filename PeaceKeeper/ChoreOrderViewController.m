@@ -10,7 +10,7 @@
 #import "Constants.h"
 #import "Household.h"
 #import "Chore.h"
-#import "NSManagedObjectContext+Category.h"
+#import "CoreDataStackManager.h"
 #import "TimeService.h"
 #import "Constants.h"
 #import "AppDelegate.h"
@@ -33,16 +33,15 @@
 #pragma mark - Actions
 
 - (IBAction)doneButtonAction:(UIBarButtonItem *)sender {
-    // Save the chore
     NSString *choreName = (NSString *)self.choreInfo[kChoreInfoKeyTitleString];
     NSDate *choreStartDate = (NSDate *)self.choreInfo[kChoreInfoKeyStartDate];
-    NSString *choreIntervalString = (NSString *)self.choreInfo[kChoreInfoKeyIntervalString];
+    NSNumber *choreRepeatIntervalValue = (NSNumber *)self.choreInfo[kChoreInfoKeyRepeatIntervalValue];
+    NSString *choreRepeatIntervalUnit = (NSString *)self.choreInfo[kChoreInfoKeyRepeatIntervalUnit];
     NSOrderedSet *people = [NSOrderedSet orderedSetWithArray:self.selectedPeople];
-    Household *household = [Household fetchHousehold];
-    Chore *chore = [Chore choreWithName:choreName startDate:choreStartDate repeatIntervalValue:@(1) repeatIntervalUnit:choreIntervalString household:household people:people];
+    Household *household = [[CoreDataStackManager sharedManager] fetchHousehold];
     
-    // Schedule the notification
-    [TimeService scheduleNotificationForChore:chore];
+    // FIXME imageName
+    [Chore choreWithName:choreName startDate:choreStartDate repeatIntervalValue:choreRepeatIntervalValue repeatIntervalUnit:choreRepeatIntervalUnit household:household people:people imageName:nil];
     [self.navigationController popToRootViewControllerAnimated:YES];
 }
 

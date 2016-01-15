@@ -11,8 +11,8 @@
 
 @implementation AlertDates
 
-+ (instancetype _Nullable)alertDatesForChore:(Chore * _Nonnull)chore withStartIndex:(NSUInteger)startIndex {
-    return [self alertDatesWithCount:chore.people.count startIndex:startIndex startDate:chore.startDate steppingInIntervalsOf:chore.repeatIntervalValue.integerValue calendarUnit:[TimeService calendarUnitForString:chore.repeatIntervalUnit]];
++ (instancetype _Nullable)alertDatesForChore:(Chore * _Nonnull)chore withCount:(NSUInteger)count startIndex:(NSUInteger)startIndex {
+    return [self alertDatesWithCount:count startIndex:startIndex startDate:chore.startDate steppingInIntervalsOf:chore.repeatIntervalValue.integerValue calendarUnit:[TimeService calendarUnitForString:chore.repeatIntervalUnit]];
 }
 
 + (instancetype _Nullable)alertDatesWithCount:(NSUInteger)count startIndex:(NSUInteger)startIndex startDate:(NSDate * _Nonnull)startDate steppingInIntervalsOf:(NSUInteger)n calendarUnit:(NSCalendarUnit)calendarUnit {
@@ -36,11 +36,12 @@
         alertDate = [cal dateByAddingUnit:calendarUnit value:n toDate:alertDate options:0];
     }
     
-    // FIXME
+    /*
     for (NSUInteger i = 0; i < count; i++) {
         NSLog(@"%@", mutableDates[i]);
         NSAssert([mutableDates[i] isKindOfClass:[NSDate class]], @"Resulting array must all be of type NSDate!");
     }
+    */
         
     return [[AlertDates alloc] initWithDates:mutableDates];
 }
@@ -51,6 +52,10 @@
         _dates = dates;
     }
     return self;
+}
+
+- (void)advanceByByIntervalAndUnitInChore:(Chore * _Nonnull)chore {
+    [self advanceBySteppingInIntervalOf:chore.repeatIntervalValue.integerValue calendarUnit:[TimeService calendarUnitForString:chore.repeatIntervalUnit]];
 }
 
 - (void)advanceBySteppingInIntervalOf:(NSUInteger)n calendarUnit:(NSCalendarUnit)calendarUnit {
@@ -109,6 +114,13 @@
         return self.dates.count;
     }
     return earliest;
+}
+
+- (NSDate *)alertDateAtIndex:(NSUInteger)index {
+    if (index > self.dates.count - 1) {
+        return nil;
+    }
+    return self.dates[index];
 }
 
 @end

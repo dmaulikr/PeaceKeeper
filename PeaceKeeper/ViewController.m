@@ -9,7 +9,7 @@
 #import "ViewController.h"
 #import "Household.h"
 #import "Person.h"
-#import "NSManagedObjectContext+Category.h"
+#import "CoreDataStackManager.h"
 #import "Chore.h"
 #import "AppDelegate.h"
 #import "CreateHouseholdViewController.h"
@@ -17,6 +17,8 @@
 #import "MakeChoreViewController.h"
 #import "ChoreDetailViewController.h"
 #import "PresetTaskViewController.h"
+
+NSString *const addChoreSegueIdentifier = @"PresetTask";
 
 @interface ViewController () <UITableViewDataSource, UITableViewDelegate>
 
@@ -30,7 +32,7 @@
 - (NSArray<Chore *> *)chores {
     if (!_chores) {
         NSString *entityName = [Chore name];
-        NSManagedObjectContext *managedObjectContext = [NSManagedObjectContext managedObjectContext];
+        NSManagedObjectContext *managedObjectContext = [[CoreDataStackManager sharedManager] managedObjectContext];
         NSFetchRequest *request = [NSFetchRequest fetchRequestWithEntityName:entityName];
         NSError *error;
         NSArray *results = [managedObjectContext executeFetchRequest:request error:&error];
@@ -45,8 +47,6 @@
     return _chores;
 }
 
-
-
 - (void)viewDidLoad {
     [super viewDidLoad];
     self.navigationController.view.backgroundColor = [UIColor whiteColor];
@@ -54,7 +54,6 @@
     self.tableView.dataSource = self;
     
     self.navigationController.navigationBar.topItem.title = @"PeaceKeeper";
-    
 }
 
 - (UIStatusBarStyle)preferredStatusBarStyle {
@@ -69,6 +68,7 @@
 - (void)viewDidAppear:(BOOL)animated {
     [super viewDidAppear:animated];
     [self presentCreateHouseholdViewControllerIfNeeded];
+    [self performAddChoreSegueIfNeeded];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -76,11 +76,18 @@
 }
 
 - (void)presentCreateHouseholdViewControllerIfNeeded {
-    if (![Household fetchHousehold]) {
+    if ([[CoreDataStackManager sharedManager] fetchHouseholdsAsObjectIDs].count == 0) {
         UINavigationController *createHouseholdNavigationController = [self.storyboard instantiateViewControllerWithIdentifier:@"CreateHouseholdNavigationController"];
         [self presentViewController:createHouseholdNavigationController animated:YES completion:nil];
     }
 }
+
+- (void)performAddChoreSegueIfNeeded {
+    if (self.chores.count == 0) {
+        [self performSegueWithIdentifier:addChoreSegueIdentifier sender:nil];
+    }
+}
+
 #pragma mark - Segue
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
     if ([segue.identifier isEqualToString:@"ChoreDetail"]) {
@@ -96,9 +103,6 @@
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     
-    
-    
-    
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
@@ -110,17 +114,6 @@
     Chore *chore = self.chores[indexPath.row];
     cell.textLabel.text = chore.name;
     return cell;
-}
-
-- (void)makeChoreButtonPressed {
-//    MakeChoreViewController *makeChoreViewController = [self.storyboard instantiateViewControllerWithIdentifier:@"MakeChore"];
-//    [self.navigationController pushViewController:makeChoreViewController animated:YES];
-    
-    
-    PresetTaskViewController *presetTaskVC = [self.storyboard instantiateViewControllerWithIdentifier:@"presetTaskVC"];
-    
-    [self.navigationController pushViewController:presetTaskVC animated:YES];
-    
 }
 
 #pragma mark - UITableViewDelegate

@@ -1,23 +1,33 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <model userDefinedModelVersionIdentifier="" type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="9525" systemVersion="15C50" minimumToolsVersion="Automatic">
     <entity name="Chore" representedClassName="Chore" syncable="YES">
-        <attribute name="alertDates" attributeType="Transformable" syncable="YES"/>
+        <attribute name="alertsEnabled" attributeType="Boolean" defaultValueString="YES" syncable="YES"/>
+        <attribute name="imageName" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="name" attributeType="String" syncable="YES"/>
         <attribute name="repeatIntervalUnit" attributeType="String" syncable="YES"/>
         <attribute name="repeatIntervalValue" attributeType="Integer 64" defaultValueString="0.0" syncable="YES"/>
         <attribute name="startDate" attributeType="Date" syncable="YES"/>
+        <relationship name="chorees" toMany="YES" deletionRule="Nullify" ordered="YES" destinationEntity="Choree" inverseName="chore" inverseEntity="Choree" syncable="YES"/>
+        <relationship name="completedChores" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="CompletedChore" inverseName="chore" inverseEntity="CompletedChore" syncable="YES"/>
         <relationship name="household" maxCount="1" deletionRule="Nullify" destinationEntity="Household" inverseName="chores" inverseEntity="Household" syncable="YES"/>
-        <relationship name="people" toMany="YES" deletionRule="Nullify" ordered="YES" destinationEntity="Person" inverseName="chores" inverseEntity="Person" syncable="YES"/>
+    </entity>
+    <entity name="Choree" representedClassName="Choree" syncable="YES">
+        <attribute name="alertDate" attributeType="Date" syncable="YES"/>
+        <relationship name="chore" maxCount="1" deletionRule="Nullify" destinationEntity="Chore" inverseName="chorees" inverseEntity="Chore" syncable="YES"/>
+        <relationship name="person" maxCount="1" deletionRule="Nullify" destinationEntity="Person" inverseName="chorees" inverseEntity="Person" syncable="YES"/>
     </entity>
     <entity name="CompletedChore" representedClassName="CompletedChore" syncable="YES">
+        <attribute name="alertDate" attributeType="Date" syncable="YES"/>
         <attribute name="completionDate" attributeType="Date" syncable="YES"/>
-        <relationship name="chore" maxCount="1" deletionRule="Nullify" destinationEntity="Chore" syncable="YES"/>
-        <relationship name="person" maxCount="1" deletionRule="Nullify" destinationEntity="Person" syncable="YES"/>
+        <attribute name="imageName" optional="YES" attributeType="String" syncable="YES"/>
+        <relationship name="chore" maxCount="1" deletionRule="Nullify" destinationEntity="Chore" inverseName="completedChores" inverseEntity="Chore" syncable="YES"/>
+        <relationship name="household" maxCount="1" deletionRule="Nullify" destinationEntity="Household" inverseName="completedChores" inverseEntity="Household" syncable="YES"/>
+        <relationship name="person" maxCount="1" deletionRule="Nullify" destinationEntity="Person" inverseName="completedChores" inverseEntity="Person" syncable="YES"/>
     </entity>
     <entity name="Household" representedClassName="Household" syncable="YES">
         <attribute name="name" attributeType="String" syncable="YES"/>
-        <relationship name="archive" toMany="YES" deletionRule="Nullify" destinationEntity="CompletedChore" syncable="YES"/>
-        <relationship name="chores" toMany="YES" deletionRule="Nullify" destinationEntity="Chore" inverseName="household" inverseEntity="Chore" syncable="YES"/>
+        <relationship name="chores" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Chore" inverseName="household" inverseEntity="Chore" syncable="YES"/>
+        <relationship name="completedChores" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="CompletedChore" inverseName="household" inverseEntity="CompletedChore" syncable="YES"/>
         <relationship name="people" toMany="YES" deletionRule="Nullify" destinationEntity="Person" inverseName="household" inverseEntity="Person" syncable="YES"/>
     </entity>
     <entity name="Person" representedClassName="Person" syncable="YES">
@@ -25,13 +35,15 @@
         <attribute name="firstName" attributeType="String" syncable="YES"/>
         <attribute name="lastName" attributeType="String" syncable="YES"/>
         <attribute name="phoneNumber" optional="YES" attributeType="String" syncable="YES"/>
-        <relationship name="chores" toMany="YES" deletionRule="Nullify" destinationEntity="Chore" inverseName="people" inverseEntity="Chore" syncable="YES"/>
+        <relationship name="chorees" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Choree" inverseName="person" inverseEntity="Choree" syncable="YES"/>
+        <relationship name="completedChores" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="CompletedChore" inverseName="person" inverseEntity="CompletedChore" syncable="YES"/>
         <relationship name="household" maxCount="1" deletionRule="Nullify" destinationEntity="Household" inverseName="people" inverseEntity="Household" syncable="YES"/>
     </entity>
     <elements>
-        <element name="Chore" positionX="430" positionY="-99" width="128" height="150"/>
-        <element name="CompletedChore" positionX="117" positionY="-54" width="128" height="90"/>
-        <element name="Household" positionX="243" positionY="-207" width="128" height="103"/>
-        <element name="Person" positionX="-126" positionY="-162" width="128" height="133"/>
+        <element name="Chore" positionX="495" positionY="-45" width="128" height="178"/>
+        <element name="Choree" positionX="270" positionY="137" width="128" height="88"/>
+        <element name="CompletedChore" positionX="-29" positionY="-169" width="128" height="133"/>
+        <element name="Household" positionX="324" positionY="-180" width="128" height="103"/>
+        <element name="Person" positionX="-63" positionY="38" width="128" height="148"/>
     </elements>
 </model>

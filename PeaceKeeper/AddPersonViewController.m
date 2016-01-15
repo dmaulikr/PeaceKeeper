@@ -9,6 +9,7 @@
 #import "AddPersonViewController.h"
 #import "Person.h"
 #import "Household.h"
+#import "CoreDataStackManager.h"
 
 @interface AddPersonViewController () <UITableViewDataSource, UITableViewDelegate>
 
@@ -22,7 +23,7 @@
 
 - (Household *)household {
     if (!_household) {
-        _household = [Household fetchHousehold];
+        _household = [[CoreDataStackManager sharedManager] fetchHousehold];
     }
     return _household;
 }

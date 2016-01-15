@@ -9,15 +9,15 @@
 #import "Person.h"
 #import "Chore.h"
 #import "Household.h"
-#import "NSManagedObjectContext+Category.h"
+#import "CoreDataStackManager.h"
 
 @implementation Person
 
-+ (NSString *)name {
++ (NSString * _Nonnull)name {
     return @"Person";
 }
 
-+ (instancetype)personFromContact:(CNContact * _Nonnull)contact withHousehold:(Household * _Nonnull)household {
++ (instancetype _Nonnull)personFromContact:(CNContact * _Nonnull)contact withHousehold:(Household * _Nonnull)household {
     CNLabeledValue *emailAddressValue = (CNLabeledValue *)contact.emailAddresses.firstObject;
     CNLabeledValue *phoneNumberValue = (CNLabeledValue *)contact.phoneNumbers.firstObject;
     
@@ -26,27 +26,23 @@
     NSLog(@"%@", emailAddressValue.value);
     NSLog(@"%@", number.stringValue);
     
-    return [self personWithFirstName:contact.givenName lastName:contact.familyName phoneNumber:number.stringValue email:emailAddressValue.value chore:nil household:household];
+    return [self personWithFirstName:contact.givenName lastName:contact.familyName phoneNumber:number.stringValue email:emailAddressValue.value household:household];
 }
 
-+ (instancetype)personWithFirstName:(NSString * _Nonnull)firstName lastName:(NSString * _Nullable)lastName phoneNumber:(NSString * _Nullable)phoneNumber email:(NSString *_Nullable)email chore:(Chore * _Nullable)chore household:(Household * _Nonnull)household {
-    Person *person = [NSEntityDescription insertNewObjectForEntityForName:[self name] inManagedObjectContext:[NSManagedObjectContext managedObjectContext]];
++ (instancetype _Nonnull)personWithFirstName:(NSString * _Nonnull)firstName lastName:(NSString * _Nullable)lastName phoneNumber:(NSString * _Nullable)phoneNumber email:(NSString *_Nullable)email household:(Household * _Nonnull)household {
+    Person *person = [NSEntityDescription insertNewObjectForEntityForName:[self name] inManagedObjectContext:[[CoreDataStackManager sharedManager] managedObjectContext]];
     person.firstName = firstName;
     person.lastName = lastName;
     person.phoneNumber = phoneNumber;
     person.email = email;
-    if (chore) {
-        person.chores = [NSSet setWithObject:chore];
-    } else {
-        person.chores = [NSSet set];
-    }
     person.household = household;
-    [household addPeopleObject:person];
-    [NSManagedObjectContext saveManagedObjectContext];
+    // FIXME?
+//    [household addPeopleObject:person];
+    [[CoreDataStackManager sharedManager] saveContext];
     return person;
 }
 
-- (NSString *)fullName {
+- (NSString * _Nonnull)fullName {
     return [NSString stringWithFormat:@"%@ %@", self.firstName, self.lastName];
 }
 

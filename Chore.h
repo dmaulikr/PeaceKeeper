@@ -9,19 +9,20 @@
 #import <Foundation/Foundation.h>
 #import <CoreData/CoreData.h>
 
-@class Household, Person;
+@class Household, Person, AlertDates, Choree;
 
 NS_ASSUME_NONNULL_BEGIN
 
 @interface Chore : NSManagedObject
 
-+ (NSString *)name;
-+ (instancetype)fetchChoreWithName:(NSString * _Nonnull)name;
-+ (instancetype)choreWithName:(NSString * _Nonnull)name startDate:(NSDate * _Nonnull)startDate repeatIntervalValue:(NSNumber * _Nonnull)repeatIntervalValue repeatIntervalUnit:(NSString * _Nonnull)repeatIntervalUnit household:(Household * _Nonnull)household people:(NSOrderedSet *)people;
-- (void)replacePeople:(NSOrderedSet<Person *> * _Nonnull)updatedPeople startIndex:(NSUInteger)startIndex;
-- (void)replaceStartDate:(NSDate *)startDate repeatIntervalUnit:(NSString *)repeatIntervalUnit;
-- (Person *)currentPerson;
++ (NSString * _Nonnull)name;
++ (instancetype _Nonnull)choreWithName:(NSString * _Nonnull)name startDate:(NSDate * _Nonnull)startDate repeatIntervalValue:(NSNumber * _Nonnull)repeatIntervalValue repeatIntervalUnit:(NSString * _Nonnull)repeatIntervalUnit household:(Household * _Nonnull)household people:(NSOrderedSet *)people imageName:(NSString * _Nullable)imageName;
+- (NSMutableOrderedSet<Person *> * _Nonnull)mutablePeople;
+- (void)updateChoreesWithPeople:(NSOrderedSet<Person *> * _Nonnull)updatedPeople startingPerson:(Person * _Nonnull)startingPerson;
+- (Person * _Nullable)currentPerson;
+- (NSNumber * _Nullable)currentPersonIndex;
 - (void)completeChore;
+- (NSOrderedSet<Choree *> *_Nonnull)unrolledChorees;
 
 @end
 

@@ -9,12 +9,17 @@
 #import "ChoreDetailViewController.h"
 #import "Person.h"
 #import "Household.h"
-@import MessageUI;
-#import "NSManagedObjectContext+Category.h"
+#import "CoreDataStackManager.h"
 #import "Chore.h"
 #import "EditChoreViewController.h"
 #import "EditChoreViewControllerDelegate.h"
 #import "TimeService.h"
+#import "NSDate+Category.h"
+#import "Choree.h"
+#import "EllipsisView.h"
+#import "ChevronView.h"
+
+@import MessageUI;
 
 @interface ChoreDetailViewController () <UITableViewDelegate, UITableViewDataSource, MFMessageComposeViewControllerDelegate, MFMailComposeViewControllerDelegate, EditChoreViewControllerDelegate>
 
@@ -45,42 +50,67 @@
     [super viewDidAppear:animated];
     self.messageController = [[MFMessageComposeViewController alloc] init];
     self.messageController.messageComposeDelegate = self;
+    self.mailController = [[MFMailComposeViewController alloc] init];
+    self.mailController.mailComposeDelegate = self;
 }
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
 }
 
-- (UIAlertController *)alertControllerForSelectedPerson {
-    UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"HEY!" message:@"Pick one" preferredStyle:UIAlertControllerStyleActionSheet];
+- (void)configureMessageAndMailControllersForPerson:(Person *)person {
+    NSString *messageBody;
+    NSString *mailSubject;
+    NSString *mailBody;
     
-    UIAlertAction *sendMessage = [UIAlertAction actionWithTitle:@"Send Text Reminder" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
-        [self showSMS];
-    }];
-    
-    UIAlertAction *complete = [UIAlertAction actionWithTitle:@"Mark as Completed" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
-        
-        [self.chore completeChore];
-        [self.tableView reloadData];
-        
-    }];
-    
-    UIAlertAction *sendEmail = [UIAlertAction actionWithTitle:@"Send Email" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
-        [self showEmail];
-    }];
-    
-    UIAlertAction *cancel = [UIAlertAction actionWithTitle:@"Cancel" style:UIAlertActionStyleCancel handler:nil];
-    
-    if (self.chore.currentPerson.phoneNumber) {
+    if (person == self.chore.currentPerson) {
+        messageBody = [NSString stringWithFormat:@"PeaceKeeper Reminder: It's your turn to do %@, thanks 😀", self.chore.name];
+        mailSubject = [NSString stringWithFormat:@"PeaceKeeper %@ Reminder", self.chore.name];
+        mailBody = [NSString stringWithFormat:@"Hey %@, it's your turn to do %@, thanks 😀", person.firstName, self.chore.name];
+    } else {
+        messageBody = [NSString stringWithFormat:@"PeaceKeeper Reminder: Your turn to do %@, is coming up 😀", self.chore.name];
+        mailSubject = [NSString stringWithFormat:@"PeaceKeeper %@ Reminder", self.chore.name];
+        mailBody = [NSString stringWithFormat:@"Hey %@, your turn to do %@ is coming up 😀", person.firstName, self.chore.name];
+    }
+
+    if (person.phoneNumber) {
+        [self.messageController setBody:messageBody];
+        [self.messageController setRecipients:@[person.phoneNumber]];
+    }
+    if (person.email) {
+        [self.mailController setSubject:mailSubject];
+        [self.mailController setMessageBody:mailBody isHTML:NO];
+        [self.mailController setToRecipients:@[person.email]];
+    }
+}
+
+- (UIAlertController *)alertControllerForPerson:(Person *)person {
+    UIAlertController *alert = [UIAlertController alertControllerWithTitle:nil message:nil preferredStyle:UIAlertControllerStyleActionSheet];
+
+    if (person.phoneNumber) {
+        UIAlertAction *sendMessage = [UIAlertAction actionWithTitle:@"Send Text Reminder" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
+            [self showSMS];
+        }];
         [alert addAction:sendMessage];
     }
     
-    if (self.chore.currentPerson.email) {
+    if (person.email) {
+        UIAlertAction *sendEmail = [UIAlertAction actionWithTitle:@"Send Email" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
+            [self showEmail];
+        }];
         [alert addAction:sendEmail];
     }
     
+    if (person == self.chore.currentPerson) {
+        UIAlertAction *complete = [UIAlertAction actionWithTitle:@"Mark as Completed" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
+            [self.chore completeChore];
+            [self.tableView reloadData];
+        }];
+        [alert addAction:complete];
+    }
     
-    [alert addAction:complete];
+    UIAlertAction *cancel = [UIAlertAction actionWithTitle:@"Cancel" style:UIAlertActionStyleCancel handler:nil];
+
     [alert addAction:cancel];
     return alert;
 }
@@ -90,9 +120,10 @@
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
     if ([segue.identifier isEqualToString:@"EditChore"]) {
         EditChoreViewController *editChoreViewController = segue.destinationViewController;
-        editChoreViewController.mutablePeople = [NSMutableOrderedSet orderedSetWithOrderedSet:self.chore.people];
+        editChoreViewController.mutablePeople = [self.chore mutablePeople];
         editChoreViewController.currentPerson = [self.chore currentPerson];
         editChoreViewController.startDate = self.chore.startDate;
+        editChoreViewController.repeatIntervalValue = self.chore.repeatIntervalValue;
         editChoreViewController.repeatIntervalUnit = self.chore.repeatIntervalUnit;
         editChoreViewController.delegate = self;
     }
@@ -101,18 +132,20 @@
 #pragma mark - UITableView methods
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    return [self.chore.people count];
+    return [self.chore.chorees count];
 }
-
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"Choree" forIndexPath:indexPath];
-    Person *person = self.chore.people[indexPath.row];
-    cell.textLabel.text = [person fullName];
-    if (indexPath.row == self.chore.currentPersonIndex.integerValue) {
-        cell.detailTextLabel.text = @"Next up";
+    Choree *choree = self.chore.chorees[indexPath.row];
+    cell.textLabel.text = choree.person.firstName;
+    if (!cell.accessoryView) {
+        cell.accessoryView = [EllipsisView ellipsisViewWithSize:CGSizeMake(20.0, 20.0) leftMargin:8 color:self.view.tintColor];
+    }
+    if (indexPath.row == [self.chore currentPersonIndex].integerValue) {
+        cell.detailTextLabel.text = [NSString stringWithFormat:@"Next up in %@", [choree.alertDate descriptionOfTimeToNowInDaysHoursOrMinutes]];
     } else {
-        cell.detailTextLabel.text = @"";
+        cell.detailTextLabel.text = [NSString stringWithFormat:@"Due in %@", [choree.alertDate descriptionOfTimeToNowInDaysHoursOrMinutes]];
     }
     return cell;
 }
@@ -120,15 +153,9 @@
 
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
-
-    if (indexPath.row == self.chore.currentPersonIndex.integerValue) {
-        NSString *message = [NSString stringWithFormat:@"PeaceKeeper Reminder: It's your turn to %@, thanks 😀", self.chore.name];
-        if (self.chore.currentPerson.phoneNumber) {
-            [self.messageController setRecipients:@[self.chore.currentPerson.phoneNumber]];
-        }
-        [self.messageController setBody:message];
-        [self presentViewController:[self alertControllerForSelectedPerson] animated:YES completion:nil];
-    }
+    Person *person = [self.chore.chorees objectAtIndex:indexPath.row].person;
+    [self configureMessageAndMailControllersForPerson:person];
+    [self presentViewController:[self alertControllerForPerson:person] animated:YES completion:nil];
 }
 
 #pragma mark - MFMessageComposerView methods
@@ -171,22 +198,11 @@
 #pragma mark - MFMailComposeViewController methods
 
 - (void)showEmail {
-    
     if ([MFMailComposeViewController canSendMail]) {
-        
-        NSString *subjectString = [NSString stringWithFormat:@"Peace Keeper %@ Reminder", self.chore.name];
-        NSString *messageBodyString = [NSString stringWithFormat:@"Hey %@, PeaceKeeper reminder about your %@ task 😀", self.chore.currentPerson.firstName, self.chore.name];
-        
-        MFMailComposeViewController *mailViewController = [[MFMailComposeViewController alloc] init];
-        mailViewController.mailComposeDelegate = self;
-        [mailViewController setSubject:subjectString];
-        [mailViewController setMessageBody:messageBodyString isHTML:NO];
-        
-        [self presentViewController:mailViewController animated:YES completion:nil];
+        [self presentViewController:self.mailController animated:YES completion:nil];
     }
-
 }
-//delegate method
+
 - (void)mailComposeController:(MFMailComposeViewController *)controller didFinishWithResult:(MFMailComposeResult)result error:(NSError *)error {
 
     switch (result) {
@@ -212,25 +228,14 @@
 
 #pragma mark - EditChoreViewControllerDelegate
 - (void)editChoreViewControllerDidSaveWithPeople:(NSOrderedSet * _Nonnull)updatedPeople
-                                  currentPerson:(Person * _Nonnull)updatedCurrentPerson
+                                   currentPerson:(Person * _Nonnull)updatedCurrentPerson
                                        startDate:(NSDate * _Nonnull)updatedStartDate
                              repeatIntervalValue:(NSNumber * _Nonnull)updatedRepeatIntervalValue
                               repeatIntervalUnit:(NSString * _Nonnull)updatedRepeatIntervalUnit {
-    
-    if (![updatedStartDate isEqualToDate:self.chore.startDate] || ![updatedRepeatIntervalUnit isEqualToString:self.chore.repeatIntervalUnit]) {
-        [self.chore replaceStartDate:updatedStartDate repeatIntervalUnit:updatedRepeatIntervalUnit];
-        [TimeService removeChoreNotificationsWithName:self.chore.name];
-        [TimeService scheduleNotificationForChore:self.chore];
-    }
-        
-    NSUInteger startIndex;
-    NSUInteger i = [updatedPeople indexOfObject:updatedCurrentPerson];
-    if (i == NSNotFound) {
-        startIndex = 0;
-    } else {
-        startIndex = i;
-    }
-    [self.chore replacePeople:updatedPeople startIndex:startIndex];
+    self.chore.startDate = updatedStartDate;
+    self.chore.repeatIntervalValue = updatedRepeatIntervalValue;
+    self.chore.repeatIntervalUnit = updatedRepeatIntervalUnit;
+    [self.chore updateChoreesWithPeople:updatedPeople startingPerson:updatedCurrentPerson];
     [self.navigationController popViewControllerAnimated:YES];
 }
 

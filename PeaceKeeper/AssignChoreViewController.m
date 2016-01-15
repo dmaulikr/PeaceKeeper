@@ -9,7 +9,7 @@
 #import "AssignChoreViewController.h"
 #import "Person.h"
 #import "Household.h"
-#import "NSManagedObjectContext+Category.h"
+#import "CoreDataStackManager.h"
 #import "ChoreOrderViewController.h"
 
 @interface AssignChoreViewController () <UITableViewDataSource, UITableViewDelegate>
@@ -23,7 +23,7 @@
 
 - (NSArray<Person *> *)people {
     if (!_people) {
-        Household *household = [Household fetchHousehold];
+        Household *household = [[CoreDataStackManager sharedManager] fetchHousehold];
         if (household) {
             _people = [household.people allObjects];
         } else {

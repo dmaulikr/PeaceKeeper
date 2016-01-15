@@ -9,6 +9,8 @@
 #import "HouseholdViewController.h"
 #import "Household.h"
 #import "Person.h"
+#import "Constants.h"
+#import "CoreDataStackManager.h"
 
 @import Contacts;
 @import ContactsUI;
@@ -24,7 +26,7 @@
 
 - (Household *)household {
     if (!_household) {
-        _household = [Household fetchHousehold];
+        _household = [[CoreDataStackManager sharedManager] fetchHousehold];
     }
     return _household;
 }
@@ -44,7 +46,7 @@
 - (IBAction)addAction:(id)sender {
     CNContactPickerViewController *picker = [[CNContactPickerViewController alloc] init];
     picker.delegate = self;
-    picker.predicateForEnablingContact = [NSPredicate predicateWithFormat:@"givenName != ''"];
+    picker.predicateForEnablingContact = [NSPredicate predicateWithFormat:kEnablingContactPredicateString];
     [self presentViewController:picker animated:YES completion:nil];
 }
 

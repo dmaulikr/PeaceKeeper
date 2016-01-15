@@ -13,13 +13,15 @@
 
 @property (strong, nonatomic) NSArray<NSDate *> * _Nonnull dates;
 
-+ (instancetype _Nullable)alertDatesForChore:(Chore * _Nonnull)chore withStartIndex:(NSUInteger)startIndex;
++ (instancetype _Nullable)alertDatesForChore:(Chore * _Nonnull)chore withCount:(NSUInteger)count startIndex:(NSUInteger)startIndex;
 + (instancetype _Nullable)alertDatesWithCount:(NSUInteger)count startIndex:(NSUInteger)startIndex startDate:(NSDate * _Nonnull)startDate steppingInIntervalsOf:(NSUInteger)n calendarUnit:(NSCalendarUnit)calendarUnit;
 
 - (instancetype _Nonnull)initWithDates:(NSArray<NSDate *> * _Nonnull)dates;
+- (void)advanceByByIntervalAndUnitInChore:(Chore * _Nonnull)chore;
 - (void)advanceBySteppingInIntervalOf:(NSUInteger)n calendarUnit:(NSCalendarUnit)calendarUnit;
 - (NSInteger)indexOfEarliestDate;
 - (NSInteger)indexOfLatestDate;
 - (NSInteger)insertionIndexForLatestDate;
+- (NSDate * _Nullable)alertDateAtIndex:(NSUInteger)index;
 
 @end

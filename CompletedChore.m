@@ -9,22 +9,24 @@
 #import "CompletedChore.h"
 #import "Chore.h"
 #import "Person.h"
-#import "NSManagedObjectContext+Category.h"
+#import "CoreDataStackManager.h"
 #import "Household.h"
 
 @implementation CompletedChore
 
-+ (NSString *)name {
++ (NSString * _Nonnull)name {
     return @"CompletedChore";
 }
 
-+ (instancetype)completedChoreWithCompletionDate:(NSDate * _Nonnull)completionDate chore:(Chore * _Nonnull)chore person:(Person * _Nonnull)person household:(Household *)household {
-    CompletedChore *completedChore = [NSEntityDescription insertNewObjectForEntityForName:[self name] inManagedObjectContext:[NSManagedObjectContext managedObjectContext]];
++ (instancetype _Nonnull)completedChoreWithCompletionDate:(NSDate * _Nonnull)completionDate alertDate:(NSDate * _Nonnull)alertDate chore:(Chore * _Nonnull)chore person:(Person * _Nonnull)person household:(Household * _Nonnull)household imageName:(NSString * _Nullable)imageName {
+    CompletedChore *completedChore = [NSEntityDescription insertNewObjectForEntityForName:[self name] inManagedObjectContext:[[CoreDataStackManager sharedManager] managedObjectContext]];
     completedChore.completionDate = completionDate;
+    completedChore.alertDate = alertDate;
     completedChore.chore = chore;
     completedChore.person = person;
-    [household addArchiveObject:completedChore];
-    [NSManagedObjectContext saveManagedObjectContext];
+    completedChore.household = household;
+    completedChore.imageName = imageName;
+    [[CoreDataStackManager sharedManager] saveContext];
     return completedChore;
 }
 

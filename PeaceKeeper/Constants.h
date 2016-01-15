@@ -11,7 +11,8 @@
 
 extern NSString *const kChoreInfoKeyTitleString;
 extern NSString *const kChoreInfoKeyStartDate;
-extern NSString *const kChoreInfoKeyIntervalString;
+extern NSString *const kChoreInfoKeyRepeatIntervalValue;
+extern NSString *const kChoreInfoKeyRepeatIntervalUnit;
 extern NSString *const kChoreInfoKeyImage;
 
 extern NSString *const kChoreNameKey;
@@ -23,3 +24,5 @@ extern NSString *const kChoreNotificationActionTitleCompleteChore;
 
 extern NSString *const kChoreNotificationActionIdentifierNotifyChoree;
 extern NSString *const kChoreNotificationActionTitleNotifyChoree;
+
+extern NSString *const kEnablingContactPredicateString;

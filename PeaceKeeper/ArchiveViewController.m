@@ -8,7 +8,7 @@
 
 #import "ArchiveViewController.h"
 #import "CompletedChore.h"
-#import "NSManagedObjectContext+Category.h"
+#import "CoreDataStackManager.h"
 #import "Chore.h"
 #import "Person.h"
 
@@ -35,7 +35,7 @@
 - (NSArray<CompletedChore *> *)completedChores {
     if (!_completedChores) {
         NSString *entityName = [CompletedChore name];
-        NSManagedObjectContext *managedObjectContext = [NSManagedObjectContext managedObjectContext];
+        NSManagedObjectContext *managedObjectContext = [[CoreDataStackManager sharedManager] managedObjectContext];
         NSFetchRequest *request = [NSFetchRequest fetchRequestWithEntityName:entityName];
         NSError *error;
         NSArray *results = [managedObjectContext executeFetchRequest:request error:&error];

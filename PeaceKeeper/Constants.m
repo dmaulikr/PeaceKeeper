@@ -10,7 +10,8 @@
 
 NSString *const kChoreInfoKeyTitleString = @"kChoreInfoKeyTitleString";
 NSString *const kChoreInfoKeyStartDate = @"kChoreInfoKeyStartDate";
-NSString *const kChoreInfoKeyIntervalString = @"kChoreInfoKeyIntervalString";
+NSString *const kChoreInfoKeyRepeatIntervalValue = @"kChoreInfoKeyRepeatIntervalValue";
+NSString *const kChoreInfoKeyRepeatIntervalUnit = @"kChoreInfoKeyRepeatIntervalUnit";
 NSString *const kChoreInfoKeyImage = @"kChoreInfoKeyImage";
 
 NSString *const kChoreNameKey = @"kChoreNameKey";
@@ -22,3 +23,5 @@ NSString *const kChoreNotificationActionTitleCompleteChore = @"Complete Chore";
 
 NSString *const kChoreNotificationActionIdentifierNotifyChoree = @"kChoreNotificationActionIdentifierNotifyChoree";
 NSString *const kChoreNotificationActionTitleNotifyChoree = @"Notify";
+
+NSString *const kEnablingContactPredicateString = @"givenName != '' && (emailAddresses[FIRST] != nil || phoneNumbers[FIRST] != nil)";

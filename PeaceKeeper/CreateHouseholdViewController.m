@@ -8,11 +8,12 @@
 
 #import "CreateHouseholdViewController.h"
 #import "AppDelegate.h"
-@import Contacts;
-@import ContactsUI;
 #import "Household.h"
 #import "Person.h"
-#import "NSManagedObjectContext+Category.h"
+#import "Constants.h"
+
+@import Contacts;
+@import ContactsUI;
 
 @interface CreateHouseholdViewController () <CNContactPickerDelegate, UITableViewDataSource, UITableViewDelegate>
 
@@ -39,7 +40,7 @@ typedef void (^myCompletion)(BOOL);
             [self.doneButton setBackgroundColor:[UIColor grayColor]];
         } else {
             self.doneButton.enabled = YES;
-            [self.doneButton setBackgroundColor:[UIColor blueColor]];
+            [self.doneButton setBackgroundColor:self.view.tintColor];
         }
     }
     return _members;
@@ -60,7 +61,7 @@ typedef void (^myCompletion)(BOOL);
     [button setTitle:@"Done" forState:UIControlStateNormal];
     button.frame = CGRectMake(self.view.frame.size.width/2, self.view.frame.size.height - 40, 160.0, 40.0);
     button.center = CGPointMake(button.frame.origin.x, button.frame.origin.y);
-    [button setBackgroundColor:[UIColor blueColor]];
+    [button setBackgroundColor:self.view.tintColor];
     self.doneButton = button;
     
     [self.view addSubview:button];
@@ -85,45 +86,10 @@ typedef void (^myCompletion)(BOOL);
     [self.tableView reloadData];
 }
 
--(void)requestForAccess:(myCompletion)completionBlock {
-    
-    CNAuthorizationStatus authorizationStatus = [CNContactStore authorizationStatusForEntityType:CNEntityTypeContacts];
-
-    switch (authorizationStatus) {
-            
-        case CNAuthorizationStatusAuthorized: {
-            completionBlock(YES);
-            break;
-        }
-            
-        case CNAuthorizationStatusDenied: {
-            
-            [[[AppDelegate getAppDelegate] contactStore] requestAccessForEntityType:CNEntityTypeContacts completionHandler:^(BOOL granted, NSError * _Nullable error) {
-                
-                if (granted) {
-                    completionBlock(YES);
-                } else {
-                    if (authorizationStatus == CNAuthorizationStatusDenied) {
-                        dispatch_async(dispatch_get_main_queue(), ^{
-                            NSLog(@"Error, please allow the app to access your contacts inside your settings menu");
-                        });
-                    }
-                }
-            }];
-            
-            break;
-        }
-            
-        default:
-            completionBlock(NO);
-            break;
-    }
-}
-
 - (IBAction)addMembers:(UIBarButtonItem *)sender {
     CNContactPickerViewController *picker = [[CNContactPickerViewController alloc] init];
     picker.delegate = self;
-    picker.predicateForEnablingContact = [NSPredicate predicateWithFormat:@"givenName != ''"];
+    picker.predicateForEnablingContact = [NSPredicate predicateWithFormat:kEnablingContactPredicateString];
     [self presentViewController:picker animated:YES completion:nil];
 }
 

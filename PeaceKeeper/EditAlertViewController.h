@@ -11,8 +11,9 @@
 
 @interface EditAlertViewController : UIViewController
 
-@property (strong, nonatomic) NSDate *initialDate;
-@property (strong, nonatomic) NSString *initialRepeatIntervalString;
+@property (strong, nonatomic) NSDate *startDate;
+@property (strong, nonatomic) NSNumber *repeatIntervalValue;
+@property (strong, nonatomic) NSString *repeatIntervalUnit;
 @property (weak, nonatomic) id<EditAlertViewControllerDelegate> delegate;
 
 @end

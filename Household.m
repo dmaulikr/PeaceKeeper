@@ -9,38 +9,22 @@
 #import "Household.h"
 #import "Chore.h"
 #import "Person.h"
-#import "NSManagedObjectContext+Category.h"
+#import "CoreDataStackManager.h"
 
 @implementation Household
 
-+ (NSString *)name {
++ (NSString * _Nonnull)name {
     return @"Household";
 }
 
-+ (instancetype)fetchHousehold {
-    NSString *entityName = [Household name];
-    NSManagedObjectContext *managedObjectContext = [NSManagedObjectContext managedObjectContext];
-    NSFetchRequest *request = [NSFetchRequest fetchRequestWithEntityName:entityName];
-    NSError *error;
-    NSArray *results = [managedObjectContext executeFetchRequest:request error:&error];
-    if (error) {
-        NSLog(@"Error fetching %@ objects: %@", entityName, error.localizedDescription);
-    } else {
-        NSLog(@"Successfully fetched %@ objects", entityName);
-    }
-    if (results.count > 0) {
-        return results.firstObject;
-    }
-    return nil;
-}
-
-+ (instancetype)householdWithName:(NSString * _Nonnull)name {
-    Household *household = [NSEntityDescription insertNewObjectForEntityForName:[self name] inManagedObjectContext:[NSManagedObjectContext managedObjectContext]];
++ (instancetype _Nonnull)householdWithName:(NSString * _Nonnull)name {
+    Household *household = [NSEntityDescription insertNewObjectForEntityForName:[self name] inManagedObjectContext:[[CoreDataStackManager sharedManager] managedObjectContext]];
     household.name = name;
-    household.chores = [NSSet set];
-    household.people = [NSSet set];
-    household.archive = [NSSet set];
-    [NSManagedObjectContext saveManagedObjectContext];
+    // FIXME?
+//    household.chores = [NSSet set];
+//    household.people = [NSSet set];
+//    household.completedChores = [NSSet set]; 
+    [[CoreDataStackManager sharedManager] saveContext];
     return household;
 }
 

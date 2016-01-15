@@ -11,20 +11,11 @@
 
 @interface TimeService : NSObject
 
-+ (NSArray<NSDate *> * _Nonnull)alertDatesForChore:(Chore * _Nonnull)chore withStartIndex:(NSUInteger)startIndex;
-
-+ (NSInteger)insertionIndexForLatestDateInAlertDates:(NSArray<NSDate *> * _Nonnull)alertDates;
-
-+ (NSInteger)indexOfEarliestDateInAlertDates:(NSArray<NSDate *> * _Nonnull)alertDates;
-+ (NSInteger)indexOfLatestDateInAlertDates:(NSArray<NSDate *> * _Nonnull)alertDates;
-
-+ (NSArray<NSDate *> * _Nonnull)advanceAlertDates:(NSArray<NSDate *> * _Nonnull)alertDates steppingInIntervalsOf:(NSUInteger)n calendarUnit:(NSCalendarUnit)calendarUnit;
-
-+ (NSArray<NSDate *> * _Nonnull)alertDatesWithCount:(NSUInteger)count startIndex:(NSUInteger)startIndex startDate:(NSDate * _Nonnull)startDate steppingInIntervalsOf:(NSUInteger)n calendarUnit:(NSCalendarUnit)calendarUnit;
++ (void)rescheduleNotificationsForChore:(Chore * _Nonnull)chore;
 
 + (void)removeChoreNotificationsWithName:(NSString * _Nonnull)choreName;
 
-+ (void)scheduleNotificationForChore:(Chore * _Nonnull)chore;
++ (void)scheduleNotificationsForChore:(Chore * _Nonnull)chore;
 
 + (void)scheduleLocalNotificationInUsersTimeZoneAndCalendarWithFireDate:(NSDate * _Nonnull)fireDate repeatInterval:(NSCalendarUnit)repeatInterval alertTitle:(NSString * _Nonnull)alertTitle alertBody:(NSString * _Nonnull)alertBody userInfo:(NSDictionary * _Nonnull)userInfo category:(NSString * _Nonnull)category;
 

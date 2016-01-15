@@ -16,6 +16,7 @@
 @property (strong, nonatomic) Person *currentPerson;
 
 @property (strong, nonatomic) NSDate *startDate;
+@property (strong, nonatomic) NSNumber *repeatIntervalValue;
 @property (strong, nonatomic) NSString *repeatIntervalUnit;
 
 @property (weak, nonatomic) id<EditChoreViewControllerDelegate> delegate;
