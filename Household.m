@@ -20,10 +20,6 @@
 + (instancetype _Nonnull)householdWithName:(NSString * _Nonnull)name {
     Household *household = [NSEntityDescription insertNewObjectForEntityForName:[self name] inManagedObjectContext:[[CoreDataStackManager sharedManager] managedObjectContext]];
     household.name = name;
-    // FIXME?
-//    household.chores = [NSSet set];
-//    household.people = [NSSet set];
-//    household.completedChores = [NSSet set]; 
     [[CoreDataStackManager sharedManager] saveContext];
     return household;
 }

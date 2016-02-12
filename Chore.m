@@ -14,6 +14,7 @@
 #import "AlertDates.h"
 #import "TimeService.h"
 #import "Choree.h"
+#import "UIApplication+Convenience.h"
 
 @implementation Chore
 
@@ -31,8 +32,6 @@
     chore.repeatIntervalUnit = repeatIntervalUnit;
     chore.household = household;
     [chore updateChoreesWithPeople:people startingPerson:people.firstObject];
-    // FIXME?
-//    chore.chorees = [chore choreesWithPeople:people startingPerson:people.firstObject];
     chore.imageName = imageName;
     [[CoreDataStackManager sharedManager] saveContext];
     return chore;
@@ -50,20 +49,14 @@
     [self deleteCurrentChorees];
     [self choreesWithPeople:updatedPeople startingPerson:startingPerson];
     [[CoreDataStackManager sharedManager] saveContext];
-    
-    // FIXME
-    [self rescheduleNotificationsIfAllowed];
+    [self rescheduleNotificationsIfAllowedAndUpdateAppBadgeNumber];
 }
 
 - (Person * _Nullable)currentPerson {
-    NSNumber *currentPersonIndex = [self currentPersonIndex];
-    if (!currentPersonIndex) {
-        return nil;
-    }
-    return [self mutablePeople][currentPersonIndex.integerValue];
+    return [self earliestChoree].person;
 }
 
-- (NSNumber *)currentPersonIndex {
+- (NSNumber * _Nullable)currentPersonIndex {
     NSInteger i = [[self alertDates] indexOfEarliestDate];
     if (i == NSNotFound) {
         return nil;
@@ -97,13 +90,32 @@
     return result;
 }
 
+- (NSDate * _Nullable)earliestAlertDate {
+    return [[self earliestChoree] alertDate];
+}
+
+// FIXME TEST ME!
+- (Choree * _Nullable)earliestChoree {
+    Choree *earliest;
+    for (Choree *choree in self.chorees) {
+        if (!earliest) {
+            earliest = choree;
+        }
+        if (choree.alertDate.timeIntervalSinceReferenceDate < earliest.alertDate.timeIntervalSinceReferenceDate) {
+            earliest = choree;
+        }
+    }
+    return earliest;
+}
+
 
 #pragma mark - Internal methods
 
-- (void)rescheduleNotificationsIfAllowed {
+- (void)rescheduleNotificationsIfAllowedAndUpdateAppBadgeNumber {
     if (self.alertsEnabled) {
         [TimeService rescheduleNotificationsForChore:self];
     }
+    [[UIApplication sharedApplication] updateApplicationIconBadgeNumber];
 }
 
 - (AlertDates * _Nonnull)alertDates {
@@ -127,7 +139,7 @@
     [self choreesWithPeople:people alertDates:alertDates];
     [[CoreDataStackManager sharedManager] saveContext];
     
-    [self rescheduleNotificationsIfAllowed];
+    [self rescheduleNotificationsIfAllowedAndUpdateAppBadgeNumber];
 }
 
 - (NSOrderedSet<Choree *> * _Nullable)choreesWithPeople:(NSOrderedSet<Person *> * _Nonnull)people startingPerson:(Person * _Nonnull)startingPerson {

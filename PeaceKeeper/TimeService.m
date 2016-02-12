@@ -91,8 +91,7 @@
 }
 
 + (NSArray<NSString *> * _Nonnull)calendarUnitStrings {
-    return @[@"Minute", // FIXME
-             @"Hour", // FIXME
+    return @[@"Hour",
              @"Day",
              @"Week",
              @"Month",
@@ -100,15 +99,13 @@
 }
 
 + (NSArray<NSValue *> * _Nonnull)calendarUnits {
-    NSCalendarUnit minute = NSCalendarUnitMinute; // FIXME
-    NSCalendarUnit hour = NSCalendarUnitHour; // FIXME
+    NSCalendarUnit hour = NSCalendarUnitHour;
     NSCalendarUnit day = NSCalendarUnitDay;
     NSCalendarUnit week = NSCalendarUnitWeekOfYear;
     NSCalendarUnit month = NSCalendarUnitMonth;
     NSCalendarUnit year = NSCalendarUnitYear;
 
-    return @[[NSValue value:&minute withObjCType:@encode(NSCalendarUnit)], // FIXME
-             [NSValue value:&hour withObjCType:@encode(NSCalendarUnit)], // FIXME
+    return @[[NSValue value:&hour withObjCType:@encode(NSCalendarUnit)],
              [NSValue value:&day withObjCType:@encode(NSCalendarUnit)],
              [NSValue value:&week withObjCType:@encode(NSCalendarUnit)],
              [NSValue value:&month withObjCType:@encode(NSCalendarUnit)],

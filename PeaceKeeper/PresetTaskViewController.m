@@ -9,13 +9,14 @@
 #import "PresetTaskViewController.h"
 #import "MakeChoreViewController.h"
 #import "Constants.h"
+#import "Functions.h"
 
 @interface PresetTaskViewController () <UITableViewDataSource, UITableViewDelegate>
 
 
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
-@property (strong, nonatomic) NSArray *taskArray;
-//@property (strong, nonatomic) NSArray<UIImage *> *imageArray;
+@property (strong, nonatomic) NSArray<NSString *> *taskNames;
+@property (strong, nonatomic) NSArray<NSString *> *taskImageNames;
 
 @end
 
@@ -25,8 +26,9 @@
     [super viewDidLoad];
     self.tableView.dataSource = self;
     self.tableView.delegate = self;
-    self.taskArray = @[@"Sweep", @"Mop", @"Clean Kitchen", @"Take Out Trash"];
-//    self.imageArray = @[[UIImage imageNamed:@"sweep.jpg"], [UIImage imageNamed:@"mop2.png"], [UIImage imageNamed:@"kitchen2.png"], [UIImage imageNamed:@"trash2.png"]];
+    
+    self.taskNames =      @[@"Vacuum", @"Wash dishes", @"Laundry", @"Take out trash"];
+    self.taskImageNames = @[@"Vacuum", @"Dishes",      @"Laundry", @"Trash"];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -43,7 +45,8 @@
         NSMutableDictionary *choreInfo = [NSMutableDictionary dictionary];
         if ([sender isKindOfClass:[NSIndexPath class]]) {
             NSUInteger row = ((NSIndexPath *)sender).row;
-            choreInfo[kChoreInfoKeyTitleString] = self.taskArray[row];
+            choreInfo[kChoreInfoKeyTitleString] = self.taskNames[row];
+            choreInfo[kChoreInfoKeyImageName] = self.taskImageNames[row];
         }
         if ([sender isKindOfClass:[NSString class]]) {
             choreInfo[kChoreInfoKeyTitleString] = (NSString *)sender;
@@ -54,17 +57,18 @@
 
 #pragma mark - UITableViewDelegate Methods
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    return self.taskArray.count + 1;
+    return self.taskNames.count + 1;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"Preset" forIndexPath:indexPath];
-    if (indexPath.row < self.taskArray.count) {
-        cell.textLabel.text = self.taskArray[indexPath.row];
-
+    if (indexPath.row < self.taskNames.count) {
+        cell.textLabel.text = self.taskNames[indexPath.row];
+        cell.imageView.image = iconImageFromImageName(self.taskImageNames[indexPath.row]);
+        cell.imageView.tintColor = self.tableView.tintColor;
     }
 
-    if (indexPath.row == self.taskArray.count) {
+    if (indexPath.row == self.taskNames.count) {
         cell.textLabel.text = @"Create Custom Task";
     }
     return cell;
@@ -72,7 +76,7 @@
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
-    if (indexPath.row == self.taskArray.count) {
+    if (indexPath.row == self.taskNames.count) {
         UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"Set task name" message:@"" preferredStyle:UIAlertControllerStyleAlert];
         
         UIAlertAction* ok = [UIAlertAction actionWithTitle:@"OK" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {

@@ -17,7 +17,6 @@
 #import "NSDate+Category.h"
 #import "Choree.h"
 #import "EllipsisView.h"
-#import "ChevronView.h"
 
 @import MessageUI;
 
@@ -139,7 +138,7 @@
         
         editChoreViewController.mutablePeople = mutableUnrolledPeople;
         editChoreViewController.currentPerson = self.currentPerson;
-        editChoreViewController.startDate = self.chore.startDate;
+        editChoreViewController.startDate = self.chore.earliestAlertDate;
         editChoreViewController.repeatIntervalValue = self.chore.repeatIntervalValue;
         editChoreViewController.repeatIntervalUnit = self.chore.repeatIntervalUnit;
         editChoreViewController.delegate = self;

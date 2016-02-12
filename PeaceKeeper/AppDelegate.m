@@ -14,6 +14,7 @@
 #import "Constants.h"
 #import "Chore.h"
 #import "Choree.h"
+#import "UIApplication+Convenience.h"
 
 @interface AppDelegate ()
 
@@ -32,15 +33,13 @@
         NSLog(@"Local notification user info: %@", localNotification.userInfo);
     }
     */
-    
-    // DELETE ME
-    [[UIApplication sharedApplication] cancelAllLocalNotifications];
-    // DELETE ME
+
+    UITabBarController *tabBarController = (UITabBarController *)self.window.rootViewController;
+    tabBarController.viewControllers[0].tabBarItem = [[UITabBarItem alloc] initWithTitle:@"Home" image:[UIImage imageNamed:@"HomeBarButtonIcon"] selectedImage:[UIImage imageNamed:@"HomeBarButtonIconSelected"]];
     
     self.coreDataStackManager = [CoreDataStackManager sharedManager];
-    application.applicationIconBadgeNumber = [self fetchUpdatedApplicationIconBadgeNumber];
-        
     [self registerForNotifications];
+    [application updateApplicationIconBadgeNumber];
 
     return YES;
 }
@@ -50,7 +49,7 @@
     NSLog(@"Inside application:didReceiveLocalNotification:");
     NSLog(@"Local notification user info: %@", notification.userInfo);
      */
-    application.applicationIconBadgeNumber = [self fetchUpdatedApplicationIconBadgeNumber];
+    [application updateApplicationIconBadgeNumber];
 }
 
 - (void)application:(UIApplication *)application handleActionWithIdentifier:(NSString *)identifier forLocalNotification:(UILocalNotification *)notification completionHandler:(void (^)())completionHandler {

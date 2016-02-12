@@ -77,7 +77,7 @@ NSUInteger const editableSection = 1;
 
 
 #pragma mark - Actions
-
+/*
 - (IBAction)markPersonUnderPressAsCurrentPerson:(UILongPressGestureRecognizer *)sender {
     if (sender.state == UIGestureRecognizerStateBegan) {
         CGPoint pressedPoint = [sender locationInView:self.tableView];
@@ -94,9 +94,10 @@ NSUInteger const editableSection = 1;
         }
     }
 }
+ */
 
 - (IBAction)saveAction:(UIBarButtonItem *)sender {
-    [self.delegate editChoreViewControllerDidSaveWithPeople:self.mutablePeople currentPerson:self.currentPerson startDate:self.startDate repeatIntervalValue:self.repeatIntervalValue repeatIntervalUnit:self.repeatIntervalUnit];
+    [self.delegate editChoreViewControllerDidSaveWithPeople:self.mutablePeople currentPerson:self.mutablePeople[0] startDate:self.startDate repeatIntervalValue:self.repeatIntervalValue repeatIntervalUnit:self.repeatIntervalUnit];
 }
 
 - (IBAction)cancelAction:(UIBarButtonItem *)sender {
@@ -160,11 +161,14 @@ NSUInteger const editableSection = 1;
             if (indexPath.row < self.mutablePeople.count) {
                 Person *person = (Person *)[self.mutablePeople objectAtIndex:indexPath.row];
                 cell.textLabel.text = [NSString stringWithFormat:@"%@", [person fullName]];
+                cell.detailTextLabel.text = @"";
+                /*
                 if (self.currentPerson == person) {
                     cell.detailTextLabel.text = @"Next up";
                 } else {
                     cell.detailTextLabel.text = @"";
                 }
+                */
             } else {
                 cell.textLabel.text = @"Add Person";
                 cell.detailTextLabel.text = @"";
@@ -221,19 +225,20 @@ NSUInteger const editableSection = 1;
         NSString *lowercaseRepeatIntervalUnit = [self.repeatIntervalUnit lowercaseString];
         if (self.userDidUpdateStartDateOrRepeatInterval) {
             if (self.repeatIntervalValue.integerValue == 1) {
-                return [NSString stringWithFormat:@"Updated alert will start on %@ at %@ and repeat every %@.", dateString, timeString, lowercaseRepeatIntervalUnit];
+                return [NSString stringWithFormat:@"Updated alert on %@ at %@ and repeat every %@.", dateString, timeString, lowercaseRepeatIntervalUnit];
             }
-            return [NSString stringWithFormat:@"Updated alert will start on %@ at %@ and repeat every %@ %@s.", dateString, timeString, self.repeatIntervalValue, lowercaseRepeatIntervalUnit];
+            return [NSString stringWithFormat:@"Updated alert on %@ at %@ and repeat every %@ %@s.", dateString, timeString, self.repeatIntervalValue, lowercaseRepeatIntervalUnit];
         }
         if (self.repeatIntervalValue.integerValue == 1) {
-            return [NSString stringWithFormat:@"Alerts currently start on %@ at %@ and repeat every %@.", dateString, timeString, lowercaseRepeatIntervalUnit];
+            return [NSString stringWithFormat:@"Next alert on %@ at %@ and repeat every %@.", dateString, timeString, lowercaseRepeatIntervalUnit];
         }
-        return [NSString stringWithFormat:@"Alerts currently start on %@ at %@ and repeat every %@ %@s.", dateString, timeString, self.repeatIntervalValue, lowercaseRepeatIntervalUnit];
+        return [NSString stringWithFormat:@"Next alert on %@ at %@ and repeat every %@ %@s.", dateString, timeString, self.repeatIntervalValue, lowercaseRepeatIntervalUnit];
     }
-    
+    /*
     if (section == editableSection) {
         return @"Press and hold on a person to make them next up.";
     }
+     */
     return nil;
 }
 

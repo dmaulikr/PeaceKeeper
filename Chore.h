@@ -23,6 +23,8 @@ NS_ASSUME_NONNULL_BEGIN
 - (NSNumber * _Nullable)currentPersonIndex;
 - (void)completeChore;
 - (NSOrderedSet<Choree *> *_Nonnull)unrolledChorees;
+- (NSDate * _Nullable)earliestAlertDate;
+- (Choree * _Nullable)earliestChoree;
 
 @end
 

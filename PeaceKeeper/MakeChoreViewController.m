@@ -43,6 +43,7 @@ NSUInteger const unitRow = 1;
     self.repeatIntervalUnit = [TimeService calendarUnitStrings][0];
     
     self.startDatePicker = [[UIDatePicker alloc] init];
+    self.startDatePicker.frame = CGRectMake(0, 0, self.view.frame.size.width, self.startDatePicker.frame.size.height);
     [self.startDatePicker addTarget:self action:@selector(startDateDidChangeAction:) forControlEvents:UIControlEventValueChanged];
 }
 

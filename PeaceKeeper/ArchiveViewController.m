@@ -11,6 +11,7 @@
 #import "CoreDataStackManager.h"
 #import "Chore.h"
 #import "Person.h"
+#import "Functions.h"
 
 @interface ArchiveViewController () <UITableViewDataSource, UITableViewDelegate>
 
@@ -56,6 +57,11 @@
     self.tableView.dataSource = self;
 }
 
+- (void)viewWillAppear:(BOOL)animated {
+    self.completedChores = nil; // Force refetch
+    [self.tableView reloadData];
+}
+
 #pragma mark - UITableViewDataSource
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
     return self.completedChores.count;
@@ -64,9 +70,11 @@
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     UITableViewCell *cell = [self.tableView dequeueReusableCellWithIdentifier:@"CompletedChore" forIndexPath:indexPath];
     CompletedChore *completedChore = self.completedChores[indexPath.row];
-    cell.textLabel.text = [NSString stringWithFormat:@"%@ completed %@", completedChore.chore
-                           .name, [self.dateFormatter stringFromDate:completedChore.completionDate]];
-    cell.detailTextLabel.text = [NSString stringWithFormat:@"by %@", [completedChore.person fullName]];
+    cell.imageView.image = iconImageFromImageName(completedChore.imageName);
+    cell.imageView.tintColor = self.tableView.tintColor;
+    cell.textLabel.text = [NSString stringWithFormat:@"%@", completedChore.chore
+                           .name];
+    cell.detailTextLabel.text = [NSString stringWithFormat:@"Completed by %@ on %@", completedChore.person.firstName, [self.dateFormatter stringFromDate:completedChore.completionDate]];
     return cell;
 }
 

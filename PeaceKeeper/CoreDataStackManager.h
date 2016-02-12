@@ -27,5 +27,7 @@
 - (Chore * _Nullable)fetchChoreWithName:(NSString * _Nonnull)name;
 - (Household * _Nullable)fetchHousehold;
 - (NSArray<NSManagedObjectID *> * _Nonnull)fetchHouseholdsAsObjectIDs;
+- (NSArray<Chore *> * _Nonnull)fetchChoresAndPrefetchChorees;
+
 
 @end

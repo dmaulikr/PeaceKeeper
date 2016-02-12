@@ -13,6 +13,8 @@
 		960AE0F41C35E61A00F7B56F /* Household+CoreDataProperties.m in Sources */ = {isa = PBXBuildFile; fileRef = 960AE0EE1C35E61A00F7B56F /* Household+CoreDataProperties.m */; };
 		960AE0FA1C35FC1600F7B56F /* CompletedChore+CoreDataProperties.m in Sources */ = {isa = PBXBuildFile; fileRef = 960AE0F71C35FC1600F7B56F /* CompletedChore+CoreDataProperties.m */; };
 		960AE0FB1C35FC1600F7B56F /* Choree+CoreDataProperties.m in Sources */ = {isa = PBXBuildFile; fileRef = 960AE0F91C35FC1600F7B56F /* Choree+CoreDataProperties.m */; };
+		960E72A41C49BB6E0076F3BC /* Functions.m in Sources */ = {isa = PBXBuildFile; fileRef = 960E72A31C49BB6E0076F3BC /* Functions.m */; };
+		960E72AA1C4AF16B0076F3BC /* UIApplication+Convenience.m in Sources */ = {isa = PBXBuildFile; fileRef = 960E72A91C4AF16B0076F3BC /* UIApplication+Convenience.m */; };
 		961C7E681C288D760072627A /* EditChoreViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 961C7E671C288D760072627A /* EditChoreViewController.m */; };
 		961C7E6B1C28C56D0072627A /* AddPersonViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 961C7E6A1C28C56D0072627A /* AddPersonViewController.m */; };
 		962680461C2B544F0025E8A5 /* PeaceKeeperTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 962680451C2B544F0025E8A5 /* PeaceKeeperTests.m */; };
@@ -27,7 +29,6 @@
 		9660D3DC1C4858C700F0B10A /* ChooseValueViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9660D3DB1C4858C700F0B10A /* ChooseValueViewController.m */; };
 		9660D3E01C486A7000F0B10A /* ChooseUnitViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9660D3DF1C486A7000F0B10A /* ChooseUnitViewController.m */; };
 		966C01681C1F61B30028CBF7 /* TimeService.m in Sources */ = {isa = PBXBuildFile; fileRef = 966C01671C1F61B30028CBF7 /* TimeService.m */; };
-		968D46011C3F328E00C22839 /* ChevronView.m in Sources */ = {isa = PBXBuildFile; fileRef = 968D46001C3F328E00C22839 /* ChevronView.m */; };
 		969F739A1C2DAED200E566B5 /* AlertDates.m in Sources */ = {isa = PBXBuildFile; fileRef = 969F73991C2DAED200E566B5 /* AlertDates.m */; };
 		969F739D1C2DB0FA00E566B5 /* AlertDatesToDataTransformer.m in Sources */ = {isa = PBXBuildFile; fileRef = 969F739C1C2DB0FA00E566B5 /* AlertDatesToDataTransformer.m */; };
 		969F73A11C2DB9D600E566B5 /* AlertDatesTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 969F73A01C2DB9D600E566B5 /* AlertDatesTests.m */; };
@@ -82,6 +83,10 @@
 		960AE0F71C35FC1600F7B56F /* CompletedChore+CoreDataProperties.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "CompletedChore+CoreDataProperties.m"; sourceTree = "<group>"; };
 		960AE0F81C35FC1600F7B56F /* Choree+CoreDataProperties.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "Choree+CoreDataProperties.h"; sourceTree = "<group>"; };
 		960AE0F91C35FC1600F7B56F /* Choree+CoreDataProperties.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "Choree+CoreDataProperties.m"; sourceTree = "<group>"; };
+		960E72A21C49BB6E0076F3BC /* Functions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Functions.h; sourceTree = "<group>"; };
+		960E72A31C49BB6E0076F3BC /* Functions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Functions.m; sourceTree = "<group>"; };
+		960E72A81C4AF16B0076F3BC /* UIApplication+Convenience.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "UIApplication+Convenience.h"; path = "../UIApplication+Convenience.h"; sourceTree = "<group>"; };
+		960E72A91C4AF16B0076F3BC /* UIApplication+Convenience.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "UIApplication+Convenience.m"; path = "../UIApplication+Convenience.m"; sourceTree = "<group>"; };
 		961C7E661C288D760072627A /* EditChoreViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EditChoreViewController.h; sourceTree = "<group>"; };
 		961C7E671C288D760072627A /* EditChoreViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EditChoreViewController.m; sourceTree = "<group>"; };
 		961C7E691C28C56D0072627A /* AddPersonViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AddPersonViewController.h; sourceTree = "<group>"; };
@@ -113,8 +118,6 @@
 		966C01661C1F61B30028CBF7 /* TimeService.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TimeService.h; sourceTree = "<group>"; };
 		966C01671C1F61B30028CBF7 /* TimeService.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TimeService.m; sourceTree = "<group>"; };
 		967CB0191C2A1054000A6C77 /* EditChoreViewControllerDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EditChoreViewControllerDelegate.h; sourceTree = "<group>"; };
-		968D45FF1C3F328E00C22839 /* ChevronView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ChevronView.h; sourceTree = "<group>"; };
-		968D46001C3F328E00C22839 /* ChevronView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ChevronView.m; sourceTree = "<group>"; };
 		969F73981C2DAED200E566B5 /* AlertDates.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AlertDates.h; sourceTree = "<group>"; };
 		969F73991C2DAED200E566B5 /* AlertDates.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AlertDates.m; sourceTree = "<group>"; };
 		969F739B1C2DB0FA00E566B5 /* AlertDatesToDataTransformer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AlertDatesToDataTransformer.h; sourceTree = "<group>"; };
@@ -212,8 +215,6 @@
 			children = (
 				9643BAA31C3DC46700730361 /* EllipsisView.h */,
 				9643BAA41C3DC46700730361 /* EllipsisView.m */,
-				968D45FF1C3F328E00C22839 /* ChevronView.h */,
-				968D46001C3F328E00C22839 /* ChevronView.m */,
 			);
 			name = Views;
 			sourceTree = "<group>";
@@ -334,8 +335,12 @@
 			children = (
 				C137BA3F1C1F38D70075B349 /* AppDelegate.h */,
 				C137BA401C1F38D80075B349 /* AppDelegate.m */,
+				960E72A81C4AF16B0076F3BC /* UIApplication+Convenience.h */,
+				960E72A91C4AF16B0076F3BC /* UIApplication+Convenience.m */,
 				964074EB1C209EA0003403CB /* Constants.h */,
 				964074EC1C209EA0003403CB /* Constants.m */,
+				960E72A21C49BB6E0076F3BC /* Functions.h */,
+				960E72A31C49BB6E0076F3BC /* Functions.m */,
 				9643BAA21C3DC43B00730361 /* Views */,
 				9643BAA11C3DC43000730361 /* Time & Date */,
 				964D151E1C22435500D71C81 /* Controllers */,
@@ -523,18 +528,19 @@
 				96F653D61C1F3F060098A317 /* Person.m in Sources */,
 				C1353C311C20F72E00F9F0E8 /* ChoreDetailViewController.m in Sources */,
 				960AE0FB1C35FC1600F7B56F /* Choree+CoreDataProperties.m in Sources */,
-				968D46011C3F328E00C22839 /* ChevronView.m in Sources */,
 				96EE762C1C29C99A006C0C2D /* EditAlertViewController.m in Sources */,
 				C137BA411C1F38D80075B349 /* AppDelegate.m in Sources */,
 				96F653D21C1F3F060098A317 /* Chore.m in Sources */,
 				969F739D1C2DB0FA00E566B5 /* AlertDatesToDataTransformer.m in Sources */,
 				96F653C41C1F3EF60098A317 /* PeaceKeeper.xcdatamodeld in Sources */,
 				C137BA3E1C1F38D70075B349 /* main.m in Sources */,
+				960E72AA1C4AF16B0076F3BC /* UIApplication+Convenience.m in Sources */,
 				960AE0E21C35E06C00F7B56F /* Choree.m in Sources */,
 				961C7E681C288D760072627A /* EditChoreViewController.m in Sources */,
 				96F654081C1F4BD50098A317 /* CompletedChore.m in Sources */,
 				960AE0F31C35E61A00F7B56F /* Person+CoreDataProperties.m in Sources */,
 				96BC3BA61C45AF1B00225F65 /* CoreDataStackManager.m in Sources */,
+				960E72A41C49BB6E0076F3BC /* Functions.m in Sources */,
 				960AE0F41C35E61A00F7B56F /* Household+CoreDataProperties.m in Sources */,
 				969F739A1C2DAED200E566B5 /* AlertDates.m in Sources */,
 				966C01681C1F61B30028CBF7 /* TimeService.m in Sources */,
@@ -704,9 +710,10 @@
 				INFOPLIST_FILE = PeaceKeeper/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.franciscoragland.PeaceKeeper;
+				PRODUCT_BUNDLE_IDENTIFIER = com.bushyhead.PeaceKeeper;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Debug;
 		};
@@ -719,9 +726,10 @@
 				INFOPLIST_FILE = PeaceKeeper/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.franciscoragland.PeaceKeeper;
+				PRODUCT_BUNDLE_IDENTIFIER = com.bushyhead.PeaceKeeper;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Release;
 		};

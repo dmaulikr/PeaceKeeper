@@ -9,6 +9,7 @@
 #import "CoreDataStackManager.h"
 #import "NSDate+Category.h"
 #import "Choree.h"
+#import "Chore.h"
 
 @implementation CoreDataStackManager
 
@@ -67,8 +68,7 @@
         // abort() causes the application to generate a crash log and terminate. You should not use this function in a shipping application, although it may be useful during development.
         NSLog(@"Unresolved error %@, %@", error, [error userInfo]);
         
-        // FIXME
-        abort();
+//        abort();
     }
     
     return _persistentStoreCoordinator;
@@ -165,6 +165,19 @@
     NSFetchRequest *request = [NSFetchRequest fetchRequestWithEntityName:entityName];
     
     request.resultType = NSManagedObjectIDResultType;
+    
+    NSError *error;
+    NSArray *results = [managedObjectContext executeFetchRequest:request error:&error];
+    [self processFetchError:error entityName:entityName];
+    return results;
+}
+
+- (NSArray<Chore *> * _Nonnull)fetchChoresAndPrefetchChorees {
+    NSString *entityName = [Chore name];
+    NSManagedObjectContext *managedObjectContext = [[CoreDataStackManager sharedManager] managedObjectContext];
+    NSFetchRequest *request = [NSFetchRequest fetchRequestWithEntityName:entityName];
+    
+    request.relationshipKeyPathsForPrefetching = @[@"chorees"];
     
     NSError *error;
     NSArray *results = [managedObjectContext executeFetchRequest:request error:&error];

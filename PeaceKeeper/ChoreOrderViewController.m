@@ -39,9 +39,9 @@
     NSString *choreRepeatIntervalUnit = (NSString *)self.choreInfo[kChoreInfoKeyRepeatIntervalUnit];
     NSOrderedSet *people = [NSOrderedSet orderedSetWithArray:self.selectedPeople];
     Household *household = [[CoreDataStackManager sharedManager] fetchHousehold];
+    NSString *choreImageName = self.choreInfo[kChoreInfoKeyImageName];
     
-    // FIXME imageName
-    [Chore choreWithName:choreName startDate:choreStartDate repeatIntervalValue:choreRepeatIntervalValue repeatIntervalUnit:choreRepeatIntervalUnit household:household people:people imageName:nil];
+    [Chore choreWithName:choreName startDate:choreStartDate repeatIntervalValue:choreRepeatIntervalValue repeatIntervalUnit:choreRepeatIntervalUnit household:household people:people imageName:choreImageName];
     [self.navigationController popToRootViewControllerAnimated:YES];
 }
 

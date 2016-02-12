@@ -17,6 +17,9 @@
 #import "MakeChoreViewController.h"
 #import "ChoreDetailViewController.h"
 #import "PresetTaskViewController.h"
+#import "Choree.h"
+#import "NSDate+Category.h"
+#import "Functions.h"
 
 NSString *const addChoreSegueIdentifier = @"PresetTask";
 
@@ -31,18 +34,10 @@ NSString *const addChoreSegueIdentifier = @"PresetTask";
 
 - (NSArray<Chore *> *)chores {
     if (!_chores) {
-        NSString *entityName = [Chore name];
-        NSManagedObjectContext *managedObjectContext = [[CoreDataStackManager sharedManager] managedObjectContext];
-        NSFetchRequest *request = [NSFetchRequest fetchRequestWithEntityName:entityName];
-        NSError *error;
-        NSArray *results = [managedObjectContext executeFetchRequest:request error:&error];
-        _chores = results;
-        if (error) {
-            NSLog(@"Error fetching %@ objects: %@", entityName, error.localizedDescription);
-        } else {
-            NSLog(@"Successfully fetched %@ objects", entityName);
-            NSLog(@"%@ count: %@", entityName, @(_chores.count));
-        }
+        NSArray *unsortedChores = [NSMutableArray arrayWithArray:[[CoreDataStackManager sharedManager] fetchChoresAndPrefetchChorees]];
+        _chores = [unsortedChores sortedArrayUsingComparator:^NSComparisonResult(Chore * _Nonnull chore1, Chore *  _Nonnull chore2) {
+            return [[chore1 earliestAlertDate] compare:[chore2 earliestAlertDate]];
+        }];
     }
     return _chores;
 }
@@ -67,6 +62,8 @@ NSString *const addChoreSegueIdentifier = @"PresetTask";
 
 - (void)viewDidAppear:(BOOL)animated {
     [super viewDidAppear:animated];
+    
+    [self cancelAllLocalNotificationsIfNoHouseholdsExist];
     [self presentCreateHouseholdViewControllerIfNeeded];
     [self performAddChoreSegueIfNeeded];
 }
@@ -75,15 +72,21 @@ NSString *const addChoreSegueIdentifier = @"PresetTask";
     [super didReceiveMemoryWarning];
 }
 
+- (void)cancelAllLocalNotificationsIfNoHouseholdsExist {
+    if (self.chores.count == 0 && [[CoreDataStackManager sharedManager] fetchHouseholdsAsObjectIDs].count == 0) {
+        [[UIApplication sharedApplication] cancelAllLocalNotifications];
+    }
+}
+
 - (void)presentCreateHouseholdViewControllerIfNeeded {
-    if ([[CoreDataStackManager sharedManager] fetchHouseholdsAsObjectIDs].count == 0) {
+    if (self.chores.count == 0 && [[CoreDataStackManager sharedManager] fetchHouseholdsAsObjectIDs].count == 0) {
         UINavigationController *createHouseholdNavigationController = [self.storyboard instantiateViewControllerWithIdentifier:@"CreateHouseholdNavigationController"];
         [self presentViewController:createHouseholdNavigationController animated:YES completion:nil];
     }
 }
 
 - (void)performAddChoreSegueIfNeeded {
-    if (self.chores.count == 0) {
+    if (self.chores.count == 0 && [[CoreDataStackManager sharedManager] fetchHouseholdsAsObjectIDs].count > 0) {
         [self performSegueWithIdentifier:addChoreSegueIdentifier sender:nil];
     }
 }
@@ -112,7 +115,20 @@ NSString *const addChoreSegueIdentifier = @"PresetTask";
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     UITableViewCell *cell = [self.tableView dequeueReusableCellWithIdentifier:@"Chore" forIndexPath:indexPath];
     Chore *chore = self.chores[indexPath.row];
+    Choree *earliestChoree = [chore earliestChoree];
     cell.textLabel.text = chore.name;
+    
+    cell.imageView.image = iconImageFromImageName(chore.imageName);
+    cell.imageView.tintColor = self.tableView.tintColor;
+    
+    NSString *detailText;
+    
+    if (earliestChoree.alertDate.isInThePast) {
+        detailText = [NSString stringWithFormat:@"%@ ⚠️", earliestChoree.alertDate.descriptionOfTimeToNowInDaysHoursOrMinutes];
+    } else {
+        detailText = [NSString stringWithFormat:@"%@", earliestChoree.alertDate.descriptionOfTimeToNowInDaysHoursOrMinutes];
+    }
+    cell.detailTextLabel.text = detailText;
     return cell;
 }
 

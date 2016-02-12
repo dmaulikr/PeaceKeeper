@@ -13,7 +13,7 @@ extern NSString *const kChoreInfoKeyTitleString;
 extern NSString *const kChoreInfoKeyStartDate;
 extern NSString *const kChoreInfoKeyRepeatIntervalValue;
 extern NSString *const kChoreInfoKeyRepeatIntervalUnit;
-extern NSString *const kChoreInfoKeyImage;
+extern NSString *const kChoreInfoKeyImageName;
 
 extern NSString *const kChoreNameKey;
 

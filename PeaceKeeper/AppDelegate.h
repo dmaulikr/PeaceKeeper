@@ -17,5 +17,7 @@
 @property (strong, nonatomic) UIWindow *window;
 @property (strong, nonatomic) CoreDataStackManager *coreDataStackManager;
 
+- (NSInteger)fetchUpdatedApplicationIconBadgeNumber;
+
 @end
 

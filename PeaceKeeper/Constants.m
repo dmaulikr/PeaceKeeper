@@ -12,7 +12,7 @@ NSString *const kChoreInfoKeyTitleString = @"kChoreInfoKeyTitleString";
 NSString *const kChoreInfoKeyStartDate = @"kChoreInfoKeyStartDate";
 NSString *const kChoreInfoKeyRepeatIntervalValue = @"kChoreInfoKeyRepeatIntervalValue";
 NSString *const kChoreInfoKeyRepeatIntervalUnit = @"kChoreInfoKeyRepeatIntervalUnit";
-NSString *const kChoreInfoKeyImage = @"kChoreInfoKeyImage";
+NSString *const kChoreInfoKeyImageName = @"kChoreInfoKeyImageName";
 
 NSString *const kChoreNameKey = @"kChoreNameKey";
 

@@ -13,10 +13,10 @@
 #import "ChooseUnitViewControllerDelegate.h"
 #import "ChooseUnitViewController.h"
 
-NSUInteger const dateSection = 0;
-NSUInteger const intervalSection = 1;
-NSUInteger const valueRow = 0;
-NSUInteger const unitRow = 1;
+NSUInteger const thisDateSection = 0;
+NSUInteger const thisIntervalSection = 1;
+NSUInteger const thisValueRow = 0;
+NSUInteger const thisUnitRow = 1;
 
 @interface EditAlertViewController () <UITableViewDelegate, UITableViewDataSource, ChooseValueViewControllerDelegate, ChooseUnitViewControllerDelegate>
 
@@ -33,6 +33,7 @@ NSUInteger const unitRow = 1;
     self.tableView.dataSource = self;
     
     self.startDatePicker = [[UIDatePicker alloc] init];
+    self.startDatePicker.frame = CGRectMake(0, 0, self.view.frame.size.width, self.startDatePicker.frame.size.height);
     [self.startDatePicker addTarget:self action:@selector(startDateDidChangeAction:) forControlEvents:UIControlEventValueChanged];
 }
 
@@ -68,7 +69,7 @@ NSUInteger const unitRow = 1;
 #pragma mark - Table View Delegate
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
-    if (indexPath.section == dateSection) {
+    if (indexPath.section == thisDateSection) {
         return self.startDatePicker.frame.size.height;
     }
     return self.tableView.rowHeight;
@@ -82,20 +83,20 @@ NSUInteger const unitRow = 1;
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
     switch (section) {
-        case dateSection:
+        case thisDateSection:
             return 1;
-        case intervalSection:
+        case thisIntervalSection:
             return 2;
         default:
             return 0;
-    }
+    } 
 }
 
 - (NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section {
     switch (section) {
-        case dateSection:
+        case thisDateSection:
             return @"Start Date";
-        case intervalSection:
+        case thisIntervalSection:
             return @"Repeat Interval";
         default:
             return nil;
@@ -103,7 +104,7 @@ NSUInteger const unitRow = 1;
 }
 
 - (NSString *)tableView:(UITableView *)tableView titleForFooterInSection:(NSInteger)section {
-    if (section == intervalSection) {
+    if (section == thisIntervalSection) {
         if (self.repeatIntervalValue && self.repeatIntervalUnit) {
             if (self.repeatIntervalValue.integerValue == 1) {
                 return [NSString stringWithFormat:@"This alert will repeat every %@", self.repeatIntervalUnit.lowercaseString];
@@ -116,13 +117,13 @@ NSUInteger const unitRow = 1;
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     UITableViewCell *cell;
-    if (indexPath.section == dateSection) {
+    if (indexPath.section == thisDateSection) {
         cell = [tableView dequeueReusableCellWithIdentifier:@"Date"];
         [cell.contentView addSubview:self.startDatePicker];
-    } else if (indexPath.section == intervalSection && indexPath.row == valueRow) {
+    } else if (indexPath.section == thisIntervalSection && indexPath.row == thisValueRow) {
         cell = [tableView dequeueReusableCellWithIdentifier:@"Value"];
         cell.detailTextLabel.text = [NSString stringWithFormat:@"%ld", (long)self.repeatIntervalValue.integerValue];
-    } else if (indexPath.section == intervalSection && indexPath.row == unitRow) {
+    } else if (indexPath.section == thisIntervalSection && indexPath.row == thisUnitRow) {
         cell = [tableView dequeueReusableCellWithIdentifier:@"Unit"];
         cell.detailTextLabel.text = self.repeatIntervalUnit;
     }

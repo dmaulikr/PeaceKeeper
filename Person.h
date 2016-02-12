@@ -19,7 +19,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 + (NSString * _Nonnull)name;
 + (instancetype _Nonnull)personFromContact:(CNContact * _Nonnull)contact withHousehold:(Household * _Nonnull)household;
-+ (instancetype _Nonnull)personWithFirstName:(NSString * _Nonnull)firstName lastName:(NSString * _Nullable)lastName phoneNumber:(NSString * _Nullable)phoneNumber email:(NSString *_Nullable)email chore:(Chore * _Nonnull)chore household:(Household * _Nonnull)household;
++ (instancetype _Nonnull)personWithFirstName:(NSString * _Nonnull)firstName lastName:(NSString * _Nullable)lastName phoneNumber:(NSString * _Nullable)phoneNumber email:(NSString *_Nullable)email household:(Household * _Nonnull)household;
 - (NSString * _Nonnull)fullName;
 
 @end

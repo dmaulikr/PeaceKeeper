@@ -36,8 +36,6 @@
     person.phoneNumber = phoneNumber;
     person.email = email;
     person.household = household;
-    // FIXME?
-//    [household addPeopleObject:person];
     [[CoreDataStackManager sharedManager] saveContext];
     return person;
 }
