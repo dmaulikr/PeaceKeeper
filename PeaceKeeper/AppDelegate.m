@@ -24,15 +24,6 @@
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     // Override point for customization after application launch.
-    
-    /*
-    UILocalNotification *localNotification = launchOptions[UIApplicationLaunchOptionsLocalNotificationKey];
-    
-    if (localNotification) {
-        NSLog(@"Inside application:didFinishLaunchingWithOptions:");
-        NSLog(@"Local notification user info: %@", localNotification.userInfo);
-    }
-    */
 
     UITabBarController *tabBarController = (UITabBarController *)self.window.rootViewController;
     tabBarController.viewControllers[0].tabBarItem = [[UITabBarItem alloc] initWithTitle:@"Home" image:[UIImage imageNamed:@"HomeBarButtonIcon"] selectedImage:[UIImage imageNamed:@"HomeBarButtonIconSelected"]];
@@ -45,10 +36,6 @@
 }
 
 - (void)application:(UIApplication *)application didReceiveLocalNotification:(UILocalNotification *)notification {
-    /*
-    NSLog(@"Inside application:didReceiveLocalNotification:");
-    NSLog(@"Local notification user info: %@", notification.userInfo);
-     */
     [application updateApplicationIconBadgeNumber];
 }
 
@@ -62,14 +49,7 @@
             if ([identifier isEqualToString:kChoreNotificationActionIdentifierCompleteChore]) {
                 [chore completeChore];
             } else if ([identifier isEqualToString:kChoreNotificationActionIdentifierNotifyChoree]) {
-                
-                // Get a pointer to ViewController
-                    // Get the root view controller
-                    // Get the tab bar controller
-                    // Get the selected controller
-                    // Check that it's the right class
-                        // Perform the segue from ViewController to ChoreDetailViewController with the Chore as sender
-                // Get a pointer to ChoreDetailViewController an activate the contact pop-up
+                // TODO
             }
         }
     }
@@ -106,18 +86,10 @@
     completeChoreAction.title = kChoreNotificationActionTitleCompleteChore;
     completeChoreAction.activationMode = UIUserNotificationActivationModeBackground;
     completeChoreAction.authenticationRequired = NO;
-    
-    /*
-    UIMutableUserNotificationAction *notifyChoreeAction = [[UIMutableUserNotificationAction alloc] init];
-    notifyChoreeAction.identifier = kChoreNotificationActionIdentifierNotifyChoree;
-    notifyChoreeAction.title = kChoreNotificationActionTitleNotifyChoree;
-    notifyChoreeAction.activationMode = UIUserNotificationActivationModeForeground;
-    notifyChoreeAction.authenticationRequired = YES;
-     */
 
     UIMutableUserNotificationCategory *notificationCategory = [[UIMutableUserNotificationCategory alloc] init];
     notificationCategory.identifier = kChoreNotificationCategoryIdentifier;
-    NSArray *actions = @[completeChoreAction/*, notifyChoreeAction*/];
+    NSArray *actions = @[completeChoreAction];
     [notificationCategory setActions:actions forContext:UIUserNotificationActionContextDefault];
     [notificationCategory setActions:actions forContext:UIUserNotificationActionContextMinimal];
     
@@ -129,8 +101,6 @@
 }
 
 - (NSInteger)fetchUpdatedApplicationIconBadgeNumber {
-    // FIXME
-    // Implement way to get badge count from objects in memory
     return [self.coreDataStackManager fetchAndCountChoreeAlertDatesInThePast];
 }
 

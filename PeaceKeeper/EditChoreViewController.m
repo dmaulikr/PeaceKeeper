@@ -77,24 +77,6 @@ NSUInteger const editableSection = 1;
 
 
 #pragma mark - Actions
-/*
-- (IBAction)markPersonUnderPressAsCurrentPerson:(UILongPressGestureRecognizer *)sender {
-    if (sender.state == UIGestureRecognizerStateBegan) {
-        CGPoint pressedPoint = [sender locationInView:self.tableView];
-        NSIndexPath *indexPathUnderPress = [self.tableView indexPathForRowAtPoint:pressedPoint];
-        if (indexPathUnderPress.section == editableSection && indexPathUnderPress.row < self.mutablePeople.count) {
-            NSUInteger prevCurrentPersonIndex = [self.mutablePeople indexOfObject:self.currentPerson];
-            self.currentPerson = self.mutablePeople[indexPathUnderPress.row];
-            if (prevCurrentPersonIndex == NSNotFound || prevCurrentPersonIndex == indexPathUnderPress.row) {
-                [self.tableView reloadRowsAtIndexPaths:@[indexPathUnderPress] withRowAnimation:UITableViewRowAnimationFade];
-            } else {
-                [self.tableView reloadRowsAtIndexPaths:@[indexPathUnderPress, [NSIndexPath indexPathForRow:prevCurrentPersonIndex inSection:editableSection]] withRowAnimation:UITableViewRowAnimationFade];
-            }
-            [self toggleSaveButtonIfNeeded];
-        }
-    }
-}
- */
 
 - (IBAction)saveAction:(UIBarButtonItem *)sender {
     [self.delegate editChoreViewControllerDidSaveWithPeople:self.mutablePeople currentPerson:self.mutablePeople[0] startDate:self.startDate repeatIntervalValue:self.repeatIntervalValue repeatIntervalUnit:self.repeatIntervalUnit];
@@ -202,18 +184,6 @@ NSUInteger const editableSection = 1;
         [self.mutablePeople removeObjectAtIndex:indexPath.row];
         [tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:YES];
         [self toggleSaveButtonIfNeeded];
-        /*
-        if (self.mutablePeople.count == 1) {
-            UIAlertController *alertController = [UIAlertController alertControllerWithTitle:@"Cannot Remove the Last Person From a Chore" message:@"A chore cannot have zero people." preferredStyle:UIAlertControllerStyleAlert];
-            UIAlertAction *okAction = [UIAlertAction actionWithTitle:@"OK" style:UIAlertActionStyleDefault handler:nil];
-            [alertController addAction:okAction];
-            [self presentViewController:alertController animated:YES completion:nil];
-        } else {
-            [self.mutablePeople removeObjectAtIndex:indexPath.row];
-            [tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:YES];
-            [self toggleSaveButtonIfNeeded];
-        }
-        */
     }
     [self printPeople];
 }
@@ -234,11 +204,6 @@ NSUInteger const editableSection = 1;
         }
         return [NSString stringWithFormat:@"Next alert on %@ at %@ and repeat every %@ %@s.", dateString, timeString, self.repeatIntervalValue, lowercaseRepeatIntervalUnit];
     }
-    /*
-    if (section == editableSection) {
-        return @"Press and hold on a person to make them next up.";
-    }
-     */
     return nil;
 }
 

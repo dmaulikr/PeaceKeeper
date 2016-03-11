@@ -35,13 +35,6 @@
         mutableDates[index] = alertDate;
         alertDate = [cal dateByAddingUnit:calendarUnit value:n toDate:alertDate options:0];
     }
-    
-    /*
-    for (NSUInteger i = 0; i < count; i++) {
-        NSLog(@"%@", mutableDates[i]);
-        NSAssert([mutableDates[i] isKindOfClass:[NSDate class]], @"Resulting array must all be of type NSDate!");
-    }
-    */
         
     return [[AlertDates alloc] initWithDates:mutableDates];
 }

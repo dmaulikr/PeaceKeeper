@@ -23,14 +23,12 @@
 
 - (id)transformedValue:(id)value {
     return [NSKeyedArchiver archivedDataWithRootObject:((AlertDates *)value).dates];
-//    return UIImagePNGRepresentation(value);
 }
 
 
 - (id)reverseTransformedValue:(id)value {
     NSArray<NSDate *> *dates = [NSKeyedUnarchiver unarchiveObjectWithData:value];
     return [[AlertDates alloc] initWithDates:dates];
-//    return [[UIImage alloc] initWithData:value];
 }
 
 @end
