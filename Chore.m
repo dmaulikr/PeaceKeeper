@@ -94,7 +94,6 @@
     return [[self earliestChoree] alertDate];
 }
 
-// FIXME TEST ME!
 - (Choree * _Nullable)earliestChoree {
     Choree *earliest;
     for (Choree *choree in self.chorees) {
