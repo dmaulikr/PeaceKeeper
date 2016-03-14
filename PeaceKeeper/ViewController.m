@@ -48,7 +48,7 @@ NSString *const addChoreSegueIdentifier = @"PresetTask";
     self.tableView.delegate = self;
     self.tableView.dataSource = self;
     
-    self.navigationController.navigationBar.topItem.title = @"PeaceKeeper";
+    self.navigationController.navigationBar.topItem.title = @"Chores";
 }
 
 - (UIStatusBarStyle)preferredStatusBarStyle {
