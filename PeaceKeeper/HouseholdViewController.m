@@ -51,15 +51,12 @@
 }
 
 - (void)contactPicker:(CNContactPickerViewController *)picker didSelectContact:(CNContact *)contact {
-    BOOL contactNotInHousehold = true;
     for (Person *person in self.household.people.allObjects) {
         if (person.firstName == contact.givenName && person.lastName == contact.familyName) {
-            contactNotInHousehold = false;
+            return;
         }
     }
-    if (contactNotInHousehold) {
-        [Person personFromContact:contact withHousehold:self.household];
-    }
+    [Person personFromContact:contact withHousehold:self.household];
 }
 
 #pragma mark - UITableViewDataSource
